@@ -219,45 +219,74 @@
                     <div class="col">
                         <ul class="dropdown-menu d-block position-static mx-0 border-0 shadow w-220px" data-bs-theme="dark">
                             <li> <a class="dropdown-item d-flex gap-2 align-items-center" href="#"> 
-                                    <i class="bi bi-files"></i>
-                                    Documents
+                                    <i class="bi bi-calendar"></i>
+                                    Agenda
                                 </a> 
                             </li>
                             <li> <a class="dropdown-item d-flex gap-2 align-items-center" href="#"> 
-                                    <i class="bi bi-image"></i>
-                                    Photos
+                                    <i class="bi bi-stars"></i>
+                                    Astrologia
                                 </a> 
                             </li>
                             <li> <a class="dropdown-item d-flex gap-2 align-items-center" href="#">
-                                    <i class="bi bi-film"></i>
-                                    Movies
+                                    <i class="bi bi-headset-vr"></i>
+                                    Cuidados Pessoais
+                                </a> 
+                            </li>                            
+                            <li> <a class="dropdown-item d-flex gap-2 align-items-center" href="#">
+                                    <i class="bi bi-backpack2"></i>
+                                    Estudo
+                                </a> 
+                            </li>                            
+                            <li> <a class="dropdown-item d-flex gap-2 align-items-center" href="#">
+                                    <i class="bi bi-cash"></i>
+                                    Financeiro
                                 </a> 
                             </li>
                             <li> <a class="dropdown-item d-flex gap-2 align-items-center" href="#"> 
                                     <i class="bi bi-music-note-beamed"></i>
-                                    Music
+                                    Músicas
                                 </a> 
                             </li>
                             <li> <a class="dropdown-item d-flex gap-2 align-items-center" href="#">
-                                    <i class="bi bi-joystick"></i>
-                                    Games
+                                    <i class="bi bi-tv"></i>
+                                    TV List
                                 </a> 
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <li> <a class="dropdown-item d-flex gap-2 align-items-center" href="#">
-                                    <i class="bi bi-trash"></i>
-                                    Trash
+                                    <i class="bi bi-plus-square"></i>
+                                    Criar Diretório
                                 </a> 
                             </li>
                         </ul>
                         <div class="p-4 mb-3 bg-body-tertiary rounded">
-                            <h4 class="fst-italic">About</h4>
-                            <p class="mb-0">Customize this section to tell your visitors a little bit about your publication, writers, content,
-                                or something else entirely. Totally up to you.</p>
+                            <h4 class="fst-italic">Meu Aniversário</h4>
+                            
+                            <div class="d-flex justify-content-around align-items-center">
+                                <div class="d-flex flex-column">
+                                    <p class="fs-5" id="dias">00</p>
+                                    <span class="fs-7">d</span>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <p class="fs-5" id="horas">00</p>
+                                    <span class="fs-7">h</span>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <p class="fs-5" id="minutos">00</p>
+                                    <span class="fs-7">m</span>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <p class="fs-5" id="segundos">00</p>
+                                    <span class="fs-7">s</span>
+                                </div>
+                            </div>
+
                         </div>
 
+                        
                         <ul class="list-group">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 A list item
@@ -272,9 +301,18 @@
                                 <span class="badge text-bg-primary rounded-pill">1</span>
                             </li>
                         </ul>
+
+                        <div class="p-4 mt-3 bg-body-tertiary rounded">
+                            <h4 class="fst-italic">Copos de Águas</h4>
+                            <div class="d-flex m-4 justify-content-around align-items-center">
+                                    <button class="btn btn-secondary" onclick="diminuirNumero()"><i class="bi bi-dash-lg"></i></button>
+                                    <input class="form-control text-center w-25" type="text" id="contador" value="0">
+                                    <button class="btn btn-secondary" onclick="aumentarNumero()"><i class="bi bi-plus-lg"></i></button>                             
+                            </div>
+                        </div>
                     </div>
                     <div class="col-6">
-                        <h3 >Próximos Comrpomissos</h3>
+                        <h3 >Próximos Compromissos</h3>
                           <div class="list-group">
                                 <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
                                     <div class="d-flex w-100 justify-content-between">
@@ -802,7 +840,8 @@
             </li>
         </ul>
     </footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/scripts.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> -->
 </body>
 </html>
 
