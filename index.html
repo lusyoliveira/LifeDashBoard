@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Life Dashboard</title>
+    <link rel="stylesheet" href="./styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     
 </head>
+
 <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 bg-body-tertiary">
             <div class="container-fluid">
@@ -47,6 +49,9 @@
             </div>
         </nav>
  
+         <!-- Local onde o modal será inserido -->
+    <div id="container-modal"></div>
+
     <main class="container-fliud m-4">
         <h1 class="pb-2 border-bottom">Bem Vindo!</h1>
             <div class="container-fliud text-center">
@@ -131,7 +136,7 @@
             <div class="container">
                 <div class="cal">
                     <div class="cal-month d-flex justify-content-between">
-                        <div class="cal-month d-flex justify-content-between">
+                        <div class="d-flex justify-content-between">
                             <div class="cal-month d-flex justify-content-evenly align-items-center">
                                 <button class="btn"><i class="bi bi-caret-left"></i></button>
                                 <h4 class="cal-month-name text-center">Junho 2025</h4>
@@ -139,79 +144,161 @@
                             </div>
                         </div>                     
 
-                        <div class="cal-month d-flex justify-content-between">
+                        <div class="d-flex justify-content-between">
                             <button class="btn" title="Pesquisar"><i class="bi bi-search"></i></button>
-                            <button class="btn" title="Adicionar Evento"><i class="bi bi-plus-square"></i></button>
+                            <button type="button" class="btn" id="adiciona-evento" title="Adicionar Evento" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="bi bi-plus-square"></i></button>
                             <button class="btn" title="Configurações"><i class="bi bi-three-dots"></i></button>
                         </div>
                     </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered text-center mb-0">
-                                    <thead class="cal-weekdays text-body-secondary">
-                                        <tr>
-                                            <th>Dom</th>
-                                            <th>Seg</th>
-                                            <th>Ter</th>
-                                            <th>Qua</th>
-                                            <th>Qui</th>
-                                            <th>Sex</th>
-                                            <th>Sáb</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="cal-days">
-                                        <tr class="cal-days">
-                                            <td>1</td>
-                                            <td>2</td>
-                                            <td>3</td>
-                                            <td>4</td>
-                                            <td>5</td>
-                                            <td>6</td>
-                                            <td>7</td>
-                                        </tr>
-                                        <tr>
-                                            <td>8</td>
-                                            <td>9</td>
-                                            <td>10</td>
-                                            <td>11</td>
-                                            <td>12</td>
-                                            <td>13</td>
-                                            <td>14</td>
-                                        </tr>
-                                        <tr>
-                                            <td>15</td>
-                                            <td>16</td>
-                                            <td>17</td>
-                                            <td>18</td>
-                                            <td>19</td>
-                                            <td>20</td>
-                                            <td>21</td>
-                                        </tr>
-                                        <tr>
-                                            <td>22</td>
-                                            <td>23</td>
-                                            <td>24</td>
-                                            <td>25</td>
-                                            <td>26</td>
-                                            <td>27</td>
-                                            <td>28</td>
-                                        </tr>
-                                        <tr>
-                                            <td>29</td>
-                                            <td>30</td>
-                                            <td class="bg-light"></td>
-                                            <td class="bg-light"></td>
-                                            <td class="bg-light"></td>
-                                            <td class="bg-light"></td>
-                                            <td class="bg-light"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                    <div class="container text-center border">
+                        <div class="row cal-weekdays text-body-secondary border-bottom">
+                            <div class="col cal-days">Domingo</div>
+                            <div class="col">Segunda</div>
+                            <div class="col">Terça</div>
+                            <div class="col">Quarta</div>
+                            <div class="col">Quinta</div>
+                            <div class="col">Sexta</div>
+                            <div class="col">Sábado</div>
+                        </div>
+                        <div class="row cal-days border-bottom">
+                            <div class="col p-0 border-end">
+                                <div class="conteudo-dia">
+                                    <div class="text-end">1</div>
+                                    <div class="badge bg-body-secondary text-start p-3">
+                                        <p><i class="bi bi-currency-dollar"></i> Assoprar Canela</p>
+                                        <span class="badge text-bg-info">Pessoal</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col p-0 border-end">
+                                <div class="text-end">2</div>
+                            </div>
+                            <div class="col p-0 border-end">
+                                <div class="text-end">3</div>
+                            </div>
+                            <div class="col p-0 border-end">
+                                <div class="text-end">4</div>
+                            </div>
+                            <div class="col p-0 border-end">
+                                <div class="text-end">5</div>
+                            </div>
+                            <div class="col p-0 border-end">
+                                <div class="text-end">6</div>
+                            </div>
+                            <div class="col p-0">
+                                <div class="text-end">7</div>
                             </div>
                         </div>
+                        <div class="row cal-days border-bottom">
+                            <div class="col p-0 border-end">
+                                <div class="text-end">8</div>
+                            </div>
+                            <div class="col p-0 border-end">
+                                <div class="text-end">9</div>
+                            </div>
+                            <div class="col p-0 border-end" id="dia11">
+                                <div class="text-end">10</div>                                                                                                                                                                                                                                                                                                                         
+                            </div>
+                            <div class="col p-0 border-end">                                
+                                <div class="conteudo-dia">
+                                    <div class="text-end">11</div>
+                                    <div class="badge bg-body-secondary text-start p-3">
+                                        <p><i class="bi bi-currency-dollar"></i> Investir</p>
+                                        <span class="badge text-bg-info">Pessoal</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col p-0 border-end">
+                                <div class="text-end">12</div>
+                            </div>
+                            <div class="col p-0 border-end">
+                                <div class="text-end">13</div>
+                            </div>
+                            <div class="col p-0">
+                                <div class="text-end">14</div>
+                            </div>
+                        </div>
+                        <div class="row cal-days border-bottom">
+                            <div class="col p-0 border-end">
+                                <div class="text-end">15</div>
+                            </div>
+                            <div class="col p-0 border-end">
+                                <div class="text-end">16</div>
+                            </div>
+                            <div class="col p-0 border-end">
+                                <div class="text-end">17</div>
+                            </div>
+                            <div class="col p-0 border-end">
+                                <div class="text-end">18</div>
+                            </div>
+                            <div class="col p-0 border-end">
+                                <div class="text-end">19</div>
+                            </div>
+                            <div class="col p-0 border-end">                                                                
+                                <div class="conteudo-dia">
+                                    <div class="text-end">20</div>
+                                    <div class="badge bg-body-secondary text-start p-3">
+                                        <p><i class="bi bi-currency-dollar"></i> Conta de Luz</p>
+                                        <span class="badge text-bg-info">Casa</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col p-0">
+                                <div class="text-end">21</div>
+                            </div>
+                        </div>
+                        <div class="row cal-days border-bottom">
+                            <div class="col p-0 border-end">
+                                <div class="text-end">22</div>
+                            </div>
+                            <div class="col p-0 border-end">
+                                 <div class="conteudo-dia">
+                                    <div class="text-end">23</div>
+                                    <div class="badge bg-body-secondary text-start p-3">
+                                        <p><i class="bi bi-currency-dollar"></i> Cronograma Capilar</p>
+                                        <span class="badge text-bg-info">Pessoal</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col p-0 border-end">
+                                <div class="text-end">24</div>
+                            </div>
+                            <div class="col p-0 border-end">
+                                <div class="text-end">25</div>
+                            </div>
+                            <div class="col p-0 border-end">
+                                <div class="text-end">26</div>
+                            </div>
+                            <div class="col p-0 border-end">
+                                <div class="text-end">27</div>
+                            </div>
+                            <div class="col p-0"> 
+                                <div class="text-end">28</div>
+                            </div>
+                        </div>
+                        <div class="row cal-days border-bottom">
+                            <div class="col p-0 border-end">                                                                
+                                <div class="conteudo-dia">
+                                    <div class="text-end">29</div>
+                                    <div class="badge bg-body-secondary text-start p-3">
+                                        <p><i class="bi bi-currency-dollar"></i> Acerto Financeiro</p>
+                                        <span class="badge text-bg-info">Pessoal</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col p-0 border-end">
+                                <div class="text-end">30</div>
+                            </div>
+                            <div class="col p-0 border-end"></div>
+                            <div class="col p-0 border-end"></div>
+                            <div class="col p-0 border-end"></div>
+                            <div class="col p-0 border-end"></div>
+                            <div class="col p-0"></div>
+                        </div>
+                    </div>                    
                 </div>
             </div>
-
+            
          <hr>
 
             <div class="container-fliud text-center">
@@ -232,7 +319,12 @@
                                     <i class="bi bi-headset-vr"></i>
                                     Cuidados Pessoais
                                 </a> 
-                            </li>                            
+                            </li> 
+                            <li> <a class="dropdown-item d-flex gap-2 align-items-center" href="#"> 
+                                    <i class="bi bi-book"></i>
+                                    Diário
+                                </a> 
+                            </li>                           
                             <li> <a class="dropdown-item d-flex gap-2 align-items-center" href="#">
                                     <i class="bi bi-backpack2"></i>
                                     Estudo
@@ -313,9 +405,9 @@
                         <div class="p-4 mt-3 bg-body-tertiary rounded">
                             <h4 class="fst-italic">Copos de Águas</h4>
                             <div class="d-flex m-4 justify-content-around align-items-center">
-                                    <button class="btn btn-secondary" onclick="diminuirNumero()"><i class="bi bi-dash-lg"></i></button>
+                                    <button class="btn btn-secondary" id="diminui-contagem"><i class="bi bi-dash-lg"></i></button>
                                     <input class="form-control text-center w-25" type="text" id="contador" value="0">
-                                    <button class="btn btn-secondary" onclick="aumentarNumero()"><i class="bi bi-plus-lg"></i></button>                             
+                                    <button class="btn btn-secondary" id="adiciona-contagem"><i class="bi bi-plus-lg"></i></button>                             
                             </div>
                         </div>
                     </div>
@@ -350,7 +442,7 @@
                     </div>
                     <div class="col">
                         <div>
-                            <h4 class="fst-italic">Recent posts</h4>
+                            <h4 class="fst-italic">Entradas do Diário</h4>
                             <ul class="list-unstyled">
                                 <li> <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
                                         href="#"> <svg aria-hidden="true" class="bd-placeholder-img " height="96"
@@ -358,8 +450,8 @@
                                             <rect width="100%" height="100%" fill="#777"></rect>
                                         </svg>
                                         <div class="col-lg-8">
-                                            <h6 class="mb-0">Example blog post title</h6> <small class="text-body-secondary">January 15,
-                                                2024</small>
+                                            <h6 class="mb-0">Example blog post title</h6> 
+                                            <small class="text-body-secondary">January 15, 2024</small>
                                         </div>
                                     </a> </li>
                                 <li> <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
@@ -392,340 +484,21 @@
                         </div>
 
                         <div class="list-group" id="lista-tarefa"> 
-                            <label class="list-group-item d-flex gap-3"> 
-                                <input class="form-check-input flex-shrink-0" type="checkbox" value="" checked="" style="font-size: 1.375em;"> 
-                                    <span class="pt-1 form-checked-content">
-                                        <strong>Finish sales report</strong> 
-                                        <small class="d-block text-body-secondary"> 
-                                            <i class="bi bi-calendar"></i> 1:00–2:00pm
-                                        </small> 
-                                    </span> 
-                            </label> 
-                            <label class="list-group-item d-flex gap-3"> 
-                                <input class="form-check-input flex-shrink-0" type="checkbox" value="" style="font-size: 1.375em;"> 
-                                <span class="pt-1 form-checked-content"> 
-                                    <strong>Weekly All Hands</strong> 
-                                    <small class="d-block text-body-secondary">
-                                        <i class="bi bi-calendar"></i> 2:00–2:30pm
-                                    </small> 
-                                </span> 
-                            </label> 
-                            <label class="list-group-item d-flex gap-3"> 
-                                <input class="form-check-input flex-shrink-0" type="checkbox" value="" style="font-size: 1.375em;"> 
-                                <span class="pt-1 form-checked-content"> 
-                                    <strong>Out of office</strong> 
-                                    <small class="d-block text-body-secondary">
-                                        <i class="bi bi-calendar"></i> Tomorrow
-                                    </small> 
-                                </span> 
-                            </label>
-                            <label class="list-group-item d-flex gap-3"> 
-                                <input class="form-check-input flex-shrink-0" type="checkbox" value="" style="font-size: 1.375em;"> 
-                                <span class="pt-1 form-checked-content"> 
-                                    <strong>Out of office</strong> 
-                                    <small class="d-block text-body-secondary">
-                                        <i class="bi bi-calendar"></i> Tomorrow
-                                    </small> 
-                                </span> 
-                            </label> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container-fluid px-4 py-4" id="custom-cards">
-                <h2 class="pb-2 border-bottom">Últimas Fotos</h2>
-                <div class="row row-cols-1 row-cols-lg-4 align-items-stretch g-4 py-5">
-                    <div class="col">
-                        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-                            style="background-image: url('unsplash-photo-1.jpg');">
-                            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                                <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Short title, long jacket</h3>
-                                <ul class="d-flex list-unstyled mt-auto">
-                                    <li class="me-auto"> <img src="https://github.com/twbs.png" alt="Bootstrap" width="32"
-                                            height="32" class="rounded-circle border border-white"> </li>
-                                    <li class="d-flex align-items-center me-3"> <svg class="bi me-2" width="1em" height="1em"
-                                            role="img" aria-label="Location">
-                                            <use xlink:href="#geo-fill"></use>
-                                        </svg> <small>Earth</small> </li>
-                                    <li class="d-flex align-items-center"> <svg class="bi me-2" width="1em" height="1em" role="img"
-                                            aria-label="Duration">
-                                            <use xlink:href="#calendar3"></use>
-                                        </svg> <small>3d</small> </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-                            style="background-image: url('unsplash-photo-1.jpg');">
-                            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                                <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Short title, long jacket</h3>
-                                <ul class="d-flex list-unstyled mt-auto">
-                                    <li class="me-auto"> <img src="https://github.com/twbs.png" alt="Bootstrap" width="32"
-                                            height="32" class="rounded-circle border border-white"> </li>
-                                    <li class="d-flex align-items-center me-3"> <svg class="bi me-2" width="1em" height="1em"
-                                            role="img" aria-label="Location">
-                                            <use xlink:href="#geo-fill"></use>
-                                        </svg> <small>Earth</small> </li>
-                                    <li class="d-flex align-items-center"> <svg class="bi me-2" width="1em" height="1em" role="img"
-                                            aria-label="Duration">
-                                            <use xlink:href="#calendar3"></use>
-                                        </svg> <small>3d</small> </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-                            style="background-image: url('unsplash-photo-2.jpg');">
-                            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                                <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Much longer title that wraps to multiple lines
-                                </h3>
-                                <ul class="d-flex list-unstyled mt-auto">
-                                    <li class="me-auto"> <img src="https://github.com/twbs.png" alt="Bootstrap" width="32"
-                                            height="32" class="rounded-circle border border-white"> </li>
-                                    <li class="d-flex align-items-center me-3"> <svg class="bi me-2" width="1em" height="1em"
-                                            role="img" aria-label="Location">
-                                            <use xlink:href="#geo-fill"></use>
-                                        </svg> <small>Pakistan</small> </li>
-                                    <li class="d-flex align-items-center"> <svg class="bi me-2" width="1em" height="1em" role="img"
-                                            aria-label="Duration">
-                                            <use xlink:href="#calendar3"></use>
-                                        </svg> <small>4d</small> </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-                            style="background-image: url('unsplash-photo-3.jpg');">
-                            <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-                                <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Another longer title belongs here</h3>
-                                <ul class="d-flex list-unstyled mt-auto">
-                                    <li class="me-auto"> <img src="https://github.com/twbs.png" alt="Bootstrap" width="32"
-                                            height="32" class="rounded-circle border border-white"> </li>
-                                    <li class="d-flex align-items-center me-3"> <svg class="bi me-2" width="1em" height="1em"
-                                            role="img" aria-label="Location">
-                                            <use xlink:href="#geo-fill"></use>
-                                        </svg> <small>California</small> </li>
-                                    <li class="d-flex align-items-center"> <svg class="bi me-2" width="1em" height="1em" role="img"
-                                            aria-label="Duration">
-                                            <use xlink:href="#calendar3"></use>
-                                        </svg> <small>5d</small> </li>
-                                </ul>
-                            </div>
+                            <p class="mensagem-tarefa"> 
+                                Não há tarefas pendentes.
+                            </p> 
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="container-fluid m-4">
-                <div class="row">
-                    <div class="col">
-                        <div class="dropdown-menu position-static d-flex flex-column flex-lg-row align-items-stretch justify-content-start p-3 rounded-3 shadow-lg"
-                            data-bs-theme="dark">
-                            <nav class="col-lg-8">
-                                <ul class="list-unstyled d-flex flex-column gap-2">
-                                    <li> <a href="#"
-                                            class="btn btn-hover-light rounded-2 d-flex align-items-start gap-2 py-2 px-3 lh-sm text-start">
-                                            <svg class="bi" width="24" height="24" aria-hidden="true">
-                                                <use xlink:href="#image-fill"></use>
-                                            </svg>
-                                            <div> <strong class="d-block">Main product</strong> <small>Take a tour through the product</small>
-                                            </div>
-                                        </a> </li>
-                                    <li> <a href="#"
-                                            class="btn btn-hover-light rounded-2 d-flex align-items-start gap-2 py-2 px-3 lh-sm text-start">
-                                            <svg class="bi" width="24" height="24" aria-hidden="true">
-                                                <use xlink:href="#music-note-beamed"></use>
-                                            </svg>
-                                            <div> <strong class="d-block">Another product</strong> <small>Explore this other product we
-                                                    offer</small> </div>
-                                        </a> </li>
-                                    <li> <a href="#"
-                                            class="btn btn-hover-light rounded-2 d-flex align-items-start gap-2 py-2 px-3 lh-sm text-start">
-                                            <svg class="bi" width="24" height="24" aria-hidden="true">
-                                                <use xlink:href="#question-circle"></use>
-                                            </svg>
-                                            <div> <strong class="d-block">Support</strong> <small>Get help from our support crew</small> </div>
-                                        </a> </li>
-                                </ul>
-                            </nav>
-                            <div class="d-none d-lg-block vr mx-4 opacity-10">&nbsp;</div>
-                            <hr class="d-lg-none">
-                            <div class="col-lg-auto pe-3">
-                                <nav>
-                                    <ul class="d-flex flex-column gap-2 list-unstyled small">
-                                        <li><a href="#"
-                                                class="link-offset-2 link-underline link-underline-opacity-25 link-underline-opacity-75-hover">Documentation</a>
-                                        </li>
-                                        <li><a href="#"
-                                                class="link-offset-2 link-underline link-underline-opacity-25 link-underline-opacity-75-hover">Use
-                                                cases</a></li>
-                                        <li><a href="#"
-                                                class="link-offset-2 link-underline link-underline-opacity-25 link-underline-opacity-75-hover">API
-                                                status</a></li>
-                                        <li><a href="#"
-                                                class="link-offset-2 link-underline link-underline-opacity-25 link-underline-opacity-75-hover">Partners</a>
-                                        </li>
-                                        <li><a href="#"
-                                                class="link-offset-2 link-underline link-underline-opacity-25 link-underline-opacity-75-hover">Resources</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="accordion" id="accordionPanelsStayOpenExample">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                                    Accordion Item #1
-                                </button>
-                                </h2>
-                                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-                                <div class="accordion-body">
-                                    <strong>This is the first item’s accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                                </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                                    Accordion Item #2
-                                </button>
-                                </h2>
-                                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
-                                <div class="accordion-body">
-                                    <strong>This is the second item’s accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                                </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                                    Accordion Item #3
-                                </button>
-                                </h2>
-                                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
-                                <div class="accordion-body">
-                                    <strong>This is the third item’s accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col">
-                        <div class="table-responsive">
-                            <table class="table text-center">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 34%;"></th>
-                                        <th style="width: 22%;">Free</th>
-                                        <th style="width: 22%;">Pro</th>
-                                        <th style="width: 22%;">Enterprise</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row" class="text-start">Public</th>
-                                        <td><svg class="bi" width="24" height="24" role="img" aria-label="Included">
-                                                <use xlink:href="#check"></use>
-                                            </svg></td>
-                                        <td><svg class="bi" width="24" height="24" role="img" aria-label="Included">
-                                                <use xlink:href="#check"></use>
-                                            </svg></td>
-                                        <td><svg class="bi" width="24" height="24" role="img" aria-label="Included">
-                                                <use xlink:href="#check"></use>
-                                            </svg></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="text-start">Private</th>
-                                        <td></td>
-                                        <td><svg class="bi" width="24" height="24" role="img" aria-label="Included">
-                                                <use xlink:href="#check"></use>
-                                            </svg></td>
-                                        <td><svg class="bi" width="24" height="24" role="img" aria-label="Included">
-                                                <use xlink:href="#check"></use>
-                                            </svg></td>
-                                    </tr>
-                                </tbody>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row" class="text-start">Permissions</th>
-                                        <td><svg class="bi" width="24" height="24" role="img" aria-label="Included">
-                                                <use xlink:href="#check"></use>
-                                            </svg></td>
-                                        <td><svg class="bi" width="24" height="24" role="img" aria-label="Included">
-                                                <use xlink:href="#check"></use>
-                                            </svg></td>
-                                        <td><svg class="bi" width="24" height="24" role="img" aria-label="Included">
-                                                <use xlink:href="#check"></use>
-                                            </svg></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="text-start">Sharing</th>
-                                        <td></td>
-                                        <td><svg class="bi" width="24" height="24" role="img" aria-label="Included">
-                                                <use xlink:href="#check"></use>
-                                            </svg></td>
-                                        <td><svg class="bi" width="24" height="24" role="img" aria-label="Included">
-                                                <use xlink:href="#check"></use>
-                                            </svg></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="text-start">Unlimited members</th>
-                                        <td></td>
-                                        <td><svg class="bi" width="24" height="24" role="img" aria-label="Included">
-                                                <use xlink:href="#check"></use>
-                                            </svg></td>
-                                        <td><svg class="bi" width="24" height="24" role="img" aria-label="Included">
-                                                <use xlink:href="#check"></use>
-                                            </svg></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="text-start">Extra security</th>
-                                        <td></td>
-                                        <td></td>
-                                        <td><svg class="bi" width="24" height="24" role="img" aria-label="Included">
-                                                <use xlink:href="#check"></use>
-                                            </svg></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row align-items-md-stretch">
-                <div class="col-md-6">
-                    <div class="h-100 p-5 text-bg-dark rounded-3">
-                        <h2>Change the background</h2>
-                        <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then,
-                            mix and match with additional component themes and more.</p> <button class="btn btn-outline-light"
-                            type="button">Example button</button>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="h-100 p-5 bg-body-tertiary border rounded-3">
-                        <h2>Add borders</h2>
-                        <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure
-                            to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both
-                            column's content for equal-height.</p> <button class="btn btn-outline-secondary" type="button">Example
-                            button</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="album px-5 py-5">
-                <h2 class="pb-2 border-bottom mb-3">Assistidos Recentemente</h2>
+            <div class="album pt-4">
+                <h2 class="pb-2 border-bottom mb-3">Assistindo</h2>
                 <div class="container-fliud">
-                    <div class="row row-cols-lg-5 row-cols-sm-2 row-cols-md-3 g-5">
+                    <div class="row row-cols-lg-5 row-cols-sm-2 row-cols-md-3 g-2">
                         <div class="col">
-                            <div class="card shadow-sm"> <svg aria-label="Placeholder: Thumbnail"
+                            <div class="card shadow-sm"> 
+                                <svg aria-label="Placeholder: Thumbnail"
                                     class="bd-placeholder-img card-img-top" height="225" preserveAspectRatio="xMidYMid slice"
                                     role="img" width="100%" xmlns="http://www.w3.org/2000/svg">
                                     <title>Placeholder</title>
@@ -733,13 +506,13 @@
                                         dy=".3em">Thumbnail</text>
                                 </svg>
                                 <div class="card-body">
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                        additional content. This content is a little bit longer.</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group"> <button type="button"
-                                                class="btn btn-sm btn-outline-secondary">View</button> <button type="button"
-                                                class="btn btn-sm btn-outline-secondary">Edit</button> </div> <small
-                                            class="text-body-secondary">9 mins</small>
+                                    <h5 class="card-title">Jovem Sheldon</h5>
+                                    <div class="d-flex justify-content-between align-items-center"> 
+                                        <span class="badge text-bg-primary">Assistindo</span>
+                                        <span class="badge text-bg-info">Série</span>
+                                    </div>
+                                    <div class="progress mt-2" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-success" style="width: 25%">25%</div>
                                     </div>
                                 </div>
                             </div>
@@ -753,13 +526,13 @@
                                         dy=".3em">Thumbnail</text>
                                 </svg>
                                 <div class="card-body">
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                        additional content. This content is a little bit longer.</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group"> <button type="button"
-                                                class="btn btn-sm btn-outline-secondary">View</button> <button type="button"
-                                                class="btn btn-sm btn-outline-secondary">Edit</button> </div> <small
-                                            class="text-body-secondary">9 mins</small>
+                                    <h5 class="card-title">Friends</h5>
+                                    <div class="d-flex justify-content-between align-items-center"> 
+                                        <span class="badge text-bg-primary">Re-assistindo</span>
+                                        <span class="badge text-bg-info">Série</span>
+                                    </div>
+                                    <div class="progress mt-2" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-success" style="width: 100%">100%</div>
                                     </div>
                                 </div>
                             </div>
@@ -773,13 +546,13 @@
                                         dy=".3em">Thumbnail</text>
                                 </svg>
                                 <div class="card-body">
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                        additional content. This content is a little bit longer.</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group"> <button type="button"
-                                                class="btn btn-sm btn-outline-secondary">View</button> <button type="button"
-                                                class="btn btn-sm btn-outline-secondary">Edit</button> </div> <small
-                                            class="text-body-secondary">9 mins</small>
+                                   <h5 class="card-title">Rick & Morty</h5>
+                                    <div class="d-flex justify-content-between align-items-center"> 
+                                        <span class="badge text-bg-primary">Assistindo</span>
+                                        <span class="badge text-bg-info">Cartoon</span>
+                                    </div>
+                                    <div class="progress mt-2" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-success" style="width: 13%">13%</div>
                                     </div>
                                 </div>
                             </div>
@@ -793,13 +566,13 @@
                                         dy=".3em">Thumbnail</text>
                                 </svg>
                                 <div class="card-body">
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                        additional content. This content is a little bit longer.</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group"> <button type="button"
-                                                class="btn btn-sm btn-outline-secondary">View</button> <button type="button"
-                                                class="btn btn-sm btn-outline-secondary">Edit</button> </div> <small
-                                            class="text-body-secondary">9 mins</small>
+                                    <h5 class="card-title">The Big Bang Theory</h5>
+                                    <div class="d-flex justify-content-between align-items-center"> 
+                                        <span class="badge text-bg-primary">Re-assistindo</span>
+                                        <span class="badge text-bg-info">Série</span>
+                                    </div>
+                                    <div class="progress mt-2" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-success" style="width: 100%">100%</div>
                                     </div>
                                 </div>
                             </div>
@@ -813,13 +586,42 @@
                                         dy=".3em">Thumbnail</text>
                                 </svg>
                                 <div class="card-body">
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                        additional content. This content is a little bit longer.</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group"> <button type="button"
-                                                class="btn btn-sm btn-outline-secondary">View</button> <button type="button"
-                                                class="btn btn-sm btn-outline-secondary">Edit</button> </div> <small
-                                            class="text-body-secondary">9 mins</small>
+                                   <h5 class="card-title">Lazarus</h5>
+                                    <div class="d-flex justify-content-between align-items-center"> 
+                                        <span class="badge text-bg-primary">Assistindo</span>
+                                        <span class="badge text-bg-info">Anime</span>
+                                    </div>
+                                    <div class="progress mt-2" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-success" style="width: 75%">75%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="album pt-4">
+                <h2 class="pb-2 border-bottom mb-3">Cursando</h2>
+                <div class="container-fliud">
+                    <div class="row row-cols-lg-5 row-cols-sm-2 row-cols-md-3 g-2">
+                        <div class="col">
+                            <div class="card shadow-sm"> 
+                                <svg aria-label="Placeholder: Thumbnail"
+                                    class="bd-placeholder-img card-img-top" height="225" preserveAspectRatio="xMidYMid slice"
+                                    role="img" width="100%" xmlns="http://www.w3.org/2000/svg">
+                                    <title>Placeholder</title>
+                                    <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef"
+                                        dy=".3em">Thumbnail</text>
+                                </svg>
+                                <div class="card-body">
+                                    <h5 class="card-title">Desenvolvimento Web</h5>
+                                    <div class="d-flex justify-content-between align-items-center"> 
+                                        <span class="badge text-bg-primary">Alura</span>
+                                        <span class="badge text-bg-info">Tecnologia</span>
+                                    </div>
+                                    <div class="progress mt-2" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-success" style="width: 25%">25%</div>
                                     </div>
                                 </div>
                             </div>
@@ -828,38 +630,30 @@
                 </div>
             </div>
     </main>
-
+    
+    <!-- Estrutura do modal -->
+     <div id="container-modal"></div>
+    
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
         <div class="col-md-4 d-flex align-items-center"> 
-            <a href="/"
-                class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1" aria-label="Bootstrap"> 
-                <svg
-                    class="bi" width="30" height="24" aria-hidden="true">
-                    <use xlink:href="#bootstrap"></use>
-                </svg> 
+            <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1" aria-label="Bootstrap">
             </a> 
                 <span class="mb-3 mb-md-0 text-body-secondary">© 2025 Company, Inc</span> 
             </div>
         <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
             <li class="ms-3">
                 <a class="text-body-secondary" href="#" aria-label="Instagram">
-                    <svg class="bi" width="24"
-                        height="24" aria-hidden="true">
-                        <use xlink:href="#instagram"></use>
-                    </svg>
+                    <i class="bi bi-instagram"></i>
                 </a>
             </li>
             <li class="ms-3">
                 <a class="text-body-secondary" href="#" aria-label="Facebook">
-                    <svg class="bi" width="24"
-                        height="24">
-                        <use xlink:href="#facebook"></use>
-                    </svg>
+                    <i class="bi bi-facebook"></i>
                 </a>
             </li>
         </ul>
     </footer>
-<script src="js/scripts.js" type="module"></script>
+<script src="./js/scripts.js" type="module"></script>
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> -->
 </body>
 </html>

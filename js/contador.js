@@ -1,17 +1,19 @@
-function aumentarNumero() {
-    let contador = parseInt(document.getElementById('contador').value);
-    
-        contador = contador+1;
+const inputContador = document.getElementById('contador');
 
-    document.getElementById("contador").value = contador;
+export function aumentaContador() {    
+    let valorcontador = parseInt(inputContador.value) || 0; // garante que seja número
+    
+    valorcontador += 1;
+    inputContador.value = valorcontador;
+    return valorcontador;
 }
 
-function diminuirNumero() {
-    let contador = parseInt(document.getElementById('contador').value);
+export  function diminuiContador() {
+    let valorcontador = parseInt(inputContador.value) || 0;
     
-   if (contador > 0) {
-        contador = contador-1;
+   if (valorcontador > 0) {
+        valorcontador -= 1;
+        inputContador.value = valorcontador;
+        return valorcontador;
     }
-    
-    document.getElementById("contador").value = contador;
 }
