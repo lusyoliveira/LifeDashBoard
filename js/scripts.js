@@ -3,6 +3,7 @@ import { verificaLista } from "./mensagemTarefa.js";
 import { aumentaContador, diminuiContador } from "./contador.js";
 import { contagemRegressiva } from "./contagem.js";
 import { adicionarEvento } from "./agenda.js";
+import { relogio } from "./relogio.js";
 
 const botaoTarefa = document.getElementById('adiciona-tarefa');
 const botaoAdicionaContagem = document.getElementById('adiciona-contagem');
@@ -63,13 +64,14 @@ btnEvento.addEventListener("click", async () => {
     };
 });
 
-btnSalvaEvento.addEventListener("click", async () => {
-    evento.preventDefault();
+// btnSalvaEvento.addEventListener("click", (evento) => {
+//     evento.preventDefault();
           
-    const agenda = adicionarEvento();
+//     const agenda = adicionarEvento();
     
-    containerDia.appendChild(agenda);
-})
+//     containerDia.appendChild(agenda);
+// })
 
 verificaLista(listaTarefa);
 contagemRegressiva();
+relogio();

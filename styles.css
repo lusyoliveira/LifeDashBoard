@@ -4,5 +4,115 @@
     justify-content: flex-end; 
     margin: 1px;
 }
-
-
+.container-relogio {
+    height: 400px;
+    width: 400px;
+    position: relative;
+}
+.globo.hora {
+    background:brown;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    position: absolute;
+    top: 276px;
+    left: 200px;
+}
+.globo.minuto {
+    background: aqua;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    position: absolute;
+    top: 36px;
+    left: 184px;
+}
+.globo.segundo {
+    background: grey;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    left: 76px;
+}
+.orbita.hora {
+    position: relative;
+    height: 300px;
+    width: 300px;
+    left: 50px;
+    top: 50px;
+    border: 1px solid white;
+    border-radius: 50%;
+}
+.orbita.minuto {
+    position: relative;
+    height: 200px;
+    width: 200px;
+    left: 50px;
+    top: 50px;
+    border: 1px solid white;
+    border-radius: 50%;
+}
+.orbita.segundo {
+    position: relative;
+    height: 150px;
+    width: 150px;
+    left: 25px;
+    top: 25px;
+    border: 1px solid white;
+    border-radius: 50%;
+}
+.rotacao.minuto {
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    animation: orbita 10s linear infinite;
+    transform-origin: center;
+}
+.rotacao.hora {
+    position: absolute;
+    height: 300px;
+    width: 300px;
+    animation: orbita 10s linear infinite;
+    transform-origin: center;
+    top: 0px;
+}
+.rotacao.segundo {
+    position: absolute;
+    height: 150px;
+    width: 150px;
+    animation: orbita 10s linear infinite;
+    transform-origin: center;
+    top: 0px;
+}
+.relogio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: yellow;
+    border-radius: 50%;
+    position: relative;
+    height: 70px;
+    width: 70px;
+    left: 36px;
+    top: 36px;
+    border-radius: 50%;
+    box-shadow: 0 0 30px white;
+    color: black;
+}
+.orbita {
+    position: relative;
+    border: solid;
+    border-color: white;
+    border-radius: 50%;
+    border-width: 1px 1px 0 0;
+    box-sizing: border-box;
+    transform: rotate(0deg);
+    transform-origin: 50% 50%;
+}
+@keyframes orbita {
+    to {
+        transform: rotate(360deg);
+    }
+}
