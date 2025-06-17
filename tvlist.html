@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Life Dashboard - TV List</title>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     
@@ -30,20 +30,14 @@
                         <input class="form-control" type="search" placeholder="Pesquisar..." aria-label="Pesquisar">
                     </form>
         
-                    <div class="dropdown">
-                        <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32"
-                        class="rounded-circle" _mstalt="33306" _msthash="42">
+                    <div class="d-flex justify-content-between align-items-lg-center gap-3">
+                        <a href="#" class="d-flex align-items-center text-decoration-none">
+                            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle" _mstalt="33306" _msthash="42">
+                            Luciene
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Configurações</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Sair</a></li>
-                        </ul>
-                    </div>
+                        <a href="#" alt="Configurações" class="icones-navbar"><i class="bi bi-gear-fill"></i></a>                  
+                        <a href="#" alt="Sair" class="icones-navbar"><i class="bi bi-box-arrow-right"></i></a>
+                    </div>                    
                 </div>
             </div>
         </nav>
@@ -54,6 +48,12 @@
                 <div class="row">
                     <div class="col-2">
                         <ul class="dropdown-menu d-block position-static mx-0 border-0 shadow w-220px" data-bs-theme="dark">
+                            <li> 
+                                <a class="dropdown-item d-flex gap-2 align-items-center" id="ancora-catalogo" href="Catalogo.html">
+                                    <i class="bi bi-list-stars"></i>
+                                    Catálogo
+                                </a> 
+                            </li>
                             <li> 
                                 <a class="dropdown-item d-flex gap-2 align-items-center" href="#">
                                     <i class="bi bi-graph-up"></i>
@@ -106,173 +106,104 @@
                                 </a> 
                             </li>
                         </ul>
+
+                        
                     </div>
                     
                     <div class="col">
                         <h2 class="pb-2 border-bottom mb-4">Resumo</h2>
-                        <div class="row">
-                            <div class="col-3">
-                                <ol class="list-group list-group-numbered">
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Animes</div>
-                                        Content for list item
-                                        </div>
-                                        <span class="badge text-bg-primary rounded-pill">264</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Desenhos</div>
-                                        Content for list item
-                                        </div>
-                                        <span class="badge text-bg-primary rounded-pill">12</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Documentários</div>
-                                        Content for list item
-                                        </div>
-                                        <span class="badge text-bg-primary rounded-pill">6</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Filmes</div>
-                                        Content for list item
-                                        </div>
-                                        <span class="badge text-bg-primary rounded-pill">67</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Séries</div>
-                                        Content for list item
-                                        </div>
-                                        <span class="badge text-bg-primary rounded-pill">92</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Shows</div>
-                                        Content for list item
-                                        </div>
-                                        <span class="badge text-bg-primary rounded-pill">3</span>
-                                    </li>
-                                </ol>
-                            </div>
-
-                            <div class="col-3">
-                                <ul class="list-group list-group-numbered">
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Episódios Assistidos</div>
-                                        Content for list item
-                                        </div>
-                                        <span class="badge text-bg-primary rounded-pill">4399</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Episódios</div>
-                                        Content for list item
-                                        </div>
-                                        <span class="badge text-bg-primary rounded-pill">5333</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Dias Assistindo</div>
-                                        Content for list item
-                                        </div>
-                                        <span class="badge text-bg-primary rounded-pill">6209</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Horas Assistindo</div>
-                                        Content for list item
-                                        </div>
-                                        <span class="badge text-bg-primary rounded-pill">67</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Pontuação Média</div>
-                                        Content for list item
-                                        </div>
-                                        <span class="badge text-bg-primary rounded-pill">7</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Progresso Total</div>
-                                            <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                <div class="progress-bar text-bg-success" style="width: 82%">82%</div>
-                                            </div>
-                                        </div>
-                                        <span class="badge text-bg-primary rounded-pill">82%</span>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="col-6">
-                                <div class="card">
-                                    <div class="card-header">
-                                        Adicionados Recentemente
-                                    </div>
+                        <div class="row d-flex justify-content-around gap-4">
+                                <div class="card" style="width: 15rem;">
                                     <div class="card-body">
-                                        <div class="list-group list-group-flush">
-                                            <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true"> 
-                                                <img src="https://github.com/twbs.png" alt="" width="40" height="60" class="flex-shrink-0">
-                                                <div class="d-flex gap-2 w-100 justify-content-between">
-                                                    <div>
-                                                        <h6 class="mb-0">Frindes Reunion</h6>
-                                                        <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-                                                        <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                            <div class="progress-bar" style="width: 25%">25%</div>
-                                                        </div>
-                                                    </div> 
-                                                    <small class="opacity-50 text-nowrap">Ontem</small>
-                                                </div>
-                                            </a>
-                                            
-                                            <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true"> 
-                                                <img src="https://github.com/twbs.png" alt="" width="40" height="60" class="flex-shrink-0">
-                                                <div class="d-flex gap-2 w-100 justify-content-between">
-                                                    <div>
-                                                        <h6 class="mb-0">Zodíaco</h6>
-                                                        <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-                                                        <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                            <div class="progress-bar" style="width: 25%">25%</div>
-                                                        </div>
-                                                    </div> 
-                                                    <small class="opacity-50 text-nowrap">Há 2 dias</small>
-                                                </div>
-                                            </a>
-
-                                            <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true"> 
-                                                <img src="https://github.com/twbs.png" alt="" width="40" height="60" class="flex-shrink-0">
-                                                <div class="d-flex gap-2 w-100 justify-content-between">
-                                                    <div>
-                                                        <h6 class="mb-0">Hajime no Ippo: New Challenger</h6>
-                                                        <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-                                                        <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                            <div class="progress-bar" style="width: 25%">25%</div>
-                                                        </div>
-                                                    </div> 
-                                                    <small class="opacity-50 text-nowrap">10 Junho 2025</small>
-                                                </div>
-                                            </a> 
-                                            
-                                            <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true"> 
-                                                <img src="https://github.com/twbs.png" alt="" width="40" height="60" class="flex-shrink-0">
-                                                <div class="d-flex gap-2 w-100 justify-content-between">
-                                                    <div>
-                                                        <h6 class="mb-0">Lazarus</h6>
-                                                        <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-                                                        <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                            <div class="progress-bar" style="width: 25%">25%</div>
-                                                        </div>
-                                                    </div> 
-                                                    <small class="opacity-50 text-nowrap">8 Junho 2025</small>
-                                                </div>
-                                            </a> 
-                                        </div>
+                                        <h5 class="card-title">Animes</h5>
+                                        <h6 class="card-subtitle mb-2 text-body-secondary">264</h6>
                                     </div>
                                 </div>
-                            </div>
+                                
+                                <div class="card" style="width: 15rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Desenhos</h5>
+                                        <h6 class="card-subtitle mb-2 text-body-secondary">12</h6>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="card" style="width: 15rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Documentários</h5>
+                                        <h6 class="card-subtitle mb-2 text-body-secondary">6</h6>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="card" style="width: 15rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Filmes</h5>
+                                        <h6 class="card-subtitle mb-2 text-body-secondary">67</h6>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="card" style="width: 15rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Series</h5>
+                                        <h6 class="card-subtitle mb-2 text-body-secondary">92</h6>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="card" style="width: 15rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Shows</h5>
+                                        <h6 class="card-subtitle mb-2 text-body-secondary">3</h6>
+                                    </div>
+                                </div>
+
+                                <div class="card" style="width: 15rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Episódios Assistidos</h5>
+                                        <h6 class="card-subtitle mb-2 text-body-secondary">4399</h6>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="card" style="width: 15rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Episódios</h5>
+                                        <h6 class="card-subtitle mb-2 text-body-secondary">5333</h6>
+                                    </div>
+                                </div>
+                                
+                                <div class="card" style="width: 15rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Dias Assistindo</h5>
+                                        <h6 class="card-subtitle mb-2 text-body-secondary">6209</h6>
+                                    </div>
+                                </div>
+
+                                <div class="card" style="width: 15rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Horas Assistindo</h5>
+                                        <h6 class="card-subtitle mb-2 text-body-secondary">67</h6>
+                                    </div>
+                                </div>
+
+                                <div class="card" style="width: 15rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Pontuação Média</h5>
+                                        <h6 class="card-subtitle mb-2 text-body-secondary">7</h6>
+                                    </div>
+                                </div>
+
+                                <div class="card" style="width: 15rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Progresso Total</h5>
+                                        <h6 class="card-subtitle mb-2 text-body-secondary">6209</h6>
+                                        <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar text-bg-success" style="width: 82%">82%</div>
+                                        </div>
+                                    </div>
+                                </div>       
                         </div>
 
                         <div class="row mt-4">
@@ -520,54 +451,72 @@
                 </div>
             </div>
 
+            <div class="container-fluid mt-4" id="custom-cards">
+                <h2 class="pb-1 border-bottom">Adicionados Recentemente</h2>
+                <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-1">
+                    <div class="col">
+                        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-color: #fff;">
+                            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                                <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Jovem Sheldon</h3>
+                                <ul class="d-flex justify-content-between align-items-lg-center gap-3 list-unstyled mt-auto">
+                                    <li class="w-75">
+                                        <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar" style="width: 25%">25%</div>
+                                        </div>
+                                    </li>
+                                    <li class="d-flex gap-3 align-items-center"> 
+                                        <i class="bi bi-calendar3"></i> <small>3d</small> </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-color: #fff;">
+                            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                                <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Jovem Sheldon</h3>
+                                <ul class="d-flex justify-content-between align-items-lg-center gap-3 list-unstyled mt-auto">
+                                    <li class="w-75">
+                                        <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar" style="width: 25%">25%</div>
+                                        </div>
+                                    </li>
+                                    <li class="d-flex gap-3 align-items-center"> 
+                                        <i class="bi bi-calendar3"></i> <small>3d</small> </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-color: #fff;">
+                            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                                <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Jovem Sheldon</h3>
+                                <ul class="d-flex justify-content-between align-items-lg-center gap-3 list-unstyled mt-auto">
+                                    <li class="w-75">
+                                        <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar" style="width: 25%">25%</div>
+                                        </div>
+                                    </li>
+                                    <li class="d-flex gap-3 align-items-center"> 
+                                        <i class="bi bi-calendar3"></i> <small>3d</small> </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="container-fliud">
                 <div class="row mt-4">
                     <div class="col">
                         <div class="card">
-                            <div class="card-header">
-                                Assitindo
+                            <div class="card-header" id="status">
+                                Assistindo
                             </div>
                             <div class="card-body">
-                                <ul class="list-group list-group-flush gap-2">
-                                    <li class="list-group-item  d-flex gap-2 p-0">
-                                        <img src="https://github.com/twbs.png" alt="" width="60" height="100" class="flex-shrink-0">
-                                        <div class="d-flex gap-2 w-100 justify-content-between">
-                                            <div>
-                                                <h6 class="mb-0">The Big Bang Theory</h6>
-                                                <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-                                                <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                    <div class="progress-bar" style="width: 25%">25%</div>
-                                                </div>
-                                            </div> 
-                                            <small class="opacity-50 text-nowrap">Ontem</small>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item  d-flex gap-2 p-0">
-                                        <img src="https://github.com/twbs.png" alt="" width="60" height="100" class="flex-shrink-0">
-                                        <div class="d-flex gap-2 w-100 justify-content-between">
-                                            <div>
-                                                <h6 class="mb-0">Rick & Morty</h6>
-                                                <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-                                                <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                    <div class="progress-bar" style="width: 25%">25%</div>
-                                                </div>
-                                            </div> 
-                                            <small class="opacity-50 text-nowrap">Ontem</small>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item  d-flex gap-2 p-0">
-                                        <img src="https://github.com/twbs.png" alt="" width="60" height="100" class="flex-shrink-0">
-                                        <div class="d-flex gap-2 w-100 justify-content-between">
-                                            <div>
-                                                <h6 class="mb-0">Hajime no Ippo: New Challenger</h6>
-                                                <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-                                                <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                    <div class="progress-bar" style="width: 25%">25%</div>
-                                                </div>
-                                            </div> 
-                                            <small class="opacity-50 text-nowrap">Ontem</small>
-                                        </div>
-                                    </li>
+                                <ul class="list-group list-group-flush gap-1" id="lista-assistidos">
+                                    
                                 </ul>
                             </div>
                         </div>
@@ -579,59 +528,8 @@
                                 Planejado
                             </div>
                             <div class="card-body">
-                                <ul class="list-group list-group-flush gap-2">
-                                    <li class="list-group-item  d-flex gap-2 p-0">
-                                        <img src="https://github.com/twbs.png" alt="" width="60" height="100" class="flex-shrink-0">
-                                        <div class="d-flex gap-2 w-100 justify-content-between">
-                                            <div>
-                                                <h6 class="mb-0">Bill & Ted: Uma Aventura Fantástica</h6>
-                                                <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-                                                <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                    <div class="progress-bar" style="width: 0%">25%</div>
-                                                </div>
-                                            </div> 
-                                            <small class="opacity-50 text-nowrap">Ontem</small>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item  d-flex gap-2 p-0">
-                                        <img src="https://github.com/twbs.png" alt="" width="60" height="100" class="flex-shrink-0">
-                                        <div class="d-flex gap-2 w-100 justify-content-between">
-                                            <div>
-                                                <h6 class="mb-0">Nimits: De Volta ao Inferno</h6>
-                                                <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-                                                <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                    <div class="progress-bar" style="width: 0%">25%</div>
-                                                </div>
-                                            </div> 
-                                            <small class="opacity-50 text-nowrap">Ontem</small>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item  d-flex gap-2 p-0">
-                                        <img src="https://github.com/twbs.png" alt="" width="60" height="100" class="flex-shrink-0">
-                                        <div class="d-flex gap-2 w-100 justify-content-between">
-                                            <div>
-                                                <h6 class="mb-0">Alta Frequencia</h6>
-                                                <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-                                                <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                    <div class="progress-bar" style="width: 0%">25%</div>
-                                                </div>
-                                            </div> 
-                                            <small class="opacity-50 text-nowrap">Ontem</small>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item  d-flex gap-2 p-0">
-                                        <img src="https://github.com/twbs.png" alt="" width="60" height="100" class="flex-shrink-0">
-                                        <div class="d-flex gap-2 w-100 justify-content-between">
-                                            <div>
-                                                <h6 class="mb-0">Contra o Tempo</h6>
-                                                <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-                                                <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                    <div class="progress-bar" style="width: 0%">25%</div>
-                                                </div>
-                                            </div> 
-                                            <small class="opacity-50 text-nowrap">Ontem</small>
-                                        </div>
-                                    </li>
+                                <ul class="list-group list-group-flush gap-1"  id="lista-planejado">
+                                    
                                 </ul>
                             </div>
                         </div>
@@ -640,10 +538,12 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-header">
-                                Em Espera
+                                Em-Espera
                             </div>
                             <div class="card-body">
-                                
+                                <ul class="list-group list-group-flush gap-1"  id="lista-espera">
+
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -651,108 +551,27 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-header">
-                                Droppped
+                                Dropped
                             </div>
                             <div class="card-body">
-                                <ul class="list-group list-group-flush gap-2">
-                                    <li class="list-group-item  d-flex gap-2 p-0">
-                                        <img src="https://github.com/twbs.png" alt="" width="60" height="100" class="flex-shrink-0">
-                                        <div class="d-flex gap-2 w-100 justify-content-between">
-                                            <div>
-                                                <h6 class="mb-0">Rizzoli & Isles</h6>
-                                                <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-                                                <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                    <div class="progress-bar" style="width: 25%">25%</div>
-                                                </div>
-                                            </div> 
-                                            <small class="opacity-50 text-nowrap">Ontem</small>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item  d-flex gap-2 p-0">
-                                        <img src="https://github.com/twbs.png" alt="" width="60" height="100" class="flex-shrink-0">
-                                        <div class="d-flex gap-2 w-100 justify-content-between">
-                                            <div>
-                                                <h6 class="mb-0">Encantador de Cães</h6>
-                                                <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-                                                <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                    <div class="progress-bar" style="width: 40%">40%</div>
-                                                </div>
-                                            </div> 
-                                            <small class="opacity-50 text-nowrap">Ontem</small>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item d-flex gap-2 p-0">
-                                        <img src="https://github.com/twbs.png" alt="" width="60" height="100" class="flex-shrink-0">
-                                        <div class="d-flex gap-2 w-100 justify-content-between">
-                                            <div>
-                                                <h6 class="mb-0">Different Strokes</h6>
-                                                <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-                                                <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                    <div class="progress-bar" style="width: 70%">70%</div>
-                                                </div>
-                                            </div> 
-                                            <small class="opacity-50 text-nowrap">Ontem</small>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item d-flex gap-2 p-0">
-                                        <img src="https://github.com/twbs.png" alt="" width="60" height="100" class="flex-shrink-0">
-                                        <div class="d-flex gap-2 w-100 justify-content-between">
-                                            <div>
-                                                <h6 class="mb-0">The Office</h6>
-                                                <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-                                                <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                    <div class="progress-bar" style="width: 1%">1%</div>
-                                                </div>
-                                            </div> 
-                                            <small class="opacity-50 text-nowrap">Ontem</small>
-                                        </div>
-                                    </li>
+                                <ul class="list-group list-group-flush gap-1"  id="lista-dropped">
+                                    
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row mt-4">
+                <div class="row mt-4">                    
+                <h2 class="pb-1 border-bottom">Top dos Melhores</h2>
                     <div class="col">
                         <div class="card">
                             <div class="card-header">
-                                Top Geral
+                                Geral
                             </div>
                             <div class="card-body">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item d-flex align-items-center gap-2 p-0">
-                                        <img src="https://github.com/twbs.png" alt="" width="60" height="100" class="flex-shrink-0">
-                                       <div class="ms-2 me-auto">
-                                            <div class="fw-bold">Ad Astra</div>
-                                            Content for list item
-                                        </div>
-                                        <span class="badge text-bg-primary rounded-pill">10</span>
-                                    </li>
-                                    <li class="list-group-item d-flex align-items-center gap-2 p-0">
-                                        <img src="https://github.com/twbs.png" alt="" width="60" height="100" class="flex-shrink-0">
-                                       <div class="ms-2 me-auto">
-                                            <div class="fw-bold">Interstellar</div>
-                                            Content for list item
-                                        </div>
-                                        <span class="badge text-bg-primary rounded-pill">10</span>
-                                    </li>
-                                    <li class="list-group-item d-flex align-items-center gap-2 p-0">
-                                        <img src="https://github.com/twbs.png" alt="" width="60" height="100" class="flex-shrink-0">
-                                       <div class="ms-2 me-auto">
-                                            <div class="fw-bold">Wandinha</div>
-                                            Content for list item
-                                        </div>
-                                        <span class="badge text-bg-primary rounded-pill">10</span>
-                                    </li>
-                                    <li class="list-group-item d-flex align-items-center gap-2 p-0">
-                                        <img src="https://github.com/twbs.png" alt="" width="60" height="100" class="flex-shrink-0">
-                                       <div class="ms-2 me-auto">
-                                            <div class="fw-bold">Omega Alive</div>
-                                            Content for list item
-                                        </div>
-                                        <span class="badge text-bg-primary rounded-pill">10</span>
-                                    </li>
+                                <ul class="list-group list-group-flush gap-1" id="lista-geral">
+                                    
                                 </ul>
                             </div>
                         </div>
@@ -761,23 +580,11 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-header">
-                                Top Animes
+                                Animes
                             </div>
                             <div class="card-body">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item  d-flex gap-2 p-0">
-                                        <img src="https://github.com/twbs.png" alt="" width="60" height="100" class="flex-shrink-0">
-                                        <div class="d-flex gap-2 w-100 justify-content-between">
-                                            <div>
-                                                <h6 class="mb-0">Frindes Reunion</h6>
-                                                <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-                                                <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                    <div class="progress-bar" style="width: 25%">25%</div>
-                                                </div>
-                                            </div> 
-                                            <small class="opacity-50 text-nowrap">Ontem</small>
-                                        </div>
-                                    </li>
+                                <ul class="list-group list-group-flush gap-1" id="lista-animes">
+                                    
                                 </ul>
                             </div>
                         </div>
@@ -786,23 +593,11 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-header">
-                                Top Filmes
+                                Filme
                             </div>
                             <div class="card-body">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item  d-flex gap-2 p-0">
-                                        <img src="https://github.com/twbs.png" alt="" width="60" height="100" class="flex-shrink-0">
-                                        <div class="d-flex gap-2 w-100 justify-content-between">
-                                            <div>
-                                                <h6 class="mb-0">Frindes Reunion</h6>
-                                                <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-                                                <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                    <div class="progress-bar" style="width: 25%">25%</div>
-                                                </div>
-                                            </div> 
-                                            <small class="opacity-50 text-nowrap">Ontem</small>
-                                        </div>
-                                    </li>
+                                <ul class="list-group list-group-flush gap-1" id="lista-filmes">
+                                    
                                 </ul>
                             </div>
                         </div>
@@ -811,23 +606,11 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-header">
-                                Top Séries
+                                Series
                             </div>
                             <div class="card-body">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item  d-flex gap-2 p-0">
-                                        <img src="https://github.com/twbs.png" alt="" width="60" height="100" class="flex-shrink-0">
-                                        <div class="d-flex gap-2 w-100 justify-content-between">
-                                            <div>
-                                                <h6 class="mb-0">Frindes Reunion</h6>
-                                                <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-                                                <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                    <div class="progress-bar" style="width: 25%">25%</div>
-                                                </div>
-                                            </div> 
-                                            <small class="opacity-50 text-nowrap">Ontem</small>
-                                        </div>
-                                    </li>
+                                <ul class="list-group list-group-flush gap-1" id="lista-series">
+                                    
                                 </ul>
                             </div>
                         </div>
@@ -858,7 +641,7 @@
             </li>
         </ul>
     </footer>
-<script src="./js/scripts.js" type="module"></script>
+<script src="./js/tvList.js"></script>
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> -->
 </body>
 </html>

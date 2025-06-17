@@ -1,3 +1,18 @@
+:root {
+    --cor-branco: #e7e8dc;
+    --cor-rosa: #ae0464;
+    --cor-azul: #1d52a8;
+    --cor-roxo: #71056f;
+    --cor-cinza: #212529; 
+    --cor-cinza-claro: #c5c5c5; 
+    --cor-cinza-escuro:#212529;
+    --cor-violeta: #8a2be2;
+    --cor-preto: #000;
+}
+.icones-navbar {
+    font-size: 2em;
+    color:var(--cor-branco)
+} 
 .conteudo-dia {
     display: flex;
     flex-direction: column;   
