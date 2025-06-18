@@ -1,4 +1,4 @@
-import criarData from "./criarData.js";
+import { criarData } from "./criarData.js";
 
 const inputTarefa = document.getElementById('tarefa');
 let contador = 0;

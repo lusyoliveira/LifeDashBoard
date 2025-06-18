@@ -27,7 +27,7 @@
                 <!-- Direita: Pesquisa e Avatar -->
                 <div class="d-flex align-items-center ms-auto">
                     <form class="d-flex me-3" role="search">
-                        <input class="form-control" type="search" placeholder="Pesquisar..." aria-label="Pesquisar">
+                        <input class="form-control" id="pesquisar" type="search" placeholder="Pesquisar..." aria-label="Pesquisar">
                     </form>
         
                     <div class="d-flex justify-content-between align-items-lg-center gap-3">
@@ -453,65 +453,29 @@
 
             <div class="container-fluid mt-4" id="custom-cards">
                 <h2 class="pb-1 border-bottom">Adicionados Recentemente</h2>
-                <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-1">
+                <!-- <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-1 gap-2" id="recentes" data-filtro="recentes" data-status="recentes"> -->
+                <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-1 gap-2" id="recentes" data-filtro="recentes" data-status="recentes">
+
                     <div class="col">
-                        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-color: #fff;">
-                            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                                <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Jovem Sheldon</h3>
-                                <ul class="d-flex justify-content-between align-items-lg-center gap-3 list-unstyled mt-auto">
-                                    <li class="w-75">
-                                        <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                            <div class="progress-bar" style="width: 25%">25%</div>
-                                        </div>
-                                    </li>
-                                    <li class="d-flex gap-3 align-items-center"> 
-                                        <i class="bi bi-calendar3"></i> <small>3d</small> </li>
-                                </ul>
-                            </div>
-                        </div>
+                        
                     </div>
 
                     <div class="col">
-                        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-color: #fff;">
-                            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                                <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Jovem Sheldon</h3>
-                                <ul class="d-flex justify-content-between align-items-lg-center gap-3 list-unstyled mt-auto">
-                                    <li class="w-75">
-                                        <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                            <div class="progress-bar" style="width: 25%">25%</div>
-                                        </div>
-                                    </li>
-                                    <li class="d-flex gap-3 align-items-center"> 
-                                        <i class="bi bi-calendar3"></i> <small>3d</small> </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                        
+                    </div>                    
 
                     <div class="col">
-                        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-color: #fff;">
-                            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                                <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Jovem Sheldon</h3>
-                                <ul class="d-flex justify-content-between align-items-lg-center gap-3 list-unstyled mt-auto">
-                                    <li class="w-75">
-                                        <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                            <div class="progress-bar" style="width: 25%">25%</div>
-                                        </div>
-                                    </li>
-                                    <li class="d-flex gap-3 align-items-center"> 
-                                        <i class="bi bi-calendar3"></i> <small>3d</small> </li>
-                                </ul>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
 
-            <div class="container-fliud">
+            <div class="container-fliud mt-4">                
+                <h2 class="pb-1 border-bottom">Por status</h2>
                 <div class="row mt-4">
                     <div class="col">
-                        <div class="card">
-                            <div class="card-header" id="status">
+                        <div class="card" data-filtro="status" data-status="Assistindo">
+                            <div class="card-header">
                                 Assistindo
                             </div>
                             <div class="card-body">
@@ -523,7 +487,7 @@
                     </div>
 
                     <div class="col">
-                        <div class="card">
+                        <div class="card" data-filtro="status" data-status="Planejado">
                             <div class="card-header">
                                 Planejado
                             </div>
@@ -536,7 +500,7 @@
                     </div>
 
                     <div class="col">
-                        <div class="card">
+                        <div class="card" data-filtro="status" data-status="Em-Espera">
                             <div class="card-header">
                                 Em-Espera
                             </div>
@@ -549,7 +513,7 @@
                     </div>
 
                     <div class="col">
-                        <div class="card">
+                        <div class="card" data-filtro="status" data-status="Dropped">
                             <div class="card-header">
                                 Dropped
                             </div>
@@ -563,9 +527,9 @@
                 </div>
 
                 <div class="row mt-4">                    
-                <h2 class="pb-1 border-bottom">Top dos Melhores</h2>
+                <h2 class="pb-1 border-bottom">Top</h2>
                     <div class="col">
-                        <div class="card">
+                        <div class="card" data-filtro="Geral" data-tipo="Geral">
                             <div class="card-header">
                                 Geral
                             </div>
@@ -578,7 +542,7 @@
                     </div>
 
                     <div class="col">
-                        <div class="card">
+                        <div class="card" data-filtro="tipo" data-tipo="Animes">
                             <div class="card-header">
                                 Animes
                             </div>
@@ -591,7 +555,7 @@
                     </div>
 
                     <div class="col">
-                        <div class="card">
+                        <div class="card" data-filtro="tipo" data-tipo="Filme">
                             <div class="card-header">
                                 Filme
                             </div>
@@ -604,9 +568,9 @@
                     </div>
 
                     <div class="col">
-                        <div class="card">
+                        <div class="card" data-filtro="tipo" data-tipo="Serie">
                             <div class="card-header">
-                                Series
+                                Serie
                             </div>
                             <div class="card-body">
                                 <ul class="list-group list-group-flush gap-1" id="lista-series">
