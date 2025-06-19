@@ -68,8 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-
-
 function filtrarCatalogo() {
     const elementoStatus = document.getElementById('this.id')
     const statusAtual = elementoStatus.value
@@ -183,6 +181,12 @@ function adicionadosRecentemente(elementoDestinoId) {
 function exibirCatalogo(listaTitulos) {
     if (!linhaTabela) return;
 
+    linhaTabela.innerHTML = ''; // Limpa antes de adicionar
+
+    if ($.fn.DataTable.isDataTable('.datatable')) {
+    $('.datatable').DataTable().clear().destroy(); // 🧹 Limpa e remove o plugin
+    }
+
     listaTitulos.forEach(titulo => {
         linhaTabela.innerHTML += 
         `
@@ -200,6 +204,10 @@ function exibirCatalogo(listaTitulos) {
                 <td class="text-center">${titulo.Score}</td>
                 <td class="text-center">${titulo.Dias}</td>
             </tr>
-        `
-    })
-}
+        `;
+    });
+
+    // 🔔 Dispara DataTable
+    document.dispatchEvent(new Event('catalogoRenderizado'));
+};
+
