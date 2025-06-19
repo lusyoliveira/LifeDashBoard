@@ -1,4 +1,7 @@
+import { converteData, calculaTempoData } from "./criarData.js";
+
 let catalogo = [];
+let catalogoConvertido = [];
 const endpoint = './json/CatalogoTV.json';
 const liCard = document.getElementById('lista-status');
 const linhaTabela = document.getElementById('linhas');
@@ -6,7 +9,16 @@ const linhaTabela = document.getElementById('linhas');
 async function buscarCatalogo() {
     const resposta = await fetch(endpoint);
     catalogo = await resposta.json();
-    exibirCatalogo(catalogo)
+
+    catalogoConvertido = catalogo.map(titulo => {
+        return {
+            ...titulo,
+            Inicio: converteData(titulo.Inicio),
+            Fim: converteData(titulo.Fim),
+            Adicao: converteData(titulo.Adicao)
+        };
+    });
+    exibirCatalogo(catalogoConvertido)
 }
 
 //exibe catalogo
@@ -41,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             cards.forEach(card => {
                 const header = card.querySelector('.card-header');
+                const body = card.querySelector('.card-body');
                 const lista = card.querySelector('ul');
 
                 if (header && lista) {
@@ -59,24 +72,34 @@ document.addEventListener('DOMContentLoaded', () => {
                     //Top Geral
                     // Filtro por Tipo
                     if (card.dataset.filtro === 'Geral') {
-                        const tipo = card.dataset.tipo || header.textContent.trim();
                         topGeral(lista.id);
                     }
+                } else if (body) {
+                   if (card.dataset.filtro === 'contagem') {
+                        const tipo = card.dataset.tipo || body.textContent.trim();
+                        contagemTipo(tipo, body.id);
+                    } 
                 }
             });
         });
     }
 });
 
-function filtrarCatalogo() {
-    const elementoStatus = document.getElementById('this.id')
-    const statusAtual = elementoStatus.value
-    let catalogoFiltrado = catalogo.filter(Titulo => Titulo.Status == 'Watching')
-    //console.table(catalogoFiltrado);    
-}
+function contagemTipo(tipo, elementoDestinoId) {
+    const catalogoTipo = catalogoConvertido.filter(titulo => titulo.Tipo === tipo).length;
+    const elementoDestino = document.getElementById(elementoDestinoId);
+
+     if (elementoDestino) {
+        elementoDestino.innerHTML = "";
+            elementoDestino.innerHTML += 
+            `
+                <h6 class="card-subtitle mb-2 text-body-secondary">${catalogoTipo}</h6>
+            `;
+    }        
+};
 
 function filtrarStatus(statusFiltro, elementoDestinoId) {
-    const catalogoFiltrado = catalogo.filter(titulo => titulo.Status === statusFiltro)
+    const catalogoFiltrado = catalogoConvertido.filter(titulo => titulo.Status === statusFiltro)
                                     .slice(0, 4);
 
     const elementoDestino = document.getElementById(elementoDestinoId);
@@ -94,7 +117,7 @@ function filtrarStatus(statusFiltro, elementoDestinoId) {
                                 <div class="progress-bar" style="width: ${titulo.Progresso*100}%">${parseInt(titulo.Progresso*100)}</div>
                             </div>
                         </div> 
-                        <small class="opacity-50 text-nowrap">Ontem</small>
+                        <small class="opacity-50 text-nowrap">${calculaTempoData(titulo.Adicao)}</small>
                     </div>
                 </li>
             `;
@@ -103,7 +126,7 @@ function filtrarStatus(statusFiltro, elementoDestinoId) {
 }
 
 function filtrarTipo(tipoFiltro, elementoDestinoId) {
-    const catalogoFiltrado = catalogo.filter(titulo => titulo.Tipo === tipoFiltro)
+    const catalogoFiltrado = catalogoConvertido.filter(titulo => titulo.Tipo === tipoFiltro)
                                     .sort((a, b) => b.Score - a.Score)
                                     .slice(0, 4);
 
@@ -127,7 +150,7 @@ function filtrarTipo(tipoFiltro, elementoDestinoId) {
 };
 
 function topGeral(elementoDestinoId) {
-    const catalogoFiltrado = catalogo.sort((a, b) => b.Score - a.Score)
+    const catalogoFiltrado = catalogoConvertido.sort((a, b) => b.Score - a.Score)
                                     .slice(0, 4);
 
     const elementoDestino = document.getElementById(elementoDestinoId);
@@ -150,8 +173,12 @@ function topGeral(elementoDestinoId) {
 };
 
 function adicionadosRecentemente(elementoDestinoId) {
-    const catalogoFiltrado = catalogo.sort((a, b) => a.Adicao - b.Adicao)
-                                    .slice(0, 3);
+    const catalogoFiltrado = catalogoConvertido.sort((a, b) => {
+        const dataA = new Date(a.Adicao.split('/').reverse().join('/'));
+        const dataB = new Date(b.Adicao.split('/').reverse().join('/'));
+        return dataB - dataA;
+    })
+    .slice(0, 3);
 
     const elementoDestino = document.getElementById(elementoDestinoId);
     if (elementoDestino) {
@@ -159,9 +186,9 @@ function adicionadosRecentemente(elementoDestinoId) {
         catalogoFiltrado.forEach(titulo => {
             elementoDestino.innerHTML += 
             `            
-                <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-color: #fff;">
+                <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg m-1" style="background-color: #fff;">
                     <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                        <h4 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">${titulo.Titulo}</h4>
+                        <h4 class="pt-5 mt-5 mb-2 display-7 lh-1 fw-bold">${titulo.Titulo}</h4>
                             <ul class="d-flex justify-content-between align-items-lg-center gap-3 list-unstyled mt-auto">
                                 <li class="w-75">
                                     <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
@@ -207,7 +234,7 @@ function exibirCatalogo(listaTitulos) {
         `;
     });
 
-    // 🔔 Dispara DataTable
+    // Dispara DataTable
     document.dispatchEvent(new Event('catalogoRenderizado'));
 };
 
