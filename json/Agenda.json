@@ -1,0 +1,1738 @@
+[
+  {
+    "Id": "1",
+    "Titulo": "You Be Brave Enough to Choose Your Path",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "5/20/20"
+  },
+  {
+    "Id": "2",
+    "Titulo": "You Be Brave Enought to Choose Your Path 2",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "5/20/20"
+  },
+  {
+    "Id": "3",
+    "Titulo": "Dia Internacional do Rock",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Postagem",
+    "Data": "7/13/21"
+  },
+  {
+    "Id": "4",
+    "Titulo": "Recomeço",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "7/18/21"
+  },
+  {
+    "Id": "5",
+    "Titulo": "Novas estampas",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "8/23/21"
+  },
+  {
+    "Id": "6",
+    "Titulo": "Grandes Sonhos Pequenos Começos",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "8/25/21"
+  },
+  {
+    "Id": "7",
+    "Titulo": "Unboxing: Materiais da Loja",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "8/27/21"
+  },
+  {
+    "Id": "8",
+    "Titulo": "Bujo: Agosto 2021",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "8/30/21"
+  },
+  {
+    "Id": "9",
+    "Titulo": "Cupom de Desconto PRIMEIRACOMPRA",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "9/1/21"
+  },
+  {
+    "Id": "10",
+    "Titulo": "Reabertura da Loja",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "9/1/21"
+  },
+  {
+    "Id": "11",
+    "Titulo": "Nova Costura Cadernos Flexíveis",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "9/3/21"
+  },
+  {
+    "Id": "12",
+    "Titulo": "Reels: Cadernos com Elástico",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "9/7/21"
+  },
+  {
+    "Id": "13",
+    "Titulo": "O Que é Grid Spacing?",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "9/9/21"
+  },
+  {
+    "Id": "14",
+    "Titulo": "Palavra Sonho",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "9/14/21"
+  },
+  {
+    "Id": "15",
+    "Titulo": "Lançamento Planner 2022",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "9/16/21"
+  },
+  {
+    "Id": "16",
+    "Titulo": "IGTV: Fazendo um álbum de Fotos",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "9/21/21"
+  },
+  {
+    "Id": "17",
+    "Titulo": "Lettering: Aprenda Algo Novo",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "9/23/21"
+  },
+  {
+    "Id": "18",
+    "Titulo": "Reels: Álbum de Fotos",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "9/28/21"
+  },
+  {
+    "Id": "19",
+    "Titulo": "Álbum de Fotos",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "9/30/21"
+  },
+  {
+    "Id": "20",
+    "Titulo": "Capa Bullet Journal Outubro 2021",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "10/5/21"
+  },
+  {
+    "Id": "21",
+    "Titulo": "Bullet Journal Outubro 2021",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "10/6/21"
+  },
+  {
+    "Id": "22",
+    "Titulo": "Folhas dos miolo",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "10/8/21"
+  },
+  {
+    "Id": "23",
+    "Titulo": "Sobre as novas estampas",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "10/11/21"
+  },
+  {
+    "Id": "24",
+    "Titulo": "Embalando Produto",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "10/13/21"
+  },
+  {
+    "Id": "25",
+    "Titulo": "Novas opções de miolo",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "10/15/21"
+  },
+  {
+    "Id": "26",
+    "Titulo": "Que Toda a Inveja Vire Cerveja",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "10/18/21"
+  },
+  {
+    "Id": "27",
+    "Titulo": "Tour Sketchbook 1",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "10/20/21"
+  },
+  {
+    "Id": "28",
+    "Titulo": "Take The Trip Into The Eternety v2",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "10/22/21"
+  },
+  {
+    "Id": "29",
+    "Titulo": "Espaço de Trabalho",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "10/25/21"
+  },
+  {
+    "Id": "30",
+    "Titulo": "Reels: Cadernos em Pronta Entrega",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "10/27/21"
+  },
+  {
+    "Id": "31",
+    "Titulo": "Última Encomenda",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "10/29/21"
+  },
+  {
+    "Id": "32",
+    "Titulo": "Última Semana de Outubro 2021",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "11/2/21"
+  },
+  {
+    "Id": "33",
+    "Titulo": "Fazendo Bullet Journal Outubro 2021",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "11/5/21"
+  },
+  {
+    "Id": "34",
+    "Titulo": "Por Dentro do Caderno Flexível",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "11/9/21"
+  },
+  {
+    "Id": "35",
+    "Titulo": "Reels: Embalagem Feita a mão",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "11/12/21"
+  },
+  {
+    "Id": "36",
+    "Titulo": "Be Yourself",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "11/16/21"
+  },
+  {
+    "Id": "37",
+    "Titulo": "Planner de Mesa",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "11/19/21"
+  },
+  {
+    "Id": "38",
+    "Titulo": "Ideais Para Utilizar o seu Caderno",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "11/23/21"
+  },
+  {
+    "Id": "39",
+    "Titulo": "Reels: Caderno Folhas Mista",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "11/26/21"
+  },
+  {
+    "Id": "40",
+    "Titulo": "Dicas de Presente pro Natal",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "11/29/21"
+  },
+  {
+    "Id": "41",
+    "Titulo": "Reels: All The Wine Is Mine",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "12/1/21"
+  },
+  {
+    "Id": "42",
+    "Titulo": "Planner 2022",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "12/3/21"
+  },
+  {
+    "Id": "43",
+    "Titulo": "Quadro de Aniversário dos Pais",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "12/7/21"
+  },
+  {
+    "Id": "44",
+    "Titulo": "Reels: Caderno Moleskine Kraft",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "12/8/21"
+  },
+  {
+    "Id": "45",
+    "Titulo": "Processo Caderno Kraft",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "12/10/21"
+  },
+  {
+    "Id": "46",
+    "Titulo": "Adesivo Transparente",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "12/14/21"
+  },
+  {
+    "Id": "47",
+    "Titulo": "Reels: Última Encomenda",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "12/15/21"
+  },
+  {
+    "Id": "48",
+    "Titulo": "Detalhes Pacote",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "12/17/21"
+  },
+  {
+    "Id": "49",
+    "Titulo": "Miolos",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "12/21/21"
+  },
+  {
+    "Id": "50",
+    "Titulo": "Feliz Natal 2021",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "12/24/21"
+  },
+  {
+    "Id": "51",
+    "Titulo": "Feliz Ano Novo 2021",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "12/31/21"
+  },
+  {
+    "Id": "52",
+    "Titulo": "Coisas Boas Virão",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "1/4/22"
+  },
+  {
+    "Id": "53",
+    "Titulo": "Future Log",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "1/7/22"
+  },
+  {
+    "Id": "54",
+    "Titulo": "Planner de Mesa e Caderno Granilite",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "1/11/22"
+  },
+  {
+    "Id": "55",
+    "Titulo": "Tour Sketchbook 2",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "1/14/22"
+  },
+  {
+    "Id": "56",
+    "Titulo": "Miolo costurado",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "1/18/22"
+  },
+  {
+    "Id": "57",
+    "Titulo": "O Que Eu Faço com a Embalagens",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "1/21/22"
+  },
+  {
+    "Id": "58",
+    "Titulo": "Tudo Pronto Para Seman",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "1/24/22"
+  },
+  {
+    "Id": "59",
+    "Titulo": "Desfio da Semana #1",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "1/26/22"
+  },
+  {
+    "Id": "60",
+    "Titulo": "Feedback de Clientes 1",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "1/28/22"
+  },
+  {
+    "Id": "61",
+    "Titulo": "Enjoy Simplicity Digital",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "1/31/22"
+  },
+  {
+    "Id": "62",
+    "Titulo": "Desfio da Semana #2",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "2/2/22"
+  },
+  {
+    "Id": "63",
+    "Titulo": "Promocional 1",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "2/4/22"
+  },
+  {
+    "Id": "64",
+    "Titulo": "Conhecendo a Estampa",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "2/7/22"
+  },
+  {
+    "Id": "65",
+    "Titulo": "Reels: Caderno Natureza",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "2/9/22"
+  },
+  {
+    "Id": "66",
+    "Titulo": "Ansiedade pela chegada do pacote",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "2/11/22"
+  },
+  {
+    "Id": "67",
+    "Titulo": "Caderno A6",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "2/14/22"
+  },
+  {
+    "Id": "68",
+    "Titulo": "Diário do Amigos",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "2/16/22"
+  },
+  {
+    "Id": "69",
+    "Titulo": "Corra Atrás dos Seus Sonhos",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "2/18/22"
+  },
+  {
+    "Id": "70",
+    "Titulo": "Good Vibes",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "2/21/22"
+  },
+  {
+    "Id": "71",
+    "Titulo": "Todos Os Signos",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "2/23/22"
+  },
+  {
+    "Id": "72",
+    "Titulo": "Promocional 2",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "2/25/22"
+  },
+  {
+    "Id": "73",
+    "Titulo": "Caderno French Link + Copta",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "2/28/22"
+  },
+  {
+    "Id": "74",
+    "Titulo": "Tour pelo Scketchbook 3",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "3/2/22"
+  },
+  {
+    "Id": "75",
+    "Titulo": "Make Believe",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "3/4/22"
+  },
+  {
+    "Id": "76",
+    "Titulo": "Juntos Somo Mais Fortes",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "3/8/22"
+  },
+  {
+    "Id": "77",
+    "Titulo": "Fazendo Uma Plaquinha",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "3/11/22"
+  },
+  {
+    "Id": "78",
+    "Titulo": "Processo Álbum A5",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "3/14/22"
+  },
+  {
+    "Id": "79",
+    "Titulo": "Signo Áries",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "3/18/22"
+  },
+  {
+    "Id": "80",
+    "Titulo": "Embalando #1",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "3/21/22"
+  },
+  {
+    "Id": "81",
+    "Titulo": "Clube do Café e do Chá",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "3/25/22"
+  },
+  {
+    "Id": "82",
+    "Titulo": "Duplinha Kraft",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "3/28/22"
+  },
+  {
+    "Id": "83",
+    "Titulo": "Fazendo Lettering do Signos",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "4/1/22"
+  },
+  {
+    "Id": "84",
+    "Titulo": "Álbum de Fotos A5",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "4/4/22"
+  },
+  {
+    "Id": "85",
+    "Titulo": "Turn Your Actions Into Passion",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "4/8/22"
+  },
+  {
+    "Id": "86",
+    "Titulo": "Sketchbook Quadro",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "4/11/22"
+  },
+  {
+    "Id": "87",
+    "Titulo": "Caderno Amarelo",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "4/15/22"
+  },
+  {
+    "Id": "88",
+    "Titulo": "Signo Touro",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "4/18/22"
+  },
+  {
+    "Id": "89",
+    "Titulo": "Dia da Terra 2022",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "4/22/22"
+  },
+  {
+    "Id": "90",
+    "Titulo": "Arredondar cantos",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "4/25/22"
+  },
+  {
+    "Id": "91",
+    "Titulo": "Caderno Quadrado",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "4/29/22"
+  },
+  {
+    "Id": "92",
+    "Titulo": "Tudo é Escuro Antes do Amanhecer",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "5/2/22"
+  },
+  {
+    "Id": "93",
+    "Titulo": "Tudo É Feito A Mão",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "5/6/22"
+  },
+  {
+    "Id": "94",
+    "Titulo": "Animação Cão Fofo",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "5/9/22"
+  },
+  {
+    "Id": "95",
+    "Titulo": "Preparando Brinde",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "5/12/22"
+  },
+  {
+    "Id": "96",
+    "Titulo": "Promocional 3",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "5/16/22"
+  },
+  {
+    "Id": "97",
+    "Titulo": "Signo Gêmeos",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "5/19/22"
+  },
+  {
+    "Id": "98",
+    "Titulo": "Promocional 4",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "5/23/22"
+  },
+  {
+    "Id": "99",
+    "Titulo": "Sketchbook A5",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "5/26/22"
+  },
+  {
+    "Id": "100",
+    "Titulo": "Promocional 5",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "5/30/22"
+  },
+  {
+    "Id": "101",
+    "Titulo": "We Are Just A Part Of This Machine",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "6/2/22"
+  },
+  {
+    "Id": "102",
+    "Titulo": "Promocional 6 Caderno Natureza",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "6/6/22"
+  },
+  {
+    "Id": "103",
+    "Titulo": "Colocando Elástico",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "6/9/22"
+  },
+  {
+    "Id": "104",
+    "Titulo": "Não Há lugar como Nosso Lar",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "6/13/22"
+  },
+  {
+    "Id": "105",
+    "Titulo": "Plaquinha: Não Há Lugar Como Nosso Lar",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "6/16/22"
+  },
+  {
+    "Id": "106",
+    "Titulo": "Signo de Câncer",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "6/20/22"
+  },
+  {
+    "Id": "107",
+    "Titulo": "Arredondando Cantos",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "6/23/22"
+  },
+  {
+    "Id": "108",
+    "Titulo": "Promocional 7 Caderno Estrelado",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "6/27/22"
+  },
+  {
+    "Id": "109",
+    "Titulo": "Caderno Cintilante",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "6/30/22"
+  },
+  {
+    "Id": "110",
+    "Titulo": "Promocional 8 Todos os cadernos",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "7/4/22"
+  },
+  {
+    "Id": "111",
+    "Titulo": "Arredondando Cantos",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "7/7/22"
+  },
+  {
+    "Id": "112",
+    "Titulo": "Quadro de Lisa",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "7/11/22"
+  },
+  {
+    "Id": "113",
+    "Titulo": "Promocional 7 Cadernos Kraft",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "7/18/22"
+  },
+  {
+    "Id": "114",
+    "Titulo": "Signo de Leão",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "7/21/22"
+  },
+  {
+    "Id": "115",
+    "Titulo": "Promocional 8 Planner",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "7/25/22"
+  },
+  {
+    "Id": "116",
+    "Titulo": "Caderno Kraft",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "7/28/22"
+  },
+  {
+    "Id": "117",
+    "Titulo": "Promocional 9 granilite",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "8/1/22"
+  },
+  {
+    "Id": "118",
+    "Titulo": "Plaquinha: Aqui Tem Amor",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "8/4/22"
+  },
+  {
+    "Id": "119",
+    "Titulo": "Promocional 10 Maragarida",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "8/8/22"
+  },
+  {
+    "Id": "120",
+    "Titulo": "Refilando",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "8/11/22"
+  },
+  {
+    "Id": "121",
+    "Titulo": "Dia do Pais",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "8/15/22"
+  },
+  {
+    "Id": "122",
+    "Titulo": "Caderno Granilite",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "8/18/22"
+  },
+  {
+    "Id": "123",
+    "Titulo": "Signo de Virgem",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "8/22/22"
+  },
+  {
+    "Id": "124",
+    "Titulo": "Caderno Isométrico",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "8/25/22"
+  },
+  {
+    "Id": "125",
+    "Titulo": "Promocional 10 washitape Céu Estrelado",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "8/29/22"
+  },
+  {
+    "Id": "126",
+    "Titulo": "Caderno Aquarela",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "9/1/22"
+  },
+  {
+    "Id": "127",
+    "Titulo": "Promocional 11",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "9/5/22"
+  },
+  {
+    "Id": "128",
+    "Titulo": "Album de Fotos A4",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "9/8/22"
+  },
+  {
+    "Id": "129",
+    "Titulo": "Promocional 12",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "9/12/22"
+  },
+  {
+    "Id": "130",
+    "Titulo": "Caderno Mesclado #2",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "9/15/22"
+  },
+  {
+    "Id": "131",
+    "Titulo": "Bastidores #1",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "9/19/22"
+  },
+  {
+    "Id": "132",
+    "Titulo": "Signo de Libra",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "9/22/22"
+  },
+  {
+    "Id": "133",
+    "Titulo": "Lettering Lover Remake",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "9/26/22"
+  },
+  {
+    "Id": "134",
+    "Titulo": "Lettering Lover Video",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "9/29/22"
+  },
+  {
+    "Id": "135",
+    "Titulo": "Bastidores #2",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "10/3/22"
+  },
+  {
+    "Id": "136",
+    "Titulo": "Caderno Galáxia",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "10/6/22"
+  },
+  {
+    "Id": "137",
+    "Titulo": "Lançamento do Planner Bloco Coleções",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "10/10/22"
+  },
+  {
+    "Id": "138",
+    "Titulo": "Lançamento do Planner Bloco Mensal",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "10/13/22"
+  },
+  {
+    "Id": "139",
+    "Titulo": "Lançamento do Planner Bloco Retrospectiva",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "10/17/22"
+  },
+  {
+    "Id": "140",
+    "Titulo": "Embalando - Parte 1",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "10/20/22"
+  },
+  {
+    "Id": "141",
+    "Titulo": "Signo de Escorpião",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "10/24/22"
+  },
+  {
+    "Id": "142",
+    "Titulo": "Embalando - Parte 2",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "10/27/22"
+  },
+  {
+    "Id": "143",
+    "Titulo": "Não Há Lugar como Nosso Lar",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "10/31/22"
+  },
+  {
+    "Id": "144",
+    "Titulo": "Embalando - Parte 3",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "11/3/22"
+  },
+  {
+    "Id": "145",
+    "Titulo": "Recap Encomenda",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "11/7/22"
+  },
+  {
+    "Id": "146",
+    "Titulo": "Embalando - Parte 4",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "11/10/22"
+  },
+  {
+    "Id": "147",
+    "Titulo": "Planner: Planejamento Anual",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "11/14/22"
+  },
+  {
+    "Id": "148",
+    "Titulo": "Embalando - Parte 5",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "11/17/22"
+  },
+  {
+    "Id": "149",
+    "Titulo": "Signo de Sagitário",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "11/21/22"
+  },
+  {
+    "Id": "150",
+    "Titulo": "Como é meu Skechtbook",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "11/24/22"
+  },
+  {
+    "Id": "151",
+    "Titulo": "Promocional 13",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "11/28/22"
+  },
+  {
+    "Id": "152",
+    "Titulo": "Por dentro do Sketchbook",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "12/1/22"
+  },
+  {
+    "Id": "153",
+    "Titulo": "Mini Caderno",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "12/5/22"
+  },
+  {
+    "Id": "154",
+    "Titulo": "Mini Caderno",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "12/8/22"
+  },
+  {
+    "Id": "155",
+    "Titulo": "Planner: Metas",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "12/12/22"
+  },
+  {
+    "Id": "156",
+    "Titulo": "Lançamento Coleção Summer Fresh Planner",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "12/15/22"
+  },
+  {
+    "Id": "157",
+    "Titulo": "Lançamento Coleção Summer Fresh Cadernos",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "12/19/22"
+  },
+  {
+    "Id": "158",
+    "Titulo": "Signo de Carpicórnio",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "12/22/22"
+  },
+  {
+    "Id": "159",
+    "Titulo": "Feliz Natal 2022",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "12/26/22"
+  },
+  {
+    "Id": "160",
+    "Titulo": "Feliz Ano Novo 2022",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "1/2/23"
+  },
+  {
+    "Id": "161",
+    "Titulo": "Decorando Mês de Janeiro",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "1/5/23"
+  },
+  {
+    "Id": "162",
+    "Titulo": "Bastidores #3",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "1/9/23"
+  },
+  {
+    "Id": "163",
+    "Titulo": "Fazendo a Capa do Planner",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "1/12/23"
+  },
+  {
+    "Id": "164",
+    "Titulo": "Planner: Calendário",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "1/16/23"
+  },
+  {
+    "Id": "165",
+    "Titulo": "Signo de Aquário",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "1/19/23"
+  },
+  {
+    "Id": "166",
+    "Titulo": "Dedicate All Your Heart",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "1/23/23"
+  },
+  {
+    "Id": "167",
+    "Titulo": "Mini Caderno Copta",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "1/30/23"
+  },
+  {
+    "Id": "168",
+    "Titulo": "Playlist Janeiro",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "2/2/23"
+  },
+  {
+    "Id": "169",
+    "Titulo": "Bem-Vindo Fevereiro!",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "2/6/23"
+  },
+  {
+    "Id": "170",
+    "Titulo": "Decorando Mês de Fevereiro",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "2/9/23"
+  },
+  {
+    "Id": "171",
+    "Titulo": "Bastidores #4",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "2/13/23"
+  },
+  {
+    "Id": "172",
+    "Titulo": "Reels Caderno Kraft Brochura",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "2/16/23"
+  },
+  {
+    "Id": "173",
+    "Titulo": "Signo de Peixes",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "2/20/23"
+  },
+  {
+    "Id": "174",
+    "Titulo": "Embalando Caderno Isométrico",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "2/23/23"
+  },
+  {
+    "Id": "175",
+    "Titulo": "Mini Caderno #2",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "2/27/23"
+  },
+  {
+    "Id": "176",
+    "Titulo": "Bem-Vindo Março!",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Tarefas",
+    "Data": "3/2/23"
+  },
+  {
+    "Id": "177",
+    "Titulo": "Capa Good Vibes",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Postagem",
+    "Data": "3/6/23"
+  },
+  {
+    "Id": "178",
+    "Titulo": "Alfabeto Romano",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Postagem",
+    "Data": "3/9/23"
+  },
+  {
+    "Id": "179",
+    "Titulo": "Lançamento do Planner 2023",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Postagem",
+    "Data": "9/27/23"
+  },
+  {
+    "Id": "180",
+    "Titulo": "Retorno ao Instagram",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Postagem",
+    "Data": "10/3/23"
+  },
+  {
+    "Id": "181",
+    "Titulo": "Álbum de Casamento",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Postagem",
+    "Data": "10/11/23"
+  },
+  {
+    "Id": "182",
+    "Titulo": "Pintura de Corte na Encadernação",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Postagem",
+    "Data": "18/10/2023 15:00 (BRT)"
+  },
+  {
+    "Id": "183",
+    "Titulo": "Caderno Com Corte Pintados",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Postagem",
+    "Data": "10/25/23"
+  },
+  {
+    "Id": "184",
+    "Titulo": "Cadernos A6",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Postagem",
+    "Data": "11/1/23"
+  },
+  {
+    "Id": "185",
+    "Titulo": "Nossos cadernos A6",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Postagem",
+    "Data": "11/8/23"
+  },
+  {
+    "Id": "186",
+    "Titulo": "Nova Estampa de Caderno",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Postagem",
+    "Data": "11/15/23"
+  },
+  {
+    "Id": "187",
+    "Titulo": "Mini Cardenos",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Postagem",
+    "Data": "11/29/23"
+  },
+  {
+    "Id": "188",
+    "Titulo": "Endless Forms Most Beautiful",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Postagem",
+    "Data": "6/5/24"
+  },
+  {
+    "Id": "189",
+    "Titulo": "Alistamento",
+    "Status": "Indeterminado",
+    "Categoria": "Pessoal",
+    "Tipo": "Evento",
+    "Data": "6/21/25"
+  },
+  {
+    "Id": "190",
+    "Titulo": "Cronograma Capilar",
+    "Status": "Indeterminado",
+    "Categoria": "Pessoal",
+    "Tipo": "Evento",
+    "Data": "21/06/2025 17:00 (BRT)"
+  },
+  {
+    "Id": "191",
+    "Titulo": "Investir",
+    "Status": "Indeterminado",
+    "Categoria": "Pessoal",
+    "Tipo": "Evento",
+    "Data": "25/06/2025 13:30 (BRT)"
+  },
+  {
+    "Id": "192",
+    "Titulo": "Acerto Financeiro",
+    "Status": "Indeterminado",
+    "Categoria": "Pessoal",
+    "Tipo": "Compromissos",
+    "Data": "6/29/25"
+  },
+  {
+    "Id": "193",
+    "Titulo": "Assoprar Canela",
+    "Status": "Indeterminado",
+    "Categoria": "Pessoal",
+    "Tipo": "Compromissos",
+    "Data": "7/1/25"
+  },
+  {
+    "Id": "194",
+    "Titulo": "Conta de Água",
+    "Status": "Indeterminado",
+    "Categoria": "Casa",
+    "Tipo": "Evento",
+    "Data": "7/1/25"
+  },
+  {
+    "Id": "195",
+    "Titulo": "Conta de Internet",
+    "Status": "Indeterminado",
+    "Categoria": "Casa",
+    "Tipo": "Evento",
+    "Data": "7/9/25"
+  },
+  {
+    "Id": "196",
+    "Titulo": "Dia da Pizza",
+    "Status": "Indeterminado",
+    "Categoria": "Data Importantes",
+    "Tipo": "Evento",
+    "Data": "7/10/25"
+  },
+  {
+    "Id": "197",
+    "Titulo": "Cartão de Crédito",
+    "Status": "Indeterminado",
+    "Categoria": "Casa",
+    "Tipo": "Evento",
+    "Data": "7/10/25"
+  },
+  {
+    "Id": "198",
+    "Titulo": "Pintar Cabelo",
+    "Status": "Indeterminado",
+    "Categoria": "Pessoal",
+    "Tipo": "Evento",
+    "Data": "7/12/25"
+  },
+  {
+    "Id": "199",
+    "Titulo": "Rock You Like A Hurricane",
+    "Status": "Em Espera",
+    "Categoria": "Loja",
+    "Tipo": "Postagem",
+    "Data": "7/13/25"
+  },
+  {
+    "Id": "200",
+    "Titulo": "Dia do Rock",
+    "Status": "Indeterminado",
+    "Categoria": "Data Importantes",
+    "Tipo": "Evento",
+    "Data": "7/13/25"
+  },
+  {
+    "Id": "201",
+    "Titulo": "Conta de Luz",
+    "Status": "Indeterminado",
+    "Categoria": "Casa",
+    "Tipo": "Evento",
+    "Data": "7/16/25"
+  },
+  {
+    "Id": "202",
+    "Titulo": "Dia do Amigo",
+    "Status": "Indeterminado",
+    "Categoria": "Data Importantes",
+    "Tipo": "Evento",
+    "Data": "7/20/25"
+  },
+  {
+    "Id": "203",
+    "Titulo": "Viajem a Lua",
+    "Status": "Indeterminado",
+    "Categoria": "Data Importantes",
+    "Tipo": "Evento",
+    "Data": "7/20/25"
+  },
+  {
+    "Id": "204",
+    "Titulo": "Banho na Lisa",
+    "Status": "Indeterminado",
+    "Categoria": "Casa",
+    "Tipo": "Evento",
+    "Data": "7/31/25"
+  },
+  {
+    "Id": "205",
+    "Titulo": "Dia dos Pais",
+    "Status": "Indeterminado",
+    "Categoria": "Data Importantes",
+    "Tipo": "Evento",
+    "Data": "8/9/25"
+  },
+  {
+    "Id": "206",
+    "Titulo": "Remédio de Verme Lisa",
+    "Status": "Indeterminado",
+    "Categoria": "Casa",
+    "Tipo": "Evento",
+    "Data": "01/09/2025 12:00 (BRT)"
+  },
+  {
+    "Id": "207",
+    "Titulo": "Aniversário Assinatura Heavy Talk",
+    "Status": "Indeterminado",
+    "Categoria": "Pessoal",
+    "Tipo": "Evento",
+    "Data": "9/9/25"
+  },
+  {
+    "Id": "208",
+    "Titulo": "Dia do Cliente",
+    "Status": "Indeterminado",
+    "Categoria": "Loja",
+    "Tipo": "Evento",
+    "Data": "9/15/25"
+  },
+  {
+    "Id": "209",
+    "Titulo": "Lançamento do Planner 2026",
+    "Status": "Feito",
+    "Categoria": "Loja",
+    "Tipo": "Postagem",
+    "Data": "15/09/2025 14:00 (BRT)"
+  },
+  {
+    "Id": "210",
+    "Titulo": "Dia da Árvore ",
+    "Status": "Indeterminado",
+    "Categoria": "Data Importantes",
+    "Tipo": "Evento",
+    "Data": "9/21/25"
+  },
+  {
+    "Id": "211",
+    "Titulo": "Halloween",
+    "Status": "Indeterminado",
+    "Categoria": "Data Importantes",
+    "Tipo": "Evento",
+    "Data": "10/31/25"
+  },
+  {
+    "Id": "212",
+    "Titulo": "Expiração Token Mercado Envio",
+    "Status": "Indeterminado",
+    "Categoria": "Loja",
+    "Tipo": "Evento",
+    "Data": "11/2/25"
+  },
+  {
+    "Id": "213",
+    "Titulo": "Renovação de Domínio",
+    "Status": "Indeterminado",
+    "Categoria": "Loja",
+    "Tipo": "Evento",
+    "Data": "11/22/25"
+  },
+  {
+    "Id": "214",
+    "Titulo": "Renovar Alura",
+    "Status": "Em Espera",
+    "Categoria": "Educação",
+    "Tipo": "Compromissos",
+    "Data": "22/03/2026 15:00 (BRT)"
+  },
+  {
+    "Id": "215",
+    "Titulo": "Iniciar Implante Dentário",
+    "Status": "Em Espera",
+    "Categoria": "Pessoal",
+    "Tipo": "Compromissos",
+    "Data": "4/1/26"
+  },
+  {
+    "Id": "216",
+    "Titulo": "Dia da Terra",
+    "Status": "Indeterminado",
+    "Categoria": "Data Importantes",
+    "Tipo": "Evento",
+    "Data": "4/22/26"
+  },
+  {
+    "Id": "217",
+    "Titulo": "Dia da Ecologia",
+    "Status": "Indeterminado",
+    "Categoria": "Data Importantes",
+    "Tipo": "Evento",
+    "Data": "6/5/26"
+  }
+]
