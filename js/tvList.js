@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             cards.forEach(card => {
                 const header = card.querySelector('.card-header');
+                const title = card.querySelector('.card-title');
                 const body = card.querySelector('.card-body');
                 const lista = card.querySelector('ul');
 
@@ -69,14 +70,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         filtrarTipo(tipo, lista.id);
                     }
 
-                    //Top Geral
-                    // Filtro por Tipo
+                    // Filtro top geral
                     if (card.dataset.filtro === 'Geral') {
                         topGeral(lista.id);
                     }
-                } else if (body) {
+                } else if (body && title) {
                    if (card.dataset.filtro === 'contagem') {
-                        const tipo = card.dataset.tipo || body.textContent.trim();
+                        const tipo = card.dataset.contagem || title.textContent.trim();
                         contagemTipo(tipo, body.id);
                     } 
                 }
@@ -93,6 +93,7 @@ function contagemTipo(tipo, elementoDestinoId) {
         elementoDestino.innerHTML = "";
             elementoDestino.innerHTML += 
             `
+                <h5 class="card-title">${tipo}</h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary">${catalogoTipo}</h6>
             `;
     }        
@@ -114,7 +115,7 @@ function filtrarStatus(statusFiltro, elementoDestinoId) {
                         <div class="d-flex flex-column gap-1">
                             <h6 class="mb-0">${titulo.Titulo}</h6>
                             <div class="progress" role="progressbar" aria-label="Progresso" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar" style="width: ${titulo.Progresso*100}%">${parseInt(titulo.Progresso*100)}</div>
+                                <div class="progress-bar" style="width: ${titulo.Progresso*100}%">${parseInt(titulo.Progresso*100)}%</div>
                             </div>
                         </div> 
                         <small class="opacity-50 text-nowrap">${calculaTempoData(titulo.Adicao)}</small>
@@ -192,7 +193,7 @@ function adicionadosRecentemente(elementoDestinoId) {
                             <ul class="d-flex justify-content-between align-items-lg-center gap-3 list-unstyled mt-auto">
                                 <li class="w-75">
                                     <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar" style="width: ${titulo.Progresso*100}%">${parseInt(titulo.Progresso*100)}</div>
+                                        <div class="progress-bar" style="width: ${titulo.Progresso*100}%">${parseInt(titulo.Progresso*100)}%</div>
                                     </div>
                                 </li>
                                 <li class="d-flex gap-3 align-items-center"> 
