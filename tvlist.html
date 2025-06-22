@@ -110,10 +110,10 @@
                     
                     <div class="col">
                         <h2 class="pb-2 border-bottom">Resumo</h2>
-                        <div class="row d-flex justify-content-between gap-3">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="card">
+                        <div class="row d-flex justify-content-center">
+                            <div class="row row-cols-auto">
+                                <div class="col-9 mb-4">
+                                    <div class="card" data-filtro="contagem-progresso" data-status="Progresso-Total">
                                         <div class="card-body">
                                             <h5 class="card-title">Progresso Total</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary">6209</h6>
@@ -123,56 +123,20 @@
                                         </div>
                                     </div> 
                                 </div> 
-                            </div>
-
-                            <div class="row d-flex justify-content-start gap-3">
+                                
                                 <div class="col-3">
-                                    <div class="card" data-filtro="contagem" data-status="contagem">
-                                        <div class="card-body" id="contagem-anime">
-                                            <h5 class="card-title">Animes</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="card" data-filtro="contagem" data-status="contagem">
-                                        <div class="card-body" id="contagem-desenho">
-                                            <h5 class="card-title">Desenho</h5>
-                                        </div>
-                                    </div>
-                                </div>  
-                                <div class="col-3">
-                                    <div class="card" data-filtro="contagem" data-status="contagem">
-                                        <div class="card-body"  id="contagem-documentario">
-                                            <h5 class="card-title">Documentário</h5>
-                                        </div>
-                                    </div>
-                                </div>    
-                                <div class="col-3">
-                                    <div class="card" data-filtro="contagem" data-status="contagem">
-                                        <div class="card-body" id="contagem-filme">
-                                            <h5 class="card-title">Filme</h5>
-                                        </div>
-                                    </div>
-                                </div> 
-                                <div class="col-3">
-                                    <div class="card" data-filtro="contagem" data-status="contagem">
-                                        <div class="card-body" id="contagem-serie">
-                                            <h5 class="card-title">Serie</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="card" data-filtro="contagem" data-status="contagem">
-                                        <div class="card-body"  id="contagem-show">
-                                            <h5 class="card-title">Show</h5>
+                                    <div class="card" data-filtro="contagem-pontuacao" data-status="Pontuacao">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Pontuação Média</h5>
+                                            <h6 class="card-subtitle mb-2 text-body-secondary">7</h6>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row d-flex justify-content-start gap-3">
-                                <div class="col-3">
-                                    <div class="card">
+                            <div class="row row-cols-auto d-flex justify-content-start">
+                                <div class="col-3 mb-4">
+                                    <div class="card" data-filtro="contagem-assistidos" data-status="Assistidos">
                                         <div class="card-body">
                                             <h5 class="card-title">Episódios Assistidos</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary">4399</h6>
@@ -180,7 +144,7 @@
                                     </div>
                                 </div>
                                 <div class="col-3">
-                                    <div class="card">
+                                    <div class="card" data-filtro="contagem-episodios" data-status="Episodios">
                                         <div class="card-body">
                                             <h5 class="card-title">Episódios</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary">5333</h6>
@@ -188,7 +152,7 @@
                                     </div>
                                 </div>    
                                 <div class="col-3">
-                                    <div class="card">
+                                    <div class="card" data-filtro="contagem-dias" data-status="Dias">
                                         <div class="card-body">
                                             <h5 class="card-title">Dias Assistindo</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary">6209</h6>
@@ -196,263 +160,124 @@
                                     </div>
                                 </div>
                                 <div class="col-3">
-                                    <div class="card">
+                                    <div class="card" data-filtro="contagem-horas" data-status="Horas">
                                         <div class="card-body">
                                             <h5 class="card-title">Horas Assistindo</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary">67</h6>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Pontuação Média</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">7</h6>
-                                        </div>
-                                    </div>
                                 </div>      
                             </div>
-                            </div>
 
-                        <div class="row mt-4">
-                            <div class="col">
-                                <div class="card" data-filtro="estatisticas" data-tipo="Filmes">
-                                    <div class="card-header">
-                                            Estatísticas de Filmes
+                            <div class="row row-cols-auto d-flex justify-content-start">
+                                <div class="col-3 mb-4">
+                                    <div class="card" data-filtro="contagem-status" data-status="Completado">
+                                        <div class="card-body" id="contagem-completado">
+                                            <h5 class="card-title">Completado</h5>
+                                        </div>
                                     </div>
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <p class="card-title">Dias: 262.5</p>
-                                            <p class="card-text">Pontuação Média: 7,8</p>
+                                </div>
+                                <div class="col-3">
+                                    <div class="card" data-filtro="contagem-status" data-status="Assistindo">
+                                        <div class="card-body" id="contagem-assistindo">
+                                            <h5 class="card-title">Assistindo</h5>
                                         </div>
-                                        <div class="progress-stacked">
-                                            <div class="progress" role="progressbar" aria-label="Segment one" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width: 3%">
-                                                <div class="progress-bar"></div>
-                                            </div>
-                                            <div class="progress" role="progressbar" aria-label="Segment two" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 43%">
-                                                <div class="progress-bar bg-success"></div>
-                                            </div>
-                                            <div class="progress" role="progressbar" aria-label="Segment three" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
-                                                <div class="progress-bar bg-info"></div>
-                                            </div>
-                                            <div class="progress" role="progressbar" aria-label="Segment three" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 7%">
-                                                <div class="progress-bar bg-body-tertiary"></div>
-                                            </div>
-                                            <div class="progress" role="progressbar" aria-label="Segment three" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
-                                                <div class="progress-bar bg-danger"></div>
-                                            </div>
-                                            <div class="progress" role="progressbar" aria-label="Segment three" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 27%">
-                                                <div class="progress-bar bg-warning"></div>
-                                            </div>
+                                    </div>
+                                </div>  
+                                <div class="col-3">
+                                    <div class="card" data-filtro="contagem-status" data-status="Dropped">
+                                        <div class="card-body" id="contagem-dropped">
+                                            <h5 class="card-title">Dropped</h5>
                                         </div>
-                                        <div class="d-flex justify-content-between align-items-start mt-2">
-                                            <ul class="list-unstyled mb-0"> 
-                                                <li>
-                                                    <a class="dropdown-item d-flex align-items-center gap-2 py-1" href="#"> 
-                                                        <span class="d-inline-block bg-success rounded-circle p-1"></span>
-                                                        Assitindo
-                                                    </a>
-                                                </li> 
-                                                <li>
-                                                    <a class="dropdown-item d-flex align-items-center gap-2 py-1" href="#">
-                                                        <span class="d-inline-block bg-primary rounded-circle p-1"></span>
-                                                        Completo
-                                                    </a>
-                                                </li> 
-                                                <li>
-                                                    <a class="dropdown-item d-flex align-items-center gap-2 py-1" href="#"> 
-                                                    <span class="d-inline-block bg-danger rounded-circle p-1"></span>
-                                                        Dropped
-                                                    </a>
-                                                </li> 
-                                                <li>
-                                                    <a class="dropdown-item d-flex align-items-center gap-2 py-1" href="#"> 
-                                                    <span class="d-inline-block bg-warning rounded-circle p-1"></span>
-                                                        Em Espera
-                                                    </a>
-                                                </li>  
-                                                <li>
-                                                    <a class="dropdown-item d-flex align-items-center gap-2 py-1" href="#"> 
-                                                    <span class="d-inline-block bg-body-secondary rounded-circle p-1"></span>
-                                                        Planejado para Assistir
-                                                    </a>
-                                                </li> 
-                                            </ul>
-
-                                            <ul class="list-unstyled mb-0"> 
-                                                <li>
-                                                    Total
-                                                </li> 
-                                                <li>
-                                                    Reassitindos
-                                                </li> 
-                                                <li>
-                                                    Episódios
-                                                </li> 
-                                            </ul>
+                                    </div>
+                                </div>    
+                                <div class="col-3">
+                                    <div class="card" data-filtro="contagem-status" data-status="Em-Espera">
+                                        <div class="card-body" id="contagem-emespera">
+                                            <h5 class="card-title">Em-Espera</h5>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="col-3 mb-4">
+                                    <div class="card" data-filtro="contagem-status" data-status="Planejado">
+                                        <div class="card-body" id="contagem-planejado">
+                                            <h5 class="card-title">Planejado</h5>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col">
-                                <div class="card" data-filtro="estatisticas" data-tipo="Animes">
-                                    <div class="card-header">
-                                            Estatísticas de Animes
+                            <div class="row row-cols-auto d-flex justify-content-start">
+                                <div class="col-3 mb-4">
+                                    <div class="card" data-filtro="contagem-tipo" data-status="contagem">
+                                        <div class="card-body" id="contagem-anime">
+                                            <h5 class="card-title">Animes</h5>
+                                        </div>
                                     </div>
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <p class="card-title">Dias: 262.5</p>
-                                            <p class="card-text">Pontuação Média: 7,8</p>
+                                </div>
+                                <div class="col-3">
+                                    <div class="card" data-filtro="contagem-tipo" data-status="contagem">
+                                        <div class="card-body" id="contagem-desenho">
+                                            <h5 class="card-title">Desenho</h5>
                                         </div>
-                                        <div class="progress-stacked">
-                                            <div class="progress" role="progressbar" aria-label="Segment one" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width: 3%">
-                                                <div class="progress-bar"></div>
-                                            </div>
-                                            <div class="progress" role="progressbar" aria-label="Segment two" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 43%">
-                                                <div class="progress-bar bg-success"></div>
-                                            </div>
-                                            <div class="progress" role="progressbar" aria-label="Segment three" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
-                                                <div class="progress-bar bg-info"></div>
-                                            </div>
-                                            <div class="progress" role="progressbar" aria-label="Segment three" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 7%">
-                                                <div class="progress-bar bg-body-tertiary"></div>
-                                            </div>
-                                            <div class="progress" role="progressbar" aria-label="Segment three" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
-                                                <div class="progress-bar bg-danger"></div>
-                                            </div>
-                                            <div class="progress" role="progressbar" aria-label="Segment three" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 27%">
-                                                <div class="progress-bar bg-warning"></div>
-                                            </div>
+                                    </div>
+                                </div>  
+                                <div class="col-3">
+                                    <div class="card" data-filtro="contagem-tipo" data-status="contagem">
+                                        <div class="card-body" id="contagem-documentario">
+                                            <h5 class="card-title">Documentário</h5>
                                         </div>
-                                        <div class="d-flex justify-content-between align-items-start mt-2">
-                                            <ul class="list-unstyled mb-0"> 
-                                                <li>
-                                                    <a class="dropdown-item d-flex align-items-center gap-2 py-1" href="#"> 
-                                                        <span class="d-inline-block bg-success rounded-circle p-1"></span>
-                                                        Assitindo
-                                                    </a>
-                                                </li> 
-                                                <li>
-                                                    <a class="dropdown-item d-flex align-items-center gap-2 py-1" href="#">
-                                                        <span class="d-inline-block bg-primary rounded-circle p-1"></span>
-                                                        Completo
-                                                    </a>
-                                                </li> 
-                                                <li>
-                                                    <a class="dropdown-item d-flex align-items-center gap-2 py-1" href="#"> 
-                                                    <span class="d-inline-block bg-danger rounded-circle p-1"></span>
-                                                        Dropped
-                                                    </a>
-                                                </li> 
-                                                <li>
-                                                    <a class="dropdown-item d-flex align-items-center gap-2 py-1" href="#"> 
-                                                    <span class="d-inline-block bg-warning rounded-circle p-1"></span>
-                                                        Em Espera
-                                                    </a>
-                                                </li>  
-                                                <li>
-                                                    <a class="dropdown-item d-flex align-items-center gap-2 py-1" href="#"> 
-                                                    <span class="d-inline-block bg-body-secondary rounded-circle p-1"></span>
-                                                        Planejado para Assistir
-                                                    </a>
-                                                </li> 
-                                            </ul>
-
-                                            <ul class="list-unstyled mb-0"> 
-                                                <li>
-                                                    Total
-                                                </li> 
-                                                <li>
-                                                    Reassitindos
-                                                </li> 
-                                                <li>
-                                                    Episódios
-                                                </li> 
-                                            </ul>
+                                    </div>
+                                </div>    
+                                <div class="col-3">
+                                    <div class="card" data-filtro="contagem-tipo" data-status="contagem">
+                                        <div class="card-body" id="contagem-filme">
+                                            <h5 class="card-title">Filme</h5>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="col-3">
+                                    <div class="card" data-filtro="contagem-tipo" data-status="contagem">
+                                        <div class="card-body" id="contagem-serie">
+                                            <h5 class="card-title">Serie</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="card" data-filtro="contagem-tipo" data-status="contagem">
+                                        <div class="card-body"  id="contagem-show">
+                                            <h5 class="card-title">Show</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="card" data-filtro="contagem-tipo" data-status="contagem">
+                                        <div class="card-body"  id="contagem-reality">
+                                            <h5 class="card-title">Reality</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="card" data-filtro="contagem-tipo" data-status="contagem">
+                                        <div class="card-body"  id="contagem-manga">
+                                            <h5 class="card-title">Manga</h5>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="col">
-                                <div class="card" data-filtro="estatisticas" data-tipo="Series">
-                                    <div class="card-header">
-                                            Estatísticas de Séries
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <p class="card-title">Dias: 262.5</p>
-                                            <p class="card-text">Pontuação Média: 7,8</p>
-                                        </div>
-                                        <div class="progress-stacked">
-                                            <div class="progress" role="progressbar" aria-label="Segment one" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width: 3%">
-                                                <div class="progress-bar"></div>
-                                            </div>
-                                            <div class="progress" role="progressbar" aria-label="Segment two" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 43%">
-                                                <div class="progress-bar bg-success"></div>
-                                            </div>
-                                            <div class="progress" role="progressbar" aria-label="Segment three" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
-                                                <div class="progress-bar bg-info"></div>
-                                            </div>
-                                            <div class="progress" role="progressbar" aria-label="Segment three" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 7%">
-                                                <div class="progress-bar bg-body-tertiary"></div>
-                                            </div>
-                                            <div class="progress" role="progressbar" aria-label="Segment three" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
-                                                <div class="progress-bar bg-danger"></div>
-                                            </div>
-                                            <div class="progress" role="progressbar" aria-label="Segment three" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 27%">
-                                                <div class="progress-bar bg-warning"></div>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-start mt-2">
-                                            <ul class="list-unstyled mb-0"> 
-                                                <li>
-                                                    <a class="dropdown-item d-flex align-items-center gap-2 py-1" href="#"> 
-                                                        <span class="d-inline-block bg-success rounded-circle p-1"></span>
-                                                        Assitindo
-                                                    </a>
-                                                </li> 
-                                                <li>
-                                                    <a class="dropdown-item d-flex align-items-center gap-2 py-1" href="#">
-                                                        <span class="d-inline-block bg-primary rounded-circle p-1"></span>
-                                                        Completo
-                                                    </a>
-                                                </li> 
-                                                <li>
-                                                    <a class="dropdown-item d-flex align-items-center gap-2 py-1" href="#"> 
-                                                    <span class="d-inline-block bg-danger rounded-circle p-1"></span>
-                                                        Dropped
-                                                    </a>
-                                                </li> 
-                                                <li>
-                                                    <a class="dropdown-item d-flex align-items-center gap-2 py-1" href="#"> 
-                                                    <span class="d-inline-block bg-warning rounded-circle p-1"></span>
-                                                        Em Espera
-                                                    </a>
-                                                </li>  
-                                                <li>
-                                                    <a class="dropdown-item d-flex align-items-center gap-2 py-1" href="#"> 
-                                                    <span class="d-inline-block bg-body-secondary rounded-circle p-1"></span>
-                                                        Planejado para Assistir
-                                                    </a>
-                                                </li> 
-                                            </ul>
+                        <div class="row mt-4" id="linha-estatistica" data-filtro="estatisticas">
+                            <div class="col" id="estatistica-serie" data-filtro="estatisticas" data-tipo="Serie">
+                                
+                            </div>
 
-                                            <ul class="list-unstyled mb-0"> 
-                                                <li>
-                                                    Total
-                                                </li> 
-                                                <li>
-                                                    Reassitindos
-                                                </li> 
-                                                <li>
-                                                    Episódios
-                                                </li> 
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="col" id="estatistica-filme" data-filtro="estatisticas" data-tipo="Filme">
+                                
+                            </div>
+
+                            <div class="col" id="estatistica-show" data-filtro="estatisticas" data-tipo="Show">
+                                
                             </div>
                         </div>
                     </div>
@@ -461,17 +286,21 @@
 
             <div class="container-fluid mt-4" id="custom-cards">
                 <h2 class="pb-1 border-bottom">Adicionados Recentemente</h2>
-                <div class="row row-cols-1 row-cols-4 align-items-center g-4 py-4" id="recentes" data-filtro="recentes" data-status="recentes">
+                <div class="row row-cols-4 align-items-center" id="recentes" data-filtro="recentes" data-status="recentes">
 
-                    <div class="col">
+                    <div class="col-2">
                         
                     </div>
 
-                    <div class="col">
+                    <div class="col-2">
                         
                     </div>                    
 
-                    <div class="col">
+                    <div class="col-2">
+                        
+                    </div>                   
+
+                    <div class="col-2">
                         
                     </div>
                 </div>

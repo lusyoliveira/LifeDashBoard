@@ -3,7 +3,6 @@ import { converteData, calculaTempoData } from "./criarData.js";
 let catalogo = [];
 let catalogoConvertido = [];
 const endpoint = './json/CatalogoTV.json';
-const liCard = document.getElementById('lista-status');
 const linhaTabela = document.getElementById('linhas');
 
 async function buscarCatalogo() {
@@ -21,7 +20,7 @@ async function buscarCatalogo() {
     exibirCatalogo(catalogoConvertido)
 }
 
-//exibe catalogo
+//exibe catalogo em Catalogo.html
 document.addEventListener('DOMContentLoaded', () => {
     const isCatalogoPage = window.location.pathname.endsWith('Catalogo.html');
     if (isCatalogoPage) {
@@ -29,33 +28,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-//exibe adicionados recentemente
-document.addEventListener('DOMContentLoaded', () => {
-    if (window.location.pathname.endsWith('tvlist.html')) {
-        buscarCatalogo().then(() => {
-            const linhas = document.querySelectorAll('.row');
-
-            linhas.forEach(linha => {
-                const coluna = linha.querySelector('#recentes');
-                if (linha.dataset.filtro === 'recentes') {
-                    adicionadosRecentemente(linha.id)
-                }
-            })
-
-        })
-    }
-})
-//exibe lista nos cards
+//exibe estatisticas em tvlist.html
 document.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname.endsWith('tvlist.html')) {
         buscarCatalogo().then(() => {
             const cards = document.querySelectorAll('.card');
+            const linhas = document.querySelectorAll('.row');
+            const colunas = document.querySelectorAll('.col');
+
+            linhas.forEach(linha => {
+                const coluna = linha.querySelector('#recentes');
+
+                if (linha.dataset.filtro === 'recentes') {
+                    adicionadosRecentemente(linha.id)
+                }
+            });
+
+             colunas.forEach(coluna => {
+                    //Estatisticas
+                    if (coluna.dataset.filtro === 'estatisticas') {
+                        const tipo = coluna.dataset.tipo ;
+                        estatistica(tipo, coluna.id)
+                    }
+            });
 
             cards.forEach(card => {
                 const header = card.querySelector('.card-header');
+                const lista = card.querySelector('ul');
                 const title = card.querySelector('.card-title');
                 const body = card.querySelector('.card-body');
-                const lista = card.querySelector('ul');
 
                 if (header && lista) {
                     // Filtro por Status
@@ -75,15 +76,156 @@ document.addEventListener('DOMContentLoaded', () => {
                         topGeral(lista.id);
                     }
                 } else if (body && title) {
-                   if (card.dataset.filtro === 'contagem') {
+                    //Contagem por tipo
+                   if (card.dataset.filtro === 'contagem-tipo') {
                         const tipo = card.dataset.contagem || title.textContent.trim();
                         contagemTipo(tipo, body.id);
                     } 
-                }
+
+                     //Contagem por status
+                   if (card.dataset.filtro === 'contagem-status') {
+                        const status = card.dataset.status || title.textContent.trim();
+                        contagemStatus(status, body.id);
+                    } 
+                } 
             });
+
+           
         });
     }
 });
+
+function estatistica(tipo, elementoDestinoId) {
+    const catalogoEstatisticas = catalogoConvertido.filter(titulo => titulo.Tipo === tipo);    
+    const total = catalogoEstatisticas.filter(titulo => titulo.Tipo === tipo).length;
+    const Dias = catalogoEstatisticas.reduce((acc, titulo) => acc + (titulo.Dias || 0), 0);
+    const reassistidos = catalogoEstatisticas.reduce((acc, titulo) => acc + (titulo.Reassistindo || 0), 0);
+    const totalEpisodios = catalogoEstatisticas.reduce((acc, titulo) => acc + (titulo.Episodios || 0), 0);
+    const assistindo = catalogoEstatisticas.filter(titulo => titulo.Status === 'Assistindo').length;
+    const completado = catalogoEstatisticas.filter(titulo => titulo.Status === 'Completado').length;
+    const dropped = catalogoEstatisticas.filter(titulo => titulo.Status === 'Dropped').length;
+    const planejado = catalogoEstatisticas.filter(titulo => titulo.Status === 'Planejado').length;
+    const emEspera = catalogoEstatisticas.filter(titulo => titulo.Status === 'Em-Espera').length;
+    
+    // Média de pontuação 
+    const pontuacoes = catalogoEstatisticas
+        .map(titulo => titulo.Score)
+        .filter(p => typeof p === 'number' && !isNaN(p));
+
+    const mediaPontuacao = pontuacoes.length > 0
+        ? (pontuacoes.reduce((acc, p) => acc + p, 0) / pontuacoes.length)
+        : 0;
+        
+    const elementoDestino = document.getElementById(elementoDestinoId);
+
+     if (elementoDestino) {
+        elementoDestino.innerHTML = "";
+            elementoDestino.innerHTML += 
+            `
+                <div class="card">
+                    <div class="card-header">
+                            Estatísticas de ${tipo}
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="card-title">Dias: ${Dias}</p>
+                            <p class="card-text">Pontuação Média: ${mediaPontuacao.toFixed(1)}</p>
+                        </div>
+                        <div class="progress-stacked">
+                            <div class="progress" role="progressbar" aria-label="Completado" aria-valuenow="${(completado/100)*total}" aria-valuemin="0" aria-valuemax="100" style="width: ${(completado/100)*total}%">
+                                <div class="progress-bar"></div>
+                            </div>
+                            <div class="progress" role="progressbar" aria-label="Assistido" aria-valuenow="${(assistindo/100)*total}" aria-valuemin="0" aria-valuemax="100" style="width: ${(assistindo/100)*total}%">
+                                <div class="progress-bar bg-success"></div>
+                            </div>
+                            <div class="progress" role="progressbar" aria-label="Dropped" aria-valuenow="${(dropped/100)*total}" aria-valuemin="0" aria-valuemax="100" style="width: ${(dropped/100)*total}%">
+                                <div class="progress-bar bg-danger"></div>
+                            </div>
+                            <div class="progress" role="progressbar" aria-label="EmEspera" aria-valuenow="${(emEspera/100)*total}" aria-valuemin="0" aria-valuemax="100" style="width: ${(emEspera/100)*total}%">
+                                <div class="progress-bar bg-warning"></div>
+                            </div>
+                            <div class="progress" role="progressbar" aria-label="Planejado" aria-valuenow="${(planejado/100)*total}" aria-valuemin="0" aria-valuemax="100" style="width: ${(planejado/100)*total}%">
+                                <div class="progress-bar bg-info"></div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-start mt-2">
+                            <ul class="list-unstyled mb-0"> 
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-1" href="#"> 
+                                        <span class="d-inline-block bg-success rounded-circle p-1"></span>
+                                        Assistindo: ${assistindo}
+                                    </a>
+                                </li> 
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-1" href="#">
+                                        <span class="d-inline-block bg-primary rounded-circle p-1"></span>
+                                        Completo: ${completado}
+                                    </a>
+                                </li> 
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-1" href="#"> 
+                                    <span class="d-inline-block bg-danger rounded-circle p-1"></span>
+                                        Dropped: ${dropped}
+                                    </a>
+                                </li> 
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-1" href="#"> 
+                                    <span class="d-inline-block bg-warning rounded-circle p-1"></span>
+                                        Em Espera: ${emEspera}
+                                    </a>
+                                </li>  
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-1" href="#"> 
+                                    <span class="d-inline-block bg-info rounded-circle p-1"></span>
+                                        Planejado: ${planejado}
+                                    </a>
+                                </li> 
+                            </ul>
+
+                            <ul class="list-unstyled mb-0"> 
+                                <li>
+                                    Total: ${total}
+                                </li> 
+                                <li>
+                                    Reassitindos: ${reassistidos}
+                                </li> 
+                                <li>
+                                    Episódios: ${totalEpisodios}
+                                </li> 
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            `;
+    }        
+};
+
+function contagemGeral(tipo, elementoDestinoId) {   
+    const total = catalogoConvertido.length;
+    const Dias = catalogoConvertido.reduce((acc, titulo) => acc + (titulo.Dias || 0), 0);
+    const reassistidos = catalogoConvertido.reduce((acc, titulo) => acc + (titulo.Reassistindo || 0), 0);
+    const totalEpisodios = catalogoConvertido.reduce((acc, titulo) => acc + (titulo.Episodios || 0), 0);
+    
+    // Média de pontuação 
+    const pontuacoes = catalogoConvertido
+        .map(titulo => titulo.Score)
+        .filter(p => typeof p === 'number' && !isNaN(p));
+
+    const mediaPontuacao = pontuacoes.length > 0
+        ? (pontuacoes.reduce((acc, p) => acc + p, 0) / pontuacoes.length)
+        : 0;
+
+    const elementoDestino = document.getElementById(elementoDestinoId);
+
+     if (elementoDestino) {
+        elementoDestino.innerHTML = "";
+            elementoDestino.innerHTML += 
+            `
+                <h5 class="card-title">${tipo}</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">${catalogoTipo}</h6>
+            `;
+    }        
+};
 
 function contagemTipo(tipo, elementoDestinoId) {
     const catalogoTipo = catalogoConvertido.filter(titulo => titulo.Tipo === tipo).length;
@@ -95,6 +237,20 @@ function contagemTipo(tipo, elementoDestinoId) {
             `
                 <h5 class="card-title">${tipo}</h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary">${catalogoTipo}</h6>
+            `;
+    }        
+};
+
+function contagemStatus(status, elementoDestinoId) {
+    const catalogoStatus = catalogoConvertido.filter(titulo => titulo.Status === status).length;
+    const elementoDestino = document.getElementById(elementoDestinoId);
+
+     if (elementoDestino) {
+        elementoDestino.innerHTML = "";
+            elementoDestino.innerHTML += 
+            `
+                <h5 class="card-title">${status}</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">${catalogoStatus}</h6>
             `;
     }        
 };
@@ -124,7 +280,7 @@ function filtrarStatus(statusFiltro, elementoDestinoId) {
             `;
         });
     }
-}
+};
 
 function filtrarTipo(tipoFiltro, elementoDestinoId) {
     const catalogoFiltrado = catalogoConvertido.filter(titulo => titulo.Tipo === tipoFiltro)
