@@ -19,7 +19,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item"><a href="#">Início</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">TV List</li>
+                            <li class="breadcrumb-item active" aria-current="page">My TV List</li>
                         </ol>
                     </nav>
                 </div>
@@ -112,23 +112,26 @@
                         <h2 class="pb-2 border-bottom">Resumo</h2>
                         <div class="row d-flex justify-content-center">
                             <div class="row row-cols-auto">
-                                <div class="col-9 mb-4">
-                                    <div class="card" data-filtro="contagem-progresso" data-status="Progresso-Total">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Progresso Total</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">6209</h6>
-                                            <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                <div class="progress-bar text-bg-success" style="width: 82%">82%</div>
-                                            </div>
+                                <div class="col-6 mb-4">
+                                    <div class="card" data-filtro="contagem-geral" data-status="Progresso">
+                                        <div class="card-body" id="geral-progresso">
+                                            <h5 class="card-title">Progresso</h5>
                                         </div>
                                     </div> 
                                 </div> 
                                 
                                 <div class="col-3">
-                                    <div class="card" data-filtro="contagem-pontuacao" data-status="Pontuacao">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Pontuação Média</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">7</h6>
+                                    <div class="card" data-filtro="contagem-geral" data-status="Total">
+                                        <div class="card-body" id="geral-total">
+                                            <h5 class="card-title">Total</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-3">
+                                    <div class="card" data-filtro="contagem-geral" data-status="Pontuacao">
+                                        <div class="card-body" id="geral-pontuacao">
+                                            <h5 class="card-title">Pontuacao</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -136,34 +139,30 @@
 
                             <div class="row row-cols-auto d-flex justify-content-start">
                                 <div class="col-3 mb-4">
-                                    <div class="card" data-filtro="contagem-assistidos" data-status="Assistidos">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Episódios Assistidos</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">4399</h6>
+                                    <div class="card" data-filtro="contagem-geral" data-status="Assistidos">
+                                        <div class="card-body" id="geral-assistidos">
+                                            <h5 class="card-title">Assistidos</h5>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-3">
-                                    <div class="card" data-filtro="contagem-episodios" data-status="Episodios">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Episódios</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">5333</h6>
+                                    <div class="card" data-filtro="contagem-geral" data-status="Episodios">
+                                        <div class="card-body" id="geral-episodios">
+                                            <h5 class="card-title">Episodios</h5>
                                         </div>
                                     </div>
                                 </div>    
                                 <div class="col-3">
-                                    <div class="card" data-filtro="contagem-dias" data-status="Dias">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Dias Assistindo</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">6209</h6>
+                                    <div class="card" data-filtro="contagem-geral" data-status="Dias">
+                                        <div class="card-body" id="geral-dias">
+                                            <h5 class="card-title">Dias</h5>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-3">
-                                    <div class="card" data-filtro="contagem-horas" data-status="Horas">
-                                        <div class="card-body">
+                                    <div class="card" data-filtro="contagem-geral" data-status="Horas">
+                                        <div class="card-body" id="geral-horas">
                                             <h5 class="card-title">Horas Assistindo</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">67</h6>
                                         </div>
                                     </div>
                                 </div>      

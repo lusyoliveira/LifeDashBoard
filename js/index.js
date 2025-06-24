@@ -2,7 +2,6 @@ import { adicionarTarefa } from "./tarefas.js";
 import { verificaLista } from "./mensagemTarefa.js";
 import { aumentaContador, diminuiContador } from "./contador.js";
 import { contagemRegressiva } from "./contagem.js";
-import { adicionarEvento } from "./agenda.js";
 import { relogio } from "./relogio.js";
 
 const botaoTarefa = document.getElementById('adiciona-tarefa');
@@ -11,7 +10,6 @@ const botaoDiminuiContagem = document.getElementById('diminui-contagem');
 const btnSalvaEvento = document.getElementById('salva-evento');
 const listaTarefa = document.getElementById('lista-tarefa');
 const novoContador = document.getElementById('contador');
-const modal = document.getElementById('meuModal');
 const btnEvento = document.getElementById('adiciona-evento');
 const spanFechar = document.querySelector('.fechar');
 const container = document.getElementById('container-modal');

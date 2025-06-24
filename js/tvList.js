@@ -19,6 +19,29 @@ async function buscarCatalogo() {
     });
     exibirCatalogo(catalogoConvertido)
 }
+//exibe dados em index.html
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.location.pathname.endsWith('index.html')) {
+        buscarCatalogo().then(() => {
+            const cards = document.querySelectorAll('.card');           
+
+            cards.forEach(card => {
+                const header = card.querySelector('.card-header');
+                const lista = card.querySelector('ul');
+                const title = card.querySelector('.card-title');
+                const body = card.querySelector('.card-body');
+
+                if (body && title) {
+                    // Filtro por Status
+                    if (card.dataset.filtro === 'principal') {
+                        const status = card.dataset.status;
+                        assistindoPrincipal(status, body.id);
+                    }                    
+                }
+            });           
+        });
+    }
+});
 
 //exibe catalogo em Catalogo.html
 document.addEventListener('DOMContentLoaded', () => {
@@ -76,17 +99,21 @@ document.addEventListener('DOMContentLoaded', () => {
                         topGeral(lista.id);
                     }
                 } else if (body && title) {
-                    //Contagem por tipo
-                   if (card.dataset.filtro === 'contagem-tipo') {
-                        const tipo = card.dataset.contagem || title.textContent.trim();
-                        contagemTipo(tipo, body.id);
-                    } 
-
+                    //Contagem por Geral
+                   if (card.dataset.filtro === 'contagem-geral') {
+                        const status = card.dataset.status || title.textContent.trim();
+                        contagemGeral(status, body.id);
+                    }
                      //Contagem por status
                    if (card.dataset.filtro === 'contagem-status') {
                         const status = card.dataset.status || title.textContent.trim();
                         contagemStatus(status, body.id);
                     } 
+                    //Contagem por tipo
+                   if (card.dataset.filtro === 'contagem-tipo') {
+                        const tipo = card.dataset.contagem || title.textContent.trim();
+                        contagemTipo(tipo, body.id);
+                    }
                 } 
             });
 
@@ -200,12 +227,14 @@ function estatistica(tipo, elementoDestinoId) {
     }        
 };
 
-function contagemGeral(tipo, elementoDestinoId) {   
+function contagemGeral(status, elementoDestinoId) {   
     const total = catalogoConvertido.length;
-    const Dias = catalogoConvertido.reduce((acc, titulo) => acc + (titulo.Dias || 0), 0);
-    const reassistidos = catalogoConvertido.reduce((acc, titulo) => acc + (titulo.Reassistindo || 0), 0);
+    const totalDias = catalogoConvertido.reduce((acc, titulo) => acc + (titulo.Dias || 0), 0);
     const totalEpisodios = catalogoConvertido.reduce((acc, titulo) => acc + (titulo.Episodios || 0), 0);
-    
+    const totalAssistidos = catalogoConvertido.reduce((acc, titulo) => acc + (titulo.Assistidos || 0), 0); 
+    const porcentagem = totalAssistidos/totalEpisodios*100   
+    let geral = 0;
+
     // Média de pontuação 
     const pontuacoes = catalogoConvertido
         .map(titulo => titulo.Score)
@@ -215,15 +244,45 @@ function contagemGeral(tipo, elementoDestinoId) {
         ? (pontuacoes.reduce((acc, p) => acc + p, 0) / pontuacoes.length)
         : 0;
 
+    if (status === 'Progresso') {
+        geral = totalAssistidos
+    } else if (status === 'Total') {
+        geral = total
+    } else if (status === 'Pontuacao') {
+        geral = mediaPontuacao.toFixed(1)
+    } else if (status === 'Assistidos') {
+        geral = totalAssistidos
+    } else if (status === 'Episodios') {
+        geral = totalEpisodios
+    } else if (status === 'Dias') {
+        geral = totalDias
+    } 
+
     const elementoDestino = document.getElementById(elementoDestinoId);
 
-     if (elementoDestino) {
-        elementoDestino.innerHTML = "";
+    if (elementoDestino) {
+
+        if (status === 'Progresso') {
+            elementoDestino.innerHTML = "";
             elementoDestino.innerHTML += 
             `
-                <h5 class="card-title">${tipo}</h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">${catalogoTipo}</h6>
+                <h5 class="card-title">${status}</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">${geral} de ${totalEpisodios}</h6>
+
+                <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar text-bg-success" style="width: ${porcentagem.toFixed(1)}%">${porcentagem.toFixed(1)}%</div>
+                </div>            
             `;
+        } else {
+            elementoDestino.innerHTML = "";
+            elementoDestino.innerHTML += 
+            `
+                <h5 class="card-title">${status}</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">${geral}</h6>      
+            `;
+        }
+
+       
     }        
 };
 
@@ -395,3 +454,25 @@ function exibirCatalogo(listaTitulos) {
     document.dispatchEvent(new Event('catalogoRenderizado'));
 };
 
+function assistindoPrincipal(statusFiltro, elementoDestinoId) {
+    const catalogoFiltrado = catalogoConvertido.filter(titulo => titulo.Status === statusFiltro)
+                                    .slice(0, 4);
+
+    const elementoDestino = document.getElementById(elementoDestinoId);
+    if (elementoDestino) {
+        elementoDestino.innerHTML = "";
+        catalogoFiltrado.forEach(titulo => {
+            elementoDestino.innerHTML += 
+            `
+                <h5 class="card-title">${titulo.Titulo}</h5>
+                <div class="d-flex justify-content-between align-items-center"> 
+                    <span class="badge text-bg-primary">${statusFiltro}</span>
+                    <span class="badge text-bg-info">${titulo.Tipo}</span>
+                </div>
+                <div class="progress mt-2" role="progressbar" aria-label="Progresso Assistindo" aria-valuenow="${titulo.Progresso}" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar bg-success" style="width: ${titulo.Progresso}%">${titulo.Progresso}%</div>
+                </div>
+            `;
+        });
+    }
+};

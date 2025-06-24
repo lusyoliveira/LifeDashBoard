@@ -3,11 +3,14 @@
     --cor-rosa: #ae0464;
     --cor-azul: #1d52a8;
     --cor-roxo: #71056f;
-    --cor-cinza: #212529; 
+    --cor-cinza:  #808080; 
     --cor-cinza-claro: #c5c5c5; 
     --cor-cinza-escuro:#212529;
     --cor-violeta: #8a2be2;
     --cor-preto: #000;
+    --cor-marrom: #ce7c2f;
+    --cor-aqua: #00ffff;
+    --cor-amarelo:#dddd59;
 }
 .icones-navbar {
     font-size: 2em;
@@ -24,7 +27,7 @@
     width: auto;
 }
 .globo.hora {
-    background:brown;
+    background:var(--cor-marrom);
     height: 30px;
     width: 30px;
     border-radius: 50%;
@@ -33,7 +36,7 @@
     left: 200px;
 }
 .globo.minuto {
-    background: aqua;
+    background: var(--cor-aqua);
     height: 20px;
     width: 20px;
     border-radius: 50%;
@@ -42,7 +45,7 @@
     left: 176px;
 }
 .globo.segundo {
-    background: grey;
+    background: var(--cor-cinza);
     height: 10px;
     width: 10px;
     border-radius: 50%;
@@ -56,7 +59,7 @@
     width: 270px;
     left: 0px;
     top: 0px;
-    border: 1px solid white;
+    border: 1px solid var(--cor-branco);
     border-radius: 50%;
     margin: 2em auto;
 }
@@ -66,7 +69,7 @@
     width: 190px;
     left: 38px;
     top: 42px;
-    border: 1px solid white;
+    border: 1px solid var(--cor-branco);
     border-radius: 50%;
 }
 .orbita.segundo {
@@ -75,7 +78,7 @@
     width: 140px;
     left: 25px;
     top: 25px;
-    border: 1px solid white;
+    border: 1px solid var(--cor-branco);
     border-radius: 50%;
 }
 .rotacao.minuto {
@@ -105,7 +108,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: yellow;
+    background: var(--cor-amarelo);
     border-radius: 50%;
     position: relative;
     height: 70px;
@@ -113,13 +116,14 @@
     left: 36px;
     top: 36px;
     border-radius: 50%;
-    box-shadow: 0 0 30px white;
-    color: black;
+    box-shadow: 0 0 30px  var(--cor-branco);
+    font-weight: 500;
+    color:  var(--cor-preto);
 }
 .orbita {
     position: relative;
     border: solid;
-    border-color: white;
+    border-color:  var(--cor-branco);
     border-radius: 50%;
     border-width: 1px 1px 0 0;
     box-sizing: border-box;
