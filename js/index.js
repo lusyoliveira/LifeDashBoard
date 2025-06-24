@@ -7,13 +7,11 @@ import { relogio } from "./relogio.js";
 const botaoTarefa = document.getElementById('adiciona-tarefa');
 const botaoAdicionaContagem = document.getElementById('adiciona-contagem');
 const botaoDiminuiContagem = document.getElementById('diminui-contagem');
-const btnSalvaEvento = document.getElementById('salva-evento');
 const listaTarefa = document.getElementById('lista-tarefa');
 const novoContador = document.getElementById('contador');
 const btnEvento = document.getElementById('adiciona-evento');
 const spanFechar = document.querySelector('.fechar');
 const container = document.getElementById('container-modal');
-const containerDia = document.getElementById('dia11');
 
 //Aumenta contador
 botaoAdicionaContagem.addEventListener("click", (evento) => { 
@@ -61,14 +59,6 @@ btnEvento.addEventListener("click", async () => {
         if (e.target === modal) modal.style.display = "none";
     };
 });
-
-// btnSalvaEvento.addEventListener("click", (evento) => {
-//     evento.preventDefault();
-          
-//     const agenda = adicionarEvento();
-    
-//     containerDia.appendChild(agenda);
-// })
 
 verificaLista(listaTarefa);
 contagemRegressiva();

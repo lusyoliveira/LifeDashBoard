@@ -23,21 +23,14 @@ async function buscarCatalogo() {
 document.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname.endsWith('index.html')) {
         buscarCatalogo().then(() => {
-            const cards = document.querySelectorAll('.card');           
+            const linhas = document.querySelectorAll('.row');          
 
-            cards.forEach(card => {
-                const header = card.querySelector('.card-header');
-                const lista = card.querySelector('ul');
-                const title = card.querySelector('.card-title');
-                const body = card.querySelector('.card-body');
-
-                if (body && title) {
-                    // Filtro por Status
-                    if (card.dataset.filtro === 'principal') {
-                        const status = card.dataset.status;
-                        assistindoPrincipal(status, body.id);
-                    }                    
-                }
+            linhas.forEach(linha => {
+                // Filtro por Status
+                if (linha.dataset.filtro === 'principal') {
+                    const status = linha.dataset.status;
+                    assistindoPrincipal(status, linha.id);
+                }  
             });           
         });
     }
@@ -60,8 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const colunas = document.querySelectorAll('.col');
 
             linhas.forEach(linha => {
-                const coluna = linha.querySelector('#recentes');
-
                 if (linha.dataset.filtro === 'recentes') {
                     adicionadosRecentemente(linha.id)
                 }
@@ -464,14 +455,23 @@ function assistindoPrincipal(statusFiltro, elementoDestinoId) {
         catalogoFiltrado.forEach(titulo => {
             elementoDestino.innerHTML += 
             `
-                <h5 class="card-title">${titulo.Titulo}</h5>
-                <div class="d-flex justify-content-between align-items-center"> 
-                    <span class="badge text-bg-primary">${statusFiltro}</span>
-                    <span class="badge text-bg-info">${titulo.Tipo}</span>
+            <div class="card shadow-sm"> 
+                <svg aria-label="Placeholder: Thumbnail" class="bd-placeholder-img card-img-top" height="225" preserveAspectRatio="xMidYMid slice" role="img" width="100%" xmlns="http://www.w3.org/2000/svg">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#55595c"></rect>
+                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                </svg>
+                <div class="card-body" id="principal-assistindo">
+                    <h5 class="card-title">${titulo.Titulo}</h5>
+                    <div class="d-flex justify-content-between align-items-center"> 
+                        <span class="badge text-bg-primary">${statusFiltro}</span>
+                        <span class="badge text-bg-info">${titulo.Tipo}</span>
+                    </div>
+                    <div class="progress mt-2" role="progressbar" aria-label="Progresso Assistindo" aria-valuenow="${titulo.Progresso}" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-success" style="width: ${titulo.Progresso*100}%">${titulo.Progresso*100}%</div>
+                    </div>
                 </div>
-                <div class="progress mt-2" role="progressbar" aria-label="Progresso Assistindo" aria-valuenow="${titulo.Progresso}" aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar bg-success" style="width: ${titulo.Progresso}%">${titulo.Progresso}%</div>
-                </div>
+            </div>                
             `;
         });
     }
