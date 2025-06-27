@@ -1,5 +1,6 @@
 import { criarData } from "./criarData.js";
 
+const mensagemTarefa = document.querySelector(".mensagem-tarefa");
 const inputTarefa = document.getElementById('tarefa');
 let contador = 0;
 
@@ -44,4 +45,13 @@ export function adicionarTarefa() {
     spanTarefa.appendChild(smallTarefa);
     
     return labelTarefa
+};
+
+export  function verificaLista(listaTarefa) {
+    const itemTarefa = listaTarefa.querySelectorAll('label');
+    if (itemTarefa.length === 0) {
+        mensagemTarefa.style.display = 'block';
+    } else {
+        mensagemTarefa.style.display = 'none';
+    }
 }

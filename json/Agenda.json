@@ -1453,7 +1453,7 @@
     "Status": "Feito",
     "Categoria": "Loja",
     "Tipo": "Postagem",
-    "Data": "18/10/2023 15:00 (BRT)"
+    "Data": "18/10/2023"
   },
   {
     "Id": "183",
@@ -1517,7 +1517,7 @@
     "Status": "Indeterminado",
     "Categoria": "Pessoal",
     "Tipo": "Evento",
-    "Data": "21/06/2025 17:00 (BRT)"
+    "Data": "21/06/2025"
   },
   {
     "Id": "191",
@@ -1525,7 +1525,7 @@
     "Status": "Indeterminado",
     "Categoria": "Pessoal",
     "Tipo": "Evento",
-    "Data": "25/06/2025 13:30 (BRT)"
+    "Data": "25/06/2025"
   },
   {
     "Id": "192",
@@ -1645,7 +1645,7 @@
     "Status": "Indeterminado",
     "Categoria": "Casa",
     "Tipo": "Evento",
-    "Data": "01/09/2025 12:00 (BRT)"
+    "Data": "01/09/2025"
   },
   {
     "Id": "207",
@@ -1669,7 +1669,7 @@
     "Status": "Feito",
     "Categoria": "Loja",
     "Tipo": "Postagem",
-    "Data": "15/09/2025 14:00 (BRT)"
+    "Data": "15/09/2025"
   },
   {
     "Id": "210",
@@ -1709,7 +1709,7 @@
     "Status": "Em Espera",
     "Categoria": "Educação",
     "Tipo": "Compromissos",
-    "Data": "22/03/2026 15:00 (BRT)"
+    "Data": "22/03/2026"
   },
   {
     "Id": "215",

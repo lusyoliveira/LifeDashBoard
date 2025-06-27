@@ -36,9 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-//exibe catalogo em Catalogo.html
+//exibe catalogo em catalogo.html
 document.addEventListener('DOMContentLoaded', () => {
-    const isCatalogoPage = window.location.pathname.endsWith('Catalogo.html');
+    const isCatalogoPage = window.location.pathname.endsWith('catalogo.html');
     if (isCatalogoPage) {
         buscarCatalogo();
     }
@@ -334,8 +334,8 @@ function filtrarStatus(statusFiltro, elementoDestinoId) {
 
 function filtrarTipo(tipoFiltro, elementoDestinoId) {
     const catalogoFiltrado = catalogoConvertido.filter(titulo => titulo.Tipo === tipoFiltro)
-                                    .sort((a, b) => b.Score - a.Score)
-                                    .slice(0, 4);
+                                                .sort((a, b) => b.Score - a.Score)
+                                                .slice(0, 4);
 
     const elementoDestino = document.getElementById(elementoDestinoId);
     if (elementoDestino) {
@@ -442,7 +442,7 @@ function exibirCatalogo(listaTitulos) {
     });
 
     // Dispara DataTable
-    document.dispatchEvent(new Event('catalogoRenderizado'));
+    document.dispatchEvent(new Event('Renderizado'));
 };
 
 function assistindoPrincipal(statusFiltro, elementoDestinoId) {
@@ -464,7 +464,6 @@ function assistindoPrincipal(statusFiltro, elementoDestinoId) {
                 <div class="card-body" id="principal-assistindo">
                     <h5 class="card-title">${titulo.Titulo}</h5>
                     <div class="d-flex justify-content-between align-items-center"> 
-                        <span class="badge text-bg-primary">${statusFiltro}</span>
                         <span class="badge text-bg-info">${titulo.Tipo}</span>
                     </div>
                     <div class="progress mt-2" role="progressbar" aria-label="Progresso Assistindo" aria-valuenow="${titulo.Progresso}" aria-valuemin="0" aria-valuemax="100">

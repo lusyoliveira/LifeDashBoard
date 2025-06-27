@@ -1,5 +1,4 @@
-import { adicionarTarefa } from "./tarefas.js";
-import { verificaLista } from "./mensagemTarefa.js";
+import { adicionarTarefa, verificaLista } from "./tarefas.js";
 import { aumentaContador, diminuiContador } from "./contador.js";
 import { contagemRegressiva } from "./contagem.js";
 import { relogio } from "./relogio.js";
@@ -40,25 +39,25 @@ botaoTarefa.addEventListener("click", (evento) => {
 });
 
 // Modal adicionar evento
-btnEvento.addEventListener("click", async () => {
-    // Carrega o HTML externo do modal
-    const resposta = await fetch("modalTarefa.html");
-    const html = await resposta.text();
+// btnEvento.addEventListener("click", async () => {
+//     // Carrega o HTML externo do modal
+//     const resposta = await fetch("modalTarefa.html");
+//     const html = await resposta.text();
 
-    // Insere o modal no container
-    container.innerHTML = html;
+//     // Insere o modal no container
+//     container.innerHTML = html;
 
-    const modal = document.getElementById("meuModal");
-    const fechar = modal.querySelector(".btn-close");
+//     const modal = document.getElementById("meuModal");
+//     const fechar = modal.querySelector(".btn-close");
 
-    modal.style.display = "block";
+//     modal.style.display = "block";
 
-    fechar.onclick = () => modal.style.display = "none";
+//     fechar.onclick = () => modal.style.display = "none";
 
-    window.onclick = (e) => {
-        if (e.target === modal) modal.style.display = "none";
-    };
-});
+//     window.onclick = (e) => {
+//         if (e.target === modal) modal.style.display = "none";
+//     };
+// });
 
 verificaLista(listaTarefa);
 contagemRegressiva();

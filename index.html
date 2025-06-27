@@ -15,27 +15,27 @@
             <div class="container-fluid">
                 <!-- Esquerda: Título e Breadcrumb -->
                 <div class="d-flex align-items-center">
-                    <a class="navbar-brand fw-bold me-4" href="#">Life Dashboard</a>
+                    <a class="navbar-brand fw-bold me-4" title="home" href="#">Life Dashboard</a>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0">
-                            <li class="breadcrumb-item"><a href="#">Início</a></li>
+                            <li class="breadcrumb-item"><a href="#"  title="inicio">Início</a></li>
                         </ol>
                     </nav>
                 </div>
         
                 <!-- Direita: Pesquisa e Avatar -->
                 <div class="d-flex align-items-center ms-auto">
-                    <form class="d-flex me-3" role="search">
-                        <input class="form-control" type="search" placeholder="Pesquisar..." aria-label="Pesquisar">
+                    <form class="d-flex me-3" title="pesquisa" id="pesquisa" role="search">
+                        <input class="form-control" id="pesquisar" type="search" placeholder="Pesquisar..." aria-label="Pesquisar">
                     </form>
         
                     <div class="d-flex justify-content-between align-items-lg-center gap-3">
-                        <a href="#" class="d-flex align-items-center text-decoration-none">
+                        <a href="#" class="d-flex align-items-center text-decoration-none" title="usuario">
                             <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle" _mstalt="33306" _msthash="42">
                             Luciene
                         </a>
-                        <a href="#" alt="Configurações" class="icones-navbar"><i class="bi bi-gear-fill"></i></a>                  
-                        <a href="#" alt="Sair" class="icones-navbar"><i class="bi bi-box-arrow-right"></i></a>
+                        <a href="#" alt="Configurações" class="icones-navbar" title="configurações"><i class="bi bi-gear-fill"></i></a>                  
+                        <a href="#" alt="Sair" class="icones-navbar" title="sair"><i class="bi bi-box-arrow-right"></i></a>
                     </div>                    
                 </div>
             </div>
@@ -122,14 +122,14 @@
 
             <hr>
 
-            <div class="container">
-                <div class="cal">
+            <div class="container-fluid">
+                <div class="" id="calendario">
                     <div class="cal-month d-flex justify-content-between">
                         <div class="d-flex justify-content-between">
-                            <div class="cal-month d-flex justify-content-evenly align-items-center">
-                                <button class="btn" title="Anterior" id="anterior-calendario"><i class="bi bi-caret-left"></i></button>
-                                <h4 class="cal-month-name text-center">Junho 2025</h4>
-                                <button class="btn" title="Posterior" id="posterior-calendario"><i class="bi bi-caret-right"></i></button>                            
+                            <div class="cal-month d-flex justify-content-evenly align-items-center" id="calendario-cabecalho">
+                                <button class="btn" title="Anterior" id="botao-anterior"><i class="bi bi-caret-left"></i></button>
+                                <h4 class="cal-month-name text-center" id="mes-ano">Junho 2025</h4>
+                                <button class="btn" title="Posterior" id="botao-proximo"><i class="bi bi-caret-right"></i></button>                            
                             </div>
                         </div>                     
 
@@ -139,9 +139,9 @@
                             <button class="btn" title="Configurações" id="configuracao-calendario"><i class="bi bi-three-dots"></i></button>
                         </div>
                     </div>
-                    <div class="container text-center border">
-                        <div class="row cal-weekdays text-body-secondary border-bottom">
-                            <div class="col cal-days">Domingo</div>
+                    <div class="container-fluid">
+                        <div class="calendario-semana" id="calendario-semana">
+                            <div class="col">Domingo</div>
                             <div class="col">Segunda</div>
                             <div class="col">Terça</div>
                             <div class="col">Quarta</div>
@@ -149,147 +149,11 @@
                             <div class="col">Sexta</div>
                             <div class="col">Sábado</div>
                         </div>
-                        <div class="row cal-days border-bottom">
-                            <div class="col p-0 border-end">
-                                <div class="conteudo-dia">
-                                    <div class="text-end">1</div>
-                                    <div class="badge bg-body-secondary text-start p-3 mb-1">
-                                        <p><i class="bi bi-currency-dollar"></i> Assoprar Canela</p>
-                                        <span class="badge text-bg-info">Pessoal</span>
-                                    </div>
-                                    <div class="badge bg-body-secondary text-start p-3 mb-1">
-                                        <p><i class="bi bi-currency-dollar"></i> Conta de Água</p>
-                                        <span class="badge text-bg-primary">Casa</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col p-0 border-end">
-                                <div class="text-end">2</div>
-                            </div>
-                            <div class="col p-0 border-end">
-                                <div class="text-end">3</div>
-                            </div>
-                            <div class="col p-0 border-end">
-                                <div class="text-end">4</div>
-                            </div>
-                            <div class="col p-0 border-end">
-                                <div class="text-end">5</div>
-                            </div>
-                            <div class="col p-0 border-end">
-                                <div class="text-end">6</div>
-                            </div>
-                            <div class="col p-0">
-                                <div class="text-end">7</div>
-                            </div>
-                        </div>
-                        <div class="row cal-days border-bottom">
-                            <div class="col p-0 border-end">
-                                <div class="text-end">8</div>
-                            </div>
-                            <div class="col p-0 border-end">
-                                <div class="text-end">9</div>
-                            </div>
-                            <div class="col p-0 border-end" id="dia11">
-                                <div class="text-end">10</div>                                                                                                                                                                                                                                                                                                                         
-                            </div>
-                            <div class="col p-0 border-end">                                
-                                <div class="conteudo-dia">
-                                    <div class="text-end">11</div>
-                                    <div class="badge bg-body-secondary text-start p-3 mb-1">
-                                        <p><i class="bi bi-currency-dollar"></i> Investir</p>
-                                        <span class="badge text-bg-info">Pessoal</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col p-0 border-end">
-                                <div class="text-end">12</div>
-                            </div>
-                            <div class="col p-0 border-end">
-                                <div class="text-end">13</div>
-                            </div>
-                            <div class="col p-0">
-                                <div class="text-end">14</div>
-                            </div>
-                        </div>
-                        <div class="row cal-days border-bottom">
-                            <div class="col p-0 border-end">
-                                <div class="text-end">15</div>
-                            </div>
-                            <div class="col p-0 border-end">
-                                <div class="text-end">16</div>
-                            </div>
-                            <div class="col p-0 border-end">
-                                <div class="text-end">17</div>
-                            </div>
-                            <div class="col p-0 border-end">
-                                <div class="text-end">18</div>
-                            </div>
-                            <div class="col p-0 border-end">
-                                <div class="text-end">19</div>
-                            </div>
-                            <div class="col p-0 border-end">                                                                
-                                <div class="conteudo-dia">
-                                    <div class="text-end">20</div>
-                                    <div class="badge bg-body-secondary text-start p-3 mb-1">
-                                        <p><i class="bi bi-currency-dollar"></i> Conta de Luz</p>
-                                        <span class="badge text-bg-info">Casa</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col p-0">
-                                <div class="text-end">21</div>
-                            </div>
-                        </div>
-                        <div class="row cal-days border-bottom">
-                            <div class="col p-0 border-end">
-                                <div class="text-end">22</div>
-                            </div>
-                            <div class="col p-0 border-end">
-                                 <div class="conteudo-dia">
-                                    <div class="text-end">23</div>
-                                    <div class="badge bg-body-secondary text-start p-3 mb-1">
-                                        <p><i class="bi bi-currency-dollar"></i> Cronograma Capilar</p>
-                                        <span class="badge text-bg-info">Pessoal</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col p-0 border-end">
-                                <div class="text-end">24</div>
-                            </div>
-                            <div class="col p-0 border-end">
-                                <div class="text-end">25</div>
-                            </div>
-                            <div class="col p-0 border-end">
-                                <div class="text-end">26</div>
-                            </div>
-                            <div class="col p-0 border-end">
-                                <div class="text-end">27</div>
-                            </div>
-                            <div class="col p-0"> 
-                                <div class="text-end">28</div>
-                            </div>
-                        </div>
-                        <div class="row cal-days border-bottom">
-                            <div class="col p-0 border-end">                                                                
-                                <div class="conteudo-dia">
-                                    <div class="text-end">29</div>
-                                    <div class="badge bg-body-secondary text-start p-3 mb-1">
-                                        <p><i class="bi bi-currency-dollar"></i> Acerto Financeiro</p>
-                                        <span class="badge text-bg-info">Pessoal</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col p-0 border-end">
-                                <div class="text-end">30</div>
-                            </div>
-                            <div class="col p-0 border-end"></div>
-                            <div class="col p-0 border-end"></div>
-                            <div class="col p-0 border-end"></div>
-                            <div class="col p-0 border-end"></div>
-                            <div class="col p-0"></div>
+                        <div class="calendario-dias" id="calendario-dias">
+                           
                         </div>
                     </div>                    
-                </div>
+                </div> 
             </div>
             
          <hr>
@@ -298,7 +162,7 @@
                 <div class="row">
                     <div class="col-3">
                         <ul class="dropdown-menu d-block position-static mx-0 border-0 shadow w-220px" data-bs-theme="dark">
-                            <li> <a class="dropdown-item d-flex gap-2 align-items-center" href="#"> 
+                            <li> <a class="dropdown-item d-flex gap-2 align-items-center" href="/Agenda.html"> 
                                     <i class="bi bi-calendar"></i>
                                     Agenda
                                 </a> 
@@ -397,57 +261,16 @@
                         <div class="p-4 mt-3 bg-body-tertiary rounded">
                             <h4 class="fst-italic">Copos de Águas</h4>
                             <div class="d-flex m-4 justify-content-around align-items-center">
-                                <button class="btn btn-secondary" title="" id="diminui-contagem"><i class="bi bi-dash-lg"></i></button>
-                                <input class="form-control text-center w-25" type="text" id="contador" value="0">
-                                <button class="btn btn-secondary" title="" id="adiciona-contagem"><i class="bi bi-plus-lg"></i></button>                             
+                                <button class="btn btn-secondary" title="diminuir" id="diminui-contagem"><i class="bi bi-dash-lg"></i></button>
+                                <input class="form-control text-center w-25" title="contador" type="text" id="contador" value="0">
+                                <button class="btn btn-secondary" title="aumentar" id="adiciona-contagem"><i class="bi bi-plus-lg"></i></button>                             
                             </div>
                         </div>
                     </div>
                     <div class="col-6">
                         <h3 >Próximos Compromissos</h3>
-                          <div class="list-group text-start">
-                                <a href="#" class="list-group-item list-group-item-action">
-                                    <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">Pintar Cabelo</h5>
-                                    <small>3 days ago</small>
-                                    </div>
-                                    <small>Pessoal</small>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action">
-                                    <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">Conta de Luz</h5>
-                                    <small class="text-body-secondary">3 days ago</small>
-                                    </div>
-                                    <small class="text-body-secondary">Casa</small>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action">
-                                    <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">Cronograma Capilar</h5>
-                                    <small class="text-body-secondary">3 days ago</small>
-                                    </div>
-                                    <small class="text-body-secondary">Pessoal</small>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action">
-                                    <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">Dia da Pizza</h5>
-                                    <small class="text-body-secondary">10/07/2025</small>
-                                    </div>
-                                    <small class="text-body-secondary">Data Importante</small>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action">
-                                    <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">Dia do Rock</h5>
-                                    <small class="text-body-secondary">13/07/2025</small>
-                                    </div>
-                                    <small class="text-body-secondary">Data Importante</small>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action">
-                                    <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">Viagem</h5>
-                                    <small class="text-body-secondary">20/07/2025</small>
-                                    </div>
-                                    <small class="text-body-secondary">Data Importante</small>
-                                </a>
+                          <div class="list-group text-start" id="proximos-compromissos" data-filtro="compromissos" data-status="recentes">
+                                
                             </div>
                     </div>
                     <div class="col-3">
@@ -592,6 +415,7 @@
     </footer>
 <script src="./js/index.js" type="module"></script>
 <script src="./js/tvList.js" type="module"></script>
+<script src="./js/agenda.js" type="module"></script>
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> -->
 </body>
 </html>

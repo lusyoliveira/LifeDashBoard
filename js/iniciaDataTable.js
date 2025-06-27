@@ -1,5 +1,5 @@
 // Escuta quando a tabela for preenchida
-document.addEventListener('catalogoRenderizado', () => {
+document.addEventListener('Renderizado', () => {
     const tabela = $('.datatable');
     
     // Se DataTable já foi aplicado, destrói e recria
