@@ -1,4 +1,4 @@
-import { converteData, calculaTempoData } from "./criarData.js";
+import { converteData, calculaTempoData } from "./metodoData.js";
 
 const endpoint = './json/Agenda.json';
 const linhaTabela = document.getElementById('linhas');

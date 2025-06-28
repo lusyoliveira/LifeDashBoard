@@ -1,4 +1,4 @@
-import { converteData, calculaTempoData } from "./criarData.js";
+import { converteData, calculaTempoData } from "./metodoData.js";
 
 let catalogo = [];
 let catalogoConvertido = [];

@@ -1,16 +1,39 @@
-import { criarData } from "./criarData.js";
+import { criarData } from "./metodoData.js";
 
 const mensagemTarefa = document.querySelector(".mensagem-tarefa");
 const inputTarefa = document.getElementById('tarefa');
+const botaoTarefa = document.getElementById('adiciona-tarefa');
+const liTarefa = document.getElementById('lista-tarefa');
+const listaTarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
+
 let contador = 0;
 
-export function adicionarTarefa() {
-    if (inputTarefa.value === "") {
+//Adiciona tarefa
+botaoTarefa.addEventListener("click", (evento) => { 
+    evento.preventDefault();
+          
+    const tarefa = {
+        descricao: inputTarefa.value,
+        data: criarData()
+    }
+    listaTarefas.push(tarefa)
+     const criaElementoTarefa = adicionarTarefa(tarefa);
+    liTarefa.appendChild(criaElementoTarefa)
+    atualizarTarefa()
+    inputTarefa.value = '';
+});
+
+function atualizarTarefa() {
+    localStorage.setItem('tarefas', JSON.stringify(listaTarefas))
+};
+
+export function adicionarTarefa(tarefa) {
+    if (tarefa.value === "") {
         alert('É necessário inserir uma tarefa!');
         return
     }
 
-    //Constroi lista
+    //Constroi lista de terafas
     const labelTarefa = document.createElement('label');
     labelTarefa.classList.add('list-group-item', 'd-flex', 'gap-3', 'text-start');
     const checkTarefa = document.createElement('input');
@@ -22,7 +45,7 @@ export function adicionarTarefa() {
     const spanTarefa = document.createElement('span');
     spanTarefa.classList.add('pt-1', 'form-checked-content');
     const strongTarefa = document.createElement('strong');
-    strongTarefa.innerText = inputTarefa.value;
+    strongTarefa.innerText = tarefa.descricao;
 
      //Estiliza nome do item
     checkTarefa.addEventListener('click', function() {
@@ -32,12 +55,10 @@ export function adicionarTarefa() {
             strongTarefa.style.textDecoration = "none";
         }
     })
-    //Constroi data
-    const dataItem = criarData();   
     
     const smallTarefa = document.createElement('small');
     smallTarefa.classList.add('d-block', 'text-body-secondary');
-    smallTarefa.innerText = dataItem;
+    smallTarefa.innerText = tarefa.data;
 
     labelTarefa.appendChild(checkTarefa);
     labelTarefa.appendChild(spanTarefa);
@@ -54,4 +75,10 @@ export  function verificaLista(listaTarefa) {
     } else {
         mensagemTarefa.style.display = 'none';
     }
-}
+};
+
+listaTarefas.forEach(tarefa => {
+    const criaElementoTarefa = adicionarTarefa(tarefa);
+    liTarefa.appendChild(criaElementoTarefa)
+    verificaLista(liTarefa);
+})
