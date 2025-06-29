@@ -1,9 +1,8 @@
 import { converteData, calculaTempoData } from "./metodoData.js";
 
-const endpoint = './json/Agenda.json';
 const linhaTabela = document.getElementById('linhas');
 const mesAno = document.getElementById('mes-ano');
-
+const endpoint = './json/Agenda.json';
 let agenda = [];
 let agendaConvertida = [];
 let dataAtual = new Date();
@@ -21,9 +20,10 @@ async function buscarAgenda() {
         };
     });
     exibirAgenda(agendaConvertida)
+    //console.table(agendaConvertida);    
 };
 
-//exibe dados em index.html
+//exibe no index.html
 document.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname.endsWith('index.html')) {
         buscarAgenda().then(() => {
@@ -32,13 +32,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const btnProximo = document.getElementById('botao-proximo');            
             const listas = document.querySelectorAll('.list-group');
 
+            //exibe lista de próximo compromissos
             listas.forEach(lista => {
                 if (lista.dataset.filtro === 'compromissos') {
-                    //adicionadosRecentemente(lista.id)
                     proximosCompromissos(lista.id)
                 }
             });
 
+            //exibe calendario
             criarCalendario(mesAtual, anoAtual, diasCalendario);
            
             btnAnterior.addEventListener('click', () => {
@@ -67,8 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //exibe listagem da agenda em agenda.html
 document.addEventListener('DOMContentLoaded', () => {
-    const isCatalogoPage = window.location.pathname.endsWith('agenda.html');
-    if (isCatalogoPage) {
+    const isAgendaPage = window.location.pathname.endsWith('agenda.html');
+    if (isAgendaPage) {
         buscarAgenda();
     }
 });
@@ -91,7 +92,7 @@ function criarCalendario(mes, ano, dias) {
     const isToday = i === new Date().getDate() &&
                     mes === new Date().getMonth() &&
                     ano === new Date().getFullYear();
-    dias.innerHTML += `<div class="calendario-hoje"><div class="calendario-data">${i}</div></div>`;
+     dias.innerHTML += `<div class="calendario-hoje"><div class="calendario-data">${i}</div></div>`;
   }
 };
 

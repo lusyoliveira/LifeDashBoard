@@ -18,7 +18,8 @@ async function buscarCatalogo() {
         };
     });
     exibirCatalogo(catalogoConvertido)
-}
+};
+
 //exibe dados em index.html
 document.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname.endsWith('index.html')) {

@@ -1,5 +1,5 @@
 import { readFile } from 'fs/promises';
-import { converteData } from "./js/criarData.js";
+import { converteData } from "./js/metodoData.js";
 
 const endpoint = './json/Agenda.json';
 

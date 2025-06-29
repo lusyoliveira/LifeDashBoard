@@ -28,7 +28,7 @@ function atualizarTarefa() {
 };
 
 export function adicionarTarefa(tarefa) {
-    if (tarefa.value === "") {
+    if (tarefa.value === '') {
         alert('É necessário inserir uma tarefa!');
         return
     }
@@ -81,4 +81,6 @@ listaTarefas.forEach(tarefa => {
     const criaElementoTarefa = adicionarTarefa(tarefa);
     liTarefa.appendChild(criaElementoTarefa)
     verificaLista(liTarefa);
-})
+});
+
+verificaLista(liTarefa);
