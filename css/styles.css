@@ -5,6 +5,7 @@
     --cor-roxo: #71056f;
     --cor-cinza:  #808080; 
     --cor-cinza-claro: #c5c5c5; 
+    --cor-cinza-medio:#384047;
     --cor-cinza-escuro:#212529;
     --cor-violeta: #8a2be2;
     --cor-preto: #000;
@@ -136,28 +137,44 @@
     }
 }
 .calendario-semana, .calendario-dias {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  text-align: center;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
 }
 .calendario-semana div {
-  font-weight: bold;
-  padding: 10px 0;  
+    font-weight: bold;
+    padding: 10px 0;  
 }
 .calendario-dias div {
-  /* padding: 20px; */
-  cursor: pointer;
-  transition: background 0.3s;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 .calendario-dias div:hover {
-  background: var(--cor-cinza);
+    background: var(--cor-cinza);
 }
 .calendario-hoje {
-  background-color: transparent;
-  color: var(--cor-cinza-claro);
-  font-weight: bold;
-  border: 1px solid var(--cor-cinza);
+    background-color: transparent;
+    color: var(--cor-cinza-claro);
+    font-weight: bold;
+    border: 1px solid var(--cor-cinza);
 }
-.calendario-data {
+.calendario-data,
+.calendario-data-compromisso  {
     text-align:right;
+    height: 100px;
+}
+.calendario-data-compromisso {
+    height: auto;
+}
+.compromissos-dia {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 2px;
+    text-align: left;
+    font-size: .7em;
+    background-color: var(--cor-cinza-medio);
+    border-radius: 10px;
+    margin: 2px;
+    padding: 3px;
 }

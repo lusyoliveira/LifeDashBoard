@@ -21,6 +21,7 @@ botaoTarefa.addEventListener("click", (evento) => {
     liTarefa.appendChild(criaElementoTarefa)
     atualizarTarefa()
     inputTarefa.value = '';
+    verificaLista(liTarefa);
 });
 
 function atualizarTarefa() {

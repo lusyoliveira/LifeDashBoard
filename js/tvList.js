@@ -2,6 +2,7 @@ import { converteData, calculaTempoData } from "./metodoData.js";
 
 let catalogo = [];
 let catalogoConvertido = [];
+
 const endpoint = './json/CatalogoTV.json';
 const linhaTabela = document.getElementById('linhas');
 

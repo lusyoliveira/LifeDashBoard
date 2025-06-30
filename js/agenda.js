@@ -1,13 +1,14 @@
 import { converteData, calculaTempoData } from "./metodoData.js";
 
-const linhaTabela = document.getElementById('linhas');
-const mesAno = document.getElementById('mes-ano');
-const endpoint = './json/Agenda.json';
 let agenda = [];
 let agendaConvertida = [];
 let dataAtual = new Date();
 let mesAtual = dataAtual.getMonth();
 let anoAtual = dataAtual.getFullYear();
+
+const endpoint = './json/Agenda.json';
+const linhaTabela = document.getElementById('linhas');
+const mesAno = document.getElementById('mes-ano');
 
 async function buscarAgenda() {
     const resposta = await fetch(endpoint);
@@ -19,8 +20,7 @@ async function buscarAgenda() {
             Data: converteData(compromisso.Data)
         };
     });
-    exibirAgenda(agendaConvertida)
-    //console.table(agendaConvertida);    
+    exibirAgenda(agendaConvertida)   
 };
 
 //exibe no index.html
@@ -77,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
 function criarCalendario(mes, ano, dias) {
   const primeiroDia = new Date(ano, mes).getDay();
   const totalDias = new Date(ano, mes + 1, 0).getDate();
-  //const agendaMes = agendaConvertida.filter(compromisso => compromisso.Data.getMonth() === mes && compromisso.Data.getFullYear() === ano)
 
   dias.innerHTML = '';
   mesAno.textContent = `${new Date(ano, mes).toLocaleString('pt-BR', { month: 'long' })} ${ano}`;
@@ -92,7 +91,29 @@ function criarCalendario(mes, ano, dias) {
     const isToday = i === new Date().getDate() &&
                     mes === new Date().getMonth() &&
                     ano === new Date().getFullYear();
-     dias.innerHTML += `<div class="calendario-hoje"><div class="calendario-data">${i}</div></div>`;
+
+    const agendaFiltrada = agendaConvertida.filter(compromisso => {
+    const [diaComp, mesComp, anoComp] = compromisso.Data.split('/');
+            return (
+                parseInt(diaComp) === i &&
+                parseInt(mesComp) === mes + 1 &&
+                parseInt(anoComp) === ano
+            );
+        });
+
+        if (agendaFiltrada.length > 0) {
+            dias.innerHTML += `
+                <div class="calendario-hoje">
+                    <div class="calendario-data-compromisso">${i}</div>
+                    <div class="compromissos-dia">
+                        ${agendaFiltrada.map(compromisso => `<div class="titulo-compromisso">${compromisso.Titulo}</div> 
+                                                                <span class="badge text-bg-info">${compromisso.Categoria}</span><span class="badge text-bg-success">${compromisso.Status}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+        } else {
+            dias.innerHTML += `<div class="calendario-hoje"><div class="calendario-data">${i}</div></div>`;
+        }
   }
 };
 

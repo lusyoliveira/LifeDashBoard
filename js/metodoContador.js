@@ -14,10 +14,13 @@ botaoAdicionaContagem.addEventListener("click", (evento) => {
      const contador = {
         novaContagem: inputContador.value
     }
-    if (contador.novaContagem === '') {
-        // contagemAtual.push(contador)
-        // atualizarContagem()
-    }    
+        if (contagemAtual == '') {
+            contagemAtual.push(contador)
+            atualizarContagem()
+        } else {
+            contador.novaContagem = novaValor            
+            atualizarContagem()
+        }
 });
 
 //Diminui contador
