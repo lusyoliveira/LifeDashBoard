@@ -2,7 +2,6 @@ const inputContador = document.getElementById('contador');
 const botaoAdicionaContagem = document.getElementById('adiciona-contagem');
 const botaoDiminuiContagem = document.getElementById('diminui-contagem');
 const novoContador = document.getElementById('contador');
-const contagemAtual = JSON.parse(localStorage.getItem('contagem')) || [];
 
 //Aumenta contador
 botaoAdicionaContagem.addEventListener("click", (evento) => { 
@@ -11,16 +10,8 @@ botaoAdicionaContagem.addEventListener("click", (evento) => {
     const novaValor = aumentaContador();
     novoContador.innerText = novaValor; 
     
-     const contador = {
-        novaContagem: inputContador.value
-    }
-        if (contagemAtual == '') {
-            contagemAtual.push(contador)
-            atualizarContagem()
-        } else {
-            contador.novaContagem = novaValor            
-            atualizarContagem()
-        }
+    atualizarContagem()
+    
 });
 
 //Diminui contador
@@ -28,7 +19,9 @@ botaoDiminuiContagem.addEventListener("click", (evento) => {
     evento.preventDefault();
      
     const novaValor = diminuiContador();
-    novoContador.innerText = novaValor;    
+    novoContador.innerText = novaValor;  
+    
+    atualizarContagem()
 });
 
 export function aumentaContador() {    
@@ -50,5 +43,15 @@ export function diminuiContador() {
 };
 
 export function atualizarContagem() {
-    localStorage.setItem('contagem', JSON.stringify(contagemAtual))
+    localStorage.setItem('contagem', novaValor)
 };
+
+function exibeContagem() {
+    const valorSalvo = localStorage.getItem('contagem');
+    if (valorSalvo !== null) {
+        inputContador.value = valorSalvo;
+        novoContador.innerText = valorSalvo;
+    }
+};
+
+exibeContagem()
