@@ -11,7 +11,7 @@
     "Valor": "R$ 85,00",
     "Status": "Concluído",
     "Certificado": "Yes",
-    "Progresso": "0,83"
+    "Progresso": 0.83
   },
   {
     "Acesso ao Curso": "https://www.udemy.com/",
@@ -39,7 +39,7 @@
     "Valor": "R$ 1.825,00",
     "Status": "Desistido",
     "Certificado": "No",
-    "Progresso": "0,43"
+    "Progresso": 0.43
   },
   {
     "Acesso ao Curso": "https://fundamentosdaencadernacao.club.hotmart.com/login",
@@ -137,7 +137,7 @@
     "Valor": "R$ 79,00",
     "Status": "Pausado",
     "Certificado": "No",
-    "Progresso": "0,38"
+    "Progresso": 0.38
   },
   {
     "Acesso ao Curso": "https://escoladelettering.club.hotmart.com/login",
@@ -151,7 +151,7 @@
     "Valor": "R$ 777,36",
     "Status": "Concluído",
     "Certificado": "Yes",
-    "Progresso": "0,91"
+    "Progresso": 0.91
   },
   {
     "Acesso ao Curso": "https://sia.estacio.com.br",
@@ -165,7 +165,7 @@
     "Valor": "",
     "Status": "Desistido",
     "Certificado": "No",
-    "Progresso": "0,43"
+    "Progresso": 0.43
   },
   {
     "Acesso ao Curso": "https://cursodeletteringonline.club.hotmart.com/login",
@@ -277,7 +277,7 @@
     "Valor": "R$ 39,99",
     "Status": "Pausado",
     "Certificado": "No",
-    "Progresso": "0,78"
+    "Progresso": 0.78
   },
   {
     "Acesso ao Curso": "DVD/Instagram",
@@ -292,5 +292,19 @@
     "Status": "Concluído",
     "Certificado": "No",
     "Progresso": 1
+  },
+  {
+    "Acesso ao Curso": "www.alura.com.br",
+    "Aulas": 12,
+    "Assistido": 6,
+    "Horas": "61",
+    "Name": "Desenvolvimento Front-end",
+    "Professor": "Vários",
+    "Assunto": "Tecnologia",
+    "Comprado": "06/09/2025",
+    "Valor": "R$ 0,00",
+    "Status": "Cursando",
+    "Certificado": "No",
+    "Progresso": 0.50
   }
 ]

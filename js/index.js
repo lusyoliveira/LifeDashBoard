@@ -1,10 +1,23 @@
 import { } from "./metodoTarefas.js";
 import { } from "./metodoContador.js";
+import { cursandoPrincipal, carregarCursos } from "./estudo.js";
 import { contagemRegressiva } from "./metodoContagemRegressiva.js";
 import { relogio } from "./metodoRelogio.js";
 
 const btnEvento = document.getElementById('adiciona-evento');
 const container = document.getElementById('container-modal');
+
+document.addEventListener('DOMContentLoaded', async () => {
+    await carregarCursos();
+    const linhas = document.querySelectorAll('.row');          
+
+    linhas.forEach(linha => {
+        if (linha.dataset.filtro === 'cursos') {
+            const status = linha.dataset.status || linha.textContent.trim();
+            cursandoPrincipal(status, linha.id);
+        }  
+    }); 
+});
 
 //Modal adicionar evento
 btnEvento.addEventListener("click", async () => {
