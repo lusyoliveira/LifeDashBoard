@@ -1,20 +1,20 @@
 import { converteData, calculaTempoData } from "./metodoData.js";
+import api from './metodoApi.js'
 
 let agenda = [];
 let agendaConvertida = [];
-let dataAtual = new Date();
-let mesAtual = dataAtual.getMonth();
-let anoAtual = dataAtual.getFullYear();
 
 const endpoint = './json/Agenda.json';
 const linhaTabela = document.getElementById('linhas');
 const mesAno = document.getElementById('mes-ano');
 
-async function buscarAgenda() {
-    const resposta = await fetch(endpoint);
-    agenda = await resposta.json();
+export async function carregarAgenda() {
+    agenda = await api.buscarDados(endpoint);
+    formataAgenda(); 
+};
 
-    agendaConvertida = agenda.map(compromisso => {
+function formataAgenda() {
+        agendaConvertida = agenda.map(compromisso => {
         return {
             ...compromisso,
             Data: converteData(compromisso.Data)
@@ -23,58 +23,7 @@ async function buscarAgenda() {
     exibirAgenda(agendaConvertida)   
 };
 
-//exibe no index.html
-document.addEventListener('DOMContentLoaded', () => {
-    if (window.location.pathname.endsWith('index.html')) {
-        buscarAgenda().then(() => {
-            const diasCalendario = document.querySelector('#calendario-dias');            
-            const btnAnterior = document.getElementById('botao-anterior');
-            const btnProximo = document.getElementById('botao-proximo');            
-            const listas = document.querySelectorAll('.list-group');
-
-            //exibe lista de próximo compromissos
-            listas.forEach(lista => {
-                if (lista.dataset.filtro === 'compromissos') {
-                    proximosCompromissos(lista.id)
-                }
-            });
-
-            //exibe calendario
-            criarCalendario(mesAtual, anoAtual, diasCalendario);
-           
-            btnAnterior.addEventListener('click', () => {
-                mesAtual--;
-            if (mesAtual < 0) {
-                mesAtual = 11;
-                anoAtual--;
-            }
-            dataAtual = new Date(anoAtual, mesAtual);
-            criarCalendario(mesAtual, anoAtual,diasCalendario);
-            })
-
-            btnProximo.addEventListener('click', () => {
-            mesAtual++;
-            if (mesAtual > 11) {
-                mesAtual = 0;
-                anoAtual++;
-            }
-            dataAtual = new Date(anoAtual, mesAtual);
-            criarCalendario(mesAtual, anoAtual,diasCalendario);
-            });
-
-       });
-    }
-});
-
-//exibe listagem da agenda em agenda.html
-document.addEventListener('DOMContentLoaded', () => {
-    const isAgendaPage = window.location.pathname.endsWith('agenda.html');
-    if (isAgendaPage) {
-        buscarAgenda();
-    }
-});
-
-function criarCalendario(mes, ano, dias) {
+export function criarCalendario(mes, ano, dias) {
   const primeiroDia = new Date(ano, mes).getDay();
   const totalDias = new Date(ano, mes + 1, 0).getDate();
 
@@ -117,7 +66,7 @@ function criarCalendario(mes, ano, dias) {
   }
 };
 
-function proximosCompromissos(elementoDestinoId) {
+export function proximosCompromissos(elementoDestinoId) {
     const agendaFiltrada = agendaConvertida
         .filter(compromisso => {
             const [dia, mes, ano] = compromisso.Data.split('/');
@@ -177,3 +126,4 @@ function exibirAgenda(listaCompromissos) {
     document.dispatchEvent(new Event('Renderizado'));
 };
 
+carregarAgenda()

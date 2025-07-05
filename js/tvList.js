@@ -1,4 +1,5 @@
 import { converteData, calculaTempoData } from "./metodoData.js";
+import api from './metodoApi.js'
 
 let catalogo = [];
 let catalogoConvertido = [];
@@ -6,11 +7,13 @@ let catalogoConvertido = [];
 const endpoint = './json/CatalogoTV.json';
 const linhaTabela = document.getElementById('linhas');
 
-async function buscarCatalogo() {
-    const resposta = await fetch(endpoint);
-    catalogo = await resposta.json();
+export async function carregarTvList() {
+    catalogo = await api.buscarDados(endpoint);
+    formataTvList(); 
+};
 
-    catalogoConvertido = catalogo.map(titulo => {
+function formataTvList() {
+        catalogoConvertido = catalogo.map(titulo => {
         return {
             ...titulo,
             Inicio: converteData(titulo.Inicio),
@@ -21,35 +24,10 @@ async function buscarCatalogo() {
     exibirCatalogo(catalogoConvertido)
 };
 
-//exibe dados em index.html
-document.addEventListener('DOMContentLoaded', () => {
-    if (window.location.pathname.endsWith('index.html')) {
-        buscarCatalogo().then(() => {
-            const linhas = document.querySelectorAll('.row');          
-
-            linhas.forEach(linha => {
-                // Filtro por Status
-                if (linha.dataset.filtro === 'principal') {
-                    const status = linha.dataset.status;
-                    assistindoPrincipal(status, linha.id);
-                }  
-            });           
-        });
-    }
-});
-
-//exibe catalogo em catalogo.html
-document.addEventListener('DOMContentLoaded', () => {
-    const isCatalogoPage = window.location.pathname.endsWith('catalogo.html');
-    if (isCatalogoPage) {
-        buscarCatalogo();
-    }
-});
-
 //exibe estatisticas em tvlist.html
 document.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname.endsWith('tvlist.html')) {
-        buscarCatalogo().then(() => {
+        carregarTvList().then(() => {
             const cards = document.querySelectorAll('.card');
             const linhas = document.querySelectorAll('.row');
             const colunas = document.querySelectorAll('.col');
@@ -273,9 +251,7 @@ function contagemGeral(status, elementoDestinoId) {
                 <h5 class="card-title">${status}</h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary">${geral}</h6>      
             `;
-        }
-
-       
+        }       
     }        
 };
 
@@ -285,11 +261,11 @@ function contagemTipo(tipo, elementoDestinoId) {
 
      if (elementoDestino) {
         elementoDestino.innerHTML = "";
-            elementoDestino.innerHTML += 
-            `
-                <h5 class="card-title">${tipo}</h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">${catalogoTipo}</h6>
-            `;
+        elementoDestino.innerHTML += 
+        `
+            <h5 class="card-title">${tipo}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">${catalogoTipo}</h6>
+        `;
     }        
 };
 
@@ -299,11 +275,11 @@ function contagemStatus(status, elementoDestinoId) {
 
      if (elementoDestino) {
         elementoDestino.innerHTML = "";
-            elementoDestino.innerHTML += 
-            `
-                <h5 class="card-title">${status}</h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">${catalogoStatus}</h6>
-            `;
+        elementoDestino.innerHTML += 
+        `
+            <h5 class="card-title">${status}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">${catalogoStatus}</h6>
+        `;
     }        
 };
 
@@ -447,7 +423,7 @@ function exibirCatalogo(listaTitulos) {
     document.dispatchEvent(new Event('Renderizado'));
 };
 
-function assistindoPrincipal(statusFiltro, elementoDestinoId) {
+export function assistindoPrincipal(statusFiltro, elementoDestinoId) {
     const catalogoFiltrado = catalogoConvertido.filter(titulo => titulo.Status === statusFiltro)
                                     .slice(0, 4);
 
@@ -477,3 +453,5 @@ function assistindoPrincipal(statusFiltro, elementoDestinoId) {
         });
     }
 };
+
+carregarTvList()
