@@ -7,6 +7,7 @@ let agendaConvertida = [];
 const endpoint = './json/Agenda.json';
 const linhaTabela = document.getElementById('linhas');
 const mesAno = document.getElementById('mes-ano');
+const btnCancelar = document.getElementById('cancelar-agenda');
 
 export async function carregarAgenda() {
     agenda = await api.buscarDados(endpoint);
@@ -22,6 +23,15 @@ function formataAgenda() {
     });
     exibirAgenda(agendaConvertida)   
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+    carregarAgenda()
+
+    const formAgenda = document.getElementById('agenda-form');
+    formAgenda.addEventListener('submit', adicionarAgendamento);
+
+    btnCancelar.addEventListener('click', cancelarAgendamento);
+});
 
 export function criarCalendario(mes, ano, dias) {
   const primeiroDia = new Date(ano, mes).getDay();
@@ -116,7 +126,7 @@ function exibirAgenda(listaCompromissos) {
                 <td>${compromisso.Titulo}</td>
                 <td class="text-center">${compromisso.Status}</td>
                 <td class="text-center">${compromisso.Categoria}</td>
-                <td>${compromisso.Tipo}</td>
+                <td class="text-center">${compromisso.Tipo}</td>
                 <td>${compromisso.Data}</td>
             </tr>
         `;
@@ -126,4 +136,33 @@ function exibirAgenda(listaCompromissos) {
     document.dispatchEvent(new Event('Renderizado'));
 };
 
-carregarAgenda()
+function gerarID() {
+    const total = agendaConvertida.length
+
+    novoId = total +=1
+
+    return novoId
+};
+
+async function adicionarAgendamento(event) {
+    event.preventDefault()
+
+    const id = gerarID()
+    const titulo = document.getElementById('titulo-adicionar').value
+    const data = document.getElementById('data-adicionar').value
+    const categoria = document.getElementById('categoria-adicionar').value
+    const tipo = document.getElementById('tipo-adicionar').value
+    const status = document.getElementById('status-adicionar').value
+    
+    try {
+        await api.salvarDados({ Id: id, Titulo: titulo, Status: status, Categoria: categoria, Tipo: tipo, Data: data }, endpoint)
+        carregarAgenda()
+    } catch {
+        alert('Erro ao salvar agendamento!')
+    }
+};
+
+function cancelarAgendamento() {
+  document.getElementById("agenda-form").reset();
+};
+

@@ -27,7 +27,7 @@
             <!-- Direita: Pesquisa e Avatar -->
             <div class="d-flex align-items-center ms-auto">
                 <form class="d-flex me-3" id="pesquisar" role="search">
-                    <input class="form-control" type="search" placeholder="Pesquisar..." aria-label="Pesquisar">
+                    <input class="form-control" id="informa-pesquisa" type="search" placeholder="Pesquisar..." aria-label="Pesquisar">
                 </form>
     
                 <div class="d-flex justify-content-between align-items-lg-center gap-3">
@@ -49,27 +49,6 @@
                     <div class="col-2">
                         <ul class="dropdown-menu d-block position-static mx-0 border-0 shadow w-220px" data-bs-theme="dark"> 
                             <li> 
-                                <a class="dropdown-item d-flex gap-2 align-items-center" href="#">
-                                    <i class="bi bi-calendar"></i>
-                                    Calendário
-                                </a> 
-                            </li>
-                            <li> 
-                                <a class="dropdown-item d-flex gap-2 align-items-center" id="ancora-catalogo" href="agenda.html">
-                                    <i class="bi bi-list-stars"></i>
-                                    Lista
-                                </a> 
-                            </li> 
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>                             
-                            <li> 
-                                <a class="dropdown-item d-flex gap-2 align-items-center" href="#">
-                                    <i class="bi bi-plus-square"></i>
-                                    Incluir Compromisso
-                                </a> 
-                            </li>                           
-                            <li> 
                                 <a class="dropdown-item d-flex gap-2 align-items-center" href="#"> 
                                     <i class="bi bi-plus-square"></i>
                                     Categorias
@@ -87,9 +66,45 @@
                                     Status
                                 </a> 
                             </li> 
-                        </ul>
+                        </ul> 
 
-                        
+                        <br />
+
+                        <form class="form-control" id="agenda-form" title="Adicionar Agendamento">
+                            <label for="titulo-adicionar" class="col-form-label">Titulo:</label>
+                            <input type="text" class="form-control" id="titulo-adicionar" title="Título" placeholder="Informe o titulo do compromisso">
+                            <label for="data-adicionar" class="col-form-label">Data:</label>
+                            <input type="datetime-local" class="form-control" id="data-adicionar" title="Data">
+                            <label for="categoria-adicionar" class="col-form-label">Categoria:</label>
+                            <select type="text" class="form-select" id="categoria-adicionar" title="Categoria">
+                                <option value="1">Loja</option>
+                                <option value="2">Casa</option>
+                                <option value="3">Pessoal</option>
+                                <option value="4">Educação</option>
+                                <option value="5">Financeiro</option>
+                                <option value="6">Data Importante</option>
+                            </select>
+                            <label for="tipo-adicionar" class="col-form-label">Tipo:</label>
+                            <select type="text" class="form-select" id="tipo-adicionar" title="Tipo">
+                                <option value="1">Evento</option>
+                                <option value="2">Compromisso</option>
+                                <option value="3">Tarefa</option>
+                            </select>
+                            <label for="status-adicionar" class="col-form-label">Status:</label>
+                            <select type="text" class="form-select" id="status-adicionar" title="Status">
+                                <option value="1">Em-Espera</option>
+                                <option value="2">Fazendo</option>
+                                <option value="3">Feito</option>
+                                <option value="4">Pausado</option>
+                                <option value="5">Cancelado</option>
+                                <option value="6">Indeterminado</option>
+                            </select>
+                            <br />
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-primary" id="adicionar-agenda">Adicionar</button>
+                                <button type="button" class="btn btn-secondary" id="cancelar-agenda" >Cancelar</button>
+                            </div>
+                        </form>                   
                     </div>
                     
                     <div class="col">
