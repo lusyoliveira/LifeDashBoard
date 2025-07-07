@@ -4,7 +4,7 @@ import api from './metodoApi.js'
 let agenda = [];
 let agendaConvertida = [];
 
-const endpoint = './json/Agenda.json';
+const endpoint = 'http://localhost:3000/agenda';
 const linhaTabela = document.getElementById('linhas');
 const mesAno = document.getElementById('mes-ano');
 const btnCancelar = document.getElementById('cancelar-agenda');

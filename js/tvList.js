@@ -4,7 +4,7 @@ import api from './metodoApi.js'
 let catalogo = [];
 let catalogoConvertido = [];
 
-const endpoint = './json/CatalogoTV.json';
+const endpoint = 'http://localhost:3000/catalogo';
 const linhaTabela = document.getElementById('linhas');
 
 export async function carregarTvList() {

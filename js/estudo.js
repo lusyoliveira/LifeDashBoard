@@ -4,7 +4,7 @@ import api from './metodoApi.js'
 let cursos = [];
 let cursosConvertido = [];
 
-const endpoint = './json/cursos.json';
+const endpoint = 'http://localhost:3000/cursos';
 const linhaTabela = document.getElementById('linhas');
 
 export async function carregarCursos() {
