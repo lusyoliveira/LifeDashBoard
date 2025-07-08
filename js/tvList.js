@@ -4,7 +4,7 @@ import api from './metodoApi.js'
 let catalogo = [];
 let catalogoConvertido = [];
 
-const endpoint = 'http://localhost:3000/catalogo';
+const endpoint = 'catalogo';
 const linhaTabela = document.getElementById('linhas');
 
 export async function carregarTvList() {
@@ -403,7 +403,7 @@ function exibirCatalogo(listaTitulos) {
         linhaTabela.innerHTML += 
         `
             <tr>
-                <th scope="row">${titulo.ID}</th>
+                <th scope="row">${titulo.id}</th>
                 <td>${titulo.Titulo}</td>
                 <td class="text-center">${titulo.Tipo}</td>
                 <td class="text-center">${titulo.Status}</td>
