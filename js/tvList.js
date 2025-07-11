@@ -1,4 +1,4 @@
-import { converteData, calculaTempoData } from "./metodoData.js";
+import { calculaTempoData } from "./metodoData.js";
 import api from './metodoApi.js'
 
 let catalogo = [];
@@ -9,16 +9,13 @@ const linhaTabela = document.getElementById('linhas');
 
 export async function carregarTvList() {
     catalogo = await api.buscarDados(endpoint);
-    formataTvList(); 
-};
-
-function formataTvList() {
-        catalogoConvertido = catalogo.map(titulo => {
+    
+    catalogoConvertido = catalogo.map(titulo => {
         return {
             ...titulo,
-            Inicio: converteData(titulo.Inicio),
-            Fim: converteData(titulo.Fim),
-            Adicao: converteData(titulo.Adicao)
+            Inicio: new Date(titulo.Inicio).toLocaleDateString('pt-BR'),
+            Fim: new Date(titulo.Fim).toLocaleDateString('pt-BR'),
+            Adicao: new Date(titulo.Adicao).toLocaleDateString('pt-BR')
         };
     });
     exibirCatalogo(catalogoConvertido)
@@ -86,9 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         contagemTipo(tipo, body.id);
                     }
                 } 
-            });
-
-           
+            });           
         });
     }
 });

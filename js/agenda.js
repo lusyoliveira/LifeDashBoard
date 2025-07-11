@@ -1,50 +1,35 @@
-import { converteData, calculaTempoData } from "./metodoData.js";
+import { calculaTempoData, converteDataUTC } from "./metodoData.js";
 import api from './metodoApi.js'
 
 let agenda = [];
 let agendaConvertida = [];
 
 const endpoint = 'agenda';
-const linhaTabela = document.getElementById('linhas');
+
 const mesAno = document.getElementById('mes-ano');
 const btnCancelar = document.getElementById('cancelar-agenda');
-const btnEditar = document.getElementById('editar-agenda');
 
 export async function carregarAgenda() {
     agenda = await api.buscarDados(endpoint);
-    formataAgenda(); 
-};
-
-function formataAgenda() {
-        agendaConvertida = agenda.map(compromisso => {
-        return {
-            ...compromisso,
-            Data: converteData(compromisso.Data)
-        };
+    agendaConvertida = agenda.map(compromisso => {
+    return {
+        ...compromisso,
+        Data: new Date(compromisso.Data).toLocaleDateString('pt-BR')
+    };
     });
-    exibirAgenda(agendaConvertida)   
+    exibirAgenda(agendaConvertida)  
 };
 
 document.addEventListener('DOMContentLoaded', () => {
     carregarAgenda()
 
-    const formAgenda = document.getElementById('agenda-form');
-    formAgenda.addEventListener('submit', salvarAgendamento);
+     if (window.location.pathname.endsWith('agenda.html')) {
+        const formAgenda = document.getElementById('agenda-form');
+        formAgenda.addEventListener('submit', salvarAgendamento);
 
-    btnCancelar.addEventListener('click', cancelarAgendamento);
-   
+        btnCancelar.addEventListener('click', cancelarAgendamento);
+     }   
 });
-
-async function preencherFormulario(agendamentoId) {
-        const agendamento = await api.buscarDadosPorId(agendamentoId)
-
-        document.getElementById('id-adicionar').value = agendamento.id
-        document.getElementById('titulo-adicionar').value = agendamento.Titulo
-        document.getElementById('data-adicionar').value = agendamento.Data
-        document.getElementById('categoria-adicionar').value =agendamento.Categoria
-        document.getElementById('tipo-adicionar').value = agendamento.Tipo
-        document.getElementById('status-adicionar').value = agendamento.Status
-    }
 
 export function criarCalendario(mes, ano, dias) {
   const primeiroDia = new Date(ano, mes).getDay();
@@ -85,7 +70,7 @@ export function criarCalendario(mes, ano, dias) {
             `;
         } else {
             dias.innerHTML += `<div class="calendario-hoje"><div class="calendario-data">${i}</div></div>`;
-        }
+    }
   }
 };
 
@@ -123,6 +108,7 @@ export function proximosCompromissos(elementoDestinoId) {
 };
 
 function exibirAgenda(listaCompromissos) {
+    const linhaTabela = document.getElementById('linhas');
     if (!linhaTabela) return;
 
     linhaTabela.innerHTML = ''; 
@@ -132,20 +118,71 @@ function exibirAgenda(listaCompromissos) {
     }    
 
     listaCompromissos.forEach(compromisso => {
-        linhaTabela.innerHTML += 
-        `
-            <tr>
-                <th scope="row">${compromisso.id}</th>
-                <td>${compromisso.Titulo}</td>
-                <td class="text-center">${compromisso.Status}</td>
-                <td class="text-center">${compromisso.Categoria}</td>
-                <td class="text-center">${compromisso.Tipo}</td>
-                <td>${compromisso.Data}</td>
-                <td><button type="button" class="btn btn-primary" id="editar-agenda"><i class="bi bi-pencil-fill"></i></button></td>
-                <td><button type="button" class="btn btn-danger" id="excluir-agenda"><i class="bi bi-trash"></i></button></td>
-            </tr>
-        `;
-        //btnEditar.onclick = () => preencherFormulario(compromisso.id)
+        const tr = document.createElement('tr')
+        const th = document.createElement('th')
+        th.textContent = compromisso.id
+        th.setAttribute('scope', 'row')
+
+        const tdTitulo = document.createElement('td')
+        tdTitulo.textContent = compromisso.Titulo
+
+        const tdStatus = document.createElement('td')
+        tdStatus.textContent = compromisso.Status
+        tdStatus.classList.add('text-center')
+
+        const tdCategoria = document.createElement('td')
+        tdCategoria.textContent = compromisso.Categoria
+        tdCategoria.classList.add('text-center')
+
+        const tdTipo = document.createElement('td')
+        tdTipo.textContent = compromisso.Tipo
+        tdTipo.classList.add('text-center')
+
+        const tdData = document.createElement('td')  
+        tdData.textContent = compromisso.Data
+
+        const tdBtnEditar = document.createElement('td')
+        const tdBtnExcluir = document.createElement('td')
+
+        const btnEditar = document.createElement('button')
+        btnEditar.classList.add('btn', 'btn-primary')
+        btnEditar.onclick = () => preencherFormulario(compromisso.id)
+
+        const iconeEditar = document.createElement('i')
+        iconeEditar.classList.add('bi', 'bi-pencil-fill')
+        iconeEditar.setAttribute ('id', 'editar-agenda')
+
+        const btnExcluir = document.createElement('button')
+        btnExcluir.classList.add('btn', 'btn-danger')        
+        btnExcluir.onclick = async () => {
+
+            debugger
+            try {
+                await api.excluirDados(compromisso.id, endpoint)
+                carregarAgenda()
+            } catch(error) {
+                alert('Erro ao excluir agendamento!')
+            }
+        }
+
+        const iconeExcluir = document.createElement('i')
+        iconeExcluir.classList.add('bi', 'bi-trash')
+        iconeExcluir.setAttribute('id','excluir-agenda')
+
+        btnEditar.appendChild(iconeEditar)
+        btnExcluir.appendChild(iconeExcluir)
+        tdBtnEditar.appendChild(btnEditar)
+        tdBtnExcluir.appendChild(btnExcluir)
+        tr.appendChild(th)
+        tr.appendChild(tdTitulo)
+        tr.appendChild(tdStatus)
+        tr.appendChild(tdCategoria)
+        tr.appendChild(tdTipo)
+        tr.appendChild(tdData)
+        tr.appendChild(tdBtnEditar)
+        tr.appendChild(tdBtnExcluir)
+
+        linhaTabela.appendChild(tr)
     });
 
     // Dispara DataTable
@@ -163,15 +200,22 @@ function gerarID() {
 async function salvarAgendamento(event) {
     event.preventDefault()
 
-    let id = gerarID()
+    let id = document.getElementById('id-adicionar').value
     const titulo = document.getElementById('titulo-adicionar').value
     const data = document.getElementById('data-adicionar').value
     const categoria = document.getElementById('categoria-adicionar').value
     const tipo = document.getElementById('tipo-adicionar').value
     const status = document.getElementById('status-adicionar').value
     
+    const dataConvertida = converteDataUTC(data)
+
     try {
-        await api.salvarDados({ id: id, Titulo: titulo, Status: status, Categoria: categoria, Tipo: tipo, Data: data }, endpoint)
+        if (id) {
+            await api.atualizarDados({ id: id, Titulo: titulo, Status: status, Categoria: categoria, Tipo: tipo, Data: dataConvertida }, endpoint)
+        } else {
+            id = gerarID()
+            await api.salvarDados({ id: id, Titulo: titulo, Status: status, Categoria: categoria, Tipo: tipo, Data: dataConvertida }, endpoint)
+        }
         carregarAgenda()
     } catch {
         alert('Erro ao salvar agendamento!')
@@ -182,3 +226,13 @@ function cancelarAgendamento() {
   document.getElementById("agenda-form").reset();
 };
 
+async function preencherFormulario(agendamentoId) {
+        const agendamento = await api.buscarDadosPorId(agendamentoId, endpoint)
+
+        document.getElementById('id-adicionar').value = agendamento.id
+        document.getElementById('titulo-adicionar').value = agendamento.Titulo
+        document.getElementById('data-adicionar').value = agendamento.Data.toISOString().split('T')[0]
+        document.getElementById('categoria-adicionar').value =agendamento.Categoria
+        document.getElementById('tipo-adicionar').value = agendamento.Tipo
+        document.getElementById('status-adicionar').value = agendamento.Status
+};

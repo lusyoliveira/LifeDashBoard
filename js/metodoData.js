@@ -7,15 +7,14 @@ export function criarData() {
     return dataItem
 };
 
-export function converteData(dataAmericana) {
-    const data = new Date(dataAmericana);
-    const dataBrasileira = data.toLocaleDateString('pt-BR');
+export function converteDataUTC(dataString) {
+    const [ano, mes, dia] = dataString.split('-')
 
-    return dataBrasileira
+    return new Date(Date.UTC(ano, mes - 1, dia))
 };
 
 export function calculaTempoData(dataTexto) {  
-     const partes = dataTexto.split('/');
+    const partes = dataTexto.split('/');
     const dataAlvo = new Date(partes[2], partes[1] - 1, partes[0]);
     const agora = new Date();
 

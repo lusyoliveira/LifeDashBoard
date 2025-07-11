@@ -17,7 +17,7 @@ botaoTarefa.addEventListener("click", (evento) => {
         data: criarData()
     }
     listaTarefas.push(tarefa)
-     const criaElementoTarefa = adicionarTarefa(tarefa);
+    const criaElementoTarefa = adicionarTarefa(tarefa);
     liTarefa.appendChild(criaElementoTarefa)
     atualizarTarefa()
     inputTarefa.value = '';

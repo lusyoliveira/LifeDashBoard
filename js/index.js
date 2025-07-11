@@ -13,7 +13,6 @@ let dataAtual = new Date();
 let mesAtual = dataAtual.getMonth();
 let anoAtual = dataAtual.getFullYear();
 
-
 //Exibe cursando
 document.addEventListener('DOMContentLoaded', async () => {
     await carregarCursos();

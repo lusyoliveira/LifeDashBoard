@@ -35,7 +35,7 @@
                             <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle" _mstalt="33306" _msthash="42">
                             Luciene
                         </a>
-                        <a href="#" alt="Configurações" class="icones-navbar"><i class="bi bi-gear-fill"></i></a>                  
+                        <a href="/configuracoes.html" alt="Configurações" class="icones-navbar"><i class="bi bi-gear-fill"></i></a>                  
                         <a href="#" alt="Sair" class="icones-navbar"><i class="bi bi-box-arrow-right"></i></a>
                     </div>                    
                 </div>
@@ -46,7 +46,7 @@
         <h1 class="pb-2 border-bottom mb-4">My TV List!</h1>
             <div class="container-fliud">
                 <div class="row">
-                    <div class="col-2">
+                    <div class="col-3">
                         <ul class="dropdown-menu d-block position-static mx-0 border-0 shadow w-220px" data-bs-theme="dark">
                             <li> 
                                 <a class="dropdown-item d-flex gap-2 align-items-center" href="#">
@@ -65,40 +65,34 @@
                                     <i class="bi bi-star-fill"></i>
                                     Favoritos
                                 </a> 
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>                             
-                            <li> 
-                                <a class="dropdown-item d-flex gap-2 align-items-center" href="#">
-                                    <i class="bi bi-plus-square"></i>
-                                    Incluir Título
-                                </a> 
                             </li>                           
                             <li> 
                                 <a class="dropdown-item d-flex gap-2 align-items-center" href="#"> 
-                                    <i class="bi bi-plus-square"></i>
+                                    <i class="bi bi-list-task"></i>
                                     Categorias
                                 </a> 
                             </li>
                             <li> 
                                 <a class="dropdown-item d-flex gap-2 align-items-center" href="#"> 
-                                    <i class="bi bi-plus-square"></i>
+                                    <i class="bi bi-list-columns-reverse"></i>
                                     Tipos
                                 </a> 
                             </li>
                             <li> 
                                 <a class="dropdown-item d-flex gap-2 align-items-center" href="#">
-                                    <i class="bi bi-plus-square"></i>
+                                    <i class="bi bi-arrow-repeat"></i>
                                     Status
                                 </a> 
-                            </li> 
+                            </li>  
                             <li> 
                                 <a class="dropdown-item d-flex gap-2 align-items-center" href="#"> 
-                                    <i class="bi bi-plus-square"></i>
+                                    <i class="bi bi-tv"></i>
                                     Plataforma
                                 </a> 
                             </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>  
                         </ul>                        
                     </div>
                     
@@ -258,25 +252,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row mt-4" id="linha-estatistica" >
-                            <div class="col" id="estatistica-serie" data-filtro="estatisticas" data-tipo="Serie">
-                                
-                            </div>
-
-                            <div class="col" id="estatistica-filme" data-filtro="estatisticas" data-tipo="Filme">
-                                
-                            </div>
-
-                            <div class="col" id="estatistica-show" data-filtro="estatisticas" data-tipo="Desenho">
-                                
-                            </div>
-                        </div>
+                        </div>                        
                     </div>
                 </div>
             </div>
-            
+                        
             <br />
 
             <div class="container-fluid" id="custom-cards">
@@ -304,6 +284,25 @@
                 </table>
             </div>    
             
+            <br />
+
+            <div class="container-fluid" >
+                <h2 class="pb-1 border-bottom">Estatísticas</h2>
+                <div class="row mt-4" id="linha-estatistica" >
+                    <div class="col" id="estatistica-serie" data-filtro="estatisticas" data-tipo="Serie">
+                        
+                    </div>
+    
+                    <div class="col" id="estatistica-filme" data-filtro="estatisticas" data-tipo="Filme">
+                        
+                    </div>
+    
+                    <div class="col" id="estatistica-show" data-filtro="estatisticas" data-tipo="Desenho">
+                        
+                    </div>
+                </div>
+            </div>
+
             <br />
 
             <div class="container-fluid" id="custom-cards">

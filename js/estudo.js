@@ -1,4 +1,3 @@
-import { converteData } from './metodoData.js';
 import api from './metodoApi.js'
 
 let cursos = [];
@@ -9,17 +8,14 @@ const linhaTabela = document.getElementById('linhas');
 
 export async function carregarCursos() {
     cursos = await api.buscarDados(endpoint);
-    formataCursos(); 
-};
-
-function formataCursos() {
+    
     cursosConvertido = cursos.map(curso => {
         return {
             ...curso,
-            Comprado: converteData(curso.Comprado)
+            Comprado: new Date(curso.Comprado).toLocaleDateString('pt-BR')
         };
     });
-    exibirCursos(cursosConvertido)  
+    exibirCursos(cursosConvertido)
 };
 
 function exibirCursos(listaCursos) {
@@ -52,7 +48,6 @@ function exibirCursos(listaCursos) {
 };
 
 export function cursandoPrincipal(statusFiltro, elementoDestinoId) {
-    console.log("Chamando cursandoPrincipal com:", statusFiltro);
 
     const cursosFiltrado = cursosConvertido.filter(curso => curso.Status === statusFiltro)
                                     .slice(0, 4);

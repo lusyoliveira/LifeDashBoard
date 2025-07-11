@@ -3,7 +3,6 @@ const urlBase = 'http://localhost:3000'
 const api = {
     async buscarDados(endpoint) {
         try {
-            //const response = await fetch(endpoint)
             const response = await fetch(`${urlBase}/${endpoint}`)
             return await response.json()
         } catch {
@@ -53,13 +52,13 @@ const api = {
         }
     },
 
-    async excluirDados(id) {
+    async excluirDados(id, endpoint) {
         try {
             const response = await fetch(`${urlBase}/${endpoint}/${id}`, {
                 method: "DELETE"
             })
         } catch {
-            alert('Erro ao excluir um dado da API!')
+            alert('Erro ao excluir o dado da API!')
             throw error
         }
     }
