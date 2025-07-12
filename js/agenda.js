@@ -12,12 +12,12 @@ const btnCancelar = document.getElementById('cancelar-agenda');
 export async function carregarAgenda() {
     agenda = await api.buscarDados(endpoint);
     agendaConvertida = agenda.map(compromisso => {
-    return {
-        ...compromisso,
-        Data: new Date(compromisso.Data).toLocaleDateString('pt-BR')
-    };
+        return {
+            ...compromisso,
+            Data: new Date(compromisso.Data).toLocaleDateString('pt-BR')
+        };
     });
-    exibirAgenda(agendaConvertida)  
+    exibirAgenda(agendaConvertida)      
 };
 
 document.addEventListener('DOMContentLoaded', () => {
