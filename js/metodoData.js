@@ -8,9 +8,20 @@ export function criarData() {
 };
 
 export function converteDataUTC(dataString) {
-    const [ano, mes, dia] = dataString.split('-')
+    // const [ano, mes, dia] = dataString.split('-')
 
-    return new Date(Date.UTC(ano, mes - 1, dia))
+    // return new Date(Date.UTC(ano, mes - 1, dia))
+    const [data, hora] = dataString.split('T');
+    const [ano, mes, dia] = data.split('-');
+    
+    let horaStr = '00';
+    let minutoStr = '00';
+
+    if (hora) {
+        [horaStr, minutoStr] = hora.split(':');
+    }
+
+    return new Date(Date.UTC(ano, mes - 1, dia, horaStr, minutoStr)).toISOString();
 };
 
 export function calculaTempoData(dataTexto) {  

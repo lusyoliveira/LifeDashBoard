@@ -11,10 +11,14 @@ const btnCancelar = document.getElementById('cancelar-agenda');
 
 export async function carregarAgenda() {
     agenda = await api.buscarDados(endpoint);
-    agendaConvertida = agenda.map(compromisso => {
+       agendaConvertida = agenda.map(compromisso => {
+        const data = new Date(compromisso.Data);
+        const dia = String(data.getUTCDate()).padStart(2, '0');
+        const mes = String(data.getUTCMonth() + 1).padStart(2, '0');
+        const ano = data.getUTCFullYear();
         return {
-            ...compromisso,
-            Data: new Date(compromisso.Data).toLocaleDateString('pt-BR')
+        ...compromisso,
+        Data: `${dia}/${mes}/${ano}`
         };
     });
     exibirAgenda(agendaConvertida)      
@@ -190,11 +194,9 @@ function exibirAgenda(listaCompromissos) {
 };
 
 function gerarID() {
-    let total = agendaConvertida.length
-    
-    let novoId = total +=1
-
-    return novoId
+    const ids = agendaConvertida.map(c => Number(c.id));
+    const maiorId = Math.max(0, ...ids);
+    return maiorId + 1
 };
 
 async function salvarAgendamento(event) {
@@ -207,14 +209,24 @@ async function salvarAgendamento(event) {
     const tipo = document.getElementById('tipo-adicionar').value
     const status = document.getElementById('status-adicionar').value
     
-    const dataConvertida = converteDataUTC(data)
+    const dataConvertida =  converteDataUTC(data)
 
     try {
         if (id) {
-            await api.atualizarDados({ id: id, Titulo: titulo, Status: status, Categoria: categoria, Tipo: tipo, Data: dataConvertida }, endpoint)
+            await api.atualizarDados({ id: Number(id), 
+                                        Titulo: titulo, 
+                                        Status: status, 
+                                        Categoria: categoria, 
+                                        Tipo: tipo, 
+                                        Data: dataConvertida }, endpoint)
         } else {
             id = gerarID()
-            await api.salvarDados({ id: id, Titulo: titulo, Status: status, Categoria: categoria, Tipo: tipo, Data: dataConvertida }, endpoint)
+            await api.salvarDados({ id: Number(id), 
+                                    Titulo: titulo, 
+                                    Status: status, 
+                                    Categoria: categoria, 
+                                    Tipo: tipo, 
+                                    Data: dataConvertida }, endpoint)
         }
         carregarAgenda()
     } catch {
@@ -227,11 +239,12 @@ function cancelarAgendamento() {
 };
 
 async function preencherFormulario(agendamentoId) {
+        debugger
         const agendamento = await api.buscarDadosPorId(agendamentoId, endpoint)
 
         document.getElementById('id-adicionar').value = agendamento.id
         document.getElementById('titulo-adicionar').value = agendamento.Titulo
-        document.getElementById('data-adicionar').value = agendamento.Data.toISOString().split('T')[0]
+        document.getElementById('data-adicionar').value = new Date(agendamento.Data).toISOString().slice(0, 16);
         document.getElementById('categoria-adicionar').value =agendamento.Categoria
         document.getElementById('tipo-adicionar').value = agendamento.Tipo
         document.getElementById('status-adicionar').value = agendamento.Status
