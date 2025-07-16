@@ -34,7 +34,7 @@
     border-radius: 50%;
     position: absolute;
     top: 235px;
-    left: 200px;
+    left: 192px;
 }
 .globo.minuto {
     background: var(--cor-marrom);
@@ -43,7 +43,7 @@
     border-radius: 50%;
     position: absolute;
     top: 36px;
-    left: 176px;
+    left: 165px;
 }
 .globo.segundo {
     background: var(--cor-cinza);
@@ -52,7 +52,7 @@
     border-radius: 50%;
     position: absolute;
     top: 5px;
-    left: 34px;
+    left: 30px;
 }
 .orbita.hora {
     position: relative;

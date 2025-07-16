@@ -256,11 +256,84 @@
                     </div>
                 </div>
             </div>
-                        
+                   
+            <hr>
             <br />
 
-            <div class="container-fluid" id="custom-cards">
+            <div class="container-fluid" id="custom-cards">                
                 <h2 class="pb-1 border-bottom">Catálogo</h2>
+                <form class="row gy-2 gx-3 align-items-center" id="catalogo-form" title="Adicionar Titulo">
+                    <div class="col-auto">
+                        <input type="hidden" id="id-adicionar" />
+                        <label for="titulo-adicionar" class="col-form-label">Titulo:</label>
+                        <input type="text" class="form-control" id="titulo-adicionar" title="Título" placeholder="Informe o título" required>
+                    </div>
+                    <div class="col-auto">
+                        <label for="tipo-adicionar" class="col-form-label">Tipo:</label>
+                        <select type="text" class="form-select" id="tipo-adicionar" title="Tipo" required>
+                            <option value="Serie">Serie</option>
+                            <option value="Anime">Anime</option>
+                            <option value="Filme">Filmes</option>
+                            <option value="Desenho">Desenho</option>
+                            <option value="Documentário">Documentário</option>
+                            <option value="Show">Show</option>
+                            <option value="Reality">Reality</option>
+                        </select>
+                    </div>
+                        <div class="col-auto">
+                        <label for="status-adicionar" class="col-form-label">Status:</label>
+                        <select type="text" class="form-select" id="status-adicionar" title="Status" required>
+                            <option value="Completado">Completado</option>
+                            <option value="Assistindo">Assistindo</option>
+                            <option value="Em-Espera">Em-Espera</option>
+                            <option value="Dropped">Dropped</option>
+                            <option value="Planejado">Planejado</option>
+                            <option value="Re-Assistindo">Re-Assistindo</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <label for="plataforma-adicionar" class="col-form-label">Categoria:</label>
+                        <select type="text" class="form-select" id="plataforma-adicionar" title="Plataforma" required>
+                            <option value="Netflix">Netflix</option>
+                            <option value="Amazom Prime">Amazom Prime</option>
+                            <option value="Crunchroll">Crunchroll</option>
+                            <option value="YouTube">YouTube</option>
+                            <option value="MAX">MAX</option>
+                            <option value="Download">Download</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <label for="data-inicio" class="col-form-label">Data Inicio:</label>
+                        <input type="date" class="form-control" id="data-inicio" title="Inicio" required>
+                    </div>
+                    <div class="col-auto">
+                        <label for="data-fim" class="col-form-label">Data Fim:</label>
+                        <input type="date" class="form-control" id="data-fim" title="Fim" required>
+                    </div>
+                    <div class="col-auto">
+                        <label for="episodios-adicionar" class="col-form-label">Episódios:</label>
+                        <input type="text" class="form-control" id="episodios-adicionar" title="Episódios" placeholder="0" required>
+                    </div>
+                    <div class="col-auto">
+                        <label for="assistidos-adicionar" class="col-form-label">Assistidos:</label>
+                        <input type="text" class="form-control" id="assistidos-adicionar" title="Assistidos" placeholder="0" required>
+                    </div>
+                    <div class="col-auto">
+                        <label for="temporada-adicionar" class="col-form-label">Temporadas:</label>
+                        <input type="text" class="form-control" id="temporada-adicionar" title="Temporada" placeholder="0" required>
+                    </div>
+                    <div class="col-auto">
+                        <label for="pontuacao-adicionar" class="col-form-label">Pontuação:</label>
+                        <input type="text" class="form-control" id="pontuacao-adicionar" title="pontuação" placeholder="0" required>
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary" id="adicionar-agenda" title="Salvar Agendamento">Salvar</button>
+                        <button type="button" class="btn btn-secondary" id="cancelar-agenda" title="Cancelar Agendamento" >Cancelar</button>
+                    </div>
+                </form>  
+
+                <br />
+
                 <table class="table-responsive table-hover datatable">
                     <thead>
                         <tr>

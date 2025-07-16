@@ -279,7 +279,8 @@ function contagemStatus(status, elementoDestinoId) {
 };
 
 function filtrarStatus(statusFiltro, elementoDestinoId) {
-    const catalogoFiltrado = catalogoConvertido.filter(titulo => titulo.Status === statusFiltro)
+    const catalogoFiltrado = catalogoConvertido
+                                    .filter(titulo => titulo.Status === statusFiltro)
                                     .slice(0, 4);
 
     const elementoDestino = document.getElementById(elementoDestinoId);
@@ -353,7 +354,8 @@ function topGeral(elementoDestinoId) {
 };
 
 function adicionadosRecentemente(elementoDestinoId) {
-    const catalogoFiltrado = catalogoConvertido.sort((a, b) => {
+    const catalogoFiltrado = catalogoConvertido
+    .sort((a, b) => {
         const dataA = new Date(a.Adicao.split('/').reverse().join('/'));
         const dataB = new Date(b.Adicao.split('/').reverse().join('/'));
         return dataB - dataA;
@@ -425,27 +427,35 @@ export function assistindoPrincipal(statusFiltro, elementoDestinoId) {
     const elementoDestino = document.getElementById(elementoDestinoId);
     if (elementoDestino) {
         elementoDestino.innerHTML = "";
-        catalogoFiltrado.forEach(titulo => {
+
+         if (!catalogoFiltrado.length == 0) {
+            catalogoFiltrado.forEach(titulo => {
+                elementoDestino.innerHTML += 
+                `
+                <div class="card shadow-sm"> 
+                    <svg aria-label="Placeholder: Thumbnail" class="bd-placeholder-img card-img-top" height="225" preserveAspectRatio="xMidYMid slice" role="img" width="100%" xmlns="http://www.w3.org/2000/svg">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#55595c"></rect>
+                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                    </svg>
+                    <div class="card-body" id="principal-assistindo">
+                        <h5 class="card-title">${titulo.Titulo}</h5>
+                        <div class="d-flex justify-content-between align-items-center"> 
+                            <span class="badge text-bg-info">${titulo.Tipo}</span>
+                        </div>
+                        <div class="progress mt-2" role="progressbar" aria-label="Progresso Assistindo" aria-valuenow="${titulo.Progresso}" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar bg-success" style="width: ${titulo.Progresso*100}%">${titulo.Progresso*100}%</div>
+                        </div>
+                    </div>
+                </div>                
+                `;
+            });
+        } else {
             elementoDestino.innerHTML += 
             `
-            <div class="card shadow-sm"> 
-                <svg aria-label="Placeholder: Thumbnail" class="bd-placeholder-img card-img-top" height="225" preserveAspectRatio="xMidYMid slice" role="img" width="100%" xmlns="http://www.w3.org/2000/svg">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#55595c"></rect>
-                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                </svg>
-                <div class="card-body" id="principal-assistindo">
-                    <h5 class="card-title">${titulo.Titulo}</h5>
-                    <div class="d-flex justify-content-between align-items-center"> 
-                        <span class="badge text-bg-info">${titulo.Tipo}</span>
-                    </div>
-                    <div class="progress mt-2" role="progressbar" aria-label="Progresso Assistindo" aria-valuenow="${titulo.Progresso}" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar bg-success" style="width: ${titulo.Progresso*100}%">${titulo.Progresso*100}%</div>
-                    </div>
-                </div>
-            </div>                
-            `;
-        });
+            <p class="mensagem-tv">Não há programas em andamento no momento.</p>             
+            `
+        }
     }
 };
 

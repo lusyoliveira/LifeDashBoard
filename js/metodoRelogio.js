@@ -1,7 +1,7 @@
 const relogioDigital = document.querySelector('#relogio-digital');
-const hourHand = document.querySelector('#hour');
-const minuteHand = document.querySelector('#minute');
-const secondHand = document.querySelector('#second');
+const globoHora = document.getElementById('hour');
+const globoMinuto = document.getElementById('minute');
+const globoSegundo = document.getElementById('second');
 
 export function relogio() {
   const now = new Date();
@@ -23,9 +23,9 @@ export function relogio() {
   const hoursDegrees = (hours % 12) / 12 * 360 + (minutes / 60) * 30 + 90;
 
   // Atualiza a rotação dos ponteiros
-  secondHand.style.transform = `translateX(-50%) rotate(${secondsDegrees}deg)`;
-  minuteHand.style.transform = `translateX(-50%) rotate(${minutesDegrees}deg)`;
-  hourHand.style.transform = `translateX(-50%) rotate(${hoursDegrees}deg)`;
+  // globoSegundo.style.transform = `translateX(-50%) rotate(${secondsDegrees}deg)`;
+  // globoMinuto.style.transform = `translateX(-50%) rotate(${minutesDegrees}deg)`;
+  // globoHora.style.transform = `translateX(-50%) rotate(${hoursDegrees}deg)`;
 }
 
 // Atualiza o relógio a cada segundo

@@ -56,13 +56,28 @@ export function adicionarTarefa(tarefa) {
             strongTarefa.style.textDecoration = "none";
         }
     })
+
+    const btnEditar = document.createElement('button')
+    btnEditar.classList.add('btn')
+    btnEditar.setAttribute('type', 'button')
+    btnEditar.setAttribute('id', 'botao-editar')
+    btnEditar.setAttribute('title', 'Editar Tarefa')
+    // btnEditar.onclick = () => function() {
+    //   inputTarefa.value = strongTarefa.textContent
+    // }
+
+    const iconeEditar = document.createElement('i')
+    iconeEditar.classList.add('bi', 'bi-pencil-fill')
+    iconeEditar.setAttribute ('id', 'editar-tarefa')
     
     const smallTarefa = document.createElement('small');
     smallTarefa.classList.add('d-block', 'text-body-secondary');
     smallTarefa.innerText = tarefa.data;
 
+    btnEditar.appendChild(iconeEditar);
     labelTarefa.appendChild(checkTarefa);
     labelTarefa.appendChild(spanTarefa);
+    labelTarefa.appendChild(btnEditar);
     spanTarefa.appendChild(strongTarefa);    
     spanTarefa.appendChild(smallTarefa);
     

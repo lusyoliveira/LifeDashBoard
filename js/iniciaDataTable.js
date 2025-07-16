@@ -12,7 +12,7 @@ document.addEventListener('Renderizado', () => {
         paging: true,
         scrollX: false,
         searching: true,
-        ordering: true,
+        ordering: false,
         autoWidth: true,
         lengthMenu: [10, 25, 50],
         pageLength: 10,

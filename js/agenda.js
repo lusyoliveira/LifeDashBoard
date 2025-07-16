@@ -68,7 +68,7 @@ export function criarCalendario(mes, ano, dias) {
                     <div class="calendario-data-compromisso">${i}</div>
                     <div class="compromissos-dia">
                         ${agendaFiltrada.map(compromisso => `<div class="titulo-compromisso">${compromisso.Titulo}</div> 
-                                                                <span class="badge text-bg-info">${compromisso.Categoria}</span><span class="badge text-bg-success">${compromisso.Status}</span>`).join('')}
+                        <span class="badge text-bg-info">${compromisso.Categoria}</span><span class="badge text-bg-success">${compromisso.Status}</span>`).join('')}
                     </div>
                 </div>
             `;
@@ -83,7 +83,7 @@ export function proximosCompromissos(elementoDestinoId) {
         .filter(compromisso => {
             const [dia, mes, ano] = compromisso.Data.split('/');
             const dataCompromisso = new Date(`${ano}-${mes}-${dia}T00:00:00`);
-            return dataCompromisso > new Date(); // ou >= se quiser incluir o dia atual
+            return dataCompromisso > new Date(); 
         })
         .sort((a, b) => {
             const [diaA, mesA, anoA] = a.Data.split('/');
@@ -93,6 +93,7 @@ export function proximosCompromissos(elementoDestinoId) {
             return dataA - dataB; // crescente
         })
         .slice(0, 13);
+
     const elementoDestino = document.getElementById(elementoDestinoId);
     if (elementoDestino) {
         elementoDestino.innerHTML = "";
@@ -121,7 +122,18 @@ function exibirAgenda(listaCompromissos) {
     $('.datatable').DataTable().clear().destroy(); 
     }    
 
-    listaCompromissos.forEach(compromisso => {
+    const listaOrdenada = listaCompromissos
+        .sort((a, b) => {
+            const [diaA, mesA, anoA] = a.Data.split('/');
+            const [diaB, mesB, anoB] = b.Data.split('/');
+            const dataA = new Date(`${anoA}-${mesA}-${diaA}T00:00:00`);
+            const dataB = new Date(`${anoB}-${mesB}-${diaB}T00:00:00`);
+            return dataA - dataB; 
+        })             
+        
+        console.log(listaOrdenada);        
+    
+        listaOrdenada.forEach(compromisso => {
         const tr = document.createElement('tr')
         const th = document.createElement('th')
         th.textContent = compromisso.id
@@ -159,8 +171,6 @@ function exibirAgenda(listaCompromissos) {
         const btnExcluir = document.createElement('button')
         btnExcluir.classList.add('btn', 'btn-danger')        
         btnExcluir.onclick = async () => {
-
-            debugger
             try {
                 await api.excluirDados(compromisso.id, endpoint)
                 carregarAgenda()
@@ -188,8 +198,7 @@ function exibirAgenda(listaCompromissos) {
 
         linhaTabela.appendChild(tr)
     });
-
-    // Dispara DataTable
+    
     document.dispatchEvent(new Event('Renderizado'));
 };
 
@@ -202,35 +211,34 @@ function gerarID() {
 async function salvarAgendamento(event) {
     event.preventDefault()
 
-    let id = document.getElementById('id-adicionar').value
-    const titulo = document.getElementById('titulo-adicionar').value
-    const data = document.getElementById('data-adicionar').value
-    const categoria = document.getElementById('categoria-adicionar').value
-    const tipo = document.getElementById('tipo-adicionar').value
-    const status = document.getElementById('status-adicionar').value
-    
-    const dataConvertida =  converteDataUTC(data)
+    const idInput = document.getElementById('id-adicionar').value;
+    const titulo = document.getElementById('titulo-adicionar').value;
+    const data = document.getElementById('data-adicionar').value;
+    const categoria = document.getElementById('categoria-adicionar').value;
+    const tipo = document.getElementById('tipo-adicionar').value;
+    const status = document.getElementById('status-adicionar').value;
+    const dataConvertida = converteDataUTC(data);
+
+    const novoId = idInput ? Number(idInput) : gerarID(); // Garante número
+
+    const agendamento = {
+        id: novoId.toString(),
+        Titulo: titulo,
+        Status: status,
+        Categoria: categoria,
+        Tipo: tipo,
+        Data: dataConvertida
+    };
 
     try {
-        if (id) {
-            await api.atualizarDados({ id: Number(id), 
-                                        Titulo: titulo, 
-                                        Status: status, 
-                                        Categoria: categoria, 
-                                        Tipo: tipo, 
-                                        Data: dataConvertida }, endpoint)
+        if (idInput) {
+            await api.atualizarDados(agendamento, endpoint);
         } else {
-            id = gerarID()
-            await api.salvarDados({ id: Number(id), 
-                                    Titulo: titulo, 
-                                    Status: status, 
-                                    Categoria: categoria, 
-                                    Tipo: tipo, 
-                                    Data: dataConvertida }, endpoint)
+            await api.salvarDados(agendamento, endpoint);
         }
-        carregarAgenda()
+        carregarAgenda();
     } catch {
-        alert('Erro ao salvar agendamento!')
+        alert('Erro ao salvar agendamento!');
     }
 };
 
@@ -239,7 +247,7 @@ function cancelarAgendamento() {
 };
 
 async function preencherFormulario(agendamentoId) {
-        debugger
+        
         const agendamento = await api.buscarDadosPorId(agendamentoId, endpoint)
 
         document.getElementById('id-adicionar').value = agendamento.id

@@ -160,6 +160,59 @@
 
             <div class="container-fliud">                
                 <h2 class="pb-1 border-bottom">Cursos</h2>
+                <form class="row gy-2 gx-3 align-items-center" id="agenda-form" title="Adicionar Agendamento">
+                    <div class="col-auto">
+                        <input type="hidden" id="id-adicionar" />
+                        <label for="curso-adicionar" class="col-form-label">Curso:</label>
+                        <input type="text" class="form-control" id="curso-adicionar" title="Curso" placeholder="Informe o curso" required>
+                    </div>
+                    <div class="col-auto">
+                        <label for="instrutor-adicionar" class="col-form-label">Curso:</label>
+                        <input type="text" class="form-control" id="instrutor-adicionar" title="Instrutor" placeholder="Informe o instrutor" required>
+                    </div>
+                    <div class="col-auto">
+                        <label for="area-adicionar" class="col-form-label">Área:</label>
+                        <select type="text" class="form-select" id="area-adicionar" title="Área" required>
+                            <option value="Loja">Loja</option>
+                            <option value="Casa">Casa</option>
+                            <option value="Pessoal">Pessoal</option>
+                            <option value="Educação">Educação</option>
+                            <option value="Financeiro">Financeiro</option>
+                            <option value="Data Importante">Data Importante</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <label for="compra-adicionar" class="col-form-label">Compra:</label>
+                        <input type="date" class="form-control" id="compra-adicionar" title="Compra" required>
+                    </div>
+                    <div class="col-auto">
+                        <label for="valor-adicionar" class="col-form-label">Valor:</label>
+                        <input type="text" class="form-control" id="valor-adicionar" title="Valor" placeholder="Informe o valor" required>
+                    </div>
+                    <div class="col-auto">
+                        <label for="status-adicionar" class="col-form-label">Status:</label>
+                        <select type="text" class="form-select" id="status-adicionar" title="Status" required>
+                            <option value="Em Espera">Em Espera</option>
+                            <option value="Fazendo">Fazendo</option>
+                            <option value="Feito">Feito</option>
+                            <option value="Pausado">Pausado</option>
+                            <option value="Cancelado">Cancelado</option>
+                            <option value="Indeterminado">Indeterminado</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="certificado-adicionar">
+                            <label class="form-check-label" for="certificado-adicionar">
+                                Certificado
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary" id="adicionar-agenda" title="Salvar Agendamento">Salvar</button>
+                        <button type="button" class="btn btn-secondary" id="cancelar-agenda" title="Cancelar Agendamento" >Cancelar</button>
+                    </div>
+                </form>   
                 <div class="table-responsive">
                     <table class="table-hover datatable">
                     <thead>

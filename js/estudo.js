@@ -55,7 +55,9 @@ export function cursandoPrincipal(statusFiltro, elementoDestinoId) {
     const elementoDestino = document.getElementById(elementoDestinoId);
     if (elementoDestino) {
         elementoDestino.innerHTML = "";
-        cursosFiltrado.forEach(curso => {
+
+        if (!cursosFiltrado.length == 0) {
+            cursosFiltrado.forEach(curso => {
             elementoDestino.innerHTML += 
             `
             <div class="card shadow-sm"> 
@@ -76,7 +78,13 @@ export function cursandoPrincipal(statusFiltro, elementoDestinoId) {
             </div>                
             `;
         });
-    }
+        } else {
+            elementoDestino.innerHTML += 
+            `
+               <p class="mensagem-curso">Não há cursos em andamento no momento.</p>             
+            `
+        }          
+    } 
 };
 
 carregarCursos()

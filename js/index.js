@@ -23,10 +23,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             const status = linha.dataset.status || linha.textContent.trim();
             cursandoPrincipal(status, linha.id);
         }  
-    });    
-    
+    });        
 });
-
 
 document.addEventListener('DOMContentLoaded', () => {
     carregarAgenda().then(() => {
