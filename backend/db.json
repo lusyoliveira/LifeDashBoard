@@ -1,4 +1,22 @@
 {
+  "tarefas": [
+    {
+      "id":"1",
+      "tarefa": "Estudando",
+      "Adicionado": "2026-07-10T00:00:00.000Z"
+    }
+  ],
+  "contas": [
+    {
+      "id":"1",
+      "Agencia": "260",
+      "Conta": "0000000",
+      "Banco": "Nu",
+      "Descricao": "Conta Nu",
+      "Tipo": "Conta Corrente",
+      "Saldo": 0
+    }
+  ],
   "agenda": [
     {
       "id": "1",
