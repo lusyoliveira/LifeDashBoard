@@ -1,4 +1,21 @@
 {
+  "configuracoes": [
+    {
+      "id":"1",
+      "AtivaMAL": false,
+      "AtivaOutlook": false,
+      "ChaveOutlook": "",
+      "AtivaGoogle": false,
+      "ChaveGoogle": "",
+      "AtivaClima": false,      
+      "DataContagem":"2025-09-22T15:29:00.000Z",
+      "DescricaoContagem": "Primavera",
+      "Cidade": "Juiz de Fora",
+      "Estado": "Minas Gerais",
+      "Latitude": -21.7642,
+      "Longitude": -43.3503
+    }
+  ],
   "tarefas": [
     {
       "id":"1",

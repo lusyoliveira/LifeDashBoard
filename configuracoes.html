@@ -46,51 +46,32 @@
             <div class="row">
                 <div class="col">
                     <h3 class="border-bottom pb-2">Contagem Regressiva</h3>                        
-                    <div class="row">
-                        <div class="col">
-                            <input type="datetime-local" class="form-control" id="data-contagem" placeholder="Informe a data" aria-label="Informe a data">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="descricao-contagem" placeholder="Informe a descrição" aria-label="Informe a descrição">
-                        </div>
+                    <div class="row" id="linha-contagem">
+
                     </div>
                 </div>
                 <div class="col">
-                <h3 class="border-bottom pb-2">Integrações</h3>
+                    <h3 class="border-bottom pb-2">Integrações</h3>
+                    <div id="linha-mal">
+
+                    </div>
                     <br />
-                    <h4 class="border-bottom pb-2">MyAnimeList</h4>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="habilitar-mal" checked>
-                        <label class="form-check-label" for="habilitar-clima">Habilita MyAnimeList</label>
+                    <div id="linha-google">
+
                     </div>
-                        <br />
-                    <p>Informe as credenciais.</p>
-                    <div class="row">
-                        <div class="col">
-                            <input type="text" class="form-control" id="clientID-mal" placeholder="Informe o client-ID" aria-label="Informe o client-ID">
-                        </div>
+                    <br />
+                    <div id="linha-outlook">
+
                     </div>
-                        <br />
-                    <h4 class="border-bottom pb-2">Outlook Agenda</h4>
-                        <br />
-                    <h4 class="border-bottom pb-2">Google Agenda</h4>
-                        <br />
-                    <h4 class="border-bottom pb-2">Clima</h4>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="habilitar-clima" checked>
-                        <label class="form-check-label" for="habilitar-clima">Exibir clima na página inicial</label>
-                    </div>
-                        <br />
-                    <p>Informe a latitude e longitude para exibir o clima</p>
-                    <div class="row">
-                        <div class="col">
-                            <input type="text" class="form-control" id="latitude" placeholder="Informe a latitude" aria-label="Informe a latitude">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="longitude" placeholder="Informe a longitude" aria-label="Informe a longitude">
-                        </div>
-                    </div>
+                    <br />
+                    <div id="linha-clima">
+
+                    </div>                    
                 </div>
+            </div>
+            <br />
+            <div class="row d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary" id="btn-salvar" title="Salvar Configurações">Salvar</button>
             </div>
         </div>
     </main>
