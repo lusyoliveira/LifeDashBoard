@@ -1,10 +1,10 @@
 import api from './metodoApi.js'
+import apiClima  from './apiClima.js';
 
 let configuracoes = [];
 let configuracoesConvertido = [];
 
 const endpoint = 'configuracoes';
-const linhaTabela = document.getElementById('linhas');
 
 export async function carregarConfiguracores() {
     configuracoes = await api.buscarDados(endpoint);
@@ -21,14 +21,15 @@ export async function carregarConfiguracores() {
 };
 
 async function exibeConfiguracoes() {
-    const config = await carregarConfiguracores()    
+    const config = await carregarConfiguracores()      
+    const clima = await apiClima.consultaClima();  
 
     if (config.length > 0) {
         configuracaoContagem(config[0]);
         configuracaoMAL(config[0]);
         configuracaoGoogle(config[0]);
         configuracaoOutlook(config[0]);
-        configuracaoClima(config[0]);
+        configuracaoClima(clima[0]);
     } 
 };
 
@@ -249,7 +250,7 @@ function configuracaoClima(configuracoes) {
         inputSwitch.setAttribute('role', 'switch')
         inputSwitch.setAttribute('id', 'habilitar-clima')
         inputSwitch.onclick = () => {
-            if (configuracoes.AtivaClima) {                
+            if (configuracoesConvertido.AtivaClima) {                
                 inputSwitch.setAttribute('checked')
             } else {                
                 inputSwitch.removeAttribute('checked')
@@ -270,7 +271,7 @@ function configuracaoClima(configuracoes) {
         inputCidade.setAttribute('placeholder', 'Informe a cidade')
         inputCidade.setAttribute('aria-label', 'Informe a cidade')
         inputCidade.setAttribute('id', 'cidade')
-        inputCidade.value = configuracoes.Cidade
+        inputCidade.value = configuracoes.name
 
         const btnBuscar = document.createElement('button')
         btnBuscar.classList.add('btn', 'btn-primary')
@@ -293,7 +294,7 @@ function configuracaoClima(configuracoes) {
         inputLatitude.setAttribute('placeholder', 'Informe a latitude')
         inputLatitude.setAttribute('aria-label', 'Informe a latitude')
         inputLatitude.setAttribute('id', 'latitude')
-        inputLatitude.value = configuracoes.Latitude
+        inputLatitude.value = configuracoes.latitude
 
         const labelLongitude = document.createElement('label');
         labelLongitude.classList.add('form-label')
@@ -306,7 +307,7 @@ function configuracaoClima(configuracoes) {
         inputLongitude.setAttribute('placeholder', 'Informe a longitude')
         inputLongitude.setAttribute('aria-label', 'Informe a longitude')
         inputLongitude.setAttribute('id', 'longitude')
-        inputLongitude.value = configuracoes.Longitude
+        inputLongitude.value = configuracoes.longitude
 
         divLocalizacao.appendChild(labelLatitude)
         divLocalizacao.appendChild(inputLatitude)

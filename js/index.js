@@ -5,6 +5,7 @@ import { cursandoPrincipal, carregarCursos } from "./estudo.js";
 import { assistindoPrincipal, carregarTvList } from "./tvList.js";
 import { contagemRegressiva } from "./metodoContagemRegressiva.js";
 import { relogio } from "./metodoRelogio.js";
+import  apiClima  from "./apiClima.js";
 
 const btnEvento = document.getElementById('adiciona-evento');
 const container = document.getElementById('container-modal');
@@ -102,3 +103,4 @@ btnEvento.addEventListener("click", async () => {
 
 contagemRegressiva();
 relogio();
+apiClima.exibirClima()

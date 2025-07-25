@@ -7,14 +7,87 @@
       "ChaveOutlook": "",
       "AtivaGoogle": false,
       "ChaveGoogle": "",
-      "AtivaClima": false,      
+      "AtivaClima": true,      
       "DataContagem":"2025-09-22T15:29:00.000Z",
-      "DescricaoContagem": "Primavera",
-      "Cidade": "Juiz de Fora",
-      "Estado": "Minas Gerais",
-      "Latitude": -21.7642,
-      "Longitude": -43.3503
+      "DescricaoContagem": "Primavera"
     }
+  ],
+  "clima": [
+    {
+      "id": "3459505",
+      "name": "Juiz de Fora",
+      "latitude": -21.76417,
+      "longitude": -43.35028,
+      "elevation": 707,
+      "feature_code": "PPLA2",
+      "country_code": "BR",
+      "admin1_id": 3457153,
+      "admin2_id": 3459504,
+      "timezone": "America/Sao_Paulo",
+      "population": 573285,
+      "country_id": 3469034,
+      "country": "Brasil",
+      "admin1": "Minas Gerais",
+      "admin2": "Juiz de Fora",
+      "current_units": {
+      "time": "iso8601",
+      "interval": "seconds",
+      "weather_code": "wmo code",
+      "temperature_2m": "°C",
+      "relative_humidity_2m": "%",
+      "apparent_temperature": "°C",
+      "is_day": "",
+      "wind_speed_10m": "km/h",
+      "wind_direction_10m": "°",
+      "wind_gusts_10m": "km/h",
+      "precipitation": "mm",
+      "rain": "mm",
+      "showers": "mm",
+      "snowfall": "cm",
+      "cloud_cover": "%",
+      "pressure_msl": "hPa",
+      "surface_pressure": "hPa"
+    },
+    "current": {
+      "time": "2025-07-25T16:45",
+      "interval": 900,
+      "weather_code": 3,
+      "temperature_2m": 21.5,
+      "relative_humidity_2m": 66,
+      "apparent_temperature": 22.1,
+      "is_day": 1,
+      "wind_speed_10m": 6.5,
+      "wind_direction_10m": 360,
+      "wind_gusts_10m": 27,
+      "precipitation": 0,
+      "rain": 0,
+      "showers": 0,
+      "snowfall": 0,
+      "cloud_cover": 97,
+      "pressure_msl": 1019.2,
+      "surface_pressure": 939
+    },
+    "daily_units": {
+      "time": "iso8601",
+      "weather_code": "wmo code",
+      "temperature_2m_max": "°C",
+      "temperature_2m_min": "°C"
+    },
+    "daily": {
+      "time": [
+        "2025-07-25",
+        "2025-07-26",
+        "2025-07-27",
+        "2025-07-28",
+        "2025-07-29",
+        "2025-07-30",
+        "2025-07-31"
+      ],
+      "weather_code": [95, 45, 45, 3, 3, 2, 45],
+      "temperature_2m_max": [21.6, 21.6, 23.6, 25.6, 18.1, 17, 18.2],
+      "temperature_2m_min": [13.8, 11.2, 12.4, 12.8, 11.2, 5.5, 6.7]
+    }
+  }    
   ],
   "tarefas": [
     {
