@@ -20,39 +20,55 @@ export async function carregarConfiguracores() {
      return configuracoesConvertido   
 };
 
-async function exibeConfiguracoes() {
-    const config = await carregarConfiguracores()      
-    const clima = await apiClima.consultaClima();  
-
-    if (config.length > 0) {
-        configuracaoContagem(config[0]);
-        configuracaoMAL(config[0]);
-        configuracaoGoogle(config[0]);
-        configuracaoOutlook(config[0]);
-        configuracaoClima(clima[0]);
-    } 
-};
-
-function configuracaoContagem(configuracoes) {
+async function configuracaoContagem() {
+    const configuracoes = (await carregarConfiguracores())[0] 
     const elementoDestino = document.getElementById('linha-contagem');
 
      if (elementoDestino) {
-        elementoDestino.innerHTML = "";
-        elementoDestino.innerHTML += 
-        `
-            <div class="col">
-                <label for="data-contagem" class="form-label">Data:</label>
-                <input type="datetime-local" class="form-control" id="data-contagem" placeholder="Informe a data" aria-label="Informe a data" value="${configuracoes.DataContagem}">
-            </div>
-            <div class="col">
-                <label for="descricao-contagem" class="form-label">Descrição:</label>
-                <input type="text" class="form-control" id="descricao-contagem" placeholder="Informe a descrição" aria-label="Informe a descrição" value="${configuracoes.DescricaoContagem}">
-            </div>
-        `;
+        const divDataContagem = document.createElement('div');
+        divDataContagem.classList.add('col')
+
+        const labelDataContagem = document.createElement('label');
+        labelDataContagem.classList.add('form-label')
+        labelDataContagem.setAttribute('for','data-contagem')
+        labelDataContagem.textContent = 'Data:'
+
+        const inputDataContagem = document.createElement('input');
+        inputDataContagem.classList.add('form-control');
+        inputDataContagem.setAttribute('type', 'datetime-local')
+        inputDataContagem.setAttribute('id', 'data-contagem')
+        inputDataContagem.setAttribute('placeholder', 'Informe a data')
+        inputDataContagem.setAttribute('aria-label', 'Informe a data')  
+        inputDataContagem.value = configuracoes.DataContagem;
+
+        const divDescricaoContagem = document.createElement('div');
+        divDescricaoContagem.classList.add('col')
+
+        const labelDescricaoContagem = document.createElement('label');
+        labelDescricaoContagem.classList.add('form-label')
+        labelDescricaoContagem.setAttribute('for','descricao-contagem')
+        labelDescricaoContagem.textContent = 'Descrição:'
+
+        const inputDescricaoContagem = document.createElement('input');
+        inputDescricaoContagem.classList.add('form-control');
+        inputDescricaoContagem.setAttribute('type', 'text')
+        inputDescricaoContagem.setAttribute('id', 'descricao-contagem')
+        inputDescricaoContagem.setAttribute('placeholder', 'Informe a descrição')
+        inputDescricaoContagem.setAttribute('aria-label', 'Informe a descrição')
+        inputDescricaoContagem.value = configuracoes.DescricaoContagem;
+
+        divDescricaoContagem.appendChild(labelDataContagem);
+        divDescricaoContagem.appendChild(inputDataContagem);
+        divDataContagem.appendChild(labelDescricaoContagem);
+        divDataContagem.appendChild(inputDescricaoContagem);
+        elementoDestino.appendChild(divDataContagem);
+        elementoDestino.appendChild(divDescricaoContagem);
+         
     }        
 };
 
-function configuracaoMAL(configuracoes) {
+async function configuracaoMAL() {
+    const configuracoes = (await carregarConfiguracores())[0];
     const elementoDestino = document.getElementById('linha-mal');
 
     if (elementoDestino) {
@@ -72,15 +88,18 @@ function configuracaoMAL(configuracoes) {
         labelSwitch.textContent = 'Habilita MyAnimeList'
 
         const inputSwitch = document.createElement('input');
+            if (configuracoes.AtivaMAL) {                
+                inputSwitch.setAttribute('checked', 'checked')
+                } 
         inputSwitch.classList.add('form-check-input')
         inputSwitch.setAttribute('type', 'checkbox')
         inputSwitch.setAttribute('role', 'switch')
         inputSwitch.setAttribute('id', 'habilitar-mal')
         inputSwitch.onclick = () => {
             if (configuracoes.AtivaMAL) {                
-                inputSwitch.setAttribute('checked')
-            } else {                
-                inputSwitch.removeAttribute('checked')
+                inputSwitch.removeAttribute('checked', 'checked')
+            } else {               
+                inputSwitch.setAttribute('checked', 'checked') 
             }
         }
         
@@ -109,7 +128,8 @@ function configuracaoMAL(configuracoes) {
         elementoDestino.appendChild(divMAL)
     }
 };
-function configuracaoGoogle(configuracoes) {
+async function configuracaoGoogle() {
+    const configuracoes = (await carregarConfiguracores())[0];
     const elementoDestino = document.getElementById('linha-google');
 
     if (elementoDestino) {
@@ -129,15 +149,18 @@ function configuracaoGoogle(configuracoes) {
         labelSwitch.textContent = 'Habilita Google'
 
         const inputSwitch = document.createElement('input');
+            if (configuracoes.AtivaGoogle) {                
+                    inputSwitch.setAttribute('checked', 'checked')
+                    } 
         inputSwitch.classList.add('form-check-input')
         inputSwitch.setAttribute('type', 'checkbox')
         inputSwitch.setAttribute('role', 'switch')
         inputSwitch.setAttribute('id', 'habilitar-google')
         inputSwitch.onclick = () => {
             if (configuracoes.AtivaGoogle) {                
-                inputSwitch.setAttribute('checked')
-            } else {                
-                inputSwitch.removeAttribute('checked')
+                inputSwitch.removeAttribute('checked', 'checked')
+            } else {               
+                inputSwitch.setAttribute('checked', 'checked') 
             }
         }
         
@@ -167,7 +190,8 @@ function configuracaoGoogle(configuracoes) {
     }
 };
 
-function configuracaoOutlook(configuracoes) {
+async function configuracaoOutlook() {
+    const configuracoes = (await carregarConfiguracores())[0];
     const elementoDestino = document.getElementById('linha-outlook');
 
     if (elementoDestino) {
@@ -187,15 +211,18 @@ function configuracaoOutlook(configuracoes) {
         labelSwitch.textContent = 'Habilita Outlook'
 
         const inputSwitch = document.createElement('input');
+            if (configuracoes.AtivaOutlook) {                
+                inputSwitch.setAttribute('checked', 'checked')
+                } 
         inputSwitch.classList.add('form-check-input')
         inputSwitch.setAttribute('type', 'checkbox')
         inputSwitch.setAttribute('role', 'switch')
         inputSwitch.setAttribute('id', 'habilitar-outlook')
         inputSwitch.onclick = () => {
             if (configuracoes.AtivaOutlook) {                
-                inputSwitch.setAttribute('checked')
-            } else {                
-                inputSwitch.removeAttribute('checked')
+                inputSwitch.removeAttribute('checked', 'checked')
+            } else {               
+                inputSwitch.setAttribute('checked', 'checked') 
             }
         }
         
@@ -225,8 +252,10 @@ function configuracaoOutlook(configuracoes) {
     }
 };
 
-function configuracaoClima(configuracoes) {
-    const elementoDestino = document.getElementById('linha-clima');
+async function configuracaoClima() {
+    const configuracoes = (await carregarConfiguracores())[0];
+    const clima = (await apiClima.consultaClima())[0]; 
+    const elementoDestino = document.getElementById('linha-clima');  
 
     if (elementoDestino) {
         const divClima = document.createElement('div');
@@ -245,25 +274,23 @@ function configuracaoClima(configuracoes) {
         labelSwitch.textContent = 'Habilita Clima'
 
         const inputSwitch = document.createElement('input');
+          if (configuracoes.AtivaClima) {                
+            inputSwitch.setAttribute('checked', 'checked')
+            } 
         inputSwitch.classList.add('form-check-input')
         inputSwitch.setAttribute('type', 'checkbox')
         inputSwitch.setAttribute('role', 'switch')
         inputSwitch.setAttribute('id', 'habilitar-clima')
         inputSwitch.onclick = () => {
-            if (configuracoesConvertido.AtivaClima) {                
-                inputSwitch.setAttribute('checked')
-            } else {                
-                inputSwitch.removeAttribute('checked')
+            if (configuracoes.AtivaClima) {                
+                inputSwitch.removeAttribute('checked', 'checked')
+            } else {               
+                inputSwitch.setAttribute('checked', 'checked') 
             }
         }
         
         const divCidade = document.createElement('div');
-        divCidade.classList.add('col')
-
-        const labelCidade = document.createElement('label');
-        labelCidade.classList.add('form-label')
-        labelCidade.setAttribute('for','cidade')
-        labelCidade.textContent = 'Cidade'
+        divCidade.classList.add('col', 'd-flex', 'justify-content-between', 'align-items-center')
 
         const inputCidade = document.createElement('input');
         inputCidade.classList.add('form-control')
@@ -271,10 +298,10 @@ function configuracaoClima(configuracoes) {
         inputCidade.setAttribute('placeholder', 'Informe a cidade')
         inputCidade.setAttribute('aria-label', 'Informe a cidade')
         inputCidade.setAttribute('id', 'cidade')
-        inputCidade.value = configuracoes.name
+        inputCidade.value = clima.name
 
         const btnBuscar = document.createElement('button')
-        btnBuscar.classList.add('btn', 'btn-primary')
+        btnBuscar.classList.add('btn', 'btn-primary', 'm-2')
         btnBuscar.setAttribute('type','submit')
         btnBuscar.setAttribute('id','btn-buscar-cidade')
         btnBuscar.setAttribute('title','Buscar Cidade')
@@ -294,7 +321,7 @@ function configuracaoClima(configuracoes) {
         inputLatitude.setAttribute('placeholder', 'Informe a latitude')
         inputLatitude.setAttribute('aria-label', 'Informe a latitude')
         inputLatitude.setAttribute('id', 'latitude')
-        inputLatitude.value = configuracoes.latitude
+        inputLatitude.value = clima.latitude
 
         const labelLongitude = document.createElement('label');
         labelLongitude.classList.add('form-label')
@@ -307,15 +334,26 @@ function configuracaoClima(configuracoes) {
         inputLongitude.setAttribute('placeholder', 'Informe a longitude')
         inputLongitude.setAttribute('aria-label', 'Informe a longitude')
         inputLongitude.setAttribute('id', 'longitude')
-        inputLongitude.value = configuracoes.longitude
+        inputLongitude.value = clima.longitude
 
+        const labelAtualizacao = document.createElement('label');
+        labelAtualizacao.classList.add('form-label')
+        labelAtualizacao.setAttribute('for','longitude')
+        labelAtualizacao.textContent = 'Tempo de Atualização (segundos)'
+
+        const inputAtualizacao = document.createElement('input');
+        inputAtualizacao.classList.add('form-control')
+        inputAtualizacao.setAttribute('type', 'number') 
+        inputAtualizacao.value = configuracoes.AtualizaClima
+
+        divLocalizacao.appendChild(labelAtualizacao)
+        divLocalizacao.appendChild(inputAtualizacao)
         divLocalizacao.appendChild(labelLatitude)
         divLocalizacao.appendChild(inputLatitude)
         divLocalizacao.appendChild(labelLongitude)
         divLocalizacao.appendChild(inputLongitude)
         divSwitch.appendChild(labelSwitch)
         divSwitch.appendChild(inputSwitch)
-        divCidade.appendChild(labelCidade)
         divCidade.appendChild(inputCidade)
         divCidade.appendChild(btnBuscar)
         divClima.appendChild(titulClima)
@@ -325,5 +363,8 @@ function configuracaoClima(configuracoes) {
         elementoDestino.appendChild(divClima)
     }
 };
-// const config = await carregarConfiguracores()
-exibeConfiguracoes()
+configuracaoContagem()
+configuracaoMAL()
+configuracaoGoogle()
+configuracaoOutlook()
+configuracaoClima()
