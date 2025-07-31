@@ -4,7 +4,7 @@ import apiClima  from './apiClima.js';
 let configuracoes = [];
 let configuracoesConvertido = [];
 
-const endpoint = 'configuracoes';
+const endpoint = 'Configuracoes';
 
 export async function carregarConfiguracores() {
     configuracoes = await api.buscarDados(endpoint);
@@ -17,7 +17,7 @@ export async function carregarConfiguracores() {
         //"yyyy-MM-ddThh:mm"
         };
     });
-     return configuracoesConvertido   
+     return configuracoesConvertido        
 };
 
 async function configuracaoContagem() {

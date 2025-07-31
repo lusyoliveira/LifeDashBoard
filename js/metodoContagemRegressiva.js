@@ -1,5 +1,5 @@
-export function contagemRegressiva() {
-    const dataAlvo = new Date("2025-09-22T15:29:00.000Z").getTime();
+export function contagemRegressiva(data) {
+    const dataAlvo = new Date(data).getTime();
     const intervalo = setInterval(() => {
         const dataAtual = new Date().getTime();
         const tempoRestante = dataAlvo - dataAtual;

@@ -4,7 +4,6 @@ let cursos = [];
 let cursosConvertido = [];
 
 const endpoint = 'cursos';
-const linhaTabela = document.getElementById('linhas');
 
 export async function carregarCursos() {
     cursos = await api.buscarDados(endpoint);
@@ -15,10 +14,13 @@ export async function carregarCursos() {
             Comprado: new Date(curso.Comprado).toLocaleDateString('pt-BR')
         };
     });
-    exibirCursos(cursosConvertido)
+    return cursosConvertido
 };
 
-function exibirCursos(listaCursos) {
+async function listarCursos() {
+    const linhaTabela = document.getElementById('linhas');
+    const cursos = await carregarCursos();
+
     if (!linhaTabela) return;
 
     linhaTabela.innerHTML = ''; 
@@ -26,38 +28,67 @@ function exibirCursos(listaCursos) {
     if ($.fn.DataTable.isDataTable('.datatable')) {
     $('.datatable').DataTable().clear().destroy(); 
     }
+        cursos.forEach(curso => {
+            const tr = document.createElement('tr');
+            const thId = document.createElement('th');
+            thId.textContent = curso.id;
+            thId.setAttribute('scope', 'row');
 
-    listaCursos.forEach(curso => {
-        linhaTabela.innerHTML += 
-        `
-            <tr>
-                <th scope="row">${curso.Name}</th>
-                <td>${curso.Professor}</td>
-                <td class="text-center">${curso.Assunto}</td>
-                <td class="text-center">${curso.Comprado}</td>
-                <td class="text-center">${curso.Valor}</td>
-                <td class="text-center">${curso.Status}</td>
-                <td class="text-center">${curso.Certificado}</td>
-                <td class="text-center">${curso.Progresso}</td>
-            </tr>
-        `;
+            const tdNomeCurso = document.createElement('td');
+            tdNomeCurso.textContent = curso.Name;
+
+            const tdProfessor = document.createElement('td');
+            tdProfessor.textContent = curso.Professor;
+
+            const tdAssunto = document.createElement('td');
+            tdAssunto.classList.add('text-center');
+            tdAssunto.textContent = curso.Assunto;
+
+            const tdComprado = document.createElement('td');
+            tdComprado.classList.add('text-center');    
+            tdComprado.textContent = curso.Comprado;
+
+            const tdValor = document.createElement('td');
+            tdValor.classList.add('text-center');
+            tdValor.textContent = curso.Valor;
+
+            const tdStatus = document.createElement('td');
+            tdStatus.classList.add('text-center');
+            tdStatus.textContent = curso.Status;
+
+            const tdCertificado = document.createElement('td');
+            tdCertificado.classList.add('text-center');
+            tdCertificado.textContent = curso.Certificado;
+
+            const tdProgresso = document.createElement('td');
+            tdProgresso.classList.add('text-center');
+            tdProgresso.textContent = curso.Progresso; 
+            
+            tr.appendChild(thId);
+            tr.appendChild(tdNomeCurso);
+            tr.appendChild(tdProfessor);
+            tr.appendChild(tdAssunto);
+            tr.appendChild(tdComprado);
+            tr.appendChild(tdValor);
+            tr.appendChild(tdStatus);
+            tr.appendChild(tdCertificado);
+            tr.appendChild(tdProgresso);
+            linhaTabela.appendChild(tr);
     });
-
     // Dispara DataTable
     document.dispatchEvent(new Event('Renderizado'));
 };
 
-export function cursandoPrincipal(statusFiltro, elementoDestinoId) {
-
-    const cursosFiltrado = cursosConvertido.filter(curso => curso.Status === statusFiltro)
-                                    .slice(0, 4);
-
+export async function cursandoPrincipal(statusFiltro, elementoDestinoId) {
     const elementoDestino = document.getElementById(elementoDestinoId);
+    const cursos = await carregarCursos().filter(curso => curso.Status === statusFiltro)
+                                    .slice(0, 4);
+                                    
     if (elementoDestino) {
         elementoDestino.innerHTML = "";
 
-        if (!cursosFiltrado.length == 0) {
-            cursosFiltrado.forEach(curso => {
+        if (!cursos.length === 0) {
+            cursos.forEach(curso => {
             elementoDestino.innerHTML += 
             `
             <div class="card shadow-sm"> 
@@ -79,12 +110,12 @@ export function cursandoPrincipal(statusFiltro, elementoDestinoId) {
             `;
         });
         } else {
-            elementoDestino.innerHTML += 
-            `
-               <p class="mensagem-curso">Não há cursos em andamento no momento.</p>             
-            `
+
+            const pMensagem = document.createElement('p');
+            pMensagem.classList.add('mensagem-curso');
+            pMensagem.textContent = 'Não há cursos em andamento no momento.';
+            elementoDestino.appendChild(pMensagem);
         }          
     } 
 };
-
-carregarCursos()
+listarCursos()
