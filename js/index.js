@@ -1,4 +1,4 @@
-import { } from "./metodoTarefas.js";
+import { listarTarefas } from "./metodoTarefas.js";
 import { } from "./metodoContador.js";
 import { criarCalendario, proximosCompromissos } from "./agenda.js";
 import { cursandoPrincipal } from "./estudo.js";
@@ -11,6 +11,7 @@ import { carregarConfiguracores } from "./configuracoes.js";
 const containerModal = document.getElementById('container-modal');
 const listas = document.querySelectorAll('.list-group');       
 const linhas = document.querySelectorAll('.row');       
+const descricaoContagem = document.getElementById('descricao-contagem');
 const configuracoes = (await carregarConfiguracores())[0] 
 
 //Exibe cursando
@@ -52,6 +53,7 @@ linhas.forEach(linha => {
 // });
 
 contagemRegressiva(configuracoes.DataContagem);
+descricaoContagem.textContent = configuracoes.DescricaoContagem;
 relogio();
 apiClima.exibirClima()
 //exibe lista de próximo compromissos
@@ -62,3 +64,5 @@ listas.forEach(lista => {
 });
 //exibe calendario
 criarCalendario();
+//exibe lista de tarefas
+listarTarefas();

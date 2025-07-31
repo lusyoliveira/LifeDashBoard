@@ -1,12 +1,12 @@
 import { calculaTempoData, converteDataUTC } from "./metodoData.js";
 import api from './metodoApi.js'
+import { listarTarefas } from "./metodoTarefas.js";
 
 let agenda = [];
 let agendaConvertida = [];
 
 const endpoint = 'agenda';
-
-const mesAno = document.getElementById('mes-ano');
+const formAgenda = document.getElementById('agenda-form');
 const btnCancelar = document.getElementById('cancelar-agenda');
 const calendarioContainer = document.getElementById('calendario');
 
@@ -26,10 +26,7 @@ export async function carregarAgenda() {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    //carregarAgenda()
-
      if (window.location.pathname.endsWith('agenda.html')) {
-        const formAgenda = document.getElementById('agenda-form');
         formAgenda.addEventListener('submit', salvarAgendamento);
 
         btnCancelar.addEventListener('click', cancelarAgendamento);
@@ -131,7 +128,6 @@ async function exibirAgenda() {
             btnExcluir.onclick = async () => {
                 try {
                     await api.excluirDados(compromisso.id, endpoint)
-                    carregarAgenda()
                 } catch(error) {
                     alert('Erro ao excluir agendamento!')
                 }
@@ -194,29 +190,30 @@ async function salvarAgendamento(event) {
         } else {
             await api.salvarDados(agendamento, endpoint);
         }
-        carregarAgenda();
-    } catch {
-        alert('Erro ao salvar agendamento!');
+        listarTarefas();
+    } catch(error) {
+        alert('Erro ao salvar agendamento!' + error.message);
     }
 };
 
 function cancelarAgendamento() {
-  document.getElementById("agenda-form").reset();
+  formAgenda.reset();
 };
 
-async function preencherFormulario(agendamentoId) {
-        
-        const agendamento = await api.buscarDadosPorId(agendamentoId, endpoint)
+async function preencherFormulario(agendamentoId) {        
+    const agendamento = await api.buscarDadosPorId(agendamentoId, endpoint)
 
+    if (agendamento) {
         document.getElementById('id-adicionar').value = agendamento.id
         document.getElementById('titulo-adicionar').value = agendamento.Titulo
         document.getElementById('data-adicionar').value = new Date(agendamento.Data).toISOString().slice(0, 16);
         document.getElementById('categoria-adicionar').value =agendamento.Categoria
         document.getElementById('tipo-adicionar').value = agendamento.Tipo
         document.getElementById('status-adicionar').value = agendamento.Status
+    } else {
+        alert('Agendamento não encontrado!');
+    }
 };
-
-exibirAgenda(agendaConvertida);
 
 export function criarCalendario() {
     let dataAtual = new Date();
@@ -411,3 +408,4 @@ function preencherCalendario(mes, ano) {
         }
     }
 }
+exibirAgenda()
