@@ -7,7 +7,7 @@ let catalogoConvertido = [];
 const endpoint = 'catalogo';
 const linhaTabela = document.getElementById('linhas');
 
-export async function carregarTvList() {
+export async function carregarCatalogo() {
     catalogo = await api.buscarDados(endpoint);
     
     catalogoConvertido = catalogo.map(titulo => {
@@ -18,13 +18,13 @@ export async function carregarTvList() {
             Adicao: new Date(titulo.Adicao).toLocaleDateString('pt-BR')
         };
     });
-    exibirCatalogo(catalogoConvertido)
+    return catalogoConvertido;
 };
 
 //exibe estatisticas em tvlist.html
 document.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname.endsWith('tvlist.html')) {
-        carregarTvList().then(() => {
+        //carregarTvList().then(() => {
             const cards = document.querySelectorAll('.card');
             const linhas = document.querySelectorAll('.row');
             const colunas = document.querySelectorAll('.col');
@@ -84,12 +84,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 } 
             });           
-        });
+       // });
     }
 });
 
-function estatistica(tipo, elementoDestinoId) {
-    const catalogoEstatisticas = catalogoConvertido.filter(titulo => titulo.Tipo === tipo);    
+async function estatistica(tipo, elementoDestinoId) {
+    const catalogo = await carregarCatalogo();
+    const catalogoEstatisticas = catalogo.filter(titulo => titulo.Tipo === tipo);    
     const total = catalogoEstatisticas.filter(titulo => titulo.Tipo === tipo).length;
     const Dias = catalogoEstatisticas.reduce((acc, titulo) => acc + (titulo.Dias || 0), 0);
     const reassistidos = catalogoEstatisticas.reduce((acc, titulo) => acc + (titulo.Reassistindo || 0), 0);
@@ -193,16 +194,17 @@ function estatistica(tipo, elementoDestinoId) {
     }        
 };
 
-function contagemGeral(status, elementoDestinoId) {   
-    const total = catalogoConvertido.length;
-    const totalDias = catalogoConvertido.reduce((acc, titulo) => acc + (titulo.Dias || 0), 0);
-    const totalEpisodios = catalogoConvertido.reduce((acc, titulo) => acc + (titulo.Episodios || 0), 0);
-    const totalAssistidos = catalogoConvertido.reduce((acc, titulo) => acc + (titulo.Assistidos || 0), 0); 
-    const porcentagem = totalAssistidos/totalEpisodios*100   
+async function contagemGeral(status, elementoDestinoId) {   
+    const catalogo = await carregarCatalogo();
+    const total = catalogo.length;
+    const totalDias = catalogo.reduce((acc, titulo) => acc + (titulo.Dias || 0), 0);
+    const totalEpisodios = catalogo.reduce((acc, titulo) => acc + (titulo.Episodios || 0), 0);
+    const totalAssistidos = catalogo.reduce((acc, titulo) => acc + (titulo.Assistidos || 0), 0); 
+    const porcentagem = totalAssistidos/totalEpisodios*100;   
     let geral = 0;
 
     // Média de pontuação 
-    const pontuacoes = catalogoConvertido
+    const pontuacoes = catalogo
         .map(titulo => titulo.Score)
         .filter(p => typeof p === 'number' && !isNaN(p));
 
@@ -229,85 +231,124 @@ function contagemGeral(status, elementoDestinoId) {
     if (elementoDestino) {
 
         if (status === 'Progresso') {
-            elementoDestino.innerHTML = "";
-            elementoDestino.innerHTML += 
-            `
-                <h5 class="card-title">${status}</h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">${geral} de ${totalEpisodios}</h6>
+            const h6Card = document.createElement('h6');
+            h6Card.classList.add('card-subtitle', 'mb-2', 'text-body-secondary');
+            h6Card.textContent = `${geral} de ${totalEpisodios}`;
+            elementoDestino.appendChild(h6Card);
 
-                <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar text-bg-success" style="width: ${porcentagem.toFixed(1)}%">${porcentagem.toFixed(1)}%</div>
-                </div>            
-            `;
+            // Exibe a barra de progresso
+            const divProgressoContainer = document.createElement('div');
+            divProgressoContainer.classList.add('progress');
+            divProgressoContainer.setAttribute('role', 'progressbar');
+            divProgressoContainer.setAttribute('aria-label', 'Success example');
+            divProgressoContainer.setAttribute('aria-valuenow', porcentagem.toFixed(1));
+            divProgressoContainer.setAttribute('aria-valuemin', '0');
+            divProgressoContainer.setAttribute('aria-valuemax', '100');
+
+            const divProgressoBarra = document.createElement('div');
+            divProgressoBarra.classList.add('progress-bar', 'text-bg-success');
+            divProgressoBarra.style.width = `${porcentagem.toFixed(1)}%`;
+            divProgressoBarra.textContent = `${porcentagem.toFixed(1)}%`;
+            divProgressoContainer.appendChild(divProgressoBarra);
+            elementoDestino.appendChild(divProgressoContainer);
+
         } else {
-            elementoDestino.innerHTML = "";
-            elementoDestino.innerHTML += 
-            `
-                <h5 class="card-title">${status}</h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">${geral}</h6>      
-            `;
+            const h6Card = document.createElement('h6');
+            h6Card.classList.add('card-subtitle', 'mb-2', 'text-body-secondary');
+            h6Card.textContent = geral;
+            elementoDestino.appendChild(h6Card);
         }       
     }        
 };
 
-function contagemTipo(tipo, elementoDestinoId) {
-    const catalogoTipo = catalogoConvertido.filter(titulo => titulo.Tipo === tipo).length;
+async function contagemTipo(tipo, elementoDestinoId) {
+    const catalogo = await carregarCatalogo();
+    const catalogoTipo = catalogo.filter(titulo => titulo.Tipo === tipo).length;
     const elementoDestino = document.getElementById(elementoDestinoId);
 
      if (elementoDestino) {
-        elementoDestino.innerHTML = "";
-        elementoDestino.innerHTML += 
-        `
-            <h5 class="card-title">${tipo}</h5>
-            <h6 class="card-subtitle mb-2 text-body-secondary">${catalogoTipo}</h6>
-        `;
+        const h6Card = document.createElement('h6');
+        h6Card.classList.add('card-subtitle', 'mb-2', 'text-body-secondary');
+        h6Card.textContent = catalogoTipo;
+        elementoDestino.appendChild(h6Card);        
     }        
 };
 
-function contagemStatus(status, elementoDestinoId) {
-    const catalogoStatus = catalogoConvertido.filter(titulo => titulo.Status === status).length;
+async function contagemStatus(status, elementoDestinoId) {
+    const catalogo = await carregarCatalogo();
+    const catalogoStatus = catalogo.filter(titulo => titulo.Status === status).length;
     const elementoDestino = document.getElementById(elementoDestinoId);
 
      if (elementoDestino) {
-        elementoDestino.innerHTML = "";
-        elementoDestino.innerHTML += 
-        `
-            <h5 class="card-title">${status}</h5>
-            <h6 class="card-subtitle mb-2 text-body-secondary">${catalogoStatus}</h6>
-        `;
+        const h6Card = document.createElement('h6');
+        h6Card.classList.add('card-subtitle', 'mb-2', 'text-body-secondary');
+        h6Card.textContent = catalogoStatus;
+        elementoDestino.appendChild(h6Card);
     }        
 };
 
-function filtrarStatus(statusFiltro, elementoDestinoId) {
-    const catalogoFiltrado = catalogoConvertido
-                                    .filter(titulo => titulo.Status === statusFiltro)
+async function filtrarStatus(statusFiltro, elementoDestinoId) {
+    const catalogo = await carregarCatalogo();
+    const catalogoFiltrado = catalogo.filter(titulo => titulo.Status === statusFiltro)
                                     .slice(0, 4);
 
     const elementoDestino = document.getElementById(elementoDestinoId);
     if (elementoDestino) {
         elementoDestino.innerHTML = "";
         catalogoFiltrado.forEach(titulo => {
-            elementoDestino.innerHTML += 
-            `
-               <li class="list-group-item d-flex gap-2 p-0">
-                    <img src="https://github.com/twbs.png" alt="" width="60" height="80" class="flex-shrink-0">
-                    <div class="d-flex gap-2 w-100 justify-content-between align-items-center">
-                        <div class="d-flex flex-column gap-1">
-                            <h6 class="mb-0">${titulo.Titulo}</h6>
-                            <div class="progress" role="progressbar" aria-label="Progresso" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar" style="width: ${titulo.Progresso*100}%">${parseInt(titulo.Progresso*100)}%</div>
-                            </div>
-                        </div> 
-                        <small class="opacity-50 text-nowrap">${calculaTempoData(titulo.Adicao)}</small>
-                    </div>
-                </li>
-            `;
+            const li = document.createElement('li');
+            li.classList.add('list-group-item', 'd-flex', 'gap-2', 'p-0');
+
+            const imgCapa = document.createElement('img');
+            imgCapa.src = titulo.Capa
+            imgCapa.alt = titulo.Titulo;
+            imgCapa.width = 60;
+            imgCapa.height = 80;
+            imgCapa.classList.add('flex-shrink-0');
+
+            const divInfo = document.createElement('div');
+            divInfo.classList.add('d-flex', 'gap-2', 'w-100', 'justify-content-between', 'align-items-center');
+
+            const divTitulo = document.createElement('div');
+            divTitulo.classList.add('d-flex', 'flex-column', 'gap-1');
+
+            const h6Titulo = document.createElement('h6');
+            h6Titulo.classList.add('mb-0');
+            h6Titulo.textContent = titulo.Titulo;
+
+            const divProgresso = document.createElement('div');
+            divProgresso.classList.add('progress');
+            divProgresso.setAttribute('role', 'progressbar');
+            divProgresso.setAttribute('aria-label', 'Progresso');
+            divProgresso.setAttribute('aria-valuenow', titulo.Progresso * 100);
+            divProgresso.setAttribute('aria-valuemin', '0');
+            divProgresso.setAttribute('aria-valuemax', '100');
+
+            const divBarraProgresso = document.createElement('div');
+            divBarraProgresso.classList.add('progress-bar');
+            divBarraProgresso.style.width = `${titulo.Progresso * 100}%`;
+            divBarraProgresso.textContent = `${parseInt(titulo.Progresso * 100)}%`;
+
+            const smallDataAdicao = document.createElement('small');
+            smallDataAdicao.classList.add('opacity-50', 'text-nowrap');     
+            smallDataAdicao.textContent = calculaTempoData(titulo.Adicao);
+
+            divTitulo.appendChild(h6Titulo);
+            divProgresso.appendChild(divBarraProgresso);
+            divInfo.appendChild(divTitulo);
+            divInfo.appendChild(divProgresso);
+            li.appendChild(imgCapa);
+            li.appendChild(divInfo);
+            li.appendChild(smallDataAdicao);
+            elementoDestino.appendChild(li);
+            
         });
     }
 };
 
-function filtrarTipo(tipoFiltro, elementoDestinoId) {
-    const catalogoFiltrado = catalogoConvertido.filter(titulo => titulo.Tipo === tipoFiltro)
+async function filtrarTipo(tipoFiltro, elementoDestinoId) {
+    const catalogo = await carregarCatalogo();
+    const catalogoFiltrado = catalogo.filter(titulo => titulo.Tipo === tipoFiltro)
                                                 .sort((a, b) => b.Score - a.Score)
                                                 .slice(0, 4);
 
@@ -315,46 +356,80 @@ function filtrarTipo(tipoFiltro, elementoDestinoId) {
     if (elementoDestino) {
         elementoDestino.innerHTML = "";
         catalogoFiltrado.forEach(titulo => {
-            elementoDestino.innerHTML += 
-            `
-               <li class="list-group-item d-flex align-items-center gap-2 p-0">
-                    <img src="https://github.com/twbs.png" alt="" width="60" height="80" class="flex-shrink-0">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">${titulo.Titulo}</div>
-                        
-                    </div>
-                    <span class="badge text-bg-primary rounded-pill">${titulo.Score}</span>
-                </li>
-            `;
+            const li = document.createElement('li');
+            li.classList.add('list-group-item', 'd-flex', 'align-items-center', 'gap-2', 'p-0');
+
+            const imgCapa = document.createElement('img');
+            imgCapa.src = titulo.Capa;
+            imgCapa.alt = titulo.Titulo;
+            imgCapa.width = 60;
+            imgCapa.height = 80;
+            imgCapa.classList.add('flex-shrink-0');
+
+            const divTituloContainer = document.createElement('div');
+            divTituloContainer.classList.add('ms-2', 'me-auto');
+
+            const divTitulo = document.createElement('div');
+            divTitulo.classList.add('fw-bold');
+            divTitulo.textContent = titulo.Titulo;
+
+            const spanScore = document.createElement('span');
+            spanScore.classList.add('badge', 'text-bg-primary', 'rounded-pill');
+            spanScore.textContent = titulo.Score;
+
+            divTituloContainer.appendChild(divTitulo);
+            li.appendChild(imgCapa);
+            li.appendChild(divTituloContainer);
+            li.appendChild(spanScore);
+            elementoDestino.appendChild(li);
+            
         });
     }
 };
 
-function topGeral(elementoDestinoId) {
-    const catalogoFiltrado = catalogoConvertido.sort((a, b) => b.Score - a.Score)
+async function topGeral(elementoDestinoId) {
+    const catalogo = await carregarCatalogo();
+    const catalogoFiltrado = catalogo.sort((a, b) => b.Score - a.Score)
                                     .slice(0, 4);
 
     const elementoDestino = document.getElementById(elementoDestinoId);
     if (elementoDestino) {
         elementoDestino.innerHTML = "";
         catalogoFiltrado.forEach(titulo => {
-            elementoDestino.innerHTML += 
-            `
-               <li class="list-group-item d-flex align-items-center gap-2 p-0">
-                    <img src="https://github.com/twbs.png" alt="" width="60" height="80" class="flex-shrink-0">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">${titulo.Titulo}</div>
-                        
-                    </div>
-                    <span class="badge text-bg-primary rounded-pill">${titulo.Score}</span>
-                </li>
-            `;
+            const li = document.createElement('li');
+            li.classList.add('list-group-item', 'd-flex', 'align-items-center', 'gap-2', 'p-0');
+
+            const imgCapa = document.createElement('img');
+            imgCapa.src = titulo.Capa;
+            imgCapa.alt = titulo.Titulo;
+            imgCapa.width = 60;
+            imgCapa.height = 80;
+            imgCapa.classList.add('flex-shrink-0');
+
+            const divInfo = document.createElement('div');
+            divInfo.classList.add('ms-2', 'me-auto');
+
+            const divTitulo = document.createElement('div');
+            divTitulo.classList.add('fw-bold');
+
+            divTitulo.textContent = titulo.Titulo;
+            const spanScore = document.createElement('span');
+
+            spanScore.classList.add('badge', 'text-bg-primary', 'rounded-pill');
+            spanScore.textContent = titulo.Score;
+
+            divInfo.appendChild(divTitulo);
+            li.appendChild(imgCapa);
+            li.appendChild(divInfo);
+            li.appendChild(spanScore);
+            elementoDestino.appendChild(li);
         });
     }
 };
 
-function adicionadosRecentemente(elementoDestinoId) {
-    const catalogoFiltrado = catalogoConvertido
+async function adicionadosRecentemente(elementoDestinoId) {
+    const catalogo = await carregarCatalogo();
+    const catalogoFiltrado = catalogo
     .sort((a, b) => {
         const dataA = new Date(a.Adicao.split('/').reverse().join('/'));
         const dataB = new Date(b.Adicao.split('/').reverse().join('/'));
@@ -387,41 +462,85 @@ function adicionadosRecentemente(elementoDestinoId) {
     }
 };
 
-function exibirCatalogo(listaTitulos) {
+async function listarCatalogo() {    
+    const catalogo = await carregarCatalogo();
     if (!linhaTabela) return;
 
-    linhaTabela.innerHTML = ''; // Limpa antes de adicionar
+    linhaTabela.innerHTML = ''; 
 
     if ($.fn.DataTable.isDataTable('.datatable')) {
-    $('.datatable').DataTable().clear().destroy(); // 🧹 Limpa e remove o plugin
+    $('.datatable').DataTable().clear().destroy(); 
     }
 
-    listaTitulos.forEach(titulo => {
-        linhaTabela.innerHTML += 
-        `
-            <tr>
-                <th scope="row">${titulo.id}</th>
-                <td>${titulo.Titulo}</td>
-                <td class="text-center">${titulo.Tipo}</td>
-                <td class="text-center">${titulo.Status}</td>
-                <td class="text-center">${titulo.Onde}</td>
-                <td>${titulo.Inicio}</td>
-                <td>${titulo.Fim}</td>
-                <td class="text-center">${titulo.Episodios}</td>
-                <td class="text-center">${titulo.Assistidos}</td>
-                <td class="text-center">${titulo.Temporadas}</td>
-                <td class="text-center">${titulo.Score}</td>
-                <td class="text-center">${titulo.Dias}</td>
-            </tr>
-        `;
+    catalogo.forEach(titulo => {
+        const tr = document.createElement('tr');
+        const thId = document.createElement('th');  
+        thId.scope = 'row';
+        thId.textContent = titulo.id;
+
+        const tdTitulo = document.createElement('td');
+        tdTitulo.textContent = titulo.Titulo;
+
+        const tdTipo = document.createElement('td');
+        tdTipo.classList.add('text-center');
+        tdTipo.textContent = titulo.Tipo;
+
+        const tdStatus = document.createElement('td');
+        tdStatus.classList.add('text-center');
+        tdStatus.textContent = titulo.Status;
+
+        const tdOnde = document.createElement('td');
+        tdOnde.classList.add('text-center');
+        tdOnde.textContent = titulo.Onde;
+
+        const tdInicio = document.createElement('td');
+        tdInicio.textContent = titulo.Inicio;
+
+        const tdFim = document.createElement('td');
+        tdFim.textContent = titulo.Fim;
+
+        const tdEpisodios = document.createElement('td');
+        tdEpisodios.classList.add('text-center');
+        tdEpisodios.textContent = titulo.Episodios;
+
+        const tdAssistidos = document.createElement('td');
+        tdAssistidos.classList.add('text-center');
+        tdAssistidos.textContent = titulo.Assistidos;
+
+        const tdTemporadas = document.createElement('td');
+        tdTemporadas.classList.add('text-center');
+        tdTemporadas.textContent = titulo.Temporadas;
+
+        const tdScore = document.createElement('td');
+        tdScore.classList.add('text-center');
+        tdScore.textContent = titulo.Score;
+
+        const tdDias = document.createElement('td');
+        tdDias.classList.add('text-center');
+        tdDias.textContent = titulo.Dias;
+        tr.appendChild(thId);
+        tr.appendChild(tdTitulo);
+        tr.appendChild(tdTipo);
+        tr.appendChild(tdStatus);
+        tr.appendChild(tdOnde);
+        tr.appendChild(tdInicio);
+        tr.appendChild(tdFim);
+        tr.appendChild(tdEpisodios);
+        tr.appendChild(tdAssistidos);
+        tr.appendChild(tdTemporadas);
+        tr.appendChild(tdScore);
+        tr.appendChild(tdDias);
+        linhaTabela.appendChild(tr);
+        
     });
 
     // Dispara DataTable
     document.dispatchEvent(new Event('Renderizado'));
 };
 
-export function assistindoPrincipal(statusFiltro, elementoDestinoId) {
-    const catalogoFiltrado = catalogoConvertido.filter(titulo => titulo.Status === statusFiltro)
+export async function assistindoPrincipal(statusFiltro, elementoDestinoId) {
+    const catalogo = await carregarCatalogo();
+    const catalogoFiltrado = catalogo.filter(titulo => titulo.Status === statusFiltro)
                                     .slice(0, 4);
 
     const elementoDestino = document.getElementById(elementoDestinoId);
@@ -451,12 +570,12 @@ export function assistindoPrincipal(statusFiltro, elementoDestinoId) {
                 `;
             });
         } else {
-            elementoDestino.innerHTML += 
-            `
-            <p class="mensagem-tv">Não há programas em andamento no momento.</p>             
-            `
-        }
+            const pMensagem = document.createElement('p');
+            pMensagem.classList.add('mensagem-curso');
+            pMensagem.textContent = 'Não há títulos em andamento no momento.';
+            elementoDestino.appendChild(pMensagem);
+        } 
     }
 };
 
-carregarTvList()
+listarCatalogo()

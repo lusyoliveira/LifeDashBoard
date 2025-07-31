@@ -4,7 +4,7 @@ import apiClima  from './apiClima.js';
 let configuracoes = [];
 let configuracoesConvertido = [];
 
-const endpoint = 'Configuracoes';
+const endpoint = 'configuracoes';
 
 export async function carregarConfiguracores() {
     configuracoes = await api.buscarDados(endpoint);

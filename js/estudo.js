@@ -81,14 +81,15 @@ async function listarCursos() {
 
 export async function cursandoPrincipal(statusFiltro, elementoDestinoId) {
     const elementoDestino = document.getElementById(elementoDestinoId);
-    const cursos = await carregarCursos().filter(curso => curso.Status === statusFiltro)
+    const cursos = await carregarCursos()    
+    const cursosFiltrados = cursos.filter(curso => curso.Status === statusFiltro)
                                     .slice(0, 4);
                                     
     if (elementoDestino) {
         elementoDestino.innerHTML = "";
 
-        if (!cursos.length === 0) {
-            cursos.forEach(curso => {
+        if (!cursosFiltrados.length === 0) {
+            cursosFiltrados.forEach(curso => {
             elementoDestino.innerHTML += 
             `
             <div class="card shadow-sm"> 
@@ -110,7 +111,6 @@ export async function cursandoPrincipal(statusFiltro, elementoDestinoId) {
             `;
         });
         } else {
-
             const pMensagem = document.createElement('p');
             pMensagem.classList.add('mensagem-curso');
             pMensagem.textContent = 'Não há cursos em andamento no momento.';
