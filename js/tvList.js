@@ -441,23 +441,55 @@ async function adicionadosRecentemente(elementoDestinoId) {
     if (elementoDestino) {
         elementoDestino.innerHTML = "";
         catalogoFiltrado.forEach(titulo => {
-            elementoDestino.innerHTML += 
-            `            
-                <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg m-1" style="background-color: #fff;">
-                    <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                        <h4 class="pt-5 mt-5 mb-2 display-7 lh-1 fw-bold">${titulo.Titulo}</h4>
-                            <ul class="d-flex justify-content-between align-items-lg-center gap-3 list-unstyled mt-auto">
-                                <li class="w-75">
-                                    <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar" style="width: ${titulo.Progresso*100}%">${parseInt(titulo.Progresso*100)}%</div>
-                                    </div>
-                                </li>
-                                <li class="d-flex gap-3 align-items-center"> 
-                                    <i class="bi bi-calendar3"></i> <small>${titulo.Adicao}</small></li>
-                            </ul>
-                    </div>
-                </div>
-            `;
+            const divCardContainer = document.createElement('div');
+            divCardContainer.classList.add('card', 'card-cover', 'h-100', 'overflow-hidden', 'text-bg-dark', 'rounded-4', 'shadow-lg', 'm-1');
+            divCardContainer.style.backgroundImage = `url(${titulo.Capa})`;
+            divCardContainer.style.backgroundSize = 'cover';
+            divCardContainer.style.backgroundPosition = 'center';
+
+            const divCardBody = document.createElement('div');
+            divCardBody.classList.add('d-flex', 'flex-column', 'h-100', 'p-5', 'pb-3', 'text-white', 'text-shadow-1');
+
+            const h4Titulo = document.createElement('h4');
+            h4Titulo.classList.add('pt-5', 'mt-5', 'mb-2', 'display-7', 'lh-1', 'fw-bold');
+            h4Titulo.textContent = titulo.Titulo;
+
+            const ulInfo = document.createElement('ul');
+            ulInfo.classList.add('d-flex', 'justify-content-between', 'align-items-lg-center', 'gap-3', 'list-unstyled', 'mt-auto');
+            const liProgresso = document.createElement('li');
+            liProgresso.classList.add('w-75');
+
+            const divProgresso = document.createElement('div');
+            divProgresso.classList.add('progress');
+            divProgresso.setAttribute('role', 'progressbar');
+            divProgresso.setAttribute('aria-label', 'Example with label');
+            divProgresso.setAttribute('aria-valuenow', titulo.Progresso * 100);
+            divProgresso.setAttribute('aria-valuemin', '0');
+            divProgresso.setAttribute('aria-valuemax', '100');
+
+            const divBarraProgresso = document.createElement('div');
+            divBarraProgresso.classList.add('progress-bar');
+            divBarraProgresso.style.width = `${titulo.Progresso * 100}%`;
+            divBarraProgresso.textContent = `${parseInt(titulo.Progresso * 100)}%`;
+            divProgresso.appendChild(divBarraProgresso);
+            liProgresso.appendChild(divProgresso);
+
+            const liDataAdicao = document.createElement('li');
+            liDataAdicao.classList.add('d-flex', 'gap-3', 'align-items-center');
+
+            const iIcon = document.createElement('i');
+            iIcon.classList.add('bi', 'bi-calendar3');
+
+            const smallDataAdicao = document.createElement('small');
+            smallDataAdicao.textContent = titulo.Adicao;
+            liDataAdicao.appendChild(iIcon);
+            liDataAdicao.appendChild(smallDataAdicao);
+            ulInfo.appendChild(liProgresso);
+            ulInfo.appendChild(liDataAdicao);
+            divCardBody.appendChild(h4Titulo);
+            divCardBody.appendChild(ulInfo);
+            divCardContainer.appendChild(divCardBody);
+            elementoDestino.appendChild(divCardContainer);
         });
     }
 };
@@ -530,11 +562,8 @@ async function listarCatalogo() {
         tr.appendChild(tdTemporadas);
         tr.appendChild(tdScore);
         tr.appendChild(tdDias);
-        linhaTabela.appendChild(tr);
-        
+        linhaTabela.appendChild(tr);        
     });
-
-    // Dispara DataTable
     document.dispatchEvent(new Event('Renderizado'));
 };
 
@@ -549,25 +578,52 @@ export async function assistindoPrincipal(statusFiltro, elementoDestinoId) {
 
          if (!catalogoFiltrado.length == 0) {
             catalogoFiltrado.forEach(titulo => {
-                elementoDestino.innerHTML += 
-                `
-                <div class="card shadow-sm"> 
-                    <svg aria-label="Placeholder: Thumbnail" class="bd-placeholder-img card-img-top" height="225" preserveAspectRatio="xMidYMid slice" role="img" width="100%" xmlns="http://www.w3.org/2000/svg">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="#55595c"></rect>
-                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                    </svg>
-                    <div class="card-body" id="principal-assistindo">
-                        <h5 class="card-title">${titulo.Titulo}</h5>
-                        <div class="d-flex justify-content-between align-items-center"> 
-                            <span class="badge text-bg-info">${titulo.Tipo}</span>
-                        </div>
-                        <div class="progress mt-2" role="progressbar" aria-label="Progresso Assistindo" aria-valuenow="${titulo.Progresso}" aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar bg-success" style="width: ${titulo.Progresso*100}%">${titulo.Progresso*100}%</div>
-                        </div>
-                    </div>
-                </div>                
-                `;
+                const divContainer = document.createElement('div');
+                divContainer.classList.add('card', 'shadow-sm');
+
+                const imgCapa = document.createElement('img');
+                imgCapa.classList.add('card-img-top');
+                imgCapa.src = titulo.Capa;
+                imgCapa.alt = titulo.Titulo;
+                imgCapa.height = 250;
+                imgCapa.width = '100%';
+
+                const divCardBody = document.createElement('div');
+                divCardBody.classList.add('card-body');
+                divCardBody.id = 'principal-assistindo';
+
+                const h5Titulo = document.createElement('h5');
+                h5Titulo.classList.add('card-title');
+                h5Titulo.textContent = titulo.Titulo;
+
+                const divBadge = document.createElement('div');
+                divBadge.classList.add('d-flex', 'justify-content-between', 'align-items-center');
+
+                const spanBadge = document.createElement('span');
+                spanBadge.classList.add('badge', 'text-bg-info');
+                spanBadge.textContent = titulo.Tipo;
+
+                const divProgresso = document.createElement('div');
+                divProgresso.classList.add('progress', 'mt-2');
+                divProgresso.setAttribute('role', 'progressbar');
+                divProgresso.setAttribute('aria-label', 'Progresso Assistindo');
+                divProgresso.setAttribute('aria-valuenow', titulo.Progresso);
+                divProgresso.setAttribute('aria-valuemin', '0');
+                divProgresso.setAttribute('aria-valuemax', '100');
+
+                const divBarraProgresso = document.createElement('div');
+                divBarraProgresso.classList.add('progress-bar', 'bg-success');
+                divBarraProgresso.style.width = `${titulo.Progresso * 100}%`;
+                divBarraProgresso.textContent = `${parseInt(titulo.Progresso * 100)}%`;
+
+                divProgresso.appendChild(divBarraProgresso);
+                divCardBody.appendChild(h5Titulo);
+                divBadge.appendChild(spanBadge);
+                divCardBody.appendChild(divBadge);
+                divCardBody.appendChild(divProgresso);
+                divContainer.appendChild(imgCapa);
+                divContainer.appendChild(divCardBody);
+                elementoDestino.appendChild(divContainer);
             });
         } else {
             const pMensagem = document.createElement('p');

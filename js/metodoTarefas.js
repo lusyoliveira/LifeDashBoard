@@ -125,9 +125,15 @@ export async function listarTarefas() {
     if (tarefas.length >= 1) {
         tarefas.forEach(tarefa => {
             const labelTarefa = document.createElement('label');
-            labelTarefa.classList.add('list-group-item', 'd-flex', 'gap-3', 'text-start');
+            labelTarefa.classList.add('list-group-item', 'd-flex', 'flex-column');
+
+            const divTarefa = document.createElement('div');
+            divTarefa.classList.add('d-flex', 'gap-3', 'align-items-center');
 
             const checkTarefa = document.createElement('input');
+            if (tarefa.Feito) {                
+            checkTarefa.setAttribute('checked', 'checked')
+            } 
             checkTarefa.classList.add('form-check-input', 'flex-shrink-0');
             checkTarefa.type = 'checkbox';
             checkTarefa.id = tarefa.id 
@@ -144,11 +150,18 @@ export async function listarTarefas() {
             checkTarefa.addEventListener('click', function() {
                 if (checkTarefa.checked) {
                     strongTarefa.style.textDecoration = "line-through";
+                    tarefa.Feito = true;
+                    api.atualizarDados(tarefa, endpoint)
                 } else {
                     strongTarefa.style.textDecoration = "none";
+                    tarefa.Feito = false;
+                    api.atualizarDados(tarefa, endpoint)
                 }
             })
     
+            const divBotoes = document.createElement('div');
+            divBotoes.classList.add('d-flex', 'gap-2', 'align-items-center');
+
             const btnEditar = document.createElement('button')
             btnEditar.classList.add('btn')
             btnEditar.setAttribute('type', 'button')
@@ -164,17 +177,34 @@ export async function listarTarefas() {
             const iconeEditar = document.createElement('i')
             iconeEditar.classList.add('bi', 'bi-pencil-fill')
             iconeEditar.setAttribute ('id', 'editar-tarefa')
+
+            const btnExcluir = document.createElement('button')
+            btnExcluir.classList.add('btn')
+            btnExcluir.setAttribute('type', 'button')
+            btnExcluir.setAttribute('id', 'excluir-editar')
+            btnExcluir.setAttribute('title', 'Excluir Tarefa')
+            btnExcluir.onclick = async ()  => {                      
+                    api.excluirDados(tarefa.id, endpoint)
+            }
+    
+            const iconeExcluir = document.createElement('i')
+            iconeExcluir.classList.add('bi', 'bi-trash')
+            iconeExcluir.setAttribute ('id', 'excluir-tarefa')
             
             const smallTarefa = document.createElement('small');
             smallTarefa.classList.add('d-block', 'text-body-secondary');
             smallTarefa.innerText = `Adicionado em ${tarefa.Adicionado}`;
     
             btnEditar.appendChild(iconeEditar);
-            labelTarefa.appendChild(checkTarefa);
-            labelTarefa.appendChild(spanTarefa);
-            labelTarefa.appendChild(btnEditar);
-            spanTarefa.appendChild(strongTarefa);    
-            spanTarefa.appendChild(smallTarefa);
+            btnExcluir.appendChild(iconeExcluir);
+            spanTarefa.appendChild(strongTarefa); 
+            divTarefa.appendChild(checkTarefa);
+            divTarefa.appendChild(spanTarefa);
+            labelTarefa.appendChild(divTarefa);
+            divBotoes.appendChild(smallTarefa);
+            divBotoes.appendChild(btnEditar);
+            divBotoes.appendChild(btnExcluir);
+            labelTarefa.appendChild(divBotoes);
             liTarefa.appendChild(labelTarefa);    
         })
     } else {
@@ -184,24 +214,35 @@ export async function listarTarefas() {
         liTarefa.appendChild(pMensagem);
     }
 };
+async function gerarID() {    
+    const tarefas = await carregarTarefas() 
+    const ids = tarefas.map(c => Number(c.id));
+    const maiorId = Math.max(0, ...ids);
+    return maiorId + 1
+};
 
 async function salvarTarefa(event) {
     event.preventDefault();
+
     const data = new Date();
     const dataConvertida = converteDataUTC(data.toISOString().slice(0, 16));
-
+    const idTarefa = document.getElementById('id-tarefa').value;
+    const novoId = idTarefa ? Number(idTarefa) : await gerarID();
+        
     const tarefa = {
+        id: novoId.toString(),
         tarefa: inputTarefa.value,
-        Adicionado: dataConvertida
+        Adicionado: dataConvertida,
+        Feito: false
     };
     
-    if (tarefa.descricao === '') {
+    if (tarefa.tarefa === '') {
         alert('É necessário inserir uma tarefa!');
         return;
     }
-    
+
     try {
-        if (tarefa) {
+        if (idTarefa) {
             await api.atualizarDados(tarefa, endpoint);
             imagemBotao.classList.remove('bi', 'bi-floppy-fill');
             imagemBotao.classList.add('bi', 'bi-plus-lg');
@@ -212,7 +253,7 @@ async function salvarTarefa(event) {
     } catch (error) {
         alert('Erro ao salvar a tarefa: ' + error.message);
     }
-}
+};
 
 async function preencherInputTarefa(tarefaId) {
     const tarefa = await api.buscarDadosPorId(tarefaId, endpoint);
@@ -223,7 +264,9 @@ async function preencherInputTarefa(tarefaId) {
     } else {
         alert('Tarefa não encontrada!');
     }
-}
+};
+
+
 
 
     

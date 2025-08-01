@@ -178,3 +178,8 @@
     margin: 2px;
     padding: 3px;
 }
+.ti {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
