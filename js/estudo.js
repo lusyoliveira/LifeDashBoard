@@ -90,25 +90,57 @@ export async function cursandoPrincipal(statusFiltro, elementoDestinoId) {
 
         if (!cursosFiltrados.length === 0) {
             cursosFiltrados.forEach(curso => {
-            elementoDestino.innerHTML += 
-            `
-            <div class="card shadow-sm"> 
-                <svg aria-label="Placeholder: Thumbnail" class="bd-placeholder-img card-img-top" height="225" preserveAspectRatio="xMidYMid slice" role="img" width="100%" xmlns="http://www.w3.org/2000/svg">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#55595c"></rect>
-                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                </svg>
-                <div class="card-body" id="principal-assistindo">
-                    <h5 class="card-title">${curso.Name}</h5>
-                    <div class="d-flex justify-content-between align-items-center"> 
-                        <span class="badge text-bg-info">${curso.Assunto}</span>
-                    </div>
-                    <div class="progress mt-2" role="progressbar" aria-label="Progresso Assistindo" aria-valuenow="${curso.Progresso*100}" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar bg-success" style="width: ${curso.Progresso*100}%">${curso.Progresso*100}%</div>
-                    </div>
-                </div>
-            </div>                
-            `;
+                const divContainer = document.createElement('div');
+                divContainer.classList.add('col');
+
+                const divContainerCard = document.createElement('div');
+                divContainerCard.classList.add('card', 'shadow-sm');
+
+                const imgCapa = document.createElement('img');
+                imgCapa.classList.add('card-img-top');
+                imgCapa.src = curso.Capa;
+                imgCapa.alt = curso.Name;
+                imgCapa.height = 250;
+                imgCapa.width = '100%';
+
+                const divCardBody = document.createElement('div');
+                divCardBody.classList.add('card-body');
+                divCardBody.id = 'principal-assistindo';
+
+                const h5Titulo = document.createElement('h5');
+                h5Titulo.classList.add('card-title');
+                h5Titulo.textContent = curso.Name;
+
+                const divBadge = document.createElement('div');
+                divBadge.classList.add('d-flex', 'justify-content-between', 'align-items-center');
+
+                const spanBadge = document.createElement('span');
+                spanBadge.classList.add('badge', 'text-bg-info');
+                spanBadge.textContent = curso.Assunto;
+
+                const divProgresso = document.createElement('div');
+                divProgresso.classList.add('progress', 'mt-2');
+                divProgresso.setAttribute('role', 'progressbar');
+                divProgresso.setAttribute('aria-label', 'Progresso Assistindo');
+                divProgresso.setAttribute('aria-valuenow', curso.Progresso);
+                divProgresso.setAttribute('aria-valuemin', '0');
+                divProgresso.setAttribute('aria-valuemax', '100');
+
+                const divBarraProgresso = document.createElement('div');
+                divBarraProgresso.classList.add('progress-bar', 'bg-success');
+                divBarraProgresso.style.width = `${curso.Progresso * 100}%`;
+                divBarraProgresso.textContent = `${parseInt(curso.Progresso * 100)}%`;
+
+                divProgresso.appendChild(divBarraProgresso);
+                divCardBody.appendChild(h5Titulo);
+                divBadge.appendChild(spanBadge);
+                divCardBody.appendChild(divBadge);
+                divCardBody.appendChild(divProgresso);
+                divContainerCard.appendChild(imgCapa);
+                divContainerCard.appendChild(divCardBody);
+                divContainer.appendChild(divContainerCard);
+                elementoDestino.appendChild(divContainer);
+           
         });
         } else {
             const pMensagem = document.createElement('p');

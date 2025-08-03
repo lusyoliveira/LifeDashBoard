@@ -5,10 +5,7 @@ const inputIdTarefa = document.getElementById('id-tarefa');
 const inputTarefa = document.getElementById('tarefa');
 const botaoTarefa = document.getElementById('adiciona-tarefa');
 const liTarefa = document.getElementById('lista-tarefa');
-const imagemBotao  = botaoTarefa.querySelector('i');
-const listaTarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
 
-let contador = 0;
 let tarefas = [];
 let tarefasConvertida = [];
 
@@ -28,99 +25,21 @@ export async function carregarTarefas() {
     });
     return tarefasConvertida
 };
-
-//Adiciona tarefa
-botaoTarefa.addEventListener("click", (evento) => { 
-    evento.preventDefault();          
-    salvarTarefa(evento);
-    // const tarefa = {
-    //     descricao: inputTarefa.value,
-    //     data: criarData()
-    // }
-    // listaTarefas.push(tarefa)
-    // const criaElementoTarefa = adicionarTarefa(tarefa);
-    // liTarefa.appendChild(criaElementoTarefa)
-    // atualizarTarefa()
-    // inputTarefa.value = '';
-    // verificaLista(liTarefa);
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.location.pathname.endsWith('index.html')) {
+               
+        //Adiciona tarefa
+        botaoTarefa.addEventListener("click", (evento) => { 
+            evento.preventDefault();          
+            salvarTarefa(evento);
+        });
+                    
+    }
 });
-
-// function atualizarTarefa() {
-//     localStorage.setItem('tarefas', JSON.stringify(listaTarefas))
-// };
-
-// export function adicionarTarefa(tarefa) {
-//     if (tarefa.value === '') {
-//         alert('É necessário inserir uma tarefa!');
-//         return
-//     }
-//    //Constroi lista de tarefas
-//     const labelTarefa = document.createElement('label');
-//     labelTarefa.classList.add('list-group-item', 'd-flex', 'gap-3', 'text-start');
-//     const checkTarefa = document.createElement('input');
-//     checkTarefa.classList.add('form-check-input', 'flex-shrink-0');
-//     checkTarefa.type = 'checkbox';
-//     checkTarefa.id = 'checkbox-tarefa-' + contador++;
-//     checkTarefa.value = '';
-//     checkTarefa.style = 'font-size: 1.375em';
-//     const spanTarefa = document.createElement('span');
-//     spanTarefa.classList.add('pt-1', 'form-checked-content');
-//     const strongTarefa = document.createElement('strong');
-//     strongTarefa.innerText = tarefa.descricao;
-
-//      //Estiliza nome do item
-//     checkTarefa.addEventListener('click', function() {
-//         if (checkTarefa.checked) {
-//             strongTarefa.style.textDecoration = "line-through";
-//         } else {
-//             strongTarefa.style.textDecoration = "none";
-//         }
-//     })
-
-//     const btnEditar = document.createElement('button')
-//     btnEditar.classList.add('btn')
-//     btnEditar.setAttribute('type', 'button')
-//     btnEditar.setAttribute('id', 'botao-editar')
-//     btnEditar.setAttribute('title', 'Editar Tarefa')
-//     // btnEditar.onclick = () => function() {
-//     //   inputTarefa.value = strongTarefa.textContent
-//     // }
-
-//     const iconeEditar = document.createElement('i')
-//     iconeEditar.classList.add('bi', 'bi-pencil-fill')
-//     iconeEditar.setAttribute ('id', 'editar-tarefa')
-    
-//     const smallTarefa = document.createElement('small');
-//     smallTarefa.classList.add('d-block', 'text-body-secondary');
-//     smallTarefa.innerText = tarefa.data;
-
-//     btnEditar.appendChild(iconeEditar);
-//     labelTarefa.appendChild(checkTarefa);
-//     labelTarefa.appendChild(spanTarefa);
-//     labelTarefa.appendChild(btnEditar);
-//     spanTarefa.appendChild(strongTarefa);    
-//     spanTarefa.appendChild(smallTarefa);
-    
-//     return labelTarefa
-// };
-
-// export  function verificaLista(listaTarefa) {
-//     const itemTarefa = listaTarefa.querySelectorAll('label');
-//     if (itemTarefa.length === 0) {
-//         mensagemTarefa.style.display = 'block';
-//     } else {
-//         mensagemTarefa.style.display = 'none';
-//     }
-// };
-
-// listaTarefas.forEach(tarefa => {
-//     const criaElementoTarefa = adicionarTarefa(tarefa);
-//     liTarefa.appendChild(criaElementoTarefa)
-//     verificaLista(liTarefa);
-// });
 
 export async function listarTarefas() {
     const tarefas = await carregarTarefas() 
+    const imagemBotao  = botaoTarefa.querySelector('i');
 
     if (tarefas.length >= 1) {
         tarefas.forEach(tarefa => {
@@ -225,6 +144,7 @@ async function salvarTarefa(event) {
     event.preventDefault();
 
     const data = new Date();
+    const imagemBotao  = botaoTarefa.querySelector('i');
     const dataConvertida = converteDataUTC(data.toISOString().slice(0, 16));
     const idTarefa = document.getElementById('id-tarefa').value;
     const novoId = idTarefa ? Number(idTarefa) : await gerarID();
@@ -253,6 +173,7 @@ async function salvarTarefa(event) {
     } catch (error) {
         alert('Erro ao salvar a tarefa: ' + error.message);
     }
+    inputTarefa.value = ''
 };
 
 async function preencherInputTarefa(tarefaId) {

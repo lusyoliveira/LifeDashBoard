@@ -131,27 +131,27 @@ async function exibirAgenda() {
                 } catch(error) {
                     alert('Erro ao excluir agendamento!')
                 }
-        }
+            }
 
-        const iconeExcluir = document.createElement('i')
-        iconeExcluir.classList.add('bi', 'bi-trash')
-        iconeExcluir.setAttribute('id','excluir-agenda')
+            const iconeExcluir = document.createElement('i')
+            iconeExcluir.classList.add('bi', 'bi-trash')
+            iconeExcluir.setAttribute('id','excluir-agenda')
 
-        btnEditar.appendChild(iconeEditar)
-        btnExcluir.appendChild(iconeExcluir)
-        tdBtnEditar.appendChild(btnEditar)
-        tdBtnExcluir.appendChild(btnExcluir)
-        tr.appendChild(th)
-        tr.appendChild(tdTitulo)
-        tr.appendChild(tdStatus)
-        tr.appendChild(tdCategoria)
-        tr.appendChild(tdTipo)
-        tr.appendChild(tdData)
-        tr.appendChild(tdBtnEditar)
-        tr.appendChild(tdBtnExcluir)
+            btnEditar.appendChild(iconeEditar)
+            btnExcluir.appendChild(iconeExcluir)
+            tdBtnEditar.appendChild(btnEditar)
+            tdBtnExcluir.appendChild(btnExcluir)
+            tr.appendChild(th)
+            tr.appendChild(tdTitulo)
+            tr.appendChild(tdStatus)
+            tr.appendChild(tdCategoria)
+            tr.appendChild(tdTipo)
+            tr.appendChild(tdData)
+            tr.appendChild(tdBtnEditar)
+            tr.appendChild(tdBtnExcluir)
 
-        linhaTabela.appendChild(tr)
-    });
+            linhaTabela.appendChild(tr)
+        });
     
     document.dispatchEvent(new Event('Renderizado'));
 };

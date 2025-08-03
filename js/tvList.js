@@ -6,6 +6,8 @@ let catalogoConvertido = [];
 
 const endpoint = 'catalogo';
 const linhaTabela = document.getElementById('linhas');
+const formCatalogo = document.getElementById('catalogo-form');
+const btnCancelar = document.getElementById('cancelar-catalogo');
 
 export async function carregarCatalogo() {
     catalogo = await api.buscarDados(endpoint);
@@ -24,10 +26,12 @@ export async function carregarCatalogo() {
 //exibe estatisticas em tvlist.html
 document.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname.endsWith('tvlist.html')) {
-        //carregarTvList().then(() => {
             const cards = document.querySelectorAll('.card');
             const linhas = document.querySelectorAll('.row');
             const colunas = document.querySelectorAll('.col');
+
+            formCatalogo.addEventListener('submit', salvarTitulo);
+            btnCancelar.addEventListener('click', cancelarTitulo);
 
             linhas.forEach(linha => {
                 if (linha.dataset.filtro === 'recentes') {
@@ -83,8 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         contagemTipo(tipo, body.id);
                     }
                 } 
-            });           
-       // });
+            });   
     }
 });
 
@@ -288,12 +291,16 @@ async function contagemStatus(status, elementoDestinoId) {
 };
 
 async function filtrarStatus(statusFiltro, elementoDestinoId) {
+    const elementoDestino = document.getElementById(elementoDestinoId);
     const catalogo = await carregarCatalogo();
     const catalogoFiltrado = catalogo.filter(titulo => titulo.Status === statusFiltro)
+                                    .sort((a, b) => {
+        const dataA = new Date(a.Adicao.split('/').reverse().join('/'));
+        const dataB = new Date(b.Adicao.split('/').reverse().join('/'));
+        return dataB - dataA})
                                     .slice(0, 4);
 
-    const elementoDestino = document.getElementById(elementoDestinoId);
-    if (elementoDestino) {
+     if (elementoDestino) {
         elementoDestino.innerHTML = "";
         catalogoFiltrado.forEach(titulo => {
             const li = document.createElement('li');
@@ -320,14 +327,14 @@ async function filtrarStatus(statusFiltro, elementoDestinoId) {
             divProgresso.classList.add('progress');
             divProgresso.setAttribute('role', 'progressbar');
             divProgresso.setAttribute('aria-label', 'Progresso');
-            divProgresso.setAttribute('aria-valuenow', titulo.Progresso * 100);
+            divProgresso.setAttribute('aria-valuenow', titulo.Status === 'Planejado' ? 0 : (titulo.Assistidos/titulo.Episodios).toFixed(1)*100);
             divProgresso.setAttribute('aria-valuemin', '0');
             divProgresso.setAttribute('aria-valuemax', '100');
 
             const divBarraProgresso = document.createElement('div');
             divBarraProgresso.classList.add('progress-bar');
-            divBarraProgresso.style.width = `${titulo.Progresso * 100}%`;
-            divBarraProgresso.textContent = `${parseInt(titulo.Progresso * 100)}%`;
+            divBarraProgresso.style.width = `${titulo.Status === 'Planejado' ? 0 : (titulo.Assistidos/titulo.Episodios).toFixed(1)*100}%`;
+            divBarraProgresso.textContent =  `${titulo.Status === 'Planejado' ? 0 : (titulo.Assistidos/titulo.Episodios).toFixed(1)*100}%`;
 
             const smallDataAdicao = document.createElement('small');
             smallDataAdicao.classList.add('opacity-50', 'text-nowrap');     
@@ -336,7 +343,7 @@ async function filtrarStatus(statusFiltro, elementoDestinoId) {
             divTitulo.appendChild(h6Titulo);
             divProgresso.appendChild(divBarraProgresso);
             divInfo.appendChild(divTitulo);
-            divInfo.appendChild(divProgresso);
+            divTitulo.appendChild(divProgresso);
             li.appendChild(imgCapa);
             li.appendChild(divInfo);
             li.appendChild(smallDataAdicao);
@@ -463,14 +470,14 @@ async function adicionadosRecentemente(elementoDestinoId) {
             divProgresso.classList.add('progress');
             divProgresso.setAttribute('role', 'progressbar');
             divProgresso.setAttribute('aria-label', 'Example with label');
-            divProgresso.setAttribute('aria-valuenow', titulo.Progresso * 100);
+            divProgresso.setAttribute('aria-valuenow', titulo.Status === 'Planejado' ? 0 : (titulo.Assistidos/titulo.Episodios).toFixed(1)*100);
             divProgresso.setAttribute('aria-valuemin', '0');
             divProgresso.setAttribute('aria-valuemax', '100');
 
             const divBarraProgresso = document.createElement('div');
             divBarraProgresso.classList.add('progress-bar');
-            divBarraProgresso.style.width = `${titulo.Progresso * 100}%`;
-            divBarraProgresso.textContent = `${parseInt(titulo.Progresso * 100)}%`;
+            divBarraProgresso.style.width = `${titulo.Status === 'Planejado' ? 0 : (titulo.Assistidos/titulo.Episodios).toFixed(1)*100}%`;
+            divBarraProgresso.textContent = `${titulo.Status === 'Planejado' ? 0 : (titulo.Assistidos/titulo.Episodios).toFixed(1)*100}%`;
             divProgresso.appendChild(divBarraProgresso);
             liProgresso.appendChild(divProgresso);
 
@@ -550,6 +557,36 @@ async function listarCatalogo() {
         const tdDias = document.createElement('td');
         tdDias.classList.add('text-center');
         tdDias.textContent = titulo.Dias;
+
+         const tdBtnEditar = document.createElement('td')
+        const tdBtnExcluir = document.createElement('td')
+
+        const btnEditar = document.createElement('button')
+        btnEditar.classList.add('btn', 'btn-primary')
+        btnEditar.onclick = () => preencherTitulo(titulo.id)
+
+        const iconeEditar = document.createElement('i')
+        iconeEditar.classList.add('bi', 'bi-pencil-fill')
+        iconeEditar.setAttribute ('id', 'editar-agenda')
+
+        const btnExcluir = document.createElement('button')
+        btnExcluir.classList.add('btn', 'btn-danger')        
+        btnExcluir.onclick = async () => {
+            try {
+                await api.excluirDados(titulo.id, endpoint)
+            } catch(error) {
+                alert('Erro ao excluir agendamento!')
+            }
+        }
+
+        const iconeExcluir = document.createElement('i')
+        iconeExcluir.classList.add('bi', 'bi-trash')
+        iconeExcluir.setAttribute('id','excluir-agenda')
+
+        btnEditar.appendChild(iconeEditar)
+        btnExcluir.appendChild(iconeExcluir)
+        tdBtnEditar.appendChild(btnEditar)
+        tdBtnExcluir.appendChild(btnExcluir)
         tr.appendChild(thId);
         tr.appendChild(tdTitulo);
         tr.appendChild(tdTipo);
@@ -561,7 +598,9 @@ async function listarCatalogo() {
         tr.appendChild(tdAssistidos);
         tr.appendChild(tdTemporadas);
         tr.appendChild(tdScore);
-        tr.appendChild(tdDias);
+        tr.appendChild(tdDias);        
+        tr.appendChild(tdBtnEditar)
+        tr.appendChild(tdBtnExcluir)
         linhaTabela.appendChild(tr);        
     });
     document.dispatchEvent(new Event('Renderizado'));
@@ -579,7 +618,10 @@ export async function assistindoPrincipal(statusFiltro, elementoDestinoId) {
          if (!catalogoFiltrado.length == 0) {
             catalogoFiltrado.forEach(titulo => {
                 const divContainer = document.createElement('div');
-                divContainer.classList.add('card', 'shadow-sm');
+                divContainer.classList.add('col');
+
+                const divContainerCard = document.createElement('div');
+                divContainerCard.classList.add('card', 'shadow-sm');
 
                 const imgCapa = document.createElement('img');
                 imgCapa.classList.add('card-img-top');
@@ -607,22 +649,23 @@ export async function assistindoPrincipal(statusFiltro, elementoDestinoId) {
                 divProgresso.classList.add('progress', 'mt-2');
                 divProgresso.setAttribute('role', 'progressbar');
                 divProgresso.setAttribute('aria-label', 'Progresso Assistindo');
-                divProgresso.setAttribute('aria-valuenow', titulo.Progresso);
+                divProgresso.setAttribute('aria-valuenow', titulo.Status === 'Planejado' ? 0 : (titulo.Assistidos/titulo.Episodios).toFixed(1)*100);
                 divProgresso.setAttribute('aria-valuemin', '0');
                 divProgresso.setAttribute('aria-valuemax', '100');
 
                 const divBarraProgresso = document.createElement('div');
                 divBarraProgresso.classList.add('progress-bar', 'bg-success');
-                divBarraProgresso.style.width = `${titulo.Progresso * 100}%`;
-                divBarraProgresso.textContent = `${parseInt(titulo.Progresso * 100)}%`;
+                divBarraProgresso.style.width = `${titulo.Status === 'Planejado' ? 0 : (titulo.Assistidos/titulo.Episodios).toFixed(1)*100}%`;
+                divBarraProgresso.textContent = `${titulo.Status === 'Planejado' ? 0 : (titulo.Assistidos/titulo.Episodios).toFixed(1)*100}%`;
 
                 divProgresso.appendChild(divBarraProgresso);
                 divCardBody.appendChild(h5Titulo);
                 divBadge.appendChild(spanBadge);
                 divCardBody.appendChild(divBadge);
                 divCardBody.appendChild(divProgresso);
-                divContainer.appendChild(imgCapa);
-                divContainer.appendChild(divCardBody);
+                divContainerCard.appendChild(imgCapa);
+                divContainerCard.appendChild(divCardBody);
+                divContainer.appendChild(divContainerCard);
                 elementoDestino.appendChild(divContainer);
             });
         } else {
@@ -631,6 +674,93 @@ export async function assistindoPrincipal(statusFiltro, elementoDestinoId) {
             pMensagem.textContent = 'Não há títulos em andamento no momento.';
             elementoDestino.appendChild(pMensagem);
         } 
+    }
+};
+async function gerarID() {    
+    const tarefas = await carregarCatalogo() 
+    const ids = tarefas.map(c => Number(c.id));
+    const maiorId = Math.max(0, ...ids);
+    return maiorId + 1
+};
+
+async function salvarTitulo(event) {
+    event.preventDefault()
+
+        const idInput = document.getElementById('id-adicionar').value;
+        const descricao = document.getElementById('titulo-adicionar').value;
+        const dataInicio = document.getElementById('data-inicio').value;
+        const dataFim = document.getElementById('data-fim').value;
+        const tipo = document.getElementById('tipo-adicionar').value;
+        const status = document.getElementById('status-adicionar').value;
+        const plataforma = document.getElementById('plataforma-adicionar').value;
+        const episodios = document.getElementById('episodios-adicionar').value;
+        const assistidos = document.getElementById('assistidos-adicionar').value;
+        const temporada = document.getElementById('temporada-adicionar').value;
+        const pontuacao = document.getElementById('pontuacao-adicionar').value;
+        const dataAdicao  = new Date();
+        
+        const dataAdicaoConvertida = converteDataUTC(dataAdicao.toISOString().slice(0, 16));
+        const dataInicioConvertida = converteDataUTC(dataInicio);
+        const dataFimConvertida = converteDataUTC(dataFim);
+        const novoId = idInput ? Number(idInput) : await gerarID();
+
+        const titulo = {
+            id: novoId.toString(),
+            Titulo: descricao,
+            Capa: "",
+            Tipo: tipo,
+            Status: status,
+            Onde: plataforma,
+            Inicio: dataInicioConvertida,
+            Fim: dataFimConvertida,
+            Episodios: episodios,
+            Assistidos: assistidos,
+            Temporadas: temporada,
+            Score: pontuacao,
+            Vezes: 0,
+            Adicao: dataAdicaoConvertida,
+            Progresso: 0,
+            Dias: 0,
+        }
+
+        if (titulo === '') {
+        alert('É necessário inserir um título!');
+        return;
+        }
+
+        try {
+            if (idInput) {
+                await api.atualizarDados(titulo, endpoint);
+            } else {
+                await api.salvarDados(titulo, endpoint);
+            }
+            listarCatalogo()
+        } catch (error) {
+            alert('Erro ao salvar o título: ' + error.message);
+        }
+};
+
+function cancelarTitulo() {
+  formCatalogo.reset();
+};
+
+async function preencherTitulo(tituloId) {        
+    const titulo = await api.buscarDadosPorId(tituloId, endpoint)
+
+    if (titulo) {
+        document.getElementById('id-adicionar').value = titulo.id;
+        document.getElementById('titulo-adicionar').value = titulo.Titulo;
+        document.getElementById('data-inicio').value = new Date(titulo.Inicio).toISOString().slice(0, 16);
+        document.getElementById('data-fim').value = new Date(titulo.Fim).toISOString().slice(0, 16);
+        document.getElementById('tipo-adicionar').value = titulo.Tipo;
+        document.getElementById('status-adicionar').value = titulo.Status;
+        document.getElementById('plataforma-adicionar').value = titulo.Onde;
+        document.getElementById('episodios-adicionar').value = titulo.Episodios;
+        document.getElementById('assistidos-adicionar').value = titulo.Assistidos;
+        document.getElementById('temporada-adicionar').value = titulo.Temporadas;
+        document.getElementById('pontuacao-adicionar').value = titulo.Score;   
+    } else {
+        alert('Título não encontrado!');
     }
 };
 

@@ -97,17 +97,19 @@
                     </div>
                     
                     <div class="col">
-                        <h2 class="pb-2 border-bottom">Resumo</h2>
+                        <h2 class="pb-2">Resumo</h2>
                         <div class="row d-flex justify-content-center">
                             <div class="row row-cols-auto">
-                                <div class="col-6 mb-4">
+                                <div class="col w-100">
                                     <div class="card" data-filtro="contagem-geral" data-status="Progresso">
                                         <div class="card-body" id="geral-progresso">
                                             <h5 class="card-title">Progresso</h5>
                                         </div>
                                     </div> 
-                                </div> 
-                                
+                                </div>   
+                            </div>
+
+                            <div class="row row-cols-auto d-flex justify-content-start g-4">
                                 <div class="col-3">
                                     <div class="card" data-filtro="contagem-geral" data-status="Total">
                                         <div class="card-body" id="geral-total">
@@ -123,16 +125,15 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row row-cols-auto d-flex justify-content-start">
-                                <div class="col-3 mb-4">
+                                 <div class="col-3">
                                     <div class="card" data-filtro="contagem-geral" data-status="Assistidos">
                                         <div class="card-body" id="geral-assistidos">
                                             <h5 class="card-title">Assistidos</h5>
                                         </div>
                                     </div>
                                 </div>
+                            
                                 <div class="col-3">
                                     <div class="card" data-filtro="contagem-geral" data-status="Episodios">
                                         <div class="card-body" id="geral-episodios">
@@ -154,10 +155,8 @@
                                         </div>
                                     </div>
                                 </div>      
-                            </div>
 
-                            <div class="row row-cols-auto d-flex justify-content-start">
-                                <div class="col-3 mb-4">
+                                <div class="col-3">
                                     <div class="card" data-filtro="contagem-status" data-status="Completado">
                                         <div class="card-body" id="contagem-completado">
                                             <h5 class="card-title">Completado</h5>
@@ -185,17 +184,15 @@
                                         </div>
                                     </div>
                                 </div> 
-                                <div class="col-3 mb-4">
+                                <div class="col-3">
                                     <div class="card" data-filtro="contagem-status" data-status="Planejado">
                                         <div class="card-body" id="contagem-planejado">
                                             <h5 class="card-title">Planejado</h5>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row row-cols-auto d-flex justify-content-start">
-                                <div class="col-3 mb-4">
+                                <div class="col-3">
                                     <div class="card" data-filtro="contagem-tipo" data-status="contagem">
                                         <div class="card-body" id="contagem-anime">
                                             <h5 class="card-title">Animes</h5>
@@ -251,11 +248,10 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>                        
+                            </div>                        
+                        </div>
                     </div>
                 </div>
-            </div>
                    
             <hr>
             <br />
@@ -263,12 +259,12 @@
             <div class="container-fluid" id="custom-cards">                
                 <h2 class="pb-1 border-bottom">Catálogo</h2>
                 <form class="row gy-2 gx-3 align-items-center" id="catalogo-form" title="Adicionar Titulo">
-                    <div class="col-auto">
+                    <div class="col">
                         <input type="hidden" id="id-adicionar" />
                         <label for="titulo-adicionar" class="col-form-label">Titulo:</label>
                         <input type="text" class="form-control" id="titulo-adicionar" title="Título" placeholder="Informe o título" required>
                     </div>
-                    <div class="col-auto">
+                    <div class="col">
                         <label for="tipo-adicionar" class="col-form-label">Tipo:</label>
                         <select type="text" class="form-select" id="tipo-adicionar" title="Tipo" required>
                             <option value="Serie">Serie</option>
@@ -280,7 +276,7 @@
                             <option value="Reality">Reality</option>
                         </select>
                     </div>
-                        <div class="col-auto">
+                        <div class="col">
                         <label for="status-adicionar" class="col-form-label">Status:</label>
                         <select type="text" class="form-select" id="status-adicionar" title="Status" required>
                             <option value="Completado">Completado</option>
@@ -291,8 +287,8 @@
                             <option value="Re-Assistindo">Re-Assistindo</option>
                         </select>
                     </div>
-                    <div class="col-auto">
-                        <label for="plataforma-adicionar" class="col-form-label">Categoria:</label>
+                    <div class="col">
+                        <label for="plataforma-adicionar" class="col-form-label">Plataforma:</label>
                         <select type="text" class="form-select" id="plataforma-adicionar" title="Plataforma" required>
                             <option value="Netflix">Netflix</option>
                             <option value="Amazom Prime">Amazom Prime</option>
@@ -300,35 +296,39 @@
                             <option value="YouTube">YouTube</option>
                             <option value="MAX">MAX</option>
                             <option value="Download">Download</option>
+                            <option value="TV">TV</option>
                         </select>
                     </div>
-                    <div class="col-auto">
+                    <div class="col">
                         <label for="data-inicio" class="col-form-label">Data Inicio:</label>
-                        <input type="date" class="form-control" id="data-inicio" title="Inicio" required>
+                        <input type="datetime-local" class="form-control" id="data-inicio" title="Inicio" required>
                     </div>
-                    <div class="col-auto">
+                    <div class="col">
                         <label for="data-fim" class="col-form-label">Data Fim:</label>
-                        <input type="date" class="form-control" id="data-fim" title="Fim" required>
+                        <input type="datetime-local" class="form-control" id="data-fim" title="Fim" required>
                     </div>
-                    <div class="col-auto">
+                    <div class="col">
                         <label for="episodios-adicionar" class="col-form-label">Episódios:</label>
                         <input type="text" class="form-control" id="episodios-adicionar" title="Episódios" placeholder="0" required>
                     </div>
-                    <div class="col-auto">
+                    <div class="col">
                         <label for="assistidos-adicionar" class="col-form-label">Assistidos:</label>
                         <input type="text" class="form-control" id="assistidos-adicionar" title="Assistidos" placeholder="0" required>
                     </div>
-                    <div class="col-auto">
+                    <div class="col">
                         <label for="temporada-adicionar" class="col-form-label">Temporadas:</label>
                         <input type="text" class="form-control" id="temporada-adicionar" title="Temporada" placeholder="0" required>
                     </div>
-                    <div class="col-auto">
+                    <div class="col">
                         <label for="pontuacao-adicionar" class="col-form-label">Pontuação:</label>
                         <input type="text" class="form-control" id="pontuacao-adicionar" title="pontuação" placeholder="0" required>
                     </div>
-                    <div class="col-auto">
-                        <button type="submit" class="btn btn-primary" id="adicionar-agenda" title="Salvar Agendamento">Salvar</button>
-                        <button type="button" class="btn btn-secondary" id="cancelar-agenda" title="Cancelar Agendamento" >Cancelar</button>
+                    
+                    <div class="row mt-2">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary" id="adicionar-catalogo" title="Salvar Agendamento">Salvar</button>
+                            <button type="button" class="btn btn-secondary" id="cancelar-catalogo" title="Cancelar Agendamento" >Cancelar</button>
+                        </div>
                     </div>
                 </form>  
 
@@ -349,6 +349,8 @@
                             <th class="text-center">Temporada</th>
                             <th class="text-center">Pontuação</th>                                    
                             <th class="text-center">Dias</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider" id="linhas">
