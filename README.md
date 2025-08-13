@@ -1,14 +1,14 @@
 ## Life Dashboard
-- ste projeto foi de centralizar várias aréas da vida para organização.
+- Este projeto foi de centralizar várias aréas da vida para organização.
 
 ## Deploy
 - Indisponível
 
 ## Stack utilizada
-- Boostrap CSS
-- Plugin dataTables
-- Biblioteca Charts.js
-- API de previsão do tempo Open-Meteo
+- [Bootstrap CSS](https://getbootstrap.com/)
+- [Plugin dataTables](https://datatables.net/)
+- [Biblioteca Charts.js](https://www.chartjs.org/docs/latest/getting-started/)
+- [API de previsão do tempo Open-Meteo](https://open-meteo.com/)
 - API do MyAnimelist
 
 ## Funcionalidades
