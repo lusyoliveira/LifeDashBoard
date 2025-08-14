@@ -5717,14 +5717,14 @@
     {
       "id": "157",
       "Titulo": "NCIS 6ª Temporada",
-      "Capa": "",
+      "Capa": "https://upload.wikimedia.org/wikipedia/pt/b/bc/NCISDVDCoverSeason6.jpg",
       "Tipo": "Serie",
-      "Status": "Completado",
+      "Status": "Reassitindo",
       "Onde": "Pluto TV",
       "Inicio": "2023-07-30T00:00:00.000Z",
       "Fim": "2023-08-20T00:00:00.000Z",
       "Episodios": 24,
-      "Assistidos": 13,
+      "Assistidos": 24,
       "Temporadas": 1,
       "Score": 8,
       "Vezes": 0,
@@ -6780,7 +6780,7 @@
       "Inicio": "2025-08-02T00:00:00.000Z",
       "Fim": "",
       "Episodios": 61,
-      "Assistidos": 16,
+      "Assistidos": 20,
       "Temporadas": 3,
       "Score": "",
       "Vezes": "",
@@ -6801,6 +6801,24 @@
       "Criacao": "18 de fevereiro de 2023 09:46",
       "Atualizacao": "31 de agosto de 2023 07:42",
       "Usuario": "Luciene Silva"
+    },
+    {
+      "id": "191",
+      "Titulo": "Wandinha 2ª Temporada",
+      "Capa": "https://images.justwatch.com/poster/333467965/s718/temporada-2.jpg",
+      "Tipo": "Serie",
+      "Status": "Assistindo",
+      "Onde": "Netflix",
+      "Inicio": "2025-08-08T19:16:00.000Z",
+      "Fim": "",
+      "Episodios": "8",
+      "Assistidos": "4",
+      "Temporadas": "1",
+      "Score": 0,
+      "Vezes": 0,
+      "Adicao": "2025-08-11T08:16:00.000Z",
+      "Progresso": 0,
+      "Dias": 0
     }
   ]
 }

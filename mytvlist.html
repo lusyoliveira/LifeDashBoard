@@ -65,13 +65,7 @@
                                     <i class="bi bi-star-fill"></i>
                                     Favoritos
                                 </a> 
-                            </li>                           
-                            <li> 
-                                <a class="dropdown-item d-flex gap-2 align-items-center" href="#"> 
-                                    <i class="bi bi-list-task"></i>
-                                    Categorias
-                                </a> 
-                            </li>
+                            </li>  
                             <li> 
                                 <a class="dropdown-item d-flex gap-2 align-items-center" href="#"> 
                                     <i class="bi bi-list-columns-reverse"></i>
@@ -254,6 +248,17 @@
                 </div>
                    
             <hr>
+                <div class="row gy-2 gx-3 align-items-center">                    
+                    <div class="col">
+                        <canvas id="graficoTipo"></canvas>
+                    </div>
+                    <div class="col">
+                        <canvas id="graficoStatus"></canvas>
+                    </div>                    
+                    <div class="col">
+                        <canvas id="graficoPlataforma"></canvas>
+                    </div>
+                </div>
             <br />
 
             <div class="container-fluid" id="custom-cards">                
@@ -305,7 +310,7 @@
                     </div>
                     <div class="col">
                         <label for="data-fim" class="col-form-label">Data Fim:</label>
-                        <input type="datetime-local" class="form-control" id="data-fim" title="Fim" required>
+                        <input type="datetime-local" class="form-control" id="data-fim" title="Fim">
                     </div>
                     <div class="col">
                         <label for="episodios-adicionar" class="col-form-label">Episódios:</label>
@@ -321,7 +326,7 @@
                     </div>
                     <div class="col">
                         <label for="pontuacao-adicionar" class="col-form-label">Pontuação:</label>
-                        <input type="text" class="form-control" id="pontuacao-adicionar" title="pontuação" placeholder="0" required>
+                        <input type="text" class="form-control" id="pontuacao-adicionar" title="pontuação" vale="0" placeholder="0" required>
                     </div>
                     
                     <div class="row mt-2">
@@ -541,6 +546,7 @@
             </li>
         </ul>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="./js/datatables.min.js"></script>
     <script src="./js/iniciaDataTable.js"></script>

@@ -26,7 +26,7 @@ linhas.forEach(linha => {
             // Filtro por Status
             if (linha.dataset.filtro === 'principal') {
                 const status = linha.dataset.status;
-                assistindoPrincipal(status, linha.id);
+                assistindoPrincipal(["Assistindo", "Reassitindo"], linha.id);
             }  
         });  
 

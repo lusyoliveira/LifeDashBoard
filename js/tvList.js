@@ -1,4 +1,4 @@
-import { calculaTempoData } from "./metodoData.js";
+import { calculaTempoData, converteDataUTC } from "./metodoData.js";
 import api from './metodoApi.js'
 
 let catalogo = [];
@@ -608,7 +608,7 @@ async function listarCatalogo() {
 
 export async function assistindoPrincipal(statusFiltro, elementoDestinoId) {
     const catalogo = await carregarCatalogo();
-    const catalogoFiltrado = catalogo.filter(titulo => titulo.Status === statusFiltro)
+    const catalogoFiltrado = catalogo.filter(titulo => statusFiltro.includes(titulo.Status))
                                     .slice(0, 4);
 
     const elementoDestino = document.getElementById(elementoDestinoId);
@@ -641,9 +641,13 @@ export async function assistindoPrincipal(statusFiltro, elementoDestinoId) {
                 const divBadge = document.createElement('div');
                 divBadge.classList.add('d-flex', 'justify-content-between', 'align-items-center');
 
-                const spanBadge = document.createElement('span');
-                spanBadge.classList.add('badge', 'text-bg-info');
-                spanBadge.textContent = titulo.Tipo;
+                const spanBadgeTipo = document.createElement('span');
+                spanBadgeTipo.classList.add('badge', 'text-bg-info');
+                spanBadgeTipo.textContent = titulo.Tipo;
+
+                const spanBadgeStatus = document.createElement('span');
+                spanBadgeStatus.classList.add('badge', 'text-bg-primary');
+                spanBadgeStatus.textContent = titulo.Status;
 
                 const divProgresso = document.createElement('div');
                 divProgresso.classList.add('progress', 'mt-2');
@@ -660,7 +664,8 @@ export async function assistindoPrincipal(statusFiltro, elementoDestinoId) {
 
                 divProgresso.appendChild(divBarraProgresso);
                 divCardBody.appendChild(h5Titulo);
-                divBadge.appendChild(spanBadge);
+                divBadge.appendChild(spanBadgeTipo);
+                divBadge.appendChild(spanBadgeStatus);
                 divCardBody.appendChild(divBadge);
                 divCardBody.appendChild(divProgresso);
                 divContainerCard.appendChild(imgCapa);
@@ -701,7 +706,10 @@ async function salvarTitulo(event) {
         
         const dataAdicaoConvertida = converteDataUTC(dataAdicao.toISOString().slice(0, 16));
         const dataInicioConvertida = converteDataUTC(dataInicio);
-        const dataFimConvertida = converteDataUTC(dataFim);
+        const dataFimConvertida = dataFim
+        if (!dataFim === '') {
+           dataFimConvertida = converteDataUTC(dataFim);
+        } 
         const novoId = idInput ? Number(idInput) : await gerarID();
 
         const titulo = {
@@ -764,4 +772,113 @@ async function preencherTitulo(tituloId) {
     }
 };
 
+async function gerarGraficoTipo() {
+    const catalogo = await carregarCatalogo();
+    const graficoTipo = document.getElementById('graficoTipo');
+    const serie = catalogo.filter(titulo => titulo.Tipo === 'Serie').length;
+    const filmes = catalogo.filter(titulo => titulo.Tipo === 'Filme').length;
+    // const anime = catalogo.filter(titulo => titulo.Tipo === 'Anime').length;
+    const documentario = catalogo.filter(titulo => titulo.Tipo === 'Documentário').length;
+    const reality = catalogo.filter(titulo => titulo.Tipo === 'Reality').length;
+    const desenho = catalogo.filter(titulo => titulo.Tipo === 'Desenho').length;    
+    const show = catalogo.filter(titulo => titulo.Tipo === 'Show').length;
+
+    let tipos = ['Serie','Filmes','Documentário','Reality','Desenho','Show']
+    let valortipo = [serie, filmes,documentario,reality,desenho,show]   
+    
+        const graficoParaTipo = new Chart(graficoTipo, {
+            type: 'doughnut',
+            data: {
+                labels: tipos,
+                datasets: [{
+                    label: 'titulos',
+                    data: valortipo,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    title:{
+                        display: true,
+                        text: 'Títulos por Tipo'
+                    }
+                }
+            }
+        });
+        //graficoTipo.update()
+}
+
+async function gerarGraficoStatus() {
+    const catalogo = await carregarCatalogo();
+    const graficoStatus = document.getElementById('graficoStatus');
+    const assistindo = catalogo.filter(titulo => titulo.Status === 'Assistindo').length;
+    const reassistindo = catalogo.filter(titulo => titulo.Status === 'Reassistindo').length;
+    const completado = catalogo.filter(titulo => titulo.Status === 'Completado').length;
+    const dropped = catalogo.filter(titulo => titulo.Status === 'Dropped').length;
+    const planejado = catalogo.filter(titulo => titulo.Status === 'Planejado').length;
+    const emEspera = catalogo.filter(titulo => titulo.Status === 'Em-Espera').length;
+
+    let status = ['Assistindo','Reassistindo','Completado','Dropped','Planejado','Em-Espera']
+    let valorStatus = [assistindo,reassistindo,completado,dropped,planejado,emEspera]   
+    
+        const graficoParaStatus = new Chart(graficoStatus, {
+            type: 'doughnut',
+            data: {
+                labels: status,
+                datasets: [{
+                    label: 'titulos',
+                    data: valorStatus,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    title:{
+                        display: true,
+                        text: 'Títulos por Status'
+                    }
+                }
+            }
+        });
+       // graficoStatus.update()
+};
+
+async function gerarGraficoPlataforma() {
+    const catalogo = await carregarCatalogo();
+    const graficoPlataforma = document.getElementById('graficoPlataforma');
+    const netflix = catalogo.filter(titulo => titulo.Onde === 'Netflix').length;
+    const amazon = catalogo.filter(titulo => titulo.Onde === 'Amazom Prime').length;
+    const crunchroll = catalogo.filter(titulo => titulo.Onde === 'Crunchroll').length;
+    const youtube = catalogo.filter(titulo => titulo.Onde === 'YouTube').length;
+    const max = catalogo.filter(titulo => titulo.Onde === 'MAX').length;
+    const download = catalogo.filter(titulo => titulo.Onde === 'Download').length;
+    const tv = catalogo.filter(titulo => titulo.Onde === 'TV').length;
+
+    let plataforma = ['Netflix','Amazom','Crunchroll','YouTube','MAX','Download','TV']
+    let valorPlataforma = [netflix,amazon,crunchroll,youtube,max,download,tv]   
+    
+        const graficoParaPlataforma = new Chart(graficoPlataforma, {
+            type: 'doughnut',
+            data: {
+                labels: plataforma,
+                datasets: [{
+                    label: 'titulos',
+                    data: valorPlataforma,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    title:{
+                        display: true,
+                        text: 'Títulos por Plataforma'
+                    }
+                }
+            }
+        });
+       // graficoPlataforma.update()
+}
+gerarGraficoPlataforma()
+gerarGraficoTipo()
+gerarGraficoStatus()
 listarCatalogo()
