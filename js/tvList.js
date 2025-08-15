@@ -772,7 +772,7 @@ async function preencherTitulo(tituloId) {
     }
 };
 
-async function gerarGraficoTipo() {
+async function graficoTipo() {
     const catalogo = await carregarCatalogo();
     const graficoTipo = document.getElementById('graficoTipo');
     const serie = catalogo.filter(titulo => titulo.Tipo === 'Serie').length;
@@ -784,31 +784,12 @@ async function gerarGraficoTipo() {
     const show = catalogo.filter(titulo => titulo.Tipo === 'Show').length;
 
     let tipos = ['Serie','Filmes','Documentário','Reality','Desenho','Show']
-    let valortipo = [serie, filmes,documentario,reality,desenho,show]   
+    let valortipo = [serie, filmes,documentario,reality,desenho,show]       
     
-        const graficoParaTipo = new Chart(graficoTipo, {
-            type: 'doughnut',
-            data: {
-                labels: tipos,
-                datasets: [{
-                    label: 'titulos',
-                    data: valortipo,
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                plugins: {
-                    title:{
-                        display: true,
-                        text: 'Títulos por Tipo'
-                    }
-                }
-            }
-        });
-        //graficoTipo.update()
+    gerarGrafico(graficoTipo,'doughnut',tipos,valortipo,'Títulos por Tipo')
 }
 
-async function gerarGraficoStatus() {
+async function graficoStatus() {
     const catalogo = await carregarCatalogo();
     const graficoStatus = document.getElementById('graficoStatus');
     const assistindo = catalogo.filter(titulo => titulo.Status === 'Assistindo').length;
@@ -821,29 +802,10 @@ async function gerarGraficoStatus() {
     let status = ['Assistindo','Reassistindo','Completado','Dropped','Planejado','Em-Espera']
     let valorStatus = [assistindo,reassistindo,completado,dropped,planejado,emEspera]   
     
-        const graficoParaStatus = new Chart(graficoStatus, {
-            type: 'doughnut',
-            data: {
-                labels: status,
-                datasets: [{
-                    label: 'titulos',
-                    data: valorStatus,
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                plugins: {
-                    title:{
-                        display: true,
-                        text: 'Títulos por Status'
-                    }
-                }
-            }
-        });
-       // graficoStatus.update()
+    gerarGrafico(graficoStatus,'doughnut',status,valorStatus,'Títulos por Status')
 };
 
-async function gerarGraficoPlataforma() {
+async function graficoPlataforma() {
     const catalogo = await carregarCatalogo();
     const graficoPlataforma = document.getElementById('graficoPlataforma');
     const netflix = catalogo.filter(titulo => titulo.Onde === 'Netflix').length;
@@ -857,28 +819,31 @@ async function gerarGraficoPlataforma() {
     let plataforma = ['Netflix','Amazom','Crunchroll','YouTube','MAX','Download','TV']
     let valorPlataforma = [netflix,amazon,crunchroll,youtube,max,download,tv]   
     
-        const graficoParaPlataforma = new Chart(graficoPlataforma, {
-            type: 'doughnut',
-            data: {
-                labels: plataforma,
-                datasets: [{
-                    label: 'titulos',
-                    data: valorPlataforma,
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                plugins: {
-                    title:{
-                        display: true,
-                        text: 'Títulos por Plataforma'
-                    }
+    gerarGrafico(graficoPlataforma,'doughnut',plataforma,valorPlataforma,'Títulos por Plataforma')
+}
+
+function gerarGrafico(grafico, tipo, labels, valores, titulo) {
+    const novoGrafico = new Chart(grafico, {
+        type: tipo,
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'titulos',
+                data: valores,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                title:{
+                    display: true,
+                    text: titulo
                 }
             }
-        });
-       // graficoPlataforma.update()
+        }
+    });
 }
-gerarGraficoPlataforma()
-gerarGraficoTipo()
-gerarGraficoStatus()
+graficoPlataforma()
+graficoTipo()
+graficoStatus()
 listarCatalogo()
