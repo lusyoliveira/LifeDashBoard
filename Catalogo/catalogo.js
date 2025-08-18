@@ -1,42 +1,31 @@
-import { CatalogoViewModel } from "./viewmodels/CatalogoViewModel.js";
-import { CatalogoView } from "./views/CatalogoView.js";
+export default class Catalogo {
+    id
+    Titulo
+    Capa
+    Tipo
+    Status
+    Onde
+    Inicio
+    Fim
+    Episodios
+    Assistidos
+    Temporadas
+    Score = 0
+    Vezes = 0
+    Adicao
+    Progresso = 0
+    Dias = 0
 
-document.addEventListener("DOMContentLoaded", async () => {
-    const vm = new CatalogoViewModel();
-    const catalogoView = new CatalogoView(vm);
-
-    //CRUD
-    await catalogoView.listarCatalogo("linhas");
-    catalogoView.bindExcluir(async (id) => {
-        await vm.excluirTitulo(id);
-        catalogoView.listarCatalogo("linhas");
-    });
-    catalogoView.bindEditar((id) => {
-        console.log("Editar título ID:", id);
-    });
-    //Contagem
-    catalogoView.renderContagemGeral("geral-total","Total")
-    catalogoView.renderContagemGeral("geral-pontuacao")
-
-    //Estatísticas
-    catalogoView.renderEstatistica("Serie", "estatistica-serie");
-    catalogoView.renderEstatistica("Filme", "estatistica-filme");
-    catalogoView.renderEstatistica("Desenho", "estatistica-desenho");
-    
-    //Gráficos
-    catalogoView.renderGraficos();
-
-    // Adicionados Recentemente
-    catalogoView.renderRecentes("recentes");
-
-    //Card por Status
-    catalogoView.renderCardStatus("Assistindo","lista-assistindo")
-    catalogoView.renderCardStatus("Planejado","lista-planejado")
-    catalogoView.renderCardStatus("Em-Espera","lista-espera")
-    catalogoView.renderCardStatus("Dropped","lista-dropped")
-
-    //Card por Tipo
-    catalogoView.renderCardGeral("lista-geral")
-    catalogoView.renderCardTipo("Filme","lista-filmes")
-    catalogoView.renderCardTipo("Serie","lista-series")
-});
+    constructor(id, Titulo, Capa, Tipo, Status, Onde,Inicio, Fim, Episodios, Assistidos, Temporadas) {
+        this.Titulo = Titulo
+        this.Capa = Capa
+        this.Tipo = Tipo
+        this.Status = Status
+        this.Onde = Onde
+        this.Inicio = Inicio
+        this.Fim = Fim
+        this.Episodios = Episodios
+        this.Assistidos = Assistidos
+        this.Temporadas = Temporadas
+    }
+}

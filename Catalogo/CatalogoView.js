@@ -1,7 +1,33 @@
-import { calculaTempoData, converteDataUTC } from "../../js/metodoData.js";
+import { calculaTempoData, converteDataUTC } from "../js/metodoData.js";
 export class CatalogoView {
     constructor(vm) {
         this.vm = vm;
+    }
+
+    //Formulário
+    preencherTitulo(formId) {
+        const form = document.getElementById(formId);
+        const dados = Object.fromEntries(new FormData(form).entries());
+        
+        return {
+            id: dados.id ? Number(dados.id) : null,
+            Titulo: dados.Titulo,
+            Capa: dados.Capa,
+            Tipo: dados.Tipo,
+            Status: dados.Status,
+            Onde: dados.Onde,
+            Inicio: dados.Inicio,
+            Fim: dados.Fim,
+            Episodios: Number(dados.Episodios || 0),
+            Assistidos: Number(dados.Assistidos || 0),
+            Temporadas: Number(dados.Temporadas || 0),
+            Score: Number(dados.Score || 0),
+            Vezes: Number(dados.Vezes || 0),
+            Adicao: dados.Adicao || new Date().toISOString().split("T")[0],
+            Progresso: dados.Progresso,
+            Dias: Number(dados.Dias || 0),
+            Reassistindo: Number(dados.Reassistindo || 0)
+        };
     }
 
     // TABELA
@@ -433,17 +459,157 @@ export class CatalogoView {
         }
     }   
     
-    renderContagemGeral(elementoId, contagem) {
+    renderContagemGeral(elementoId, tipoContagem) {
         const catalogo = this.vm.resumoGeral();
         const elementoDestino = document.getElementById(elementoId);
+        const porcentagem = catalogo.totalAssistidos/catalogo.totalEpisodios*100;   
+
+        let contagem = 0;
+
+        console.log(catalogo.mediaPontuacao);
         
-        catalogo.forEach(titulo => {
-            if (elementoDestino) {            
-                 const h6Card = document.createElement('h6');
-                 h6Card.classList.add('card-subtitle', 'mb-2', 'text-body-secondary');
-                 h6Card.textContent = titulo.contagem;
-                 elementoDestino.appendChild(h6Card);            
-            }        
-        });
+       
+         if (tipoContagem === 'Progresso') {
+            contagem = catalogo.totalAssistidos
+
+            const h6Card = document.createElement('h6');
+            h6Card.classList.add('card-subtitle', 'mb-2', 'text-body-secondary');
+            h6Card.textContent = `${contagem} de ${catalogo.totalEpisodios}`;
+            elementoDestino.appendChild(h6Card);
+
+            // Exibe a barra de progresso
+            const divProgressoContainer = document.createElement('div');
+            divProgressoContainer.classList.add('progress');
+            divProgressoContainer.setAttribute('role', 'progressbar');
+            divProgressoContainer.setAttribute('aria-label', 'Success example');
+            divProgressoContainer.setAttribute('aria-valuenow', porcentagem.toFixed(1));
+            divProgressoContainer.setAttribute('aria-valuemin', '0');
+            divProgressoContainer.setAttribute('aria-valuemax', '100');
+
+            const divProgressoBarra = document.createElement('div');
+            divProgressoBarra.classList.add('progress-bar', 'text-bg-success');
+            divProgressoBarra.style.width = `${porcentagem.toFixed(1)}%`;
+            divProgressoBarra.textContent = `${porcentagem.toFixed(1)}%`;
+            divProgressoContainer.appendChild(divProgressoBarra);
+            elementoDestino.appendChild(divProgressoContainer);
+
+        } else if (tipoContagem === 'Total') {
+            contagem = catalogo.Total
+
+            const h6Card = document.createElement('h6');
+            h6Card.classList.add('card-subtitle', 'mb-2', 'text-body-secondary');
+            h6Card.textContent = contagem;
+            elementoDestino.appendChild(h6Card);
+
+        } else if (tipoContagem === 'Pontuacao') {
+            contagem = catalogo.mediaPontuacao
+
+            const h6Card = document.createElement('h6');
+            h6Card.classList.add('card-subtitle', 'mb-2', 'text-body-secondary');
+            h6Card.textContent = contagem;
+            elementoDestino.appendChild(h6Card);
+
+        } else if (tipoContagem === 'Assistidos') {
+            contagem = catalogo.totalAssistidos
+
+            const h6Card = document.createElement('h6');
+            h6Card.classList.add('card-subtitle', 'mb-2', 'text-body-secondary');
+            h6Card.textContent = contagem;
+            elementoDestino.appendChild(h6Card);
+
+        } else if (tipoContagem === 'Episodios') {
+            contagem = catalogo.totalEpisodios
+
+            const h6Card = document.createElement('h6');
+            h6Card.classList.add('card-subtitle', 'mb-2', 'text-body-secondary');
+            h6Card.textContent = contagem;
+            elementoDestino.appendChild(h6Card);
+
+        } else if (tipoContagem === 'Dias') {
+            contagem = catalogo.totalDias
+
+            const h6Card = document.createElement('h6');
+            h6Card.classList.add('card-subtitle', 'mb-2', 'text-body-secondary');
+            h6Card.textContent = contagem;
+            elementoDestino.appendChild(h6Card);
+            
+        } else if (tipoContagem === 'Completado') {
+            contagem = catalogo.completado
+
+            const h6Card = document.createElement('h6');
+            h6Card.classList.add('card-subtitle', 'mb-2', 'text-body-secondary');
+            h6Card.textContent = contagem;
+            elementoDestino.appendChild(h6Card);
+        } else if (tipoContagem === 'Em-Espera') {
+            contagem = catalogo.emEspera
+
+            const h6Card = document.createElement('h6');
+            h6Card.classList.add('card-subtitle', 'mb-2', 'text-body-secondary');
+            h6Card.textContent = contagem;
+            elementoDestino.appendChild(h6Card);
+        } else if (tipoContagem === 'Dropped') {
+            contagem = catalogo.dropped
+
+            const h6Card = document.createElement('h6');
+            h6Card.classList.add('card-subtitle', 'mb-2', 'text-body-secondary');
+            h6Card.textContent = contagem;
+            elementoDestino.appendChild(h6Card);
+        } else if (tipoContagem === 'Planejado') {
+            contagem = catalogo.planejado
+
+            const h6Card = document.createElement('h6');
+            h6Card.classList.add('card-subtitle', 'mb-2', 'text-body-secondary');
+            h6Card.textContent = contagem;
+            elementoDestino.appendChild(h6Card);
+        } else if (tipoContagem === 'Assistindo') {
+            contagem = catalogo.assistindo
+
+            const h6Card = document.createElement('h6');
+            h6Card.classList.add('card-subtitle', 'mb-2', 'text-body-secondary');
+            h6Card.textContent = contagem;
+            elementoDestino.appendChild(h6Card);
+        } else if (tipoContagem === 'Desenho') {
+            contagem = catalogo.desenho
+
+            const h6Card = document.createElement('h6');
+            h6Card.classList.add('card-subtitle', 'mb-2', 'text-body-secondary');
+            h6Card.textContent = contagem;
+            elementoDestino.appendChild(h6Card);
+        } else if (tipoContagem === 'Filme') {
+            contagem = catalogo.filme
+
+            const h6Card = document.createElement('h6');
+            h6Card.classList.add('card-subtitle', 'mb-2', 'text-body-secondary');
+            h6Card.textContent = contagem;
+            elementoDestino.appendChild(h6Card);
+        } else if (tipoContagem === 'Serie') {
+            contagem = catalogo.serie
+
+            const h6Card = document.createElement('h6');
+            h6Card.classList.add('card-subtitle', 'mb-2', 'text-body-secondary');
+            h6Card.textContent = contagem;
+            elementoDestino.appendChild(h6Card);
+        } else if (tipoContagem === 'Show') {
+            contagem = catalogo.show
+
+            const h6Card = document.createElement('h6');
+            h6Card.classList.add('card-subtitle', 'mb-2', 'text-body-secondary');
+            h6Card.textContent = contagem;
+            elementoDestino.appendChild(h6Card);
+        } else if (tipoContagem === 'Reality') {
+            contagem = catalogo.reality
+
+            const h6Card = document.createElement('h6');
+            h6Card.classList.add('card-subtitle', 'mb-2', 'text-body-secondary');
+            h6Card.textContent = contagem;
+            elementoDestino.appendChild(h6Card);
+        } else if (tipoContagem === 'Documentário') {
+            contagem = catalogo.documentario
+
+            const h6Card = document.createElement('h6');
+            h6Card.classList.add('card-subtitle', 'mb-2', 'text-body-secondary');
+            h6Card.textContent = contagem;
+            elementoDestino.appendChild(h6Card);
+        }            
     }
 }

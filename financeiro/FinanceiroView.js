@@ -1,4 +1,4 @@
-function agruparPorData() {
+function listarTabelaAgrupado() {
   const tabela = document.getElementById('minhaTabela');
   const linhas = tabela.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
   const grupos = {};
@@ -36,5 +36,3 @@ function agruparPorData() {
     });
   }
 };
-
-agruparPorData()
