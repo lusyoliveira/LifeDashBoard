@@ -7,6 +7,8 @@
     import { TarefasView } from "../Tarefas/TarefasView.js";
     import { AgendaViewModel } from "../Agenda/AgendaViewModel.js";
     import { AgendaView } from "../Agenda/AgendaView.js";
+    import { ClimaViewModel } from "../Clima/ClimaViewModel.js";
+    import { ClimaView } from "../Clima/ClimaView.js";
     import { contagemRegressiva } from "./metodoContagemRegressiva.js";
     import { relogio } from "./metodoRelogio.js";
     import  apiClima  from "./apiClima.js";
@@ -26,6 +28,8 @@
     const catalogoView = new CatalogoView(cvm);
     const avm = new AgendaViewModel("agenda");
     const agendaView = new AgendaView(avm);
+    const clvm = new ClimaViewModel("clima");
+    const climaView = new ClimaView(clvm);
 
     (async () => {
         await evm.obterCursos(); 
@@ -38,6 +42,7 @@
         catalogoView.renderAssistindo(['Assistindo','Reassistindo'],'Assistindo')
         agendaView.renderProximosCompromissos('proximos-compromissos')
         agendaView.renderCalendario('calendario')
+        climaView.exibirClima('clima')
     })();
 
  //Adiciona tarefa
@@ -51,7 +56,7 @@
 contagemRegressiva(configuracoes.DataContagem);
 descricaoContagem.textContent = configuracoes.DescricaoContagem;
 relogio();
-apiClima.exibirClima()
+//apiClima.exibirClima()
 
 //exibe calendario
 //criarCalendario();
