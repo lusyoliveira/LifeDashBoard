@@ -10,149 +10,126 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 bg-body-tertiary">
-        <div class="container-fluid">
-            <!-- Esquerda: Título e Breadcrumb -->
-            <div class="d-flex align-items-center">
-                <a class="navbar-brand fw-bold me-4" href="index.html">Life Dashboard</a>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="index.html">Início</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Estudos</li>
-                    </ol>
-                </nav>
-            </div>
-    
-            <!-- Direita: Pesquisa e Avatar -->
-            <div class="d-flex align-items-center ms-auto">
-                <form class="d-flex me-3" id="pesquisar" role="search">
-                    <input class="form-control" type="search" placeholder="Pesquisar..." aria-label="Pesquisar">
-                </form>
-    
-                <div class="d-flex justify-content-between align-items-lg-center gap-3">
-                    <a href="#" class="d-flex align-items-center text-decoration-none">
-                        <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle" _mstalt="33306" _msthash="42">
-                        Luciene
-                    </a>
-                    <a href="/configuracoes.html" title="Configurações" class="icones-navbar"><i class="bi bi-gear-fill"></i></a>                  
-                    <a href="#" title="Sair" class="icones-navbar"><i class="bi bi-box-arrow-right"></i></a>
-                </div>                    
+    <header>
+        <div class="px-3 py-2 bg-dark bg-body-tertiary">
+            <div class="container-fliud">
+                <div class="d-flex flex-wrap align-items-center justify-content-between"> 
+                    <!-- Esquerda: Título e Breadcrumb -->                  
+                    <div class="d-flex align-items-center">
+                        <a class="navbar-brand fw-bold me-4" href="index.html">Life Dashboard</a>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Estudo</li>
+                            </ol>
+                        </nav>
+                    </div>
+
+                    <!-- Direita: Pesquisa e Avatar -->
+                    <div class="d-flex align-items-center ms-auto">
+                        <form class="d-flex me-3" id="pesquisar" role="search">
+                            <input class="form-control" type="search" placeholder="Pesquisar..." aria-label="Pesquisar">
+                        </form>
+            
+                        <div class="d-flex justify-content-between align-items-lg-center gap-3">
+                            <a href="#" class="d-flex align-items-center text-decoration-none">
+                                <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle" _mstalt="33306" _msthash="42">
+                                Luciene
+                            </a>
+                            <a href="/configuracoes.html" title="Configurações" class="icones-navbar"><i class="bi bi-gear-fill"></i></a>                  
+                            <a href="#" title="Sair" class="icones-navbar"><i class="bi bi-box-arrow-right"></i></a>
+                        </div>                    
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
+        <div class="border-bottom">
+            <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                <li> 
+                    <a class="nav-link text-secondary" id="cursos" href="#">
+                        <i class="bi bi-card-list"></i>
+                        Cursos
+                    </a> 
+                </li>
+                <li> 
+                    <a class="nav-link text-secondary" id="areas" href="#">
+                        <i class="bi bi-list-stars"></i>
+                        Áreas
+                    </a> 
+                </li>
+                <li> 
+                    <a class="nav-link text-secondary" id="planos-estudo" href="#">
+                        <i class="bi bi-journal-text"></i>
+                        Planos de Estudo
+                    </a> 
+                </li>
+                <li> 
+                    <a class="nav-link text-secondary" href="#"> 
+                        <i class="bi bi-list-columns-reverse"></i>
+                        Tipos
+                    </a> 
+                </li>                
+            </ul>
+        </div>
+    </header>
  
     <main class="container-fliud m-4">
-        <h1 class="pb-2 border-bottom mb-4">Estudo</h1>
+        <h1 class="pb-2 border-bottom mb-4">Welcome to My workspace!</h1>
             <div class="container-fliud">
-                <div class="row">
-                    <div class="col-3">
-                        <ul class="dropdown-menu d-block position-static mx-0 border-0 shadow w-220px" data-bs-theme="dark">
-                            <li> 
-                                <a class="dropdown-item d-flex gap-2 align-items-center" id="cursos" href="#">
-                                    <i class="bi bi-card-list"></i>
-                                    Cursos
-                                </a> 
-                            </li>
-                            <li> 
-                                <a class="dropdown-item d-flex gap-2 align-items-center" id="areas" href="#">
-                                    <i class="bi bi-list-stars"></i>
-                                    Áreas
-                                </a> 
-                            </li>
-                            <li> 
-                                <a class="dropdown-item d-flex gap-2 align-items-center" id="planos-estudo" href="#">
-                                    <i class="bi bi-journal-text"></i>
-                                    Planos de Estudo
-                                </a> 
-                            </li>
-                            <li> 
-                                <a class="dropdown-item d-flex gap-2 align-items-center" href="#"> 
-                                    <i class="bi bi-list-columns-reverse"></i>
-                                    Tipos
-                                </a> 
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>        
-                            <h5>Metas</h5>
-                            <li class="dropdown-item d-flex justify-content-between align-items-center">Terminar lettering grandes sonhos</li> 
-                            <li class="dropdown-item d-flex justify-content-between align-items-center">Praticar 30 min por dia</li>                          
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <h5>Escolas</h5>
-                            <li>
-                                <a class="dropdown-item d-flex gap-2 align-items-center" href="http://www.hortmart.com">Hotmart</a>
-                            </li>                            
-                            <li>
-                                <a class="dropdown-item d-flex gap-2 align-items-center" href="http://www.udemy.com.br">Udemy</a>
-                            </li>
-                        </ul>                      
-                        
-                    </div>
-                    
+                <div class="row row-cols-1 row-cols-md-4 g-4">
                     <div class="col">
-                        <h2 class="pb-2 border-bottom mb-4">Welcome to My workspace!</h2>
-                            <div class="row row-cols-1 row-cols-md-4 g-4">
-                                <div class="col">
-                                    <div class="card">
-                                        <img src="https://images.unsplash.com/photo-1593362510950-63f1e8dc736a?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=3600" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Lettering</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card">
-                                        <img src="https://images.unsplash.com/photo-1547930684-0827d6426281?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=3600" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Desenho</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card">
-                                        <img src="https://images.unsplash.com/photo-1506097425191-7ad538b29cef?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=3600" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Design</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card">
-                                        <img src="https://images.unsplash.com/photo-1566666801184-2df912252e44?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=3600" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Aquarela</h5>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="card">
+                            <img src="https://images.unsplash.com/photo-1593362510950-63f1e8dc736a?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=3600" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Lettering</h5>
                             </div>
-
-                            <br />
-
-                            <div class="row row-cols-1 row-cols-md-4 g-4">
-                                <div class="col">
-                                    <div class="card">
-                                        <img src="https://images.unsplash.com/photo-1584628804776-81c4422437d0?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=3600" class="card-img-top" alt="...">           
-                                        <div class="card-body">
-                                            <h5 class="card-title">Encadernação</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card">
-                                        <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?ixlib=rb-1.2.1&q=80&cs=tinysrgb&fm=jpg&crop=entropy&w=3600" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Tecnologia</h5>
-                                        </div>
-                                    </div>
-                                </div>                                
-                            </div>
-
-                        <br />
-
-                         
+                        </div>
                     </div>
+                    <div class="col">
+                        <div class="card">
+                            <img src="https://images.unsplash.com/photo-1547930684-0827d6426281?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=3600" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Desenho</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img src="https://images.unsplash.com/photo-1506097425191-7ad538b29cef?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=3600" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Design</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img src="https://images.unsplash.com/photo-1566666801184-2df912252e44?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=3600" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Aquarela</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="row row-cols-1 row-cols-md-4 g-4">
+                    <div class="col">
+                        <div class="card">
+                            <img src="https://images.unsplash.com/photo-1584628804776-81c4422437d0?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=3600" class="card-img-top" alt="...">           
+                            <div class="card-body">
+                                <h5 class="card-title">Encadernação</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?ixlib=rb-1.2.1&q=80&cs=tinysrgb&fm=jpg&crop=entropy&w=3600" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Tecnologia</h5>
+                            </div>
+                        </div>
+                    </div>                                
                 </div>
             </div>
 
