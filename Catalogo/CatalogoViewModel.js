@@ -1,15 +1,15 @@
 import api from "../js/metodoApi.js";
 //import Titulo from "../models/Titulo.js";
 
-export class ViewModel {
-  constructor(endpoint = "curso") {
+export class CatalogoViewModel {
+  constructor(endpoint = "catalogo") {
     this.endpoint = endpoint;
     this.titulos = [];
   }
 
-  async carregarCatalogo() {
+  async obterCatalogo() {
     let catalogo = [];
-
+    
     catalogo = await api.buscarDados(this.endpoint);
     this.titulos = catalogo.map((titulo) => {
       return {
@@ -28,12 +28,12 @@ export class ViewModel {
     } else {
       await api.salvarDados(titulo, this.endpoint);
     }
-    return this.carregarCatalogo();
+    return this.obterCatalogo();
   }
 
   async excluirTitulo(id) {
     await api.excluirDados(id, this.endpoint);
-    return this.carregarCatalogo();
+    return this.obterCatalogo();
   }
 
   gerarID() {
@@ -71,6 +71,13 @@ export class ViewModel {
       })
       .slice(0, qtd);
   }
+  
+  assistindo(status, qtd = 4) {
+    return this.titulos
+      .filter(titulo => status.includes(titulo.Status))
+      .slice(0, qtd);
+  }
+
   recentes(qtd = 3) {
     return [...this.titulos]
       .sort((a, b) => {

@@ -1,34 +1,60 @@
-import { listarTarefas } from "./metodoTarefas.js";
-import { } from "./metodoContador.js";
-import { criarCalendario, proximosCompromissos } from "./agenda.js";
-import { cursandoPrincipal } from "./estudo.js";
-import { assistindoPrincipal } from "./tvList.js";
-import { contagemRegressiva } from "./metodoContagemRegressiva.js";
-import { relogio } from "./metodoRelogio.js";
-import  apiClima  from "./apiClima.js";
-import { carregarConfiguracores } from "./configuracoes.js";
+    import { } from "./metodoContador.js";
+    import { EstudoViewModel } from "../Estudo/EstudoViewModel.js";
+    import { EstudoView } from "../Estudo/EstudoView.js";
+    import { CatalogoViewModel } from "../Catalogo/CatalogoViewModel.js";
+    import { CatalogoView } from "../Catalogo/CatalogoView.js";
+    import { TarefasViewModel } from "../Tarefas/TarefasViewModel.js";
+    import { TarefasView } from "../Tarefas/TarefasView.js";
+    import { AgendaViewModel } from "../Agenda/AgendaViewModel.js";
+    import { AgendaView } from "../Agenda/AgendaView.js";
+    import { contagemRegressiva } from "./metodoContagemRegressiva.js";
+    import { relogio } from "./metodoRelogio.js";
+    import  apiClima  from "./apiClima.js";
+    import { carregarConfiguracores } from "./configuracoes.js";
 
-const containerModal = document.getElementById('container-modal');
-const listas = document.querySelectorAll('.list-group');       
-const linhas = document.querySelectorAll('.row');       
-const descricaoContagem = document.getElementById('descricao-contagem');
-const configuracoes = (await carregarConfiguracores())[0] 
+    const containerModal = document.getElementById('container-modal');
+    const inputIdTarefa = document.getElementById('id-tarefa').value;
+    const botaoTarefa = document.getElementById('adiciona-tarefa');     
+    const descricaoContagem = document.getElementById('descricao-contagem');
+    const configuracoes = (await carregarConfiguracores())[0] 
 
-//Exibe cursando
- linhas.forEach(linha => {
-        if (linha.dataset.filtro === 'cursos') {
-            const status = linha.dataset.status || linha.textContent.trim();
-            cursandoPrincipal(status, linha.id);
-        }  
-    });   
-//Exibe o assistindo
-linhas.forEach(linha => {
-            // Filtro por Status
-            if (linha.dataset.filtro === 'principal') {
-                const status = linha.dataset.status;
-                assistindoPrincipal(["Assistindo", "Reassitindo"], linha.id);
-            }  
-        });  
+    const tvm = new TarefasViewModel("tarefas");
+    const tarefaView = new TarefasView(tvm);
+    const evm = new EstudoViewModel("cursos");
+    const estudoView = new EstudoView(evm);
+    const cvm = new CatalogoViewModel("catalogo");
+    const catalogoView = new CatalogoView(cvm);
+    const avm = new AgendaViewModel("agenda");
+    const agendaView = new AgendaView(avm);
+
+    (async () => {
+        await evm.obterCursos(); 
+        await tvm.obterTarefas();   
+        await cvm.obterCatalogo(); 
+        await avm.obterAgenda();
+
+        estudoView.renderCursando("Cursando");
+        tarefaView.listarTarefas('lista-tarefa')
+        catalogoView.renderAssistindo(['Assistindo','Reassistindo'],'Assistindo')
+        agendaView.renderProximosCompromissos('proximos-compromissos')
+        agendaView.renderCalendario('calendario')
+    })();
+
+ //Adiciona tarefa
+    botaoTarefa.addEventListener("click", async (evento) => { 
+        evento.preventDefault();   
+        const tarefa = tarefaView.preencherTarefa('tarefa',inputIdTarefa)
+        await tarefaView.salvarTarefa(tarefa);
+        tarefaView.listarTarefas('lista-tarefa')
+    });
+
+contagemRegressiva(configuracoes.DataContagem);
+descricaoContagem.textContent = configuracoes.DescricaoContagem;
+relogio();
+apiClima.exibirClima()
+
+//exibe calendario
+//criarCalendario();
 
 
 //Modal adicionar evento
@@ -51,18 +77,3 @@ linhas.forEach(linha => {
 //         if (e.target === modal) modal.style.display = "none";
 //     };
 // });
-
-contagemRegressiva(configuracoes.DataContagem);
-descricaoContagem.textContent = configuracoes.DescricaoContagem;
-relogio();
-apiClima.exibirClima()
-//exibe lista de próximo compromissos
-listas.forEach(lista => {
-    if (lista.dataset.filtro === 'compromissos') {
-        proximosCompromissos(lista.id)
-    }
-});
-//exibe calendario
-criarCalendario();
-//exibe lista de tarefas
-listarTarefas();

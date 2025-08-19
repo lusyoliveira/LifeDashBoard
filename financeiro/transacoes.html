@@ -10,243 +10,221 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 bg-body-tertiary">
-        <div class="container-fluid">
-            <!-- Esquerda: Título e Breadcrumb -->
-            <div class="d-flex align-items-center">
-                <a class="navbar-brand fw-bold me-4" href="/index.html">Life Dashboard</a>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="/index.html">Início</a></li>
-                        <li class="breadcrumb-item"><a href="/financeiro.html">Financeiro</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Transações</li>
-                    </ol>
-                </nav>
-            </div>
-    
-            <!-- Direita: Pesquisa e Avatar -->
-            <div class="d-flex align-items-center ms-auto">
-                <form class="d-flex me-3" id="pesquisar" role="search">
-                    <input class="form-control" type="search" placeholder="Pesquisar..." aria-label="Pesquisar">
-                </form>
-    
-                <div class="d-flex justify-content-between align-items-lg-center gap-3">
-                    <a href="#" class="d-flex align-items-center text-decoration-none">
-                        <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle" _mstalt="33306" _msthash="42">
-                        Luciene
-                    </a>
-                    <a href="/configuracoes.html" title="Configurações" class="icones-navbar"><i class="bi bi-gear-fill"></i></a>                  
-                    <a href="#" title="Sair" class="icones-navbar"><i class="bi bi-box-arrow-right"></i></a>
-                </div>                    
+    <header>
+        <div class="px-3 py-2 bg-dark bg-body-tertiary">
+            <div class="container-fliud">
+                <div class="d-flex flex-wrap align-items-center justify-content-between"> 
+                    <!-- Esquerda: Título e Breadcrumb -->                  
+                    <div class="d-flex align-items-center">
+                        <a class="navbar-brand fw-bold me-4" href="index.html">Life Dashboard</a>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+                                <li class="breadcrumb-item"><a href="/financeiro.html">Financeiro</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Transações</li>
+                            </ol>
+                        </nav>
+                    </div>
+
+                    <!-- Direita: Pesquisa e Avatar -->
+                    <div class="d-flex align-items-center ms-auto">
+                        <form class="d-flex me-3" id="pesquisar" role="search">
+                            <input class="form-control" type="search" placeholder="Pesquisar..." aria-label="Pesquisar">
+                        </form>
+            
+                        <div class="d-flex justify-content-between align-items-lg-center gap-3">
+                            <a href="#" class="d-flex align-items-center text-decoration-none">
+                                <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle" _mstalt="33306" _msthash="42">
+                                Luciene
+                            </a>
+                            <a href="/configuracoes.html" title="Configurações" class="icones-navbar"><i class="bi bi-gear-fill"></i></a>                  
+                            <a href="#" title="Sair" class="icones-navbar"><i class="bi bi-box-arrow-right"></i></a>
+                        </div>                    
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
+        <div class="border-bottom">
+            <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                <li> 
+                    <a class="nav-link text-secondary" id="ancora-catalogo" href="/financeiro.html">
+                        <i class="bi bi-coin"></i>
+                        Visão Geral
+                    </a> 
+                </li>
+                <li> 
+                    <a class="nav-link text-secondary" id="ancora-catalogo" href="./transacoes.html">
+                        <i class="bi bi-list-stars"></i>
+                        Transações
+                    </a> 
+                </li>
+                <li> 
+                    <a class="nav-link text-secondary" href="#">
+                        <i class="bi bi-pie-chart-fill"></i>
+                        Orçamento
+                    </a> 
+                </li>                              
+                <li> 
+                    <a class="nav-link text-secondary" href="#">
+                        <i class="bi bi-clipboard-data-fill"></i>
+                        Análise
+                    </a> 
+                </li>                               
+                <li> 
+                    <a class="nav-link text-secondary" href="#">
+                        <i class="bi bi-currency-exchange"></i>
+                        Investimentos
+                    </a> 
+                </li>
+                <li> 
+                    <a class="nav-link text-secondary" href="#"> 
+                        <i class="bi bi-list-task"></i>
+                        Categorias
+                    </a> 
+                </li>
+                <li> 
+                    <a class="nav-link text-secondary" href="#"> 
+                        <i class="bi bi-bank"></i>
+                        Contas
+                    </a> 
+                </li>                
+            </ul>
+        </div>
+    </header>
  
     <main class="container-fliud m-4">
-        <h1 class="pb-2 border-bottom mb-4">Transações</h1>
+        <h1 class="pb-2 mb-4">Transações</h1>
             <div class="container-fliud">
-                <div class="row">
-                    <div class="col-3">
-                        <ul class="dropdown-menu d-block position-static mx-0 border-0 shadow w-220px" data-bs-theme="dark">
-                            <li> 
-                                <a class="dropdown-item d-flex gap-2 align-items-center" id="ancora-catalogo" href="/financeiro.html">
-                                    <i class="bi bi-coin"></i>
-                                    Visão Geral
-                                </a> 
-                            </li>
-                            <li> 
-                                <a class="dropdown-item d-flex gap-2 align-items-center" id="ancora-catalogo" href="#">
-                                    <i class="bi bi-list-stars"></i>
-                                    Transações
-                                </a> 
-                            </li>
-                            <li> 
-                                <a class="dropdown-item d-flex gap-2 align-items-center" href="#">
-                                    <i class="bi bi-pie-chart-fill"></i>
-                                    Orçamento
-                                </a> 
-                            </li>                              
-                            <li> 
-                                <a class="dropdown-item d-flex gap-2 align-items-center" href="#">
-                                    <i class="bi bi-clipboard-data-fill"></i>
-                                    Análise
-                                </a> 
-                            </li>                               
-                            <li> 
-                                <a class="dropdown-item d-flex gap-2 align-items-center" href="#">
-                                    <i class="bi bi-currency-exchange"></i>
-                                    Investimentos
-                                </a> 
-                            </li>
-                            <li> 
-                                <a class="dropdown-item d-flex gap-2 align-items-center" href="#"> 
-                                    <i class="bi bi-list-task"></i>
-                                    Categorias
-                                </a> 
-                            </li>
-                            <li> 
-                                <a class="dropdown-item d-flex gap-2 align-items-center" href="#"> 
-                                    <i class="bi bi-bank"></i>
-                                    Contas
-                                </a> 
-                            </li>
-                            
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li class="dropdown-item d-flex justify-content-between align-items-center">
-                                Carteira
-                                <span class="badge text-bg-primary rounded-pill">14</span>
-                            </li>
-                            <li class="dropdown-item d-flex justify-content-between align-items-center">
-                                Poupança
-                                <span class="badge text-bg-primary rounded-pill">14</span>
-                            </li>
-                            <li class="dropdown-item d-flex justify-content-between align-items-center">
-                                Conta Corrente
-                                <span class="badge text-bg-primary rounded-pill">14</span>
-                            </li>
-                            <li class="dropdown-item d-flex justify-content-between align-items-center">
-                                Carteira
-                                <span class="badge text-bg-primary rounded-pill">14</span>
-                            </li>
-                        </ul>                      
-                        
-                    </div>
-                    
+                <form class="row gy-2 gx-3 align-items-center" id="agenda-form" title="Adicionar Agendamento">                            
                     <div class="col">
-                        <form class="row gy-2 gx-3 align-items-center" id="agenda-form" title="Adicionar Agendamento">                            
-                            <div class="col">
-                                <input type="hidden" id="id-adicionar" />
-                                <label for="data-adicionar" class="col-form-label">Data:</label>
-                                <input type="date" class="form-control" id="data-adicionar" title="Data" required>
-                            </div>
-                            <div class="col">
-                                <label for="descricao-adicionar" class="col-form-label">Descrição:</label>
-                                <input type="text" class="form-control" id="descricao-adicionar" title="Descrição" placeholder="Informe a transação" required>
-                            </div>
-                            <div class="col">
-                                <label for="categoria-adicionar" class="col-form-label">Categoria:</label>
-                                <select type="text" class="form-select" id="categoria-adicionar" title="Categoria" required>
-                                    <option value="Loja">Loja</option>
-                                    <option value="Casa">Casa</option>
-                                    <option value="Pessoal">Pessoal</option>
-                                    <option value="Educação">Educação</option>
-                                    <option value="Financeiro">Financeiro</option>
-                                    <option value="Data Importante">Data Importante</option>
-                                </select>
-                            </div>
-                            <div class="col">
-                                <label for="conta-adicionar" class="col-form-label">Conta:</label>
-                                <select type="text" class="form-select" id="conta-adicionar" title="Conta" required>
-                                    <option value="Evento">Evento</option>
-                                    <option value="Compromisso">Compromisso</option>
-                                    <option value="Tarefas">Tarefas</option>
-                                </select>
-                            </div>
-                            <div class="col">
-                                <label for="valor-adicionar" class="col-form-label">Valor:</label>
-                                <input type="text" class="form-control" id="valor-adicionar" title="valor" placeholder="0" required>
-                            </div>
-                            <div class="col">
-                                <label for="parcela-inicio" class="col-form-label">Parcela Inicio:</label>
-                                <input type="text" class="form-control" id="parcela-inicio" title="Parcela Inicio">
-                            </div>
-                            <div class="col">
-                                <label for="parcela-fim" class="col-form-label">Parcela Fim:</label>
-                                <input type="text" class="form-control" id="parcela-fim" title="Parcela Fim">
-                            </div>
-                            <div class="col">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="parcelamento-adicionar">
-                                    <label class="form-check-label" for="parcelamento-adicionar">
-                                        Parcelamento
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col">
-                                    <button type="submit" class="btn btn-primary" id="adicionar-agenda" title="Salvar Agendamento">Salvar</button>
-                                    <button type="button" class="btn btn-secondary" id="cancelar-agenda" title="Cancelar Agendamento" >Cancelar</button>
-                                </div>
-                            </div>                            
-                        </form>  
-                        <div class="row">
-                            <div class="table-responsive">
-                                <table class="table" id="minhaTabela">
-                                    <thead class="table-dark">
-                                        <tr>
-                                            <th>Data</th>
-                                            <th>Descrição</th>
-                                            <th>Categoria</th>
-                                            <th>Conta</th>
-                                            <th>Valor</th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="table-group-divider">
-                                        <tr>
-                                            <td>2024-07-01</td>
-                                            <td>Dado 1</td>
-                                            <td>Dado 1</td>
-                                            <td>Dado 1</td>
-                                            <td>Dado 1</td>
-                                            <td><button class="btn" id="editar" title="Editar"><i class="bi bi-pencil-fill"></i></button></td>
-                                            <td><button class="btn" id="deletar" title="Deletar"><i class="bi bi-trash-fill"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2024-07-02</td>
-                                            <td>Dado 2</td>
-                                            <td>Dado 1</td>
-                                            <td>Dado 1</td>
-                                            <td>Dado 1</td>
-                                            <td><button class="btn" id="editar" title="Editar"><i class="bi bi-pencil-fill"></i></button></td>
-                                            <td><button class="btn" id="deletar" title="Deletar"><i class="bi bi-trash-fill"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2024-07-01</td>
-                                            <td>Dado 3</td>
-                                            <td>Dado 1</td>
-                                            <td>Dado 1</td>
-                                            <td>Dado 1</td>
-                                            <td><button class="btn" id="editar" title="Editar"><i class="bi bi-pencil-fill"></i></button></td>
-                                            <td><button class="btn" id="deletar" title="Deletar"><i class="bi bi-trash-fill"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2024-07-03</td>
-                                            <td>Dado 4</td>
-                                            <td>Dado 1</td>
-                                            <td>Dado 1</td>
-                                            <td>Dado 1</td>
-                                            <td><button class="btn" id="editar" title="Editar"><i class="bi bi-pencil-fill"></i></button></td>
-                                            <td><button class="btn" id="deletar" title="Deletar"><i class="bi bi-trash-fill"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2024-07-02</td>
-                                            <td>Dado 5</td>
-                                            <td>Dado 1</td>
-                                            <td>Dado 1</td>
-                                            <td>Dado 1</td>
-                                            <td><button class="btn" id="editar" title="Editar"><i class="bi bi-pencil-fill"></i></button></td>
-                                            <td><button class="btn" id="deletar" title="Deletar"><i class="bi bi-trash-fill"></i></button></td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>                           
-                        </div>                       
+                        <input type="hidden" id="id-adicionar" />
+                        <label for="data-adicionar" class="col-form-label">Data:</label>
+                        <input type="date" class="form-control" id="data-adicionar" title="Data" required>
                     </div>
+                    <div class="col">
+                        <label for="descricao-adicionar" class="col-form-label">Descrição:</label>
+                        <input type="text" class="form-control" id="descricao-adicionar" title="Descrição" placeholder="Informe a transação" required>
+                    </div>
+                    <div class="col">
+                        <label for="categoria-adicionar" class="col-form-label">Categoria:</label>
+                        <select type="text" class="form-select" id="categoria-adicionar" title="Categoria" required>
+                            <option value="Loja">Loja</option>
+                            <option value="Casa">Casa</option>
+                            <option value="Pessoal">Pessoal</option>
+                            <option value="Educação">Educação</option>
+                            <option value="Financeiro">Financeiro</option>
+                            <option value="Data Importante">Data Importante</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="conta-adicionar" class="col-form-label">Conta:</label>
+                        <select type="text" class="form-select" id="conta-adicionar" title="Conta" required>
+                            <option value="Evento">Evento</option>
+                            <option value="Compromisso">Compromisso</option>
+                            <option value="Tarefas">Tarefas</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="valor-adicionar" class="col-form-label">Valor:</label>
+                        <input type="text" class="form-control" id="valor-adicionar" title="valor" placeholder="0" required>
+                    </div>
+                    <div class="col">
+                        <label for="parcela-inicio" class="col-form-label">Parcela Inicio:</label>
+                        <input type="text" class="form-control" id="parcela-inicio" title="Parcela Inicio">
+                    </div>
+                    <div class="col">
+                        <label for="parcela-fim" class="col-form-label">Parcela Fim:</label>
+                        <input type="text" class="form-control" id="parcela-fim" title="Parcela Fim">
+                    </div>
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="parcelamento-adicionar">
+                            <label class="form-check-label" for="parcelamento-adicionar">
+                                Parcelamento
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary" id="adicionar-agenda" title="Salvar Agendamento">Salvar</button>
+                            <button type="button" class="btn btn-secondary" id="cancelar-agenda" title="Cancelar Agendamento" >Cancelar</button>
+                        </div>
+                    </div>                            
+                </form>  
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="table" id="minhaTabela">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Descrição</th>
+                                    <th>Categoria</th>
+                                    <th>Conta</th>
+                                    <th>Valor</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider">
+                                <tr>
+                                    <td>2024-07-01</td>
+                                    <td>Dado 1</td>
+                                    <td>Dado 1</td>
+                                    <td>Dado 1</td>
+                                    <td>Dado 1</td>
+                                    <td><button class="btn" id="editar" title="Editar"><i class="bi bi-pencil-fill"></i></button></td>
+                                    <td><button class="btn" id="deletar" title="Deletar"><i class="bi bi-trash-fill"></i></button></td>
+                                </tr>
+                                <tr>
+                                    <td>2024-07-02</td>
+                                    <td>Dado 2</td>
+                                    <td>Dado 1</td>
+                                    <td>Dado 1</td>
+                                    <td>Dado 1</td>
+                                    <td><button class="btn" id="editar" title="Editar"><i class="bi bi-pencil-fill"></i></button></td>
+                                    <td><button class="btn" id="deletar" title="Deletar"><i class="bi bi-trash-fill"></i></button></td>
+                                </tr>
+                                <tr>
+                                    <td>2024-07-01</td>
+                                    <td>Dado 3</td>
+                                    <td>Dado 1</td>
+                                    <td>Dado 1</td>
+                                    <td>Dado 1</td>
+                                    <td><button class="btn" id="editar" title="Editar"><i class="bi bi-pencil-fill"></i></button></td>
+                                    <td><button class="btn" id="deletar" title="Deletar"><i class="bi bi-trash-fill"></i></button></td>
+                                </tr>
+                                <tr>
+                                    <td>2024-07-03</td>
+                                    <td>Dado 4</td>
+                                    <td>Dado 1</td>
+                                    <td>Dado 1</td>
+                                    <td>Dado 1</td>
+                                    <td><button class="btn" id="editar" title="Editar"><i class="bi bi-pencil-fill"></i></button></td>
+                                    <td><button class="btn" id="deletar" title="Deletar"><i class="bi bi-trash-fill"></i></button></td>
+                                </tr>
+                                <tr>
+                                    <td>2024-07-02</td>
+                                    <td>Dado 5</td>
+                                    <td>Dado 1</td>
+                                    <td>Dado 1</td>
+                                    <td>Dado 1</td>
+                                    <td><button class="btn" id="editar" title="Editar"><i class="bi bi-pencil-fill"></i></button></td>
+                                    <td><button class="btn" id="deletar" title="Deletar"><i class="bi bi-trash-fill"></i></button></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>                           
                 </div>
             </div>             
     </main>
@@ -273,7 +251,7 @@
             </li>
         </ul>
     </footer>
-    <script src="/js/financeiro.js"></script>
+    <script src="../Financeiro/mainTransacao.js"  type="module"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </body>
 </html>

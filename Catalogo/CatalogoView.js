@@ -34,12 +34,10 @@ export class CatalogoView {
     async listarCatalogo(elementoId) {
         const tabela = document.getElementById(elementoId);
         tabela.innerHTML = "";
-        const catalogo = await this.vm.carregarCatalogo();
+        const catalogo = await this.vm.obterCatalogo();
 
         if (!tabela) return;
-
-        tabela.innerHTML = ''; 
-
+        
         if ($.fn.DataTable.isDataTable('.datatable')) {
         $('.datatable').DataTable().clear().destroy(); 
         }
@@ -464,10 +462,7 @@ export class CatalogoView {
         const elementoDestino = document.getElementById(elementoId);
         const porcentagem = catalogo.totalAssistidos/catalogo.totalEpisodios*100;   
 
-        let contagem = 0;
-
-        console.log(catalogo.mediaPontuacao);
-        
+        let contagem = 0;      
        
          if (tipoContagem === 'Progresso') {
             contagem = catalogo.totalAssistidos
@@ -612,4 +607,78 @@ export class CatalogoView {
             elementoDestino.appendChild(h6Card);
         }            
     }
+
+    async  renderAssistindo(statusFiltro, elementoDestinoId) {
+        const catalogoStatus = this.vm.assistindo(statusFiltro,4);
+        const elementoDestino = document.getElementById(elementoDestinoId);
+
+        if (elementoDestino) {
+            elementoDestino.innerHTML = "";
+
+            if (!catalogoStatus.length == 0) {
+                catalogoStatus.forEach(titulo => {
+                    const divContainer = document.createElement('div');
+                    divContainer.classList.add('col');
+
+                    const divContainerCard = document.createElement('div');
+                    divContainerCard.classList.add('card', 'shadow-sm');
+
+                    const imgCapa = document.createElement('img');
+                    imgCapa.classList.add('card-img-top');
+                    imgCapa.src = titulo.Capa;
+                    imgCapa.alt = titulo.Titulo;
+                    imgCapa.height = 250;
+                    imgCapa.width = '100%';
+
+                    const divCardBody = document.createElement('div');
+                    divCardBody.classList.add('card-body');
+                    divCardBody.id = 'principal-assistindo';
+
+                    const h5Titulo = document.createElement('h5');
+                    h5Titulo.classList.add('card-title');
+                    h5Titulo.textContent = titulo.Titulo;
+
+                    const divBadge = document.createElement('div');
+                    divBadge.classList.add('d-flex', 'justify-content-between', 'align-items-center');
+
+                    const spanBadgeTipo = document.createElement('span');
+                    spanBadgeTipo.classList.add('badge', 'text-bg-info');
+                    spanBadgeTipo.textContent = titulo.Tipo;
+
+                    const spanBadgeStatus = document.createElement('span');
+                    spanBadgeStatus.classList.add('badge', 'text-bg-primary');
+                    spanBadgeStatus.textContent = titulo.Status;
+
+                    const divProgresso = document.createElement('div');
+                    divProgresso.classList.add('progress', 'mt-2');
+                    divProgresso.setAttribute('role', 'progressbar');
+                    divProgresso.setAttribute('aria-label', 'Progresso Assistindo');
+                    divProgresso.setAttribute('aria-valuenow', titulo.Status === 'Planejado' ? 0 : (titulo.Assistidos/titulo.Episodios).toFixed(1)*100);
+                    divProgresso.setAttribute('aria-valuemin', '0');
+                    divProgresso.setAttribute('aria-valuemax', '100');
+
+                    const divBarraProgresso = document.createElement('div');
+                    divBarraProgresso.classList.add('progress-bar', 'bg-success');
+                    divBarraProgresso.style.width = `${titulo.Status === 'Planejado' ? 0 : (titulo.Assistidos/titulo.Episodios).toFixed(1)*100}%`;
+                    divBarraProgresso.textContent = `${titulo.Status === 'Planejado' ? 0 : (titulo.Assistidos/titulo.Episodios).toFixed(1)*100}%`;
+
+                    divProgresso.appendChild(divBarraProgresso);
+                    divCardBody.appendChild(h5Titulo);
+                    divBadge.appendChild(spanBadgeTipo);
+                    divBadge.appendChild(spanBadgeStatus);
+                    divCardBody.appendChild(divBadge);
+                    divCardBody.appendChild(divProgresso);
+                    divContainerCard.appendChild(imgCapa);
+                    divContainerCard.appendChild(divCardBody);
+                    divContainer.appendChild(divContainerCard);
+                    elementoDestino.appendChild(divContainer);
+                });
+            } else {
+                const pMensagem = document.createElement('p');
+                pMensagem.classList.add('mensagem-curso');
+                pMensagem.textContent = 'Não há títulos em andamento no momento.';
+                elementoDestino.appendChild(pMensagem);
+            } 
+        }
+    };
 }

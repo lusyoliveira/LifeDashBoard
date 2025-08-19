@@ -72,8 +72,8 @@ export class EstudoView {
 
         if (elementoDestino) {
             elementoDestino.innerHTML = "";
-
-            if (!cursando.length === 0) {
+            
+            if (cursando.length > 0) {
                 cursando.forEach(curso => {
                     const divContainer = document.createElement('div');
                     divContainer.classList.add('col');

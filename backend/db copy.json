@@ -1,19 +1,16 @@
 {
   "configuracoes": [
     {
-      "id":"1",
+      "id": "1",
       "AtivaMAL": false,
       "AtivaOutlook": false,
       "ChaveOutlook": "",
       "AtivaGoogle": false,
       "ChaveGoogle": "",
-      "AtivaClima": false,      
-      "DataContagem":"2025-09-22T15:29:00.000Z",
-      "DescricaoContagem": "Primavera",
-      "Cidade": "Juiz de Fora",
-      "Estado": "Minas Gerais",
-      "Latitude": -21.7642,
-      "Longitude": -43.3503
+      "AtivaClima": true,
+      "AtualizaClima": 10800,
+      "DataContagem": "2025-09-22T15:29:00.000Z",
+      "DescricaoContagem": "Primavera"
     }
   ],
   "clima": [
@@ -34,75 +31,81 @@
       "admin1": "Minas Gerais",
       "admin2": "Juiz de Fora",
       "current_units": {
-      "time": "iso8601",
-      "interval": "seconds",
-      "weather_code": "wmo code",
-      "temperature_2m": "°C",
-      "relative_humidity_2m": "%",
-      "apparent_temperature": "°C",
-      "is_day": "",
-      "wind_speed_10m": "km/h",
-      "wind_direction_10m": "°",
-      "wind_gusts_10m": "km/h",
-      "precipitation": "mm",
-      "rain": "mm",
-      "showers": "mm",
-      "snowfall": "cm",
-      "cloud_cover": "%",
-      "pressure_msl": "hPa",
-      "surface_pressure": "hPa"
-    },
-    "current": {
-      "time": "2025-07-25T16:45",
-      "interval": 900,
-      "weather_code": 3,
-      "temperature_2m": 21.5,
-      "relative_humidity_2m": 66,
-      "apparent_temperature": 22.1,
-      "is_day": 1,
-      "wind_speed_10m": 6.5,
-      "wind_direction_10m": 360,
-      "wind_gusts_10m": 27,
-      "precipitation": 0,
-      "rain": 0,
-      "showers": 0,
-      "snowfall": 0,
-      "cloud_cover": 97,
-      "pressure_msl": 1019.2,
-      "surface_pressure": 939
-    },
-    "daily_units": {
-      "time": "iso8601",
-      "weather_code": "wmo code",
-      "temperature_2m_max": "°C",
-      "temperature_2m_min": "°C"
-    },
-    "daily": {
-      "time": [
-        "2025-07-25",
-        "2025-07-26",
-        "2025-07-27",
-        "2025-07-28",
-        "2025-07-29",
-        "2025-07-30",
-        "2025-07-31"
-      ],
-      "weather_code": [95, 45, 45, 3, 3, 2, 45],
-      "temperature_2m_max": [21.6, 21.6, 23.6, 25.6, 18.1, 17, 18.2],
-      "temperature_2m_min": [13.8, 11.2, 12.4, 12.8, 11.2, 5.5, 6.7]
+        "time": "iso8601",
+        "interval": "seconds",
+        "weather_code": "wmo code",
+        "temperature_2m": "°C",
+        "relative_humidity_2m": "%",
+        "apparent_temperature": "°C",
+        "is_day": "",
+        "wind_speed_10m": "km/h",
+        "wind_direction_10m": "°",
+        "wind_gusts_10m": "km/h",
+        "precipitation": "mm",
+        "rain": "mm",
+        "showers": "mm",
+        "snowfall": "cm",
+        "cloud_cover": "%",
+        "pressure_msl": "hPa",
+        "surface_pressure": "hPa"
+      },
+      "current": {
+        "time": "2025-07-25T16:45",
+        "interval": 900,
+        "weather_code": 3,
+        "temperature_2m": 21.5,
+        "relative_humidity_2m": 66,
+        "apparent_temperature": 22.1,
+        "is_day": 1,
+        "wind_speed_10m": 6.5,
+        "wind_direction_10m": 360,
+        "wind_gusts_10m": 27,
+        "precipitation": 0,
+        "rain": 0,
+        "showers": 0,
+        "snowfall": 0,
+        "cloud_cover": 97,
+        "pressure_msl": 1019.2,
+        "surface_pressure": 939
+      },
+      "daily_units": {
+        "time": "iso8601",
+        "weather_code": "wmo code",
+        "temperature_2m_max": "°C",
+        "temperature_2m_min": "°C"
+      },
+      "daily": {
+        "time": [
+          "2025-07-25",
+          "2025-07-26",
+          "2025-07-27",
+          "2025-07-28",
+          "2025-07-29",
+          "2025-07-30",
+          "2025-07-31"
+        ],
+        "weather_code": [95, 45, 45, 3, 3, 2, 45],
+        "temperature_2m_max": [21.6, 21.6, 23.6, 25.6, 18.1, 17, 18.2],
+        "temperature_2m_min": [13.8, 11.2, 12.4, 12.8, 11.2, 5.5, 6.7]
+      }
     }
-  }    
   ],
   "tarefas": [
     {
-      "id":"1",
-      "tarefa": "Estudando",
-      "Adicionado": "2026-07-10T00:00:00.000Z"
+      "id": "1",
+      "tarefa": "Estudando2",
+      "Adicionado": "01/08/2025",
+      "Feito": true
+    },
+    {
+      "id": "2",
+      "tarefa": "Limpar Casa",
+      "Adicionado": "2025-08-01T12:57:00.000Z"
     }
   ],
   "contas": [
     {
-      "id":"1",
+      "id": "1",
       "Agencia": "260",
       "Conta": "0000000",
       "Banco": "Nu",
@@ -126,7 +129,7 @@
       "Status": "Indeterminado",
       "Categoria": "Pessoal",
       "Tipo": "Evento",
-      "Data": "2025-07-19T00:00:00.000Z"
+      "Data": "2025-08-19T00:00:00.000Z"
     },
     {
       "id": "3",
@@ -134,7 +137,7 @@
       "Status": "Indeterminado",
       "Categoria": "Pessoal",
       "Tipo": "Evento",
-      "Data": "2025-07-16T17:00:00.000Z"
+      "Data": "2025-07-30T17:00:00.000Z"
     },
     {
       "id": "4",
@@ -146,12 +149,11 @@
     },
     {
       "id": "5",
-      "Capa": "",
       "Titulo": "Conta de Luz",
       "Status": "Indeterminado",
       "Categoria": "Casa",
       "Tipo": "Evento",
-      "Data": "2025-07-16T00:00:00.000Z"
+      "Data": "2025-08-16T00:00:00.000Z"
     },
     {
       "id": "6",
@@ -163,30 +165,27 @@
     },
     {
       "id": "7",
-      "Capa": "",
       "Titulo": "Dia do Amigo",
       "Status": "Indeterminado",
       "Categoria": "Data Importante",
       "Tipo": "Evento",
-      "Data": "2025-07-20T00:00:00.000Z"
+      "Data": "2026-07-20T00:00:00.000Z"
     },
     {
       "id": "8",
-      "Capa": "",
       "Titulo": "Viajem a Lua",
       "Status": "Indeterminado",
       "Categoria": "Data Importante",
       "Tipo": "Evento",
-      "Data": "2025-07-20T00:00:00.000Z"
+      "Data": "2026-07-20T00:00:00.000Z"
     },
     {
       "id": "9",
-      "Capa": "",
       "Titulo": "Acerto Financeiro",
       "Status": "Indeterminado",
       "Categoria": "Pessoal",
       "Tipo": "Compromissos",
-      "Data": "2025-07-27T00:00:00.000Z"
+      "Data": "2025-08-27T00:00:00.000Z"
     },
     {
       "id": "10",
@@ -734,7 +733,7 @@
     {
       "id": "2",
       "Titulo": "Cold Case 1ª á 4ª Temporada",
-      "Capa": "",
+      "Capa": "https://m.media-amazon.com/images/M/MV5BMGEzYmFhNzMtODNhNC00MmZiLWFjMWEtZjIxNzQxZWVlNWEzXkEyXkFqcGc@._V1_.jpg",
       "Tipo": "Serie",
       "Status": "Completado",
       "Onde": "TV",
@@ -894,7 +893,7 @@
     {
       "id": "7",
       "Titulo": "Futurama",
-      "Capa": "",
+      "Capa": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfjXyDKUfScFnr5ihW-iqvWcsmNfLbJ7IqTw&s",
       "Tipo": "Desenho",
       "Status": "Dropped",
       "Onde": "TV",
@@ -1086,7 +1085,7 @@
     {
       "id": "13",
       "Titulo": "Bones 1ª á 9ª Temporada",
-      "Capa": "",
+      "Capa": "https://m.media-amazon.com/images/M/MV5BMjA3ODMxMzM5NF5BMl5BanBnXkFtZTgwMDM1NjU0OTE@._V1_FMjpg_UX1000_.jpg",
       "Tipo": "Serie",
       "Status": "Completado",
       "Onde": "Netflix",
@@ -1374,7 +1373,7 @@
     {
       "id": "22",
       "Titulo": "Power Ranger: Mystic Force",
-      "Capa": "",
+      "Capa": "https://m.media-amazon.com/images/M/MV5BMDJmMzQ0NmMtM2UwYy00MDUxLWIyMzMtZGRjMzkwNWYzN2RlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
       "Tipo": "Serie",
       "Status": "Dropped",
       "Onde": "Netflix",
@@ -1406,7 +1405,7 @@
     {
       "id": "23",
       "Titulo": "Power Ranger: Operation Overdrive",
-      "Capa": "",
+      "Capa": "https://m.media-amazon.com/images/M/MV5BOWE3OTE1MWYtZTQwZS00MTA4LWI1ZjAtM2UxNjM3Y2ZmZTNkXkEyXkFqcGc@._V1_.jpg",
       "Tipo": "Serie",
       "Status": "Dropped",
       "Onde": "Netflix",
@@ -1502,7 +1501,7 @@
     {
       "id": "26",
       "Titulo": "O Código D'Vinci",
-      "Capa": "",
+      "Capa": "https://m.media-amazon.com/images/M/MV5BN2JiMGYwMWMtOTQ4NS00NjViLTg4ZmUtOWI2NmViOTM0OWQwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
       "Tipo": "Filme",
       "Status": "Completado",
       "Onde": "Netflix",
@@ -1630,7 +1629,7 @@
     {
       "id": "30",
       "Titulo": "Freaks and Geeks",
-      "Capa": "",
+      "Capa": "https://m.media-amazon.com/images/M/MV5BNDk4MTRlZjMtYTMxYi00ZjdkLWEyYjYtZjg1NjBlMzY2MDIzXkEyXkFqcGc@._V1_.jpg",
       "Tipo": "Serie",
       "Status": "Dropped",
       "Onde": "Netflix",
@@ -1918,7 +1917,7 @@
     {
       "id": "39",
       "Titulo": "O Cavaleiro Solitário",
-      "Capa": "",
+      "Capa": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuSU8BrCSnN1pgjcgXi1xYz9bodkA4-qqbgg&s",
       "Tipo": "Filme",
       "Status": "Completado",
       "Onde": "Netflix",
@@ -1982,7 +1981,7 @@
     {
       "id": "41",
       "Titulo": "A Vigilante do Amanhã - Ghost In The Shell",
-      "Capa": "",
+      "Capa": "https://m.media-amazon.com/images/M/MV5BYTdlMDBhY2EtZWQ0Ni00MzE0LTlmM2YtMTM2NmVjOWQ0NmEzXkEyXkFqcGc@._V1_.jpg",
       "Tipo": "Filme",
       "Status": "Completado",
       "Onde": "Cinema",
@@ -2270,7 +2269,7 @@
     {
       "id": "50",
       "Titulo": "Para Todos os Garotos Que Amei",
-      "Capa": "",
+      "Capa": "https://m.media-amazon.com/images/M/MV5BMjQ3NjM5MTAzN15BMl5BanBnXkFtZTgwODQzMDAwNjM@._V1_.jpg",
       "Tipo": "Filme",
       "Status": "Completado",
       "Onde": "Netflix",
@@ -2494,7 +2493,7 @@
     {
       "id": "57",
       "Titulo": "Friends",
-      "Capa": "",
+      "Capa": "https://m.media-amazon.com/images/M/MV5BOTU2YmM5ZjctOGVlMC00YTczLTljM2MtYjhlNGI5YWMyZjFkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
       "Tipo": "Serie",
       "Status": "Completado",
       "Onde": "Netflix",
@@ -2558,7 +2557,7 @@
     {
       "id": "59",
       "Titulo": "The Witcher 1ª Temporada",
-      "Capa": "",
+      "Capa": "https://m.media-amazon.com/images/M/MV5BOTY2Yzk2ZTUtNDIwOS00ZTkzLTkyMmEtMzEyY2U2OTRmNTJkXkEyXkFqcGc@._V1_.jpg",
       "Tipo": "Serie",
       "Status": "Completado",
       "Onde": "Netflix",
@@ -4286,7 +4285,7 @@
     {
       "id": "113",
       "Titulo": "Different Strokes",
-      "Capa": "",
+      "Capa": "https://m.media-amazon.com/images/M/MV5BYzdmYjk5MjgtYmQ1My00ODE1LTkxNmMtNTU3YTNlY2YyNWM1XkEyXkFqcGc@._V1_.jpg",
       "Tipo": "Serie",
       "Status": "Dropped",
       "Onde": "Pluto TV",
@@ -4414,7 +4413,7 @@
     {
       "id": "117",
       "Titulo": "O Encantador de Cães",
-      "Capa": "",
+      "Capa": "https://m.media-amazon.com/images/M/MV5BODE1MjIxYTUtMmZmNS00Nzk2LWE4YzItMTIyNmM5MTNlMTAzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
       "Tipo": "Reality",
       "Status": "Dropped",
       "Onde": "Pluto TV",
@@ -5214,17 +5213,17 @@
     {
       "id": "142",
       "Titulo": "Sapphire & Steel",
-      "Capa": "",
+      "Capa": "https://m.media-amazon.com/images/M/MV5BZDc5MjU0NzUtYmVhOS00MjJmLTg2Y2QtYTE3OWNiOTU1OTEzXkEyXkFqcGc@._V1_.jpg",
       "Tipo": "Serie",
       "Status": "Planejado",
       "Onde": "",
       "Inicio": "",
       "Fim": "",
-      "Episodios": "",
-      "Assistidos": "",
-      "Temporadas": "",
-      "Score": "",
-      "Vezes": "",
+      "Episodios": 0,
+      "Assistidos": 0,
+      "Temporadas": 0,
+      "Score": 0,
+      "Vezes": 0,
       "Adicao": "2023-02-18T00:00:00.000Z",
       "Desenho": 0,
       "Doc": 0,
@@ -5246,17 +5245,17 @@
     {
       "id": "143",
       "Titulo": "Contra o Tempo",
-      "Capa": "",
+      "Capa": "https://m.media-amazon.com/images/M/MV5BNDIxZTIyMmMtMDIxOC00ZDMxLWI3ZjktNTc5NjExMzk2ZGFiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
       "Tipo": "Filme",
       "Status": "Planejado",
       "Onde": "",
       "Inicio": "",
       "Fim": "",
-      "Episodios": "",
-      "Assistidos": "",
-      "Temporadas": "",
-      "Score": "",
-      "Vezes": "",
+      "Episodios": 0,
+      "Assistidos": 0,
+      "Temporadas": 0,
+      "Score": 0,
+      "Vezes": 0,
       "Adicao": "2023-02-18T00:00:00.000Z",
       "Desenho": 0,
       "Doc": 0,
@@ -5278,17 +5277,17 @@
     {
       "id": "144",
       "Titulo": "Alta Frequencia",
-      "Capa": "",
+      "Capa": "https://m.media-amazon.com/images/M/MV5BOWMzYzQwYmItNWY3Yy00YWQ0LTk1MzEtNzliZDIyN2IxMmUzXkEyXkFqcGc@._V1_.jpg",
       "Tipo": "Filme",
       "Status": "Planejado",
       "Onde": "",
       "Inicio": "",
       "Fim": "",
-      "Episodios": "",
-      "Assistidos": "",
-      "Temporadas": "",
-      "Score": "",
-      "Vezes": "",
+      "Episodios": 0,
+      "Assistidos": 0,
+      "Temporadas": 0,
+      "Score": 0,
+      "Vezes": 0,
       "Adicao": "2023-02-18T00:00:00.000Z",
       "Desenho": 0,
       "Doc": 0,
@@ -5310,17 +5309,17 @@
     {
       "id": "145",
       "Titulo": "Nimitz - De Volta ao Inferno",
-      "Capa": "",
+      "Capa": "https://m.media-amazon.com/images/M/MV5BZDVhMGIzN2ItMmNiYy00ODdiLTg4Y2EtNWY4M2M3Njc2Y2I1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
       "Tipo": "Filme",
       "Status": "Planejado",
       "Onde": "",
       "Inicio": "",
       "Fim": "",
-      "Episodios": "",
-      "Assistidos": "",
-      "Temporadas": "",
-      "Score": "",
-      "Vezes": "",
+      "Episodios": 0,
+      "Assistidos": 0,
+      "Temporadas": 0,
+      "Score": 0,
+      "Vezes": 0,
       "Adicao": "2023-02-18T00:00:00.000Z",
       "Desenho": 0,
       "Doc": 0,
@@ -5348,11 +5347,11 @@
       "Onde": "",
       "Inicio": "",
       "Fim": "",
-      "Episodios": "",
-      "Assistidos": "",
-      "Temporadas": "",
-      "Score": "",
-      "Vezes": "",
+      "Episodios": 0,
+      "Assistidos": 0,
+      "Temporadas": 0,
+      "Score": 0,
+      "Vezes": 0,
       "Adicao": "2023-02-18T00:00:00.000Z",
       "Desenho": 0,
       "Doc": 0,
@@ -5380,11 +5379,11 @@
       "Onde": "",
       "Inicio": "",
       "Fim": "",
-      "Episodios": "",
-      "Assistidos": "",
-      "Temporadas": "",
-      "Score": "",
-      "Vezes": "",
+      "Episodios": 0,
+      "Assistidos": 0,
+      "Temporadas": 0,
+      "Score": 0,
+      "Vezes": 0,
       "Adicao": "2023-02-18T00:00:00.000Z",
       "Desenho": 0,
       "Doc": 0,
@@ -5694,14 +5693,14 @@
     {
       "id": "157",
       "Titulo": "NCIS 6ª Temporada",
-      "Capa": "",
+      "Capa": "https://upload.wikimedia.org/wikipedia/pt/b/bc/NCISDVDCoverSeason6.jpg",
       "Tipo": "Serie",
-      "Status": "Completado",
+      "Status": "Reassistindo",
       "Onde": "Pluto TV",
       "Inicio": "2023-07-30T00:00:00.000Z",
       "Fim": "2023-08-20T00:00:00.000Z",
       "Episodios": 24,
-      "Assistidos": 13,
+      "Assistidos": 24,
       "Temporadas": 1,
       "Score": 8,
       "Vezes": 0,
@@ -6142,7 +6141,7 @@
     {
       "id": "171",
       "Titulo": "Rizzoli & Isles",
-      "Capa": "",
+      "Capa": "https://m.media-amazon.com/images/M/MV5BMjMzNzI1MjQ1MV5BMl5BanBnXkFtZTgwNjY2NDY3NTE@._V1_.jpg",
       "Tipo": "Serie",
       "Status": "Dropped",
       "Onde": "Amazon Prime",
@@ -6558,12 +6557,12 @@
     {
       "id": "184",
       "Titulo": "Rick e Morty",
-      "Capa": "",
+      "Capa": "https://m.media-amazon.com/images/I/81YuxdsIuoL._UF894,1000_QL80_.jpg",
       "Tipo": "Desenho",
-      "Status": "Assistindo",
+      "Status": "Dropped",
       "Onde": "MAX",
       "Inicio": "2025-04-19T00:00:00.000Z",
-      "Fim": "",
+      "Fim": "2025-08-03T00:00:00.000Z",
       "Episodios": 75,
       "Assistidos": 36,
       "Temporadas": 7,
@@ -6622,7 +6621,7 @@
     {
       "id": "186",
       "Titulo": "Jovem Sheldon",
-      "Capa": "",
+      "Capa": "https://m.media-amazon.com/images/M/MV5BODU3M2FmMDctNGViYi00OGUxLThkZDAtZmRkZDBhNWJhNDIzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
       "Tipo": "Serie",
       "Status": "Completado",
       "Onde": "Netflix",
@@ -6654,7 +6653,7 @@
     {
       "id": "187",
       "Titulo": "Zodíaco",
-      "Capa": "",
+      "Capa": "https://m.media-amazon.com/images/M/MV5BMjU3NDUxNGYtYmRiNi00NjY1LThjZGItNWFkZWM1OGVjZjA0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
       "Tipo": "Filme",
       "Status": "Completado",
       "Onde": "Amazon Prime",
@@ -6686,7 +6685,7 @@
     {
       "id": "188",
       "Titulo": "Friends Reunion",
-      "Capa": "",
+      "Capa": "https://m.media-amazon.com/images/M/MV5BY2M5ZjljNmUtNDA1MC00ZWNlLWJlNGUtZDczYWMwZmY2OTgyXkEyXkFqcGc@._V1_.jpg",
       "Tipo": "Documentário",
       "Status": "Completado",
       "Onde": "Amazon Prime",
@@ -6724,11 +6723,11 @@
       "Onde": "",
       "Inicio": "",
       "Fim": "",
-      "Episodios": "",
-      "Assistidos": "",
-      "Temporadas": "",
-      "Score": "",
-      "Vezes": "",
+      "Episodios": 0,
+      "Assistidos": 0,
+      "Temporadas": 0,
+      "Score": 0,
+      "Vezes": 0,
       "Adicao": "",
       "Desenho": 0,
       "Doc": 0,
@@ -6746,6 +6745,42 @@
       "Criacao": "18 de fevereiro de 2023 09:46",
       "Atualizacao": "31 de agosto de 2023 07:42",
       "Usuario": "Luciene Silva"
+    },
+    {
+      "id": "190",
+      "Titulo": "Numbers 1ª a 3ª Temporada",
+      "Capa": "https://m.media-amazon.com/images/M/MV5BM2QzNmMxYmYtOGEzZi00YmU2LTkzMzctYTVjNWYxNjlhYjU1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+      "Tipo": "Serie",
+      "Status": "Assistindo",
+      "Onde": "Pluto TV",
+      "Inicio": "2025-08-02T00:00:00.000Z",
+      "Fim": "",
+      "Episodios": 61,
+      "Assistidos": 26,
+      "Temporadas": 3,
+      "Score": "",
+      "Vezes": "",
+      "Adicao": "2025-08-03T00:00:00.000Z",
+      "Progresso": 0,
+      "Dias": 0
+    },
+    {
+      "id": "191",
+      "Titulo": "Wandinha 2ª Temporada",
+      "Capa": "https://images.justwatch.com/poster/333467965/s718/temporada-2.jpg",
+      "Tipo": "Serie",
+      "Status": "Assistindo",
+      "Onde": "Netflix",
+      "Inicio": "2025-08-08T19:16:00.000Z",
+      "Fim": "",
+      "Episodios": "8",
+      "Assistidos": "4",
+      "Temporadas": "1",
+      "Score": 0,
+      "Vezes": 0,
+      "Adicao": "2025-08-11T08:16:00.000Z",
+      "Progresso": 0,
+      "Dias": 0
     }
   ]
 }

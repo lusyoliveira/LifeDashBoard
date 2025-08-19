@@ -25,6 +25,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     e.target.reset();
   });
 
+  btnCancelar.addEventListener('click', () => {
+    formCatalogo.reset();
+  });
+
   //Contagem
   catalogoView.renderContagemGeral("geral-progresso", "Progresso");
   catalogoView.renderContagemGeral("geral-total", "Total");

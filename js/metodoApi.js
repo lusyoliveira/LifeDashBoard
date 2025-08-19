@@ -2,6 +2,7 @@ const urlBase = 'http://localhost:3000'
 
 const api = {
     async buscarDados(endpoint) {
+        
         try {
             const response = await fetch(`${urlBase}/${endpoint}`)
             return await response.json()

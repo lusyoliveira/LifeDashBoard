@@ -1,0 +1,349 @@
+import { calculaTempoData, converteDataUTC } from "../js/metodoData.js";
+export class AgendaView {
+  constructor(vm) {
+    this.vm = vm;
+  }
+  //Formulário
+  preencherAgenda(formId) {
+    const form = document.getElementById(formId);
+    const dados = Object.fromEntries(new FormData(form).entries());
+
+    return {
+      id: dados.id ? Number(dados.id) : null,
+      Titulo: dados.Titulo,
+      Status: dados.Status,
+      Categoria: dados.Categoria,
+      Tipo: dados.Tipo,
+      Data: dados.Adicao || new Date().toISOString().split("T")[0],
+    };
+  }
+
+  async listarAgenda(elementoId) {
+    const linhaTabela = document.getElementById(elementoId);
+    linhaTabela.innerHTML = "";
+    const agenda = await this.vm.obterAgenda();
+
+    if (!linhaTabela) return;
+
+    if ($.fn.DataTable.isDataTable(".datatable")) {
+      $(".datatable").DataTable().clear().destroy();
+    }
+
+    const listaOrdenada = agenda.sort((a, b) => {
+      const [diaA, mesA, anoA] = a.Data.split("/");
+      const [diaB, mesB, anoB] = b.Data.split("/");
+      const dataA = new Date(`${anoA}-${mesA}-${diaA}T00:00:00`);
+      const dataB = new Date(`${anoB}-${mesB}-${diaB}T00:00:00`);
+      return dataA - dataB;
+    });
+
+    listaOrdenada.forEach((compromisso) => {
+      const tr = document.createElement("tr");
+      const th = document.createElement("th");
+      th.textContent = compromisso.id;
+      th.setAttribute("scope", "row");
+
+      const tdTitulo = document.createElement("td");
+      tdTitulo.textContent = compromisso.Titulo;
+
+      const tdStatus = document.createElement("td");
+      tdStatus.textContent = compromisso.Status;
+      tdStatus.classList.add("text-center");
+
+      const tdCategoria = document.createElement("td");
+      tdCategoria.textContent = compromisso.Categoria;
+      tdCategoria.classList.add("text-center");
+
+      const tdTipo = document.createElement("td");
+      tdTipo.textContent = compromisso.Tipo;
+      tdTipo.classList.add("text-center");
+
+      const tdData = document.createElement("td");
+      tdData.textContent = compromisso.Data;
+
+      const tdBtnEditar = document.createElement("td");
+      const tdBtnExcluir = document.createElement("td");
+
+      const btnEditar = document.createElement("button");
+      btnEditar.classList.add("btn", "btn-primary");
+      btnEditar.onclick = () => preencherFormulario(compromisso.id);
+
+      const iconeEditar = document.createElement("i");
+      iconeEditar.classList.add("bi", "bi-pencil-fill");
+      iconeEditar.setAttribute("id", "editar-agenda");
+
+      const btnExcluir = document.createElement("button");
+      btnExcluir.classList.add("btn", "btn-danger");
+      btnExcluir.onclick = async () => {
+        try {
+          await api.excluirDados(compromisso.id, endpoint);
+        } catch (error) {
+          alert("Erro ao excluir agendamento!");
+        }
+      };
+
+      const iconeExcluir = document.createElement("i");
+      iconeExcluir.classList.add("bi", "bi-trash");
+      iconeExcluir.setAttribute("id", "excluir-agenda");
+
+      btnEditar.appendChild(iconeEditar);
+      btnExcluir.appendChild(iconeExcluir);
+      tdBtnEditar.appendChild(btnEditar);
+      tdBtnExcluir.appendChild(btnExcluir);
+      tr.appendChild(th);
+      tr.appendChild(tdTitulo);
+      tr.appendChild(tdStatus);
+      tr.appendChild(tdCategoria);
+      tr.appendChild(tdTipo);
+      tr.appendChild(tdData);
+      tr.appendChild(tdBtnEditar);
+      tr.appendChild(tdBtnExcluir);
+
+      linhaTabela.appendChild(tr);
+    });
+
+    document.dispatchEvent(new Event("Renderizado"));
+  }
+
+  async renderProximosCompromissos(elementoDestinoId) {
+    const elementoDestino = document.getElementById(elementoDestinoId);
+    const agendaFiltrada = this.vm.filtrarProximosCompromissos(13);
+
+    if (elementoDestino) {
+      elementoDestino.innerHTML = "";
+      agendaFiltrada.forEach((compromisso) => {
+        elementoDestino.innerHTML += `            
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">${compromisso.Titulo}</h5>
+                        <small>${calculaTempoData(compromisso.Data)}</small>
+                        </div>
+                        <small class="badge text-bg-info">${
+                          compromisso.Categoria
+                        }</small>
+                    </a>
+                `;
+      });
+    }
+  }
+
+  async preencherCalendario(mes, ano, elementoId) {
+    const calendarioContainer = document.getElementById(elementoId);
+    const agendaConvertida = await this.vm.obterAgenda();
+    const divAntigo = document.getElementById("calendario-dias");
+    if (divAntigo) {
+      divAntigo.remove();
+    }
+
+    // Cria os dias do mês
+    const primeiroDia = new Date(ano, mes).getDay();
+    const totalDias = new Date(ano, mes + 1, 0).getDate();
+
+    const divDiasContainer = document.createElement("div");
+    divDiasContainer.classList.add("calendario-dias");
+    divDiasContainer.id = "calendario-dias";
+
+    for (let i = 0; i < primeiroDia; i++) {
+      const divHojeVazio = document.createElement("div");
+      divHojeVazio.classList.add("calendario-hoje");
+      divDiasContainer.appendChild(divHojeVazio);
+    }
+    calendarioContainer.appendChild(divDiasContainer);
+
+    // Preenche os dias do mês
+    for (let i = 1; i <= totalDias; i++) {
+      const isToday =
+        i === new Date().getDate() &&
+        mes === new Date().getMonth() &&
+        ano === new Date().getFullYear();
+
+      const agendaFiltrada = agendaConvertida.filter((compromisso) => {
+        const [diaComp, mesComp, anoComp] = compromisso.Data.split("/");
+        return (
+          parseInt(diaComp) === i &&
+          parseInt(mesComp) === mes + 1 &&
+          parseInt(anoComp) === ano
+        );
+      });
+
+      if (agendaFiltrada.length > 0) {
+        const divHojeContainer = document.createElement("div");
+        divHojeContainer.classList.add("calendario-hoje");
+
+        const divDataCompromisso = document.createElement("div");
+        divDataCompromisso.classList.add("calendario-data-compromisso");
+        divDataCompromisso.textContent = i;
+
+        const divCompromisso = document.createElement("div");
+        divCompromisso.classList.add("compromissos-dia");
+
+        agendaFiltrada.forEach((compromisso) => {
+          const divTitulo = document.createElement("div");
+          divTitulo.classList.add("titulo-compromisso");
+          divTitulo.textContent = compromisso.Titulo;
+
+          const spanCategoria = document.createElement("span");
+          spanCategoria.classList.add("badge", "text-bg-info");
+          spanCategoria.textContent = compromisso.Categoria;
+
+          const spanStatus = document.createElement("span");
+          spanStatus.classList.add("badge", "text-bg-success");
+          spanStatus.textContent = compromisso.Status;
+
+          divCompromisso.appendChild(divTitulo);
+          divCompromisso.appendChild(spanCategoria);
+          divCompromisso.appendChild(spanStatus);
+        });
+        divHojeContainer.appendChild(divDataCompromisso);
+        divHojeContainer.appendChild(divCompromisso);
+        divDiasContainer.appendChild(divHojeContainer);
+      } else {
+        const divHoje = document.createElement("div");
+        divHoje.classList.add("calendario-hoje");
+
+        const divData = document.createElement("div");
+        divData.classList.add("calendario-data");
+        divData.textContent = i;
+        divHoje.appendChild(divData);
+        divDiasContainer.appendChild(divHoje);
+        calendarioContainer.appendChild(divDiasContainer);
+      }
+    }
+  }
+
+  renderCalendario(elementoId) {
+    const calendarioContainer = document.getElementById(elementoId);
+
+    let dataAtual = new Date();
+    let mes = dataAtual.getMonth();
+    let ano = dataAtual.getFullYear();
+
+    const divCabecalhoContainer = document.createElement("div");
+    divCabecalhoContainer.classList.add(
+      "cal-month",
+      "d-flex",
+      "justify-content-between"
+    );
+
+    const divCabecalho = document.createElement("div");
+    divCabecalho.classList.add(
+      "cal-month",
+      "d-flex",
+      "justify-content-evenly",
+      "align-items-center"
+    );
+    divCabecalho.id = "calendario-cabecalho";
+
+    const btnAnterior = document.createElement("button");
+    btnAnterior.classList.add("btn");
+    btnAnterior.title = "Anterior";
+    btnAnterior.id = "botao-anterior";
+    btnAnterior.onclick = () => {
+      mes--;
+      if (mes < 0) {
+        mes = 11;
+        ano--;
+      }
+      dataAtual = new Date(ano, mes);
+      h4MesAno.textContent = `${dataAtual.toLocaleString("pt-BR", {
+        month: "long",
+      })} ${ano}`;
+      this.preencherCalendario(mes, ano, elementoId);
+    };
+
+    const iconAnterior = document.createElement("i");
+    iconAnterior.classList.add("bi", "bi-caret-left");
+
+    const h4MesAno = document.createElement("h4");
+    h4MesAno.classList.add("cal-month-name", "text-center", "text-uppercase");
+    h4MesAno.id = "mes-ano";
+    h4MesAno.textContent = `${dataAtual.toLocaleString("pt-BR", {
+      month: "long",
+    })} ${ano}`;
+
+    const btnProximo = document.createElement("button");
+    btnProximo.classList.add("btn");
+    btnProximo.title = "Posterior";
+    btnProximo.id = "botao-proximo";
+    btnProximo.onclick = () => {
+      mes++;
+      if (mes > 11) {
+        mes = 0;
+        ano++;
+      }
+      dataAtual = new Date(ano, mes);
+      h4MesAno.textContent = `${dataAtual.toLocaleString("pt-BR", {
+        month: "long",
+      })} ${ano}`;
+      this.preencherCalendario(mes, ano, elementoId);
+    };
+
+    const iconProximo = document.createElement("i");
+    iconProximo.classList.add("bi", "bi-caret-right");
+
+    const divAcoes = document.createElement("div");
+    divAcoes.classList.add("d-flex", "justify-content-between");
+
+    const btnPesquisar = document.createElement("button");
+    btnPesquisar.classList.add("btn");
+    btnPesquisar.title = "Pesquisar";
+    btnPesquisar.id = "pesquisar-evento";
+
+    const iconPesquisar = document.createElement("i");
+    iconPesquisar.classList.add("bi", "bi-search");
+
+    const btnAdicionar = document.createElement("button");
+    btnAdicionar.classList.add("btn");
+    btnAdicionar.title = "Adicionar Evento";
+    btnAdicionar.id = "adicionar-evento";
+
+    const iconAdicionar = document.createElement("i");
+    iconAdicionar.classList.add("bi", "bi-plus-square");
+
+    const btnConfiguracoes = document.createElement("button");
+    btnConfiguracoes.classList.add("btn");
+    btnConfiguracoes.title = "Configurações";
+    btnConfiguracoes.id = "configuracao-calendario";
+
+    const iconConfiguracoes = document.createElement("i");
+    iconConfiguracoes.classList.add("bi", "bi-three-dots");
+
+    // Montando a estrutura do cabeçalho
+    btnAnterior.appendChild(iconAnterior);
+    btnProximo.appendChild(iconProximo);
+    btnPesquisar.appendChild(iconPesquisar);
+    btnAdicionar.appendChild(iconAdicionar);
+    btnConfiguracoes.appendChild(iconConfiguracoes);
+    divCabecalho.appendChild(btnAnterior);
+    divCabecalho.appendChild(h4MesAno);
+    divCabecalho.appendChild(btnProximo);
+    divAcoes.appendChild(btnPesquisar);
+    divAcoes.appendChild(btnAdicionar);
+    divAcoes.appendChild(btnConfiguracoes);
+    divCabecalhoContainer.appendChild(divCabecalho);
+    divCabecalhoContainer.appendChild(divAcoes);
+    calendarioContainer.appendChild(divCabecalhoContainer);
+
+    //Cria semanas do calendário
+    const divSemanaContainer = document.createElement("div");
+    divSemanaContainer.classList.add("calendario-semana");
+    const diasDaSemana = [
+      "Domingo",
+      "Segunda",
+      "Terça",
+      "Quarta",
+      "Quinta",
+      "Sexta",
+      "Sábado",
+    ];
+    diasDaSemana.forEach((dia) => {
+      const divDia = document.createElement("div");
+      divDia.classList.add("col");
+      divDia.textContent = dia;
+      divSemanaContainer.appendChild(divDia);
+    });
+    calendarioContainer.appendChild(divSemanaContainer);
+
+    this.preencherCalendario(mes, ano, elementoId);
+  }
+}

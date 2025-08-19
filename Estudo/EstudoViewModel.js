@@ -19,5 +19,10 @@ export class EstudoViewModel {
     });
     return this.cursos;
   }
+  cursando(qtd = 3) {
+      return this.cursos
+          .filter(curso => curso.Status === "Cursando")
+          .slice(0, qtd);
+  }
 
 }
