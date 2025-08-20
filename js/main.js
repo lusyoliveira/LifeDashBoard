@@ -12,7 +12,8 @@
     import { ContagemView } from "../Contagem/ContagemView.js";
     import { ContadorViewModel } from "../Contador/ContadorViewModel.js";
     import { ContadorView } from "../Contador/ContadorView.js";
-    import { relogio } from "./metodoRelogio.js";
+    import { RelogioViewModel } from "../Relogio/RelogioViewModel.js";
+    import { RelogioView } from "../Relogio/RelogioView.js";
 
     const containerModal = document.getElementById('container-modal');
     const inputIdTarefa = document.getElementById('id-tarefa').value;
@@ -32,6 +33,8 @@
     const contagemView = new ContagemView(ctvm);
     const ctdvm = new ContadorViewModel();
     const contadorView = new ContadorView(ctdvm);
+    const rvm = new RelogioViewModel();
+    const relogioView = new RelogioView(rvm);
 
     (async () => {
         await evm.obterCursos(); 
@@ -47,6 +50,7 @@
         climaView.exibirClima('clima')
         contagemView.exibirContagem('contagemRegressiva')
         contadorView.exibirContador('contador')
+        relogioView.exibirRelogio('relogio')
         
         const botaoAdicionaContagem = document.getElementById('adiciona-contagem');
         const botaoDiminuiContagem = document.getElementById('diminui-contagem');
@@ -102,7 +106,7 @@
         }
     });
 
-relogio();
+//relogio();
 
 //Modal adicionar evento
 // btnEvento.addEventListener("click", async () => {

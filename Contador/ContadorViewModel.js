@@ -6,7 +6,7 @@ export class ContadorViewModel {
     consultaContagem() {
         const valorSalvo = localStorage.getItem('contagem');
         if (valorSalvo !== null) {
-            parseInt(valorSalvo, 10);
+           return parseInt(valorSalvo, 10);
         }
         return 0
     };
