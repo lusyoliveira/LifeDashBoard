@@ -9,16 +9,13 @@
     import { AgendaView } from "../Agenda/AgendaView.js";
     import { ClimaViewModel } from "../Clima/ClimaViewModel.js";
     import { ClimaView } from "../Clima/ClimaView.js";
-    import { contagemRegressiva } from "./metodoContagemRegressiva.js";
+    import { ContagemViewModel } from "../Contagem/ContagemViewModel.js";
+    import { ContagemView } from "../Contagem/ContagemView.js";
     import { relogio } from "./metodoRelogio.js";
-    import  apiClima  from "./apiClima.js";
-    import { carregarConfiguracores } from "./configuracoes.js";
 
     const containerModal = document.getElementById('container-modal');
     const inputIdTarefa = document.getElementById('id-tarefa').value;
-    const botaoTarefa = document.getElementById('adiciona-tarefa');     
-    const descricaoContagem = document.getElementById('descricao-contagem');
-    const configuracoes = (await carregarConfiguracores())[0] 
+    const botaoTarefa = document.getElementById('adiciona-tarefa');    
 
     const tvm = new TarefasViewModel("tarefas");
     const tarefaView = new TarefasView(tvm);
@@ -30,6 +27,8 @@
     const agendaView = new AgendaView(avm);
     const clvm = new ClimaViewModel("clima");
     const climaView = new ClimaView(clvm);
+    const ctvm = new ContagemViewModel();
+    const contagemView = new ContagemView(ctvm);
 
     (async () => {
         await evm.obterCursos(); 
@@ -43,6 +42,7 @@
         agendaView.renderProximosCompromissos('proximos-compromissos')
         agendaView.renderCalendario('calendario')
         climaView.exibirClima('clima')
+        contagemView.exibirContagem('contagemRegressiva')
     })();
 
  //Adiciona tarefa
@@ -53,8 +53,6 @@
         tarefaView.listarTarefas('lista-tarefa')
     });
 
-contagemRegressiva(configuracoes.DataContagem);
-descricaoContagem.textContent = configuracoes.DescricaoContagem;
 relogio();
 
 //Modal adicionar evento
