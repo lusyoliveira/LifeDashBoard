@@ -1,4 +1,3 @@
-    import { } from "./metodoContador.js";
     import { EstudoViewModel } from "../Estudo/EstudoViewModel.js";
     import { EstudoView } from "../Estudo/EstudoView.js";
     import { CatalogoViewModel } from "../Catalogo/CatalogoViewModel.js";
@@ -11,6 +10,8 @@
     import { ClimaView } from "../Clima/ClimaView.js";
     import { ContagemViewModel } from "../Contagem/ContagemViewModel.js";
     import { ContagemView } from "../Contagem/ContagemView.js";
+    import { ContadorViewModel } from "../Contador/ContadorViewModel.js";
+    import { ContadorView } from "../Contador/ContadorView.js";
     import { relogio } from "./metodoRelogio.js";
 
     const containerModal = document.getElementById('container-modal');
@@ -29,6 +30,8 @@
     const climaView = new ClimaView(clvm);
     const ctvm = new ContagemViewModel();
     const contagemView = new ContagemView(ctvm);
+    const ctdvm = new ContadorViewModel();
+    const contadorView = new ContadorView(ctdvm);
 
     (async () => {
         await evm.obterCursos(); 
@@ -43,14 +46,60 @@
         agendaView.renderCalendario('calendario')
         climaView.exibirClima('clima')
         contagemView.exibirContagem('contagemRegressiva')
-    })();
+        contadorView.exibirContador('contador')
+        
+        const botaoAdicionaContagem = document.getElementById('adiciona-contagem');
+        const botaoDiminuiContagem = document.getElementById('diminui-contagem');
 
- //Adiciona tarefa
-    botaoTarefa.addEventListener("click", async (evento) => { 
-        evento.preventDefault();   
-        const tarefa = tarefaView.preencherTarefa('tarefa',inputIdTarefa)
-        await tarefaView.salvarTarefa(tarefa);
-        tarefaView.listarTarefas('lista-tarefa')
+        //Adiciona tarefa
+        botaoTarefa.addEventListener("click", async (evento) => { 
+            evento.preventDefault();   
+            const tarefa = {
+                Tarefa: document.getElementById('tarefa'),
+                Adicionado:  new Date(),
+                Feito: false
+            }
+            await tarefaView.salvarTarefa(tarefa);
+            tarefaView.listarTarefas('lista-tarefa')
+        });
+
+        //Aumenta contador
+        // botaoAdicionaContagem.addEventListener("click", (evento) => { 
+        //     evento.preventDefault();
+
+        //     const inputContador = document.getElementById('contador-valor');
+        //     let valorAtual = parseInt(inputContador.value, 10);
+
+        //     ctdvm.aumentaContador(valorAtual);
+        //     contadorView.exibirContador('contador');       
+        // });
+        
+        //Diminui contador
+        // botaoDiminuiContagem.addEventListener("click", (evento) => { 
+        //     evento.preventDefault();
+            
+        //     const inputContador = document.getElementById('contador-valor');
+        //     let valorAtual = parseInt(inputContador.value, 10);
+
+        //     ctdvm.diminuiContador(valorAtual)     
+        //     contadorView.exibirContador('contador') 
+        // });
+    })();   
+
+    document.addEventListener("click", (evento) => {
+        if (evento.target.id === "adiciona-contagem") {
+            const inputContador = document.getElementById('contador-valor');
+            let valorAtual = parseInt(inputContador.value, 10);
+            ctdvm.aumentaContador(valorAtual);
+            contadorView.exibirContador('contador'); 
+        }
+
+        if (evento.target.id === "diminui-contagem") {
+            const inputContador = document.getElementById('contador-valor');
+            let valorAtual = parseInt(inputContador.value, 10);
+            ctdvm.diminuiContador(valorAtual);
+            contadorView.exibirContador('contador'); 
+        }
     });
 
 relogio();
