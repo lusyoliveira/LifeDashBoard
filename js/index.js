@@ -56,11 +56,6 @@
 contagemRegressiva(configuracoes.DataContagem);
 descricaoContagem.textContent = configuracoes.DescricaoContagem;
 relogio();
-//apiClima.exibirClima()
-
-//exibe calendario
-//criarCalendario();
-
 
 //Modal adicionar evento
 // btnEvento.addEventListener("click", async () => {

@@ -8,6 +8,9 @@
       "AtivaGoogle": false,
       "ChaveGoogle": "",
       "AtivaClima": true,
+      "Cidade": "Juiz de Fora",
+      "Latitude": -21.76417,
+      "Longitude": -43.35028,
       "AtualizaClima": 10800,
       "DataContagem": "2025-09-22T15:29:00.000Z",
       "DescricaoContagem": "Primavera"
