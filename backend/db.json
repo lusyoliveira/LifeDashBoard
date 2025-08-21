@@ -127,7 +127,7 @@
     {
       "id": "2",
       "Tarefa": "Limpar Casa",
-      "Adicionado" : "2025-08-01T12:57:00.000Z",
+      "Adicionado": "2025-08-01T12:57:00.000Z",
       "Feito": true
     },
     {
@@ -171,7 +171,7 @@
       "Status": "Indeterminado",
       "Categoria": "Pessoal",
       "Tipo": "Evento",
-      "Data": "2025-07-30T17:00:00.000Z"
+      "Data": "2025-08-23T17:00:00.000Z"
     },
     {
       "id": "4",
@@ -391,6 +391,14 @@
       "Categoria": "Data Importante",
       "Tipo": "Evento",
       "Data": "2026-06-05T00:00:00.000Z"
+    },
+    {
+      "id": "29",
+      "Titulo": "Médico",
+      "Status": "Em Espera",
+      "Categoria": "Pessoal",
+      "Tipo": "Compromisso",
+      "Data": "2025-09-08T16:00:00.000Z"
     }
   ],
   "cursos": [

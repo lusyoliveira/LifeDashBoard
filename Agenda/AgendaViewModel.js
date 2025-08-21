@@ -24,10 +24,31 @@ export class AgendaViewModel {
     return this.compromissos;
   }
 
+    async obterAgendaPorID(tarefaId) {
+      let compromisso = {};
+
+      // A chamada à API já retorna um único objeto
+      compromisso = await api.buscarDadosPorId(tarefaId,this.endpoint);
+
+    // Verifique se a tarefa existe antes de tentar formatar a data
+      if (compromisso) {
+        const data = new Date(compromisso.Data);
+
+        this.compromisso = {
+          ...compromisso,
+          Data:  data.toISOString().slice(0, 16),
+        };
+        return this.compromisso;
+      } else {
+        return null;
+      }
+    }
+
   async salvarAgenda(compromisso) {
     if (compromisso.id) {
       await api.atualizarDados(compromisso, this.endpoint);
     } else {
+      compromisso.id = this.gerarID()
       await api.salvarDados(compromisso, this.endpoint);
     }
     return this.obterAgenda();
@@ -39,8 +60,8 @@ export class AgendaViewModel {
   }
 
   gerarID() {
-    if (this.agenda.length === 0) return 1;
-    const maior = Math.max(...this.agenda.map((t) => t.id || 0));
+    if (this.compromissos.length === 0) return 1;
+    const maior = Math.max(...this.compromissos.map((t) => t.id || 0));
     return maior + 1;
   }
 

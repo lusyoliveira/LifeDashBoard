@@ -6,14 +6,11 @@ export class TarefasView {
     }
 
     async editarTarefa(idTarefa) {
-        const descricaoTarefa = document.getElementById('descricao-tarefa')
-        const inputIdTarefa = document.getElementById('id-tarefa');
-
         const tarefa = await this.vm.obterTarefaPorID(idTarefa);
         
          if (tarefa.id) {
-            inputIdTarefa.value = idTarefa
-            descricaoTarefa.value = tarefa.Tarefa;
+            document.getElementById('id-tarefa').value = idTarefa
+            document.getElementById('descricao-tarefa').value = tarefa.Tarefa;
         } else {
             alert('Tarefa não encontrada!');
         }

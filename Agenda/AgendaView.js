@@ -4,18 +4,19 @@ export class AgendaView {
     this.vm = vm;
   }
   //Formulário
-  preencherAgenda(formId) {
-    const form = document.getElementById(formId);
-    const dados = Object.fromEntries(new FormData(form).entries());
+  async editarAgenda(agendamentoId) {
+    const agendamento = await this.vm.obterAgendaPorID(agendamentoId)
 
-    return {
-      id: dados.id ? Number(dados.id) : null,
-      Titulo: dados.Titulo,
-      Status: dados.Status,
-      Categoria: dados.Categoria,
-      Tipo: dados.Tipo,
-      Data: dados.Adicao || new Date().toISOString().split("T")[0],
-    };
+    if (agendamento) {
+        document.getElementById('id-adicionar').value = agendamento.id
+        document.getElementById('titulo-adicionar').value = agendamento.Titulo
+        document.getElementById('data-adicionar').value = agendamento.Data
+        document.getElementById('categoria-adicionar').value = agendamento.Categoria
+        document.getElementById('tipo-adicionar').value = agendamento.Tipo
+        document.getElementById('status-adicionar').value = agendamento.Status
+    } else {
+        alert('Agendamento não encontrado!');
+    }
   }
 
   async listarAgenda(elementoId) {
@@ -66,7 +67,7 @@ export class AgendaView {
 
       const btnEditar = document.createElement("button");
       btnEditar.classList.add("btn", "btn-primary");
-      btnEditar.onclick = () => preencherFormulario(compromisso.id);
+      btnEditar.onclick = () => this.editarAgenda(compromisso.id);
 
       const iconeEditar = document.createElement("i");
       iconeEditar.classList.add("bi", "bi-pencil-fill");
@@ -76,7 +77,7 @@ export class AgendaView {
       btnExcluir.classList.add("btn", "btn-danger");
       btnExcluir.onclick = async () => {
         try {
-          await api.excluirDados(compromisso.id, endpoint);
+          await this.vm.excluirAgenda(compromisso.id);
         } catch (error) {
           alert("Erro ao excluir agendamento!");
         }

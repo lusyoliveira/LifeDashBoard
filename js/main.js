@@ -14,6 +14,7 @@
     import { ContadorView } from "../Contador/ContadorView.js";
     import { RelogioViewModel } from "../Relogio/RelogioViewModel.js";
     import { RelogioView } from "../Relogio/RelogioView.js";
+    import { formatarParaISO } from "../js/metodoData.js";
 
     const containerModal = document.getElementById('container-modal');
     const botaoTarefa = document.getElementById('adiciona-tarefa');    
@@ -68,10 +69,9 @@
             const tarefa = {
                 id: inputIdTarefa,
                 Tarefa: descricaoTarefa,
-                Adicionado:  new Date().toLocaleDateString("pt-BR"),
+                Adicionado:  new Date(),
                 Feito: false
-            }
-            console.log(tarefa);            
+            }           
             await tvm.salvarTarefa(tarefa);
             tarefaView.listarTarefas('lista-tarefa')
         });
@@ -79,23 +79,3 @@
     })();   
 
  
-//Modal adicionar evento
-// btnEvento.addEventListener("click", async () => {
-//     // Carrega o HTML externo do modal
-//     const resposta = await fetch("modalTarefa.html");
-//     const html = await resposta.text();
-
-//     // Insere o modal no container
-//     containerModal.innerHTML = html;
-
-//     const modal = document.getElementById("meuModal");
-//     const fechar = modal.querySelector(".btn-close");
-
-//     modal.style.display = "block";
-
-//     fechar.onclick = () => modal.style.display = "none";
-
-//     window.onclick = (e) => {
-//         if (e.target === modal) modal.style.display = "none";
-//     };
-// });

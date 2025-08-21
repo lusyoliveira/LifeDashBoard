@@ -7,6 +7,22 @@ export function criarData() {
     return dataItem
 };
 
+export function formatarParaISO(dataLocalString) {
+  // Converte a string "yyyy-MM-ddThh:mm" para um objeto Date
+  const data = new Date(dataLocalString);
+
+  // Usa as partes da data local para construir a string final
+  const ano = data.getFullYear();
+  const mes = (data.getMonth() + 1).toString().padStart(2, '0');
+  const dia = data.getDate().toString().padStart(2, '0');
+  const horas = data.getHours().toString().padStart(2, '0');
+  const minutos = data.getMinutes().toString().padStart(2, '0');
+
+  // Adiciona segundos e o 'Z' no final para simular o formato UTC
+  return `${ano}-${mes}-${dia}T${horas}:${minutos}:00.000Z`;
+}
+
+
 export function converteDataUTC(dataString) {
     // const [ano, mes, dia] = dataString.split('-')
 
