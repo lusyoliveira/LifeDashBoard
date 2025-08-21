@@ -1,10 +1,11 @@
 export default class Tarefas {
-    id
+    Id
     Tarefa
     Adicionado
-    Feito = true
+    Feito = false
 
     constructor(id,tarefa, adicionado){
+        this.Id = id
         this.Tarefa = tarefa
         this.Adicionado = adicionado
     }

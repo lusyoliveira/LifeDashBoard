@@ -5,12 +5,15 @@ export class TarefasView {
         this.vm = vm;
     }
 
-    async preencherTarefa(inputID, idTarefa) {
-        const inputTarefa = document.getElementById(inputID);
-        const tarefa = await this.vm.obterTarefaPorID(idTarefa);
+    async editarTarefa(idTarefa) {
+        const descricaoTarefa = document.getElementById('descricao-tarefa')
+        const inputIdTarefa = document.getElementById('id-tarefa');
 
+        const tarefa = await this.vm.obterTarefaPorID(idTarefa);
+        
          if (tarefa.id) {
-            inputTarefa.value = tarefa.tarefa;
+            inputIdTarefa.value = idTarefa
+            descricaoTarefa.value = tarefa.Tarefa;
         } else {
             alert('Tarefa não encontrada!');
         }
@@ -21,6 +24,10 @@ export class TarefasView {
         const tarefas = await this.vm.obterTarefas();
         const botaoTarefa = document.getElementById('adiciona-tarefa');
         const imagemBotao = botaoTarefa.querySelector('i');      
+
+        if (!liTarefa) return;
+
+        liTarefa.innerHTML = "";
 
         if (tarefas.length >= 1) {
             tarefas.forEach(tarefa => {
@@ -44,7 +51,7 @@ export class TarefasView {
                 spanTarefa.classList.add('pt-1', 'form-checked-content');
                 
                 const strongTarefa = document.createElement('strong');
-                strongTarefa.innerText = tarefa.tarefa;
+                strongTarefa.innerText = tarefa.Tarefa;
         
                 //Estiliza nome do item
                 checkTarefa.addEventListener('click', async function() {
@@ -68,7 +75,7 @@ export class TarefasView {
                 btnEditar.setAttribute('id', 'botao-editar')
                 btnEditar.setAttribute('title', 'Editar Tarefa')
                 btnEditar.onclick = async ()  => {
-                    this.preencherTarefa('tarefa',tarefa.id)
+                    this.editarTarefa(tarefa.id)
                     
                     imagemBotao.classList.remove('bi', 'bi-plus-lg');
                     imagemBotao.classList.add('bi', 'bi-floppy-fill');

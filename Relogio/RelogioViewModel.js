@@ -5,23 +5,24 @@ export class RelogioViewModel {
     }
 
     async *atualizaRelogio() {
-        const now = new Date();
+        while (true) {   // gera indefinidamente
+            const now = new Date();
 
-        // Pega as horas, minutos e segundos
-        const seconds = now.getSeconds();
-        const minutes = now.getMinutes();
-        const hours = now.getHours();
+            const seconds = now.getSeconds();
+            const minutes = now.getMinutes();
+            const hours = now.getHours();
 
-        // Atualiza relógio digital
-        const horaFormatada = String(hours).padStart(2, '0');
-        const minutoFormatado = String(minutes).padStart(2, '0');
-        const segundoFormatado = String(seconds).padStart(2, '0');
-        
-        this.relogio = { horaFormatada, minutoFormatado, segundoFormatado}
-        
-        yield this.relogio
-        await new Promise(resolve => setTimeout(resolve, 1000))
+            const horaFormatada = String(hours).padStart(2, '0');
+            const minutoFormatado = String(minutes).padStart(2, '0');
+            const segundoFormatado = String(seconds).padStart(2, '0');
+
+            this.relogio = { horaFormatada, minutoFormatado, segundoFormatado, hours, minutes, seconds };
+
+            yield this.relogio;
+            await new Promise(resolve => setTimeout(resolve, 1000));
+        }
     }
+
 
     calculaPonteiros(relogio) {
         // Cálculo dos ângulos dos ponteiros

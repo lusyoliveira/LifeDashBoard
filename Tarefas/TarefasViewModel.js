@@ -17,26 +17,34 @@ export class TarefasViewModel {
             Adicionado: new Date(tarefa.Adicionado).toLocaleDateString('pt-BR')
         };
     });
+    
     return this.tarefas;    
   }
 
   async obterTarefaPorID(tarefaId) {
-    let tarefas = [];
+    let tarefa = {};
 
-    tarefas = await api.buscarDadosPorId(tarefaId,this.endpoint);
-    this.tarefas = tarefas.map(tarefa => {
-        return {
-            ...tarefa,
-            Adicionado: new Date(tarefa.Adicionado).toLocaleDateString('pt-BR')
-        };
-    });
-    return this.tarefas;
+    // A chamada à API já retorna um único objeto
+    tarefa = await api.buscarDadosPorId(tarefaId,this.endpoint);
+
+   // Verifique se a tarefa existe antes de tentar formatar a data
+    if (tarefa) {
+      this.tarefas = {
+        ...tarefa,
+        id: Number(tarefa.id),
+        Adicionado: new Date(tarefa.Adicionado).toLocaleDateString('pt-BR')
+      };
+      return this.tarefas;
+    } else {
+      return null;
+    }
   }
 
   async salvarTarefa(tarefa) {
     if (tarefa.id) {
       await api.atualizarDados(tarefa, this.endpoint);
     } else {
+      tarefa.id = this.gerarID()
       await api.salvarDados(tarefa, this.endpoint);
     }
     return this.obterTarefas();

@@ -87,23 +87,54 @@
           "2025-07-30",
           "2025-07-31"
         ],
-        "weather_code": [95, 45, 45, 3, 3, 2, 45],
-        "temperature_2m_max": [21.6, 21.6, 23.6, 25.6, 18.1, 17, 18.2],
-        "temperature_2m_min": [13.8, 11.2, 12.4, 12.8, 11.2, 5.5, 6.7]
+        "weather_code": [
+          95,
+          45,
+          45,
+          3,
+          3,
+          2,
+          45
+        ],
+        "temperature_2m_max": [
+          21.6,
+          21.6,
+          23.6,
+          25.6,
+          18.1,
+          17,
+          18.2
+        ],
+        "temperature_2m_min": [
+          13.8,
+          11.2,
+          12.4,
+          12.8,
+          11.2,
+          5.5,
+          6.7
+        ]
       }
     }
   ],
   "tarefas": [
     {
       "id": "1",
-      "tarefa": "Estudando2",
-      "Adicionado": "01/08/2025",
+      "Tarefa": "Estudando",
+      "Adicionado": "2025-08-01T12:57:00.000Z",
       "Feito": true
     },
     {
       "id": "2",
-      "tarefa": "Limpar Casa",
-      "Adicionado": "2025-08-01T12:57:00.000Z"
+      "Tarefa": "Limpar Casa",
+      "Adicionado": "2025-08-01T12:57:00.000Z",
+      "Feito": false
+    },
+    {
+      "id": "3",
+      "Tarefa": "Fazer Carne de Soja",
+      "Adicionado": "2025-08-21T16:32:48.987Z",
+      "Feito": false
     }
   ],
   "contas": [

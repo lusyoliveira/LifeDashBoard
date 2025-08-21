@@ -7,6 +7,8 @@ export class ContadorView {
         const elementoDestino = document.getElementById(elementoId);
         if (!elementoDestino) return;
 
+        elementoDestino.innerHTML = "";
+
         const contador = await this.vm.consultaContagem();
 
         const divContainer = document.createElement('div')

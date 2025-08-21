@@ -16,7 +16,6 @@
     import { RelogioView } from "../Relogio/RelogioView.js";
 
     const containerModal = document.getElementById('container-modal');
-    const inputIdTarefa = document.getElementById('id-tarefa').value;
     const botaoTarefa = document.getElementById('adiciona-tarefa');    
 
     const tvm = new TarefasViewModel("tarefas");
@@ -58,56 +57,28 @@
         //Adiciona tarefa
         botaoTarefa.addEventListener("click", async (evento) => { 
             evento.preventDefault();   
+
+            const descricaoTarefa = document.getElementById('descricao-tarefa').value
+            const inputIdTarefa = document.getElementById('id-tarefa').value;
+
+            if (descricaoTarefa === '') {
+                alert('É necessário inserir uma tarefa!');
+                return
+            }
             const tarefa = {
-                Tarefa: document.getElementById('tarefa'),
+                id: inputIdTarefa,
+                Tarefa: descricaoTarefa,
                 Adicionado:  new Date(),
                 Feito: false
             }
-            await tarefaView.salvarTarefa(tarefa);
+            console.log(tarefa);            
+            await tvm.salvarTarefa(tarefa);
             tarefaView.listarTarefas('lista-tarefa')
         });
 
-        //Aumenta contador
-        // botaoAdicionaContagem.addEventListener("click", (evento) => { 
-        //     evento.preventDefault();
-
-        //     const inputContador = document.getElementById('contador-valor');
-        //     let valorAtual = parseInt(inputContador.value, 10);
-
-        //     ctdvm.aumentaContador(valorAtual);
-        //     contadorView.exibirContador('contador');       
-        // });
-        
-        //Diminui contador
-        // botaoDiminuiContagem.addEventListener("click", (evento) => { 
-        //     evento.preventDefault();
-            
-        //     const inputContador = document.getElementById('contador-valor');
-        //     let valorAtual = parseInt(inputContador.value, 10);
-
-        //     ctdvm.diminuiContador(valorAtual)     
-        //     contadorView.exibirContador('contador') 
-        // });
     })();   
 
-    document.addEventListener("click", (evento) => {
-        if (evento.target.id === "adiciona-contagem") {
-            const inputContador = document.getElementById('contador-valor');
-            let valorAtual = parseInt(inputContador.value, 10);
-            ctdvm.aumentaContador(valorAtual);
-            contadorView.exibirContador('contador'); 
-        }
-
-        if (evento.target.id === "diminui-contagem") {
-            const inputContador = document.getElementById('contador-valor');
-            let valorAtual = parseInt(inputContador.value, 10);
-            ctdvm.diminuiContador(valorAtual);
-            contadorView.exibirContador('contador'); 
-        }
-    });
-
-//relogio();
-
+ 
 //Modal adicionar evento
 // btnEvento.addEventListener("click", async () => {
 //     // Carrega o HTML externo do modal

@@ -53,7 +53,13 @@ export class RelogioView {
         elementoDestino.appendChild(orbitaHora)  
         
         for await (const valores of this.vm.atualizaRelogio()) {
-           divRelogio.textContent = `${valores.horaFormatada}:${valores.minutoFormatado}:${valores.segundoFormatado}`;
+            divRelogio.textContent = `${valores.horaFormatada}:${valores.minutoFormatado}:${valores.segundoFormatado}`;
+
+            // const { secondsDegrees, minutesDegrees, hoursDegrees } = this.vm.calculaPonteiros(valores);
+
+            // document.getElementById("second").style.transform = `rotate(${secondsDegrees}deg)`;
+            // document.getElementById("minute").style.transform = `rotate(${minutesDegrees}deg)`;
+            // document.getElementById("hour").style.transform = `rotate(${hoursDegrees}deg)`;
         }
     }
 }
