@@ -127,8 +127,8 @@
     {
       "id": "2",
       "Tarefa": "Limpar Casa",
-      "Adicionado": "2025-08-01T12:57:00.000Z",
-      "Feito": false
+      "Adicionado" : "2025-08-01T12:57:00.000Z",
+      "Feito": true
     },
     {
       "id": "3",

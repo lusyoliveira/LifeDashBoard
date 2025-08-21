@@ -54,17 +54,22 @@ export class TarefasView {
                 strongTarefa.innerText = tarefa.Tarefa;
         
                 //Estiliza nome do item
-                checkTarefa.addEventListener('click', async function() {
-                    if (checkTarefa.checked) {
+                checkTarefa.addEventListener('change', async () => {
+                    
+                    const tarefaAtualizada = {
+                        ...tarefa,
+                        Adicionado: new Date(tarefa.Adicionado).toLocaleDateString("pt-BR"),
+                        Feito: checkTarefa.checked
+                    };
+
+                    if (checkTarefa.checked) { 
                         strongTarefa.style.textDecoration = "line-through";
-                        tarefa.Feito = true;
-                        await this.vm.atualizarTarefa(tarefa)
                     } else {
                         strongTarefa.style.textDecoration = "none";
-                        tarefa.Feito = false;
-                        await this.vm.atualizarTarefa(tarefa)
                     }
-                })
+                    await this.vm.marcarTarefa(tarefaAtualizada);
+                    this.listarTarefas('lista-tarefa');
+                });
         
                 const divBotoes = document.createElement('div');
                 divBotoes.classList.add('d-flex', 'gap-2', 'align-items-center');
@@ -91,7 +96,7 @@ export class TarefasView {
                 btnExcluir.setAttribute('id', 'excluir-editar')
                 btnExcluir.setAttribute('title', 'Excluir Tarefa')
                 btnExcluir.onclick = async ()  => {                      
-                        await this.vm.excluirTarefa(tarefa.id)
+                    await this.vm.excluirTarefa(tarefa.id)
                 }
         
                 const iconeExcluir = document.createElement('i')

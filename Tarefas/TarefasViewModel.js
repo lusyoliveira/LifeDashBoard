@@ -50,7 +50,7 @@ export class TarefasViewModel {
     return this.obterTarefas();
   }
 
-  async atualizarTarefa(tarefa) {
+  async marcarTarefa(tarefa) {
     if (tarefa.id) {
       await api.atualizarDados(tarefa, this.endpoint);
     } else {

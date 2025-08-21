@@ -68,7 +68,7 @@
             const tarefa = {
                 id: inputIdTarefa,
                 Tarefa: descricaoTarefa,
-                Adicionado:  new Date(),
+                Adicionado:  new Date().toLocaleDateString("pt-BR"),
                 Feito: false
             }
             console.log(tarefa);            
