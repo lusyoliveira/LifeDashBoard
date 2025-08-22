@@ -1,5 +1,6 @@
 import { CatalogoViewModel } from "./CatalogoViewModel.js";
 import { CatalogoView } from "./CatalogoView.js";
+import { formatarParaISO } from "../js/metodoData.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const vm = new CatalogoViewModel();
@@ -9,17 +10,36 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   //CRUD
   await catalogoView.listarCatalogo("linhas");
-  catalogoView.bindExcluir(async (id) => {
-    await vm.excluirTitulo(id);
-    catalogoView.listarCatalogo("linhas");
-  });
-  catalogoView.bindEditar((id) => {
-    catalogoView.preencherTitulo("formCatalogo");
-  });
 
   formCatalogo.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const titulo = catalogoView.preencherTitulo("formCatalogo");
+    
+        const idInput = document.getElementById('id-adicionar').value;
+        const descricao = document.getElementById('titulo-adicionar').value;
+        const dataInicio = document.getElementById('data-inicio').value;
+        const dataFim = document.getElementById('data-fim').value;
+        const tipo = document.getElementById('tipo-adicionar').value;
+        const status = document.getElementById('status-adicionar').value;
+        const plataforma = document.getElementById('plataforma-adicionar').value;
+        const episodios = document.getElementById('episodios-adicionar').value;
+        const assistidos = document.getElementById('assistidos-adicionar').value;
+        const temporada = document.getElementById('temporada-adicionar').value;
+        const pontuacao = document.getElementById('pontuacao-adicionar').value;
+
+        const titulo = {
+            id: idInput.toString(),
+            Titulo: descricao,
+            Tipo: tipo,
+            Status: status,
+            Onde: plataforma,
+            Inicio: formatarParaISO(dataInicio),
+            Fim:  dataFim === '' ? '' : formatarParaISO(dataFim),
+            Episodios: Number(episodios),
+            Assistidos: Number(assistidos),
+            Temporadas: Number(temporada),
+            Score: Number(pontuacao),
+        }
+       
     await vm.salvarTitulo(titulo);
     catalogoView.listarCatalogo("linhas");
     e.target.reset();
@@ -35,7 +55,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   catalogoView.renderContagemGeral("geral-pontuacao", "Pontuacao");
   catalogoView.renderContagemGeral("geral-assistidos", "Assistidos");
   catalogoView.renderContagemGeral("geral-episodios", "Episodios");
-  catalogoView.renderContagemGeral("geral-dias", "Pontuacao");
+  catalogoView.renderContagemGeral("geral-dias", "Dias");
+  catalogoView.renderContagemGeral("geral-horas", "Horas");
   catalogoView.renderContagemGeral("contagem-completado", "Completado");
   catalogoView.renderContagemGeral("contagem-assistindo", "Assistindo");
   catalogoView.renderContagemGeral("contagem-dropped", "Dropped");

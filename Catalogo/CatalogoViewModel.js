@@ -9,23 +9,80 @@ export class CatalogoViewModel {
 
   async obterCatalogo() {
     let catalogo = [];
-    
     catalogo = await api.buscarDados(this.endpoint);
-    this.titulos = catalogo.map((titulo) => {
+       
+    this.titulos = catalogo.map((titulo) => {      
+
+      let inicioFormatado = "";
+      let fimFormatado = "";
+
+      if (titulo.Inicio) {
+        const dataInicio = new Date(titulo.Inicio);
+        if (!isNaN(dataInicio)) {
+          inicioFormatado = dataInicio.toLocaleDateString('pt-BR');
+        }
+      }
+      
+      if (titulo.Fim) {
+        const dataFim = new Date(titulo.Fim);
+        if (!isNaN(dataFim)) {
+          fimFormatado = dataFim.toLocaleDateString('pt-BR');
+        }
+      }
+
       return {
         ...titulo,
-        Inicio: new Date(titulo.Inicio).toLocaleDateString("pt-BR"),
-        Fim: new Date(titulo.Fim).toLocaleDateString("pt-BR"),
-        Adicao: new Date(titulo.Adicao).toLocaleDateString("pt-BR"),
+        Inicio:  inicioFormatado,
+        Fim: fimFormatado,
       };
     });
+      
     return this.titulos;
   }
+
+  async obterTituloPorID(idTitulo) {
+      let titulo = {};
+
+      titulo = await api.buscarDadosPorId(idTitulo,this.endpoint);
+
+      let inicioFormatado = "";
+      let fimFormatado = "";
+
+      if (titulo.Inicio) {
+        const dataInicio = new Date(titulo.Inicio);
+        if (!isNaN(dataInicio)) {
+          inicioFormatado = dataInicio.toLocaleDateString('pt-BR');
+        }
+      }
+      
+      if (titulo.Fim) {
+        const dataFim = new Date(titulo.Fim);
+        if (!isNaN(dataFim)) {
+          fimFormatado = dataFim.toLocaleDateString('pt-BR');
+        }
+      }
+      if (titulo) {
+        this.titulos = {      
+          ...titulo,
+          Inicio:  inicioFormatado,
+          Fim: fimFormatado,
+        };      
+        return this.titulos;
+      } else {
+        return null;
+      }
+    }
 
   async salvarTitulo(titulo) {
     if (titulo.id) {
       await api.atualizarDados(titulo, this.endpoint);
     } else {
+      titulo.id = this.gerarID()
+      titulo.Adicao = new Date()
+      titulo.Capa = ""
+      titulo.Vezes = 0
+      titulo.Progresso = 0
+      titulo.Dias = 0
       await api.salvarDados(titulo, this.endpoint);
     }
     return this.obterCatalogo();
@@ -113,6 +170,7 @@ export class CatalogoViewModel {
     return {
       Total: this.titulos.length,
       totalDias: this.titulos.reduce((acc, t) => acc + (t.Dias || 0), 0),
+      totalHoras: this.titulos.reduce((acc, t) => acc + (t.Dias || 0), 0) * 24,
       totalEpisodios: this.titulos.reduce(
         (acc, t) => acc + (t.Episodios || 0),
         0

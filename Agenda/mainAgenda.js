@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const status = document.getElementById('status-adicionar').value;
 
     const agendamento = {
-        id: idInput,
+        id: idInput.toString(),
         Titulo: titulo,
         Status: status,
         Categoria: categoria,

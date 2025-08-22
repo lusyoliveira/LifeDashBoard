@@ -5,29 +5,25 @@ export class CatalogoView {
     }
 
     //Formulário
-    preencherTitulo(formId) {
-        const form = document.getElementById(formId);
-        const dados = Object.fromEntries(new FormData(form).entries());
-        
-        return {
-            id: dados.id ? Number(dados.id) : null,
-            Titulo: dados.Titulo,
-            Capa: dados.Capa,
-            Tipo: dados.Tipo,
-            Status: dados.Status,
-            Onde: dados.Onde,
-            Inicio: dados.Inicio,
-            Fim: dados.Fim,
-            Episodios: Number(dados.Episodios || 0),
-            Assistidos: Number(dados.Assistidos || 0),
-            Temporadas: Number(dados.Temporadas || 0),
-            Score: Number(dados.Score || 0),
-            Vezes: Number(dados.Vezes || 0),
-            Adicao: dados.Adicao || new Date().toISOString().split("T")[0],
-            Progresso: dados.Progresso,
-            Dias: Number(dados.Dias || 0),
-            Reassistindo: Number(dados.Reassistindo || 0)
-        };
+    async editarTitulo(idTitulo) {
+       const titulo = await this.vm.obterTituloPorID(idTitulo)
+
+       if (titulo) {
+            document.getElementById('id-adicionar').value = titulo.id;
+            document.getElementById('titulo-adicionar').value = titulo.Titulo;
+            document.getElementById('data-inicio').value = new Date(titulo.Inicio).toISOString().slice(0, 16);
+            document.getElementById('data-fim').value = titulo.Fim === '' ? '' : titulo.Fim;
+            document.getElementById('tipo-adicionar').value = titulo.Tipo;
+            document.getElementById('status-adicionar').value = titulo.Status;
+            document.getElementById('plataforma-adicionar').value = titulo.Onde;
+            document.getElementById('episodios-adicionar').value = titulo.Episodios;
+            document.getElementById('assistidos-adicionar').value = titulo.Assistidos;
+            document.getElementById('temporada-adicionar').value = titulo.Temporadas;
+            document.getElementById('pontuacao-adicionar').value = titulo.Score;   
+        } else {
+            alert('Título não encontrado!');
+        }
+
     }
 
     // TABELA
@@ -94,7 +90,7 @@ export class CatalogoView {
 
             const btnEditar = document.createElement('button')
             btnEditar.classList.add('btn', 'btn-primary')
-            btnEditar.onclick = () => preencherTitulo(titulo.id)
+            btnEditar.onclick = () => this.editarTitulo(titulo.id)
 
             const iconeEditar = document.createElement('i')
             iconeEditar.classList.add('bi', 'bi-pencil-fill')
@@ -104,7 +100,7 @@ export class CatalogoView {
             btnExcluir.classList.add('btn', 'btn-danger')        
             btnExcluir.onclick = async () => {
                 try {
-                    await api.excluirDados(titulo.id, endpoint)
+                    await this.vm.excluirTitulo(titulo.id)
                 } catch(error) {
                     alert('Erro ao excluir agendamento!')
                 }
@@ -137,21 +133,6 @@ export class CatalogoView {
         document.dispatchEvent(new Event('Renderizado'));
     }
 
-    bindExcluir(handler) {
-        document.addEventListener("click", e => {
-            if (e.target.closest(".excluir")) {
-                handler(e.target.closest(".excluir").dataset.id);
-            }
-        });
-    }
-
-    bindEditar(handler) {
-        document.addEventListener("click", e => {
-            if (e.target.closest(".editar")) {
-                handler(e.target.closest(".editar").dataset.id);
-            }
-        });
-    }
     // ESTATÍSTICA
     renderEstatistica(tipo, elementoId) {
         const stats = this.vm.estatisticasPorTipo(tipo);
@@ -522,6 +503,14 @@ export class CatalogoView {
 
         } else if (tipoContagem === 'Dias') {
             contagem = catalogo.totalDias
+
+            const h6Card = document.createElement('h6');
+            h6Card.classList.add('card-subtitle', 'mb-2', 'text-body-secondary');
+            h6Card.textContent = contagem;
+            elementoDestino.appendChild(h6Card);
+            
+        }else if (tipoContagem === 'Horas') {
+            contagem = catalogo.totalHoras
 
             const h6Card = document.createElement('h6');
             h6Card.classList.add('card-subtitle', 'mb-2', 'text-body-secondary');

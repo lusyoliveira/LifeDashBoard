@@ -12,8 +12,7 @@ export default class Catalogo {
     Temporadas
     Score = 0
     Vezes = 0
-    Adicao
-    Progresso = 0
+    Adicao = new Date()
 
     constructor(id, Titulo, Capa, Tipo, Status, Onde,Inicio, Fim, Episodios, Assistidos, Temporadas) {
         this.Id = id
@@ -35,5 +34,13 @@ export default class Catalogo {
         }
         const diffMs = this.Fim - this.Inicio
         return Math.floor(diffMs / (1000 * 60 * 60 * 24))
+    }
+
+    get Progresso () {
+        if (!this.Assistidos || !this.Episodios || isNaN(this.Assistidos) || isNaN(this.Episodios)) {
+            return 0
+        }
+        const diff = this.Episodios - this.Assistidos
+        return diff/100 
     }
 }
