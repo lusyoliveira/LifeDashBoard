@@ -41,8 +41,19 @@ export function converteDataUTC(dataString) {
 };
 
 export function calculaTempoData(dataTexto) {  
-    const partes = dataTexto.split('/');
-    const dataAlvo = new Date(partes[2], partes[1] - 1, partes[0]);
+    let dataAlvo;
+
+    if (dataTexto instanceof Date) {
+        // já é Date
+        dataAlvo = new Date(dataTexto);
+    } else if (typeof dataTexto === "string") {
+        // string no formato dd/MM/yyyy
+        const partes = dataTexto.split('/');
+        dataAlvo = new Date(partes[2], partes[1] - 1, partes[0]);
+    } else {
+        return ""; // caso inválido
+    }
+
     const agora = new Date();
 
     // Zera as horas para comparar apenas datas
@@ -57,7 +68,6 @@ export function calculaTempoData(dataTexto) {
 
     const anos = Math.floor(dias / 365);
     const meses = Math.floor((dias % 365) / 30);
-    const restantes = dias % 30;
 
     let frase = '';
 
@@ -74,5 +84,4 @@ export function calculaTempoData(dataTexto) {
     }
 
     return frase;
-      
-};
+}

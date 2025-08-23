@@ -1,148 +1,265 @@
 import api from "../js/metodoApi.js";
-//import Titulo from "../models/Titulo.js";
+import Catalogo from "../Catalogo/catalogo.js";
 
 export class CatalogoViewModel {
   constructor(endpoint = "catalogo") {
     this.endpoint = endpoint;
-    this.titulos = [];
+    this.catalogo = [];
   }
 
-  async obterCatalogo() {
-    let catalogo = [];
-    catalogo = await api.buscarDados(this.endpoint);
-       
-    this.titulos = catalogo.map((titulo) => {      
+   async obterCatalogo() {
+    const catalogoData = await api.buscarDados(this.endpoint);
 
-      let inicioFormatado = "";
-      let fimFormatado = "";
+    this.catalogo = catalogoData.map((titulo) => {
+      const titulos = new Catalogo(
+        titulo.id,
+        titulo.Titulo,
+        titulo.Capa,
+        titulo.Tipo,
+        titulo.Status,
+        titulo.Onde,
+        titulo.Inicio,
+        titulo.Fim,
+        titulo.Episodios,
+        titulo.Assistidos,
+        titulo.Temporadas
+      );
 
-      if (titulo.Inicio) {
-        const dataInicio = new Date(titulo.Inicio);
+      console.log(titulos);
+      
+      if (titulos.Inicio) {
+        const dataInicio = new Date(titulos.Inicio)
         if (!isNaN(dataInicio)) {
-          inicioFormatado = dataInicio.toLocaleDateString('pt-BR');
-        }
-      }
-      
-      if (titulo.Fim) {
-        const dataFim = new Date(titulo.Fim);
-        if (!isNaN(dataFim)) {
-          fimFormatado = dataFim.toLocaleDateString('pt-BR');
+          titulos.InicioFormatado = titulos.Inicio.toLocaleDateString("pt-BR")
         }
       }
 
-      return {
-        ...titulo,
-        Inicio:  inicioFormatado,
-        Fim: fimFormatado,
-      };
-    });
-      
-    return this.titulos;
-  }
+      if (titulos.Fim) {
+        const dataFim = new Date(titulos.Fim)
+        if (!isNaN(dataFim)) {
+          titulos.FimFormatado = titulos.Fim.toLocaleDateString("pt-BR")
+        }
+      }
+
+      if (titulos.Adicao) {
+        const dataAdicao = new Date(titulos.Adicao)
+        if (!isNaN(dataAdicao)) {
+          titulos.AdicaoFormatado = titulos.Adicao.toLocaleDateString("pt-BR")
+        }
+      }     
+    return titulos;
+  });  
+  return this.catalogo;
+}
 
   async obterTituloPorID(idTitulo) {
-      let titulo = {};
+    const titulo = await api.buscarDadosPorId(idTitulo, this.endpoint);
+    if (!titulo) return null;
 
-      titulo = await api.buscarDadosPorId(idTitulo,this.endpoint);
+    const catalogo = new Catalogo(
+      titulo.id,
+      titulo.Titulo,
+      titulo.Capa,
+      titulo.Tipo,
+      titulo.Status,
+      titulo.Onde,
+      titulo.Inicio,
+      titulo.Fim,
+      titulo.Episodios,
+      titulo.Assistidos,
+      titulo.Temporadas
+    );
 
-      let inicioFormatado = "";
-      let fimFormatado = "";
-
-      if (titulo.Inicio) {
-        const dataInicio = new Date(titulo.Inicio);
+    if (catalogo.Inicio) {
+        const dataInicio = new Date(catalogo.Inicio)
         if (!isNaN(dataInicio)) {
-          inicioFormatado = dataInicio.toLocaleDateString('pt-BR');
+          catalogo.InicioFormatado = catalogo.Inicio.toLocaleDateString("pt-BR")
         }
       }
-      
-      if (titulo.Fim) {
-        const dataFim = new Date(titulo.Fim);
-        if (!isNaN(dataFim)) {
-          fimFormatado = dataFim.toLocaleDateString('pt-BR');
-        }
+
+    if (catalogo.Fim) {
+      const dataFim = new Date(catalogo.Fim)
+      if (!isNaN(dataFim)) {
+        catalogo.FimFormatado = catalogo.Fim.toLocaleDateString("pt-BR")
       }
-      if (titulo) {
-        this.titulos = {      
-          ...titulo,
-          Inicio:  inicioFormatado,
-          Fim: fimFormatado,
-        };      
-        return this.titulos;
-      } else {
-        return null;
+    } 
+
+    if (catalogo.Adicao) {
+      const dataAdicao = new Date(catalogo.Adicao)
+      if (!isNaN(dataAdicao)) {
+        catalogo.AdicaoFormatado = catalogo.Adicao.toLocaleDateString("pt-BR")
       }
-    }
+    }    
+    return catalogo;
+  }
 
   async salvarTitulo(titulo) {
-    if (titulo.id) {
-      await api.atualizarDados(titulo, this.endpoint);
+    const payload = {
+      ...titulo,
+      Dias: titulo.Dias,
+      Progresso: titulo.Progresso
+    };
+
+    if (titulo.Id) {
+      await api.atualizarDados(payload, this.endpoint);
     } else {
-      titulo.id = this.gerarID()
-      titulo.Adicao = new Date()
-      titulo.Capa = ""
-      titulo.Vezes = 0
-      titulo.Progresso = 0
-      titulo.Dias = 0
-      await api.salvarDados(titulo, this.endpoint);
+      payload.Id = this.gerarID();
+      payload.Adicao = new Date();
+      payload.Vezes = 0;
+      payload.Score = payload.Score || 0;
+      await api.salvarDados(payload, this.endpoint);
     }
+
     return this.obterCatalogo();
-  }
+  };
 
   async excluirTitulo(id) {
     await api.excluirDados(id, this.endpoint);
     return this.obterCatalogo();
-  }
+  };
 
   gerarID() {
-    if (this.titulos.length === 0) return 1;
-    const maior = Math.max(...this.titulos.map((t) => t.id || 0));
+    if (this.catalogo.length === 0) return 1;
+    const maior = Math.max(...this.catalogo.map((t) => t.Id || 0));
     return maior + 1;
-  }
+  };
+
+  // async obterCatalogo() {
+  //   let catalogo = [];
+  //   catalogo = await api.buscarDados(this.endpoint);
+       
+  //   this.catalogo = catalogo.map((titulo) => {      
+
+  //     let inicioFormatado = "";
+  //     let fimFormatado = "";
+
+  //     if (titulo.Inicio) {
+  //       const dataInicio = new Date(titulo.Inicio);
+  //       if (!isNaN(dataInicio)) {
+  //         inicioFormatado = dataInicio.toLocaleDateString('pt-BR');
+  //       }
+  //     }
+      
+  //     if (titulo.Fim) {
+  //       const dataFim = new Date(titulo.Fim);
+  //       if (!isNaN(dataFim)) {
+  //         fimFormatado = dataFim.toLocaleDateString('pt-BR');
+  //       }
+  //     }
+
+  //     return {
+  //       ...titulo,
+  //       Inicio:  inicioFormatado,
+  //       Fim: fimFormatado,
+  //     };
+  //   });
+      
+  //   return this.catalogo;
+  // }
+
+  // async obterTituloPorID(idTitulo) {
+  //     let titulo = {};
+
+  //     titulo = await api.buscarDadosPorId(idTitulo,this.endpoint);
+
+  //     let inicioFormatado = "";
+  //     let fimFormatado = "";
+
+  //     if (titulo.Inicio) {
+  //       const dataInicio = new Date(titulo.Inicio);
+  //       if (!isNaN(dataInicio)) {
+  //         inicioFormatado = dataInicio.toLocaleDateString('pt-BR');
+  //       }
+  //     }
+      
+  //     if (titulo.Fim) {
+  //       const dataFim = new Date(titulo.Fim);
+  //       if (!isNaN(dataFim)) {
+  //         fimFormatado = dataFim.toLocaleDateString('pt-BR');
+  //       }
+  //     }
+  //     if (titulo) {
+  //       this.catalogo = {      
+  //         ...titulo,
+  //         Inicio:  inicioFormatado,
+  //         Fim: fimFormatado,
+  //       };      
+  //       return this.catalogo;
+  //     } else {
+  //       return null;
+  //     }
+  //   }
+
+  // async salvarTitulo(titulo) {
+  //   if (titulo.id) {
+  //     await api.atualizarDados(titulo, this.endpoint);
+  //   } else {
+  //     titulo.id = this.gerarID()
+  //     titulo.Adicao = new Date()
+  //     titulo.Capa = ""
+  //     titulo.Vezes = 0
+  //     titulo.Progresso = 0
+  //     titulo.Dias = 0
+  //     await api.salvarDados(titulo, this.endpoint);
+  //   }
+  //   return this.obterCatalogo();
+  // }
+
+  // async excluirTitulo(id) {
+  //   await api.excluirDados(id, this.endpoint);
+  //   return this.obterCatalogo();
+  // }
+
+  // gerarID() {
+  //   if (this.catalogo.length === 0) return 1;
+  //   const maior = Math.max(...this.catalogo.map((t) => t.id || 0));
+  //   return maior + 1;
+  // }
 
   filtrarPorStatus(status) {
-    return this.titulos.filter((t) => t.Status === status);
+    return this.catalogo.filter((t) => t.Status === status);
   }
 
   filtrarPorTipo(tipo) {
-    return this.titulos.filter((t) => t.Tipo === tipo);
+    return this.catalogo.filter((t) => t.Tipo === tipo);
   }
 
   topPorScore(tipo, qtd = 4) {
-    return [...this.titulos]
+    return [...this.catalogo]
       .filter((t) => t.Tipo === tipo)
       .sort((a, b) => b.Score - a.Score)
       .slice(0, qtd);
   }
 
   topGeral(qtd = 4) {
-    return [...this.titulos].sort((a, b) => b.Score - a.Score).slice(0, qtd);
+    return [...this.catalogo].sort((a, b) => b.Score - a.Score).slice(0, qtd);
   }
 
   recentesPorStatus(status, qtd = 4) {
-    return this.titulos
+    return this.catalogo
       .filter((t) => t.Status === status)
-      .sort((a, b) => {
-        const dataA = new Date(a.Adicao.split("/").reverse().join("/"));
-        const dataB = new Date(b.Adicao.split("/").reverse().join("/"));
-        return dataB - dataA;
-      })
-      .slice(0, qtd);
+    .sort((a, b) => {
+      const dataA = a.AdicaoFormatado instanceof Date ? a.AdicaoFormatado : new Date(a.AdicaoFormatado);
+      const dataB = b.AdicaoFormatado instanceof Date ? b.AdicaoFormatado : new Date(b.AdicaoFormatado);
+      return dataB - dataA;
+    })
+    .slice(0, qtd);
   }
   
   assistindo(status, qtd = 4) {
-    return this.titulos
+    return this.catalogo
       .filter(titulo => status.includes(titulo.Status))
       .slice(0, qtd);
   }
 
   recentes(qtd = 3) {
-    return [...this.titulos]
+    return [...this.catalogo]
       .sort((a, b) => {
-        const dataA = new Date(a.Adicao.split("/").reverse().join("/"));
-        const dataB = new Date(b.Adicao.split("/").reverse().join("/"));
-        return dataB - dataA;
-      })
-      .slice(0, qtd);
+      const dataA = a.AdicaoFormatado instanceof Date ? a.AdicaoFormatado : new Date(a.AdicaoFormatado);
+      const dataB = b.AdicaoFormatado instanceof Date ? b.AdicaoFormatado : new Date(b.AdicaoFormatado);
+      return dataB - dataA;
+    })
+    .slice(0, qtd);
   }
 
   estatisticasPorTipo(tipo) {
@@ -167,39 +284,32 @@ export class CatalogoViewModel {
   }
 
   resumoGeral() {
+    const totalDias = this.catalogo.reduce((acc, t) => acc + Number(t.Dias || 0), 0);
+    const totalHoras = totalDias * 24;
+    const totalEpisodios = this.catalogo.reduce((acc, t) => acc + Number(t.Episodios || 0), 0);
+    const totalAssistidos = this.catalogo.reduce((acc, t) => acc + Number(t.Assistidos || 0), 0);
+    const somaPontuacoes = this.catalogo.reduce((acc, t) => acc + Number(t.Score || 0), 0);
+
     return {
-      Total: this.titulos.length,
-      totalDias: this.titulos.reduce((acc, t) => acc + (t.Dias || 0), 0),
-      totalHoras: this.titulos.reduce((acc, t) => acc + (t.Dias || 0), 0) * 24,
-      totalEpisodios: this.titulos.reduce(
-        (acc, t) => acc + (t.Episodios || 0),
-        0
-      ),
-      totalAssistidos: this.titulos.reduce(
-        (acc, t) => acc + (t.Assistidos || 0),
-        0
-      ),
-      reassistidos: this.titulos.reduce(
-        (acc, t) => acc + (t.Reassistindo || 0),
-        0
-      ),
-      assistindo: this.titulos.filter((t) => t.Status === "Assistindo").length,
-      completado: this.titulos.filter((t) => t.Status === "Completado").length,
-      dropped: this.titulos.filter((t) => t.Status === "Dropped").length,
-      planejado: this.titulos.filter((t) => t.Status === "Planejado").length,
-      emEspera: this.titulos.filter((t) => t.Status === "Em-Espera").length,
-      serie: this.titulos.filter((t) => t.Tipo === "Serie").length,
-      filme: this.titulos.filter((t) => t.Tipo === "Filme").length,
-      show: this.titulos.filter((t) => t.Tipo === "Show").length,
-      desenho: this.titulos.filter((t) => t.Tipo === "Desenho").length,
-      documentario: this.titulos.filter((t) => t.Tipo === "Documentário")
-        .length,
-      reality: this.titulos.filter((t) => t.Tipo === "Reality").length,
-      mediaPontuacao: this.titulos.length
-        ? (
-            this.titulos.reduce((acc, t) => acc + (t.Score || 0), 0) /
-            this.titulos.length
-          ).toFixed(1)
+      Total: this.catalogo.length,
+      totalDias,
+      totalHoras,
+      totalEpisodios,
+      totalAssistidos,
+      reassistidos: this.catalogo.reduce((acc, t) => acc + Number(t.Reassistindo || 0), 0),
+      assistindo: this.catalogo.filter((t) => t.Status === "Assistindo").length,
+      completado: this.catalogo.filter((t) => t.Status === "Completado").length,
+      dropped: this.catalogo.filter((t) => t.Status === "Dropped").length,
+      planejado: this.catalogo.filter((t) => t.Status === "Planejado").length,
+      emEspera: this.catalogo.filter((t) => t.Status === "Em-Espera").length,
+      serie: this.catalogo.filter((t) => t.Tipo === "Serie").length,
+      filme: this.catalogo.filter((t) => t.Tipo === "Filme").length,
+      show: this.catalogo.filter((t) => t.Tipo === "Show").length,
+      desenho: this.catalogo.filter((t) => t.Tipo === "Desenho").length,
+      documentario: this.catalogo.filter((t) => t.Tipo === "Documentário").length,
+      reality: this.catalogo.filter((t) => t.Tipo === "Reality").length,
+      mediaPontuacao: this.catalogo.length
+        ? Number((somaPontuacoes / this.catalogo.length).toFixed(1))
         : 0,
     };
   }
@@ -241,8 +351,10 @@ export class CatalogoViewModel {
       "TV",
     ];
     const valores = plataformas.map(
-      (p) => this.titulos.filter((t) => t.Onde === p).length
+      (p) => this.catalogo.filter((t) => t.Onde === p).length
     );
     return { labels: plataformas, data: valores };
   }
 }
+
+

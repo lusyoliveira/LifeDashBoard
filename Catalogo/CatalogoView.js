@@ -1,4 +1,4 @@
-import { calculaTempoData, converteDataUTC } from "../js/metodoData.js";
+import { calculaTempoData } from "../js/metodoData.js";
 export class CatalogoView {
     constructor(vm) {
         this.vm = vm;
@@ -23,7 +23,6 @@ export class CatalogoView {
         } else {
             alert('Título não encontrado!');
         }
-
     }
 
     // TABELA
@@ -60,10 +59,10 @@ export class CatalogoView {
             tdOnde.textContent = titulo.Onde;
 
             const tdInicio = document.createElement('td');
-            tdInicio.textContent = titulo.Inicio;
+            tdInicio.textContent = titulo.InicioFormatado;
 
             const tdFim = document.createElement('td');
-            tdFim.textContent = titulo.Fim;
+            tdFim.textContent = titulo.FimFormatado;
 
             const tdEpisodios = document.createElement('td');
             tdEpisodios.classList.add('text-center');
@@ -291,7 +290,7 @@ export class CatalogoView {
                     iIcon.classList.add('bi', 'bi-calendar3');
 
                     const smallDataAdicao = document.createElement('small');
-                    smallDataAdicao.textContent = titulo.Adicao;
+                    smallDataAdicao.textContent = titulo.AdicaoFormatado;
                     liDataAdicao.appendChild(iIcon);
                     liDataAdicao.appendChild(smallDataAdicao);
                     ulInfo.appendChild(liProgresso);
@@ -438,11 +437,11 @@ export class CatalogoView {
         }
     }   
     
-    renderContagemGeral(elementoId, tipoContagem) {
-        const catalogo = this.vm.resumoGeral();
+    renderContagemGeral(elementoId, tipoContagem,resumo) {
+        const catalogo = resumo || this.vm.resumoGeral();
         const elementoDestino = document.getElementById(elementoId);
         const porcentagem = catalogo.totalAssistidos/catalogo.totalEpisodios*100;   
-
+       
         let contagem = 0;      
        
          if (tipoContagem === 'Progresso') {

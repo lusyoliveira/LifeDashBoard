@@ -38,9 +38,8 @@ export default class Catalogo {
 
     get Progresso () {
         if (!this.Assistidos || !this.Episodios || isNaN(this.Assistidos) || isNaN(this.Episodios)) {
-            return 0
+            return 0;
         }
-        const diff = this.Episodios - this.Assistidos
-        return diff/100 
-    }
+            return (this.Assistidos / this.Episodios) * 100; 
+        }
 }
