@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     
         const idInput = document.getElementById('id-adicionar').value;
         const descricao = document.getElementById('titulo-adicionar').value;
+        const capa = document.getElementById('capa-adicionar').value
         const dataInicio = document.getElementById('data-inicio').value;
         const dataFim = document.getElementById('data-fim').value;
         const tipo = document.getElementById('tipo-adicionar').value;
@@ -30,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const titulo = new Catalogo(
           idInput ? Number(idInput) : null,
           descricao,
-          "", // capa será preenchida depois
+          capa,
           tipo,
           status,
           plataforma,
@@ -41,20 +42,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           Number(temporada)
         );
         titulo.Score = Number(pontuacao);
-        // const titulo = {
-        //     id: idInput.toString(),
-        //     Titulo: descricao,
-        //     Tipo: tipo,
-        //     Status: status,
-        //     Onde: plataforma,
-        //     Inicio: formatarParaISO(dataInicio),
-        //     Fim:  dataFim === '' ? '' : formatarParaISO(dataFim),
-        //     Episodios: Number(episodios),
-        //     Assistidos: Number(assistidos),
-        //     Temporadas: Number(temporada),
-        //     Score: Number(pontuacao),
-        // }
-       
+          
     await vm.salvarTitulo(titulo);
     catalogoView.listarCatalogo("linhas");
     e.target.reset();

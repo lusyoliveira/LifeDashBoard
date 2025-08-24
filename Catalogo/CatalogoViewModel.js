@@ -22,11 +22,12 @@ export class CatalogoViewModel {
         titulo.Fim,
         titulo.Episodios,
         titulo.Assistidos,
-        titulo.Temporadas
+        titulo.Temporadas,
+        titulo.Score,
+        titulo.Vezes,
+        titulo.Adicao
       );
 
-      console.log(titulos);
-      
       if (titulos.Inicio) {
         const dataInicio = new Date(titulos.Inicio)
         if (!isNaN(dataInicio)) {
@@ -67,7 +68,10 @@ export class CatalogoViewModel {
       titulo.Fim,
       titulo.Episodios,
       titulo.Assistidos,
-      titulo.Temporadas
+      titulo.Temporadas,
+      titulo.Score,
+      titulo.Vezes,
+      titulo.Adicao
     );
 
     if (catalogo.Inicio) {
@@ -124,98 +128,6 @@ export class CatalogoViewModel {
     return maior + 1;
   };
 
-  // async obterCatalogo() {
-  //   let catalogo = [];
-  //   catalogo = await api.buscarDados(this.endpoint);
-       
-  //   this.catalogo = catalogo.map((titulo) => {      
-
-  //     let inicioFormatado = "";
-  //     let fimFormatado = "";
-
-  //     if (titulo.Inicio) {
-  //       const dataInicio = new Date(titulo.Inicio);
-  //       if (!isNaN(dataInicio)) {
-  //         inicioFormatado = dataInicio.toLocaleDateString('pt-BR');
-  //       }
-  //     }
-      
-  //     if (titulo.Fim) {
-  //       const dataFim = new Date(titulo.Fim);
-  //       if (!isNaN(dataFim)) {
-  //         fimFormatado = dataFim.toLocaleDateString('pt-BR');
-  //       }
-  //     }
-
-  //     return {
-  //       ...titulo,
-  //       Inicio:  inicioFormatado,
-  //       Fim: fimFormatado,
-  //     };
-  //   });
-      
-  //   return this.catalogo;
-  // }
-
-  // async obterTituloPorID(idTitulo) {
-  //     let titulo = {};
-
-  //     titulo = await api.buscarDadosPorId(idTitulo,this.endpoint);
-
-  //     let inicioFormatado = "";
-  //     let fimFormatado = "";
-
-  //     if (titulo.Inicio) {
-  //       const dataInicio = new Date(titulo.Inicio);
-  //       if (!isNaN(dataInicio)) {
-  //         inicioFormatado = dataInicio.toLocaleDateString('pt-BR');
-  //       }
-  //     }
-      
-  //     if (titulo.Fim) {
-  //       const dataFim = new Date(titulo.Fim);
-  //       if (!isNaN(dataFim)) {
-  //         fimFormatado = dataFim.toLocaleDateString('pt-BR');
-  //       }
-  //     }
-  //     if (titulo) {
-  //       this.catalogo = {      
-  //         ...titulo,
-  //         Inicio:  inicioFormatado,
-  //         Fim: fimFormatado,
-  //       };      
-  //       return this.catalogo;
-  //     } else {
-  //       return null;
-  //     }
-  //   }
-
-  // async salvarTitulo(titulo) {
-  //   if (titulo.id) {
-  //     await api.atualizarDados(titulo, this.endpoint);
-  //   } else {
-  //     titulo.id = this.gerarID()
-  //     titulo.Adicao = new Date()
-  //     titulo.Capa = ""
-  //     titulo.Vezes = 0
-  //     titulo.Progresso = 0
-  //     titulo.Dias = 0
-  //     await api.salvarDados(titulo, this.endpoint);
-  //   }
-  //   return this.obterCatalogo();
-  // }
-
-  // async excluirTitulo(id) {
-  //   await api.excluirDados(id, this.endpoint);
-  //   return this.obterCatalogo();
-  // }
-
-  // gerarID() {
-  //   if (this.catalogo.length === 0) return 1;
-  //   const maior = Math.max(...this.catalogo.map((t) => t.id || 0));
-  //   return maior + 1;
-  // }
-
   filtrarPorStatus(status) {
     return this.catalogo.filter((t) => t.Status === status);
   }
@@ -238,12 +150,12 @@ export class CatalogoViewModel {
   recentesPorStatus(status, qtd = 4) {
     return this.catalogo
       .filter((t) => t.Status === status)
-    .sort((a, b) => {
-      const dataA = a.AdicaoFormatado instanceof Date ? a.AdicaoFormatado : new Date(a.AdicaoFormatado);
-      const dataB = b.AdicaoFormatado instanceof Date ? b.AdicaoFormatado : new Date(b.AdicaoFormatado);
-      return dataB - dataA;
+      .sort((a, b) => {
+      const ta = a?.Adicao instanceof Date && !isNaN(a.Adicao) ? a.Adicao.getTime() : 0;
+      const tb = b?.Adicao instanceof Date && !isNaN(b.Adicao) ? b.Adicao.getTime() : 0;
+      return tb - ta;
     })
-    .slice(0, qtd);
+      .slice(0, qtd);
   }
   
   assistindo(status, qtd = 4) {
@@ -255,11 +167,11 @@ export class CatalogoViewModel {
   recentes(qtd = 3) {
     return [...this.catalogo]
       .sort((a, b) => {
-      const dataA = a.AdicaoFormatado instanceof Date ? a.AdicaoFormatado : new Date(a.AdicaoFormatado);
-      const dataB = b.AdicaoFormatado instanceof Date ? b.AdicaoFormatado : new Date(b.AdicaoFormatado);
-      return dataB - dataA;
+      const ta = a?.Adicao instanceof Date && !isNaN(a.Adicao) ? a.Adicao.getTime() : 0;
+      const tb = b?.Adicao instanceof Date && !isNaN(b.Adicao) ? b.Adicao.getTime() : 0;
+      return tb - ta;
     })
-    .slice(0, qtd);
+    .slice(0, qtd);    
   }
 
   estatisticasPorTipo(tipo) {
@@ -268,8 +180,8 @@ export class CatalogoViewModel {
     return {
       total: lista.length,
       dias: lista.reduce((acc, t) => acc + (t.Dias || 0), 0),
-      totalEpisodios: lista.reduce((acc, t) => acc + (t.Episodios || 0), 0),
-      reassistidos: lista.reduce((acc, t) => acc + (t.Reassistindo || 0), 0),
+      totalEpisodios: lista.reduce((acc, t) => acc + Number(t.Episodios || 0), 0),
+      reassistidos: lista.reduce((acc, t) => acc + (t.Vezes || 0), 0),
       assistindo: lista.filter((t) => t.Status === "Assistindo").length,
       completado: lista.filter((t) => t.Status === "Completado").length,
       dropped: lista.filter((t) => t.Status === "Dropped").length,
@@ -296,7 +208,7 @@ export class CatalogoViewModel {
       totalHoras,
       totalEpisodios,
       totalAssistidos,
-      reassistidos: this.catalogo.reduce((acc, t) => acc + Number(t.Reassistindo || 0), 0),
+      reassistidos: this.catalogo.reduce((acc, t) => acc + Number(t.Vezes || 0), 0),
       assistindo: this.catalogo.filter((t) => t.Status === "Assistindo").length,
       completado: this.catalogo.filter((t) => t.Status === "Completado").length,
       dropped: this.catalogo.filter((t) => t.Status === "Dropped").length,

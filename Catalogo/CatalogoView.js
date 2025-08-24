@@ -7,12 +7,13 @@ export class CatalogoView {
     //Formulário
     async editarTitulo(idTitulo) {
        const titulo = await this.vm.obterTituloPorID(idTitulo)
-
+        
        if (titulo) {
             document.getElementById('id-adicionar').value = titulo.id;
             document.getElementById('titulo-adicionar').value = titulo.Titulo;
+            document.getElementById('capa-adicionar').value = titulo.Capa;
             document.getElementById('data-inicio').value = new Date(titulo.Inicio).toISOString().slice(0, 16);
-            document.getElementById('data-fim').value = titulo.Fim === '' ? '' : titulo.Fim;
+            document.getElementById('data-fim').value = titulo.Fim === '' ? '' : new Date(titulo.Fim).toISOString().slice(0, 16);
             document.getElementById('tipo-adicionar').value = titulo.Tipo;
             document.getElementById('status-adicionar').value = titulo.Status;
             document.getElementById('plataforma-adicionar').value = titulo.Onde;
@@ -30,7 +31,7 @@ export class CatalogoView {
         const tabela = document.getElementById(elementoId);
         tabela.innerHTML = "";
         const catalogo = await this.vm.obterCatalogo();
-
+        
         if (!tabela) return;
         
         if ($.fn.DataTable.isDataTable('.datatable')) {
@@ -135,7 +136,6 @@ export class CatalogoView {
     // ESTATÍSTICA
     renderEstatistica(tipo, elementoId) {
         const stats = this.vm.estatisticasPorTipo(tipo);
-        
         const elementoDestino = document.getElementById(elementoId);
         
         if (elementoDestino) {
@@ -225,14 +225,29 @@ export class CatalogoView {
         const ctx = document.getElementById(canvasId);
         if (!ctx) return;
         new Chart(ctx, {
-            type: "doughnut",
+            type: "bar",
             data: {
                 labels: dados.labels,
-                datasets: [{ data: dados.data }]
+                datasets: [{  label: dados.labels,
+                                data: dados.data,
+                                backgroundColor: [
+                                    "#36A2EB",
+                                    "#4CAF50", 
+                                    "#FF6384", 
+                                    "#FFCE56", 
+                                    "#9966FF", 
+                                    "#ff9f4033",
+                                    "#c9cbcf33"  
+                                ],
+                                borderRadius: 8
+                            }]
             },
+            
             options: {
-                plugins: { title: { display: true, text: titulo } }
-            }
+                plugins: { title: { display: true, text: titulo }, 
+                            legend: { display: false, position: "Left"} 
+                        }                
+            }            
         });
     }
 
@@ -244,7 +259,7 @@ export class CatalogoView {
 
     // RECENTES
     renderRecentes(elementoId) {
-        const recentes = this.vm.recentes(3);
+        const recentes = this.vm.recentes(3);       
         const elementoDestino = document.getElementById(elementoId);
 
         if (!elementoDestino) return;
