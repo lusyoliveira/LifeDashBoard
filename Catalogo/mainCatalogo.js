@@ -1,6 +1,7 @@
 import { CatalogoViewModel } from "./CatalogoViewModel.js";
 import { CatalogoView } from "./CatalogoView.js";
 import { formatarParaISO } from "../js/metodoData.js";
+import Catalogo from "../Catalogo/catalogo.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const vm = new CatalogoViewModel();
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     
         const idInput = document.getElementById('id-adicionar').value;
         const descricao = document.getElementById('titulo-adicionar').value;
+        const capa = document.getElementById('capa-adicionar').value
         const dataInicio = document.getElementById('data-inicio').value;
         const dataFim = document.getElementById('data-fim').value;
         const tipo = document.getElementById('tipo-adicionar').value;
@@ -26,20 +28,21 @@ document.addEventListener("DOMContentLoaded", async () => {
         const temporada = document.getElementById('temporada-adicionar').value;
         const pontuacao = document.getElementById('pontuacao-adicionar').value;
 
-        const titulo = {
-            id: idInput.toString(),
-            Titulo: descricao,
-            Tipo: tipo,
-            Status: status,
-            Onde: plataforma,
-            Inicio: formatarParaISO(dataInicio),
-            Fim:  dataFim === '' ? '' : formatarParaISO(dataFim),
-            Episodios: Number(episodios),
-            Assistidos: Number(assistidos),
-            Temporadas: Number(temporada),
-            Score: Number(pontuacao),
-        }
-       
+        const titulo = new Catalogo(
+          idInput ? Number(idInput) : null,
+          descricao,
+          capa,
+          tipo,
+          status,
+          plataforma,
+          formatarParaISO(dataInicio),
+          dataFim === '' ? '' : formatarParaISO(dataFim),
+          Number(episodios),
+          Number(assistidos),
+          Number(temporada)
+        );
+        titulo.Score = Number(pontuacao);
+          
     await vm.salvarTitulo(titulo);
     catalogoView.listarCatalogo("linhas");
     e.target.reset();
@@ -50,26 +53,27 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   //Contagem
-  catalogoView.renderContagemGeral("geral-progresso", "Progresso");
-  catalogoView.renderContagemGeral("geral-total", "Total");
-  catalogoView.renderContagemGeral("geral-pontuacao", "Pontuacao");
-  catalogoView.renderContagemGeral("geral-assistidos", "Assistidos");
-  catalogoView.renderContagemGeral("geral-episodios", "Episodios");
-  catalogoView.renderContagemGeral("geral-dias", "Dias");
-  catalogoView.renderContagemGeral("geral-horas", "Horas");
-  catalogoView.renderContagemGeral("contagem-completado", "Completado");
-  catalogoView.renderContagemGeral("contagem-assistindo", "Assistindo");
-  catalogoView.renderContagemGeral("contagem-dropped", "Dropped");
-  catalogoView.renderContagemGeral("contagem-emespera", "Em-Espera");
-  catalogoView.renderContagemGeral("contagem-planejado", "Planejado");
-  //catalogoView.renderContagemGeral('contagem-anime','Anime')
-  catalogoView.renderContagemGeral("contagem-desenho", "Desenho");
-  catalogoView.renderContagemGeral("contagem-documentario", "Documentário");
-  catalogoView.renderContagemGeral("contagem-filme", "Filme");
-  catalogoView.renderContagemGeral("contagem-serie", "Serie");
-  catalogoView.renderContagemGeral("contagem-show", "Show");
-  catalogoView.renderContagemGeral("contagem-reality", "Reality");
-  //catalogoView.renderContagemGeral('contagem-manga','Manga')
+  const resumo = vm.resumoGeral();
+  catalogoView.renderContagemGeral("geral-progresso", "Progresso", resumo);
+  catalogoView.renderContagemGeral("geral-total", "Total", resumo);
+  catalogoView.renderContagemGeral("geral-pontuacao", "Pontuacao", resumo);
+  catalogoView.renderContagemGeral("geral-assistidos", "Assistidos", resumo);
+  catalogoView.renderContagemGeral("geral-episodios", "Episodios", resumo);
+  catalogoView.renderContagemGeral("geral-dias", "Dias", resumo);
+  catalogoView.renderContagemGeral("geral-horas", "Horas", resumo);
+  catalogoView.renderContagemGeral("contagem-completado", "Completado", resumo);
+  catalogoView.renderContagemGeral("contagem-assistindo", "Assistindo", resumo);
+  catalogoView.renderContagemGeral("contagem-dropped", "Dropped", resumo);
+  catalogoView.renderContagemGeral("contagem-emespera", "Em-Espera", resumo);
+  catalogoView.renderContagemGeral("contagem-planejado", "Planejado", resumo);
+  //catalogoView.renderContagemGeral('contagem-anime','Anime', resumo)
+  catalogoView.renderContagemGeral("contagem-desenho", "Desenho", resumo);
+  catalogoView.renderContagemGeral("contagem-documentario", "Documentário", resumo);
+  catalogoView.renderContagemGeral("contagem-filme", "Filme", resumo);
+  catalogoView.renderContagemGeral("contagem-serie", "Serie", resumo);
+  catalogoView.renderContagemGeral("contagem-show", "Show", resumo);
+  catalogoView.renderContagemGeral("contagem-reality", "Reality", resumo);
+  //catalogoView.renderContagemGeral('contagem-manga','Manga', resumo)
 
   //Estatísticas
   catalogoView.renderEstatistica("Serie", "estatistica-serie");
