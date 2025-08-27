@@ -1,5 +1,4 @@
 import api from "../js/metodoApi.js";
-//import Agenda from "../Agenda.js";
 
 export class AgendaViewModel {
   constructor(endpoint = "agenda") {

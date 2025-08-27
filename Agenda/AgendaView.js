@@ -1,4 +1,4 @@
-import { calculaTempoData, converteDataUTC } from "../js/metodoData.js";
+import { calculaTempoData } from "../js/metodoData.js";
 export class AgendaView {
   constructor(vm) {
     this.vm = vm;
