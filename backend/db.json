@@ -163,7 +163,7 @@
       "Status": "Indeterminado",
       "Categoria": "Pessoal",
       "Tipo": "Evento",
-      "Data": "2025-08-19T00:00:00.000Z"
+      "Data": "2025-09-27T00:00:00.000Z"
     },
     {
       "id": "3",
@@ -171,7 +171,7 @@
       "Status": "Indeterminado",
       "Categoria": "Pessoal",
       "Tipo": "Evento",
-      "Data": "2025-08-23T17:00:00.000Z"
+      "Data": "2025-09-06T17:00:00.000Z"
     },
     {
       "id": "4",
@@ -187,7 +187,7 @@
       "Status": "Indeterminado",
       "Categoria": "Casa",
       "Tipo": "Evento",
-      "Data": "2025-08-16T00:00:00.000Z"
+      "Data": "2025-09-16T00:00:00.000Z"
     },
     {
       "id": "6",
@@ -195,7 +195,7 @@
       "Status": "Indeterminado",
       "Categoria": "Pessoal",
       "Tipo": "Evento",
-      "Data": "2025-08-09T00:00:00.000Z"
+      "Data": "2025-09-06T00:00:00.000Z"
     },
     {
       "id": "7",
@@ -218,71 +218,64 @@
       "Titulo": "Acerto Financeiro",
       "Status": "Indeterminado",
       "Categoria": "Pessoal",
-      "Tipo": "Compromissos",
-      "Data": "2025-08-27T00:00:00.000Z"
+      "Tipo": "Evento",
+      "Data": "2025-09-28T00:00:00.000Z"
     },
     {
       "id": "10",
-      "Capa": "",
       "Titulo": "Banho na Lisa",
       "Status": "Indeterminado",
       "Categoria": "Casa",
       "Tipo": "Evento",
-      "Data": "2025-07-31T00:00:00.000Z"
+      "Data": "2025-09-06T00:00:00.000Z"
     },
     {
       "id": "11",
-      "Capa": "",
       "Titulo": "Assoprar Canela",
       "Status": "Indeterminado",
       "Categoria": "Pessoal",
-      "Tipo": "Compromissos",
-      "Data": "2025-08-01T00:00:00.000Z"
+      "Tipo": "Compromisso",
+      "Data": "2025-09-01T00:00:00.000Z"
     },
     {
       "id": "12",
-      "Capa": "",
       "Titulo": "Conta de Água",
       "Status": "Indeterminado",
       "Categoria": "Casa",
       "Tipo": "Evento",
-      "Data": "2025-08-01T00:00:00.000Z"
+      "Data": "2025-10-01T00:00:00.000Z"
     },
     {
       "id": "13",
-      "Capa": "",
       "Titulo": "Dia dos Pais",
       "Status": "Indeterminado",
       "Categoria": "Data Importante",
       "Tipo": "Evento",
-      "Data": "2025-08-09T00:00:00.000Z"
+      "Data": "2026-08-09T00:00:00.000Z"
     },
     {
       "id": "14",
-      "Capa": "",
       "Titulo": "Conta de Internet",
       "Status": "Indeterminado",
       "Categoria": "Casa",
       "Tipo": "Evento",
-      "Data": "2025-08-11T00:00:00.000Z"
+      "Data": "2025-09-11T00:00:00.000Z"
     },
     {
       "id": "15",
-      "Capa": "",
       "Titulo": "Cartão de Crédito",
       "Status": "Indeterminado",
       "Categoria": "Casa",
       "Tipo": "Evento",
-      "Data": "2025-08-11T00:00:00.000Z"
+      "Data": "2025-09-11T00:00:00.000Z"
     },
     {
       "id": "16",
-      "Capa": "",
       "Titulo": "Investir",
       "Status": "Indeterminado",
       "Categoria": "Pessoal",
       "Tipo": "Evento",
-      "Data": "2025-08-11T13:30:00.000Z"
+      "Data": "2025-09-11T13:30:00.000Z"
     },
     {
       "id": "17",
@@ -5030,7 +5023,7 @@
       "Titulo": "NCIS 7ª Temporada",
       "Capa": "https://m.media-amazon.com/images/I/91Ul0Ely2tL._UF894,1000_QL80_.jpg",
       "Tipo": "Serie",
-      "Status": "Reassistindo",
+      "Status": "Completado",
       "Onde": "Pluto TV",
       "Inicio": "2023-09-03T00:00:00.000Z",
       "Fim": "2023-10-02T00:00:00.000Z",
@@ -5040,8 +5033,8 @@
       "Score": 6,
       "Vezes": 0,
       "Adicao": "2023-08-31T00:00:00.000Z",
-      "Progresso": 1,
-      "Dias": 29
+      "Dias": 29,
+      "Progresso": 100
     },
     {
       "id": "163",
@@ -5565,23 +5558,22 @@
       "Dias": 0
     },
     {
-      "id": "510b",
-      "Id": 192,
-      "Titulo": "NCIS 7ª Temporada",
-      "Capa": "https://m.media-amazon.com/images/I/91Ul0Ely2tL._UF894,1000_QL80_.jpg",
+      "id": 192,
+      "Titulo": "NCIS 9ª Temporada",
+      "Capa": "https://m.media-amazon.com/images/I/61D+mlyN+GL._UF894,1000_QL80_.jpg",
       "Tipo": "Serie",
-      "Status": "Reassistindo",
-      "Onde": "Pluto TV",
-      "Inicio": "2023-09-03T00:00:00.000Z",
-      "Fim": "2023-10-02T00:00:00.000Z",
+      "Status": "Assistindo",
+      "Onde": "Paramount",
+      "Inicio": "2025-09-01T19:43:00.000Z",
+      "Fim": null,
       "Episodios": 24,
-      "Assistidos": 21,
+      "Assistidos": 1,
       "Temporadas": 1,
-      "Score": 6,
+      "Score": 0,
       "Vezes": 0,
-      "Adicao": "2025-08-24T14:42:15.331Z",
-      "Dias": 29,
-      "Progresso": 87.5
+      "Adicao": "2025-09-01T22:44:05.645Z",
+      "Dias": 0,
+      "Progresso": 4.16
     }
   ]
 }

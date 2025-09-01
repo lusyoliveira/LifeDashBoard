@@ -614,6 +614,8 @@ export class CatalogoView {
     async  renderAssistindo(statusFiltro, elementoDestinoId) {
         const catalogoStatus = this.vm.assistindo(statusFiltro,4);
         const elementoDestino = document.getElementById(elementoDestinoId);
+        console.log(catalogoStatus);
+        
 
         if (elementoDestino) {
             elementoDestino.innerHTML = "";

@@ -104,10 +104,11 @@ export class CatalogoViewModel {
       Progresso: titulo.Progresso
     };
 
-    if (titulo.Id) {
+    if (titulo.id) {
+      payload.remove("Adicao");
       await api.atualizarDados(payload, this.endpoint);
     } else {
-      payload.Id = this.gerarID();
+      payload.id = this.gerarID();
       payload.Adicao = new Date();
       payload.Vezes = 0;
       payload.Score = payload.Score || 0;
@@ -124,7 +125,7 @@ export class CatalogoViewModel {
 
   gerarID() {
     if (this.catalogo.length === 0) return 1;
-    const maior = Math.max(...this.catalogo.map((t) => t.Id || 0));
+    const maior = Math.max(...this.catalogo.map((t) => t.id || 0));
     return maior + 1;
   };
 
