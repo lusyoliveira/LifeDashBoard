@@ -105,7 +105,7 @@ export class CatalogoViewModel {
     };
 
     if (titulo.id) {
-      payload.remove("Adicao");
+      payload.Adicao = new Date(titulo.Adicao);
       await api.atualizarDados(payload, this.endpoint);
     } else {
       payload.id = this.gerarID();
