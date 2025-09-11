@@ -21,6 +21,7 @@ export class CatalogoView {
             document.getElementById('assistidos-adicionar').value = titulo.Assistidos;
             document.getElementById('temporada-adicionar').value = titulo.Temporadas;
             document.getElementById('pontuacao-adicionar').value = titulo.Score;   
+            document.getElementById('vezes-adicionar').value = titulo.Vezes;   
         } else {
             alert('Título não encontrado!');
         }
@@ -81,6 +82,10 @@ export class CatalogoView {
             tdScore.classList.add('text-center');
             tdScore.textContent = titulo.Score;
 
+            const tdVezes = document.createElement('td');
+            tdVezes.classList.add('text-center');
+            tdVezes.textContent = titulo.Vezes;
+
             const tdDias = document.createElement('td');
             tdDias.classList.add('text-center');
             tdDias.textContent = titulo.Dias;
@@ -125,6 +130,7 @@ export class CatalogoView {
             tr.appendChild(tdAssistidos);
             tr.appendChild(tdTemporadas);
             tr.appendChild(tdScore);
+            tr.appendChild(tdVezes);  
             tr.appendChild(tdDias);        
             tr.appendChild(tdBtnEditar)
             tr.appendChild(tdBtnExcluir)

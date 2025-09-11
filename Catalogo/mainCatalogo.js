@@ -27,6 +27,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         const assistidos = document.getElementById('assistidos-adicionar').value;
         const temporada = document.getElementById('temporada-adicionar').value;
         const pontuacao = document.getElementById('pontuacao-adicionar').value;
+        const vezes = document.getElementById('vezes-adicionar').value;
+        
+        let adicaoOriginal = null;
+
+        // Se for edição, buscar dados originais para preservar Adicao
+        if (idInput) {
+          const tituloExistente = await vm.obterTituloPorID(Number(idInput));
+          if (tituloExistente) {
+            adicaoOriginal = tituloExistente.Adicao;
+          }
+        }
 
         const titulo = new Catalogo(
           idInput ? Number(idInput) : null,
@@ -39,9 +50,12 @@ document.addEventListener("DOMContentLoaded", async () => {
           dataFim === '' ? '' : formatarParaISO(dataFim),
           Number(episodios),
           Number(assistidos),
-          Number(temporada)
+          Number(temporada),
+          Number(pontuacao),
+          Number(vezes),        
+          adicaoOriginal 
         );
-        titulo.Score = Number(pontuacao);
+        //titulo.Score = Number(pontuacao);
           
     await vm.salvarTitulo(titulo);
     catalogoView.listarCatalogo("linhas");

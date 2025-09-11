@@ -104,6 +104,10 @@ export class CatalogoViewModel {
       Progresso: titulo.Progresso
     };
 
+        payload.Adicao = titulo.Adicao instanceof Date 
+      ? titulo.Adicao 
+      : new Date(titulo.Adicao); 
+
     if (titulo.id) {
       payload.Adicao = new Date(titulo.Adicao);
       await api.atualizarDados(payload, this.endpoint);
