@@ -5172,7 +5172,7 @@
     },
     {
       "id": "172",
-      "Titulo": "NCIS 10 Temporada",
+      "Titulo": "NCIS 10ª Temporada",
       "Capa": "https://images.justwatch.com/poster/133230776/s718/temporada-10.jpg",
       "Tipo": "Serie",
       "Status": "Reassistindo",
@@ -5498,18 +5498,18 @@
       "Titulo": "Numbers 1ª a 3ª Temporada",
       "Capa": "https://m.media-amazon.com/images/M/MV5BM2QzNmMxYmYtOGEzZi00YmU2LTkzMzctYTVjNWYxNjlhYjU1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
       "Tipo": "Serie",
-      "Status": "Assistindo",
+      "Status": "Completado",
       "Onde": "Pluto TV",
       "Inicio": "2025-08-02T00:00:00.000Z",
-      "Fim": "",
+      "Fim": "2025-09-18T00:00:00.000Z",
       "Episodios": 61,
       "Assistidos": 35,
       "Temporadas": 3,
-      "Score": 0,
+      "Score": 7,
       "Vezes": 0,
       "Adicao": "2025-08-03T00:00:00.000Z",
-      "Progresso": 0.51,
-      "Dias": 21
+      "Dias": 47,
+      "Progresso": 57.377049180327866
     },
     {
       "id": "191",
