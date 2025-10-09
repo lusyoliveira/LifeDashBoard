@@ -163,7 +163,7 @@
       "Status": "Indeterminado",
       "Categoria": "Pessoal",
       "Tipo": "Evento",
-      "Data": "2025-09-27T00:00:00.000Z"
+      "Data": "2025-10-26T00:00:00.000Z"
     },
     {
       "id": "3",
@@ -171,7 +171,7 @@
       "Status": "Indeterminado",
       "Categoria": "Pessoal",
       "Tipo": "Evento",
-      "Data": "2025-09-24T17:00:00.000Z"
+      "Data": "2025-10-11T17:00:00.000Z"
     },
     {
       "id": "4",
@@ -219,7 +219,7 @@
       "Status": "Indeterminado",
       "Categoria": "Pessoal",
       "Tipo": "Evento",
-      "Data": "2025-09-28T00:00:00.000Z"
+      "Data": "2025-11-01T00:00:00.000Z"
     },
     {
       "id": "10",
@@ -227,7 +227,7 @@
       "Status": "Indeterminado",
       "Categoria": "Casa",
       "Tipo": "Evento",
-      "Data": "2025-09-28T00:00:00.000Z"
+      "Data": "2025-11-01T00:00:00.000Z"
     },
     {
       "id": "11",
@@ -383,7 +383,7 @@
     {
       "id": "29",
       "Titulo": "Médico",
-      "Status": "Em Espera",
+      "Status": "Feito",
       "Categoria": "Pessoal",
       "Tipo": "Compromisso",
       "Data": "2025-09-08T16:00:00.000Z"
@@ -5178,7 +5178,7 @@
       "Assistidos": 24,
       "Temporadas": 4,
       "Score": 7,
-      "Vezes": 1,
+      "Vezes": 2,
       "Adicao": "2024-09-01T00:00:00.000Z",
       "Dias": 8,
       "Progresso": 100
@@ -5196,7 +5196,7 @@
       "Assistidos": 24,
       "Temporadas": 1,
       "Score": 1,
-      "Vezes": 1,
+      "Vezes": 12,
       "Adicao": "2024-09-08T00:00:00.000Z",
       "Dias": 7,
       "Progresso": 100
@@ -5214,7 +5214,7 @@
       "Assistidos": 24,
       "Temporadas": 1,
       "Score": 7,
-      "Vezes": 0,
+      "Vezes": 2,
       "Adicao": "2024-09-17T00:00:00.000Z",
       "Progresso": 1,
       "Dias": 9
@@ -5232,7 +5232,7 @@
       "Assistidos": 24,
       "Temporadas": 1,
       "Score": 7,
-      "Vezes": 0,
+      "Vezes": 2,
       "Adicao": "2024-09-25T00:00:00.000Z",
       "Progresso": 1,
       "Dias": 7
@@ -5543,7 +5543,7 @@
       "Progresso": 100
     },
     {
-      "id": 193,
+      "id": "193",
       "Titulo": "Operação Lioness",
       "Capa": "https://m.media-amazon.com/images/M/MV5BN2M0ODI5MjEtODdkYi00ODAxLWFiNTUtZjFmYzE4Zjc1ODc2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
       "Tipo": "Serie",
