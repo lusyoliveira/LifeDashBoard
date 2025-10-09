@@ -1,5 +1,5 @@
 ## Life Dashboard
-- Este projeto foi de centralizar várias aréas da vida para organização.
+- Este projeto tem prósito de centralizar a organização de várias aréas da vida.
 
 ## Deploy
 - Indisponível
@@ -12,10 +12,11 @@
 - API do MyAnimelist
 
 ## Funcionalidades
-- Agenda de Compromissos
+- Agenda de Compromissos com integração com Gmail e Outlook
 - Controle de Tarefas
 - Controle Financeiro
 - Controle de Filmes, Séries, Animes
+- Controle de Hábitos
 - Previsão do Tempo
 - Diário
 - Contador de água
