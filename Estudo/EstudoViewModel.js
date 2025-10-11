@@ -1,5 +1,5 @@
 import api from "../js/metodoApi.js";
-//import Estudo from "../Estudo.js";
+import Curso from "../Estudo/Estudo.js";
 
 export class EstudoViewModel {
   constructor(endpoint = "cursos") {
@@ -8,17 +8,97 @@ export class EstudoViewModel {
   }
 
   async obterCursos() {
-    let estudos = [];
+    const cursosData = await api.buscarDados(this.endpoint);
 
-    estudos = await api.buscarDados(this.endpoint);
-    this.cursos = estudos.map(curso => {
-        return {
-            ...curso,
-            Comprado: new Date(curso.Comprado).toLocaleDateString('pt-BR')
-        };
+    this.cursos = cursosData.map(curso => {
+      const cursos = new Curso(
+        curso.id,
+        curso.Capa,
+        curso.Escola,
+        curso.Aulas,
+        curso.Assistido,
+        curso.Horas,
+        curso.Curso,
+        curso.Instrutor,
+        curso.Area,
+        new Date(curso.Comprado).toLocaleDateString('pt-BR'),
+        curso.Valor,
+        curso.Status,
+        curso.Certificado
+      );
+
+      // if (cursos.Comprado) {
+      //   const dataCompra = new Date(titulos.Comprado)
+      //   if (!isNaN(dataCompra)) {
+      //     cursos.InicioFormatado = cursos.Comprado.toLocaleDateString("pt-BR")
+      //   }
+      // }
+
+        // return {
+        //     ...curso,
+        //     Comprado: new Date(curso.Comprado).toLocaleDateString('pt-BR')
+        // };
+        return cursos;
     });
     return this.cursos;
   }
+
+  async obterCursoPorID(idCurso) {
+    const curso = await api.buscarDadosPorId(idCurso, this.endpoint);
+    if (!curso) return null;
+
+      const cursos = new Curso(
+        curso.id,
+        curso.Capa,
+        curso.Escola,
+        curso.Aulas,
+        curso.Assistido,
+        curso.Horas,
+        curso.Curso,
+        curso.Instrutor,
+        curso.Area,
+        new Date(curso.Comprado).toLocaleDateString('pt-BR'),
+        curso.Valor,
+        curso.Status,
+        curso.Certificado
+      );
+
+      // if (cursos.Comprado) {
+      //   const dataCompra = new Date(titulos.Comprado)
+      //   if (!isNaN(dataCompra)) {
+      //     cursos.InicioFormatado = cursos.Comprado.toLocaleDateString("pt-BR")
+      //   }
+      // }
+
+        // return {
+        //     ...curso,
+        //     Comprado: new Date(curso.Comprado).toLocaleDateString('pt-BR')
+        // };
+
+    return cursos;
+  }
+
+  async salvarCurso(curso) {
+    if (curso.id) {
+      await api.atualizarDados(curso, this.endpoint);
+    } else {
+      curso.id = this.gerarID()
+      await api.salvarDados(curso, this.endpoint);
+    }
+    return this.obterCursos();
+  }
+
+  async excluirCurso(id) {
+    await api.excluirDados(id, this.endpoint);
+    return this.obterCursos();
+  }
+
+  gerarID() {
+    if (this.cursos.length === 0) return 1;
+    const maior = Math.max(...this.cursos.map((t) => t.id || 0));
+    return maior + 1;
+  };
+
   cursando(qtd = 3) {
       return this.cursos
           .filter(curso => curso.Status === "Cursando")

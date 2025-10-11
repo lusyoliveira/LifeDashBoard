@@ -6,6 +6,7 @@ import Catalogo from "../Catalogo/catalogo.js";
 document.addEventListener("DOMContentLoaded", async () => {
   const vm = new CatalogoViewModel();
   const catalogoView = new CatalogoView(vm);
+  
   const formCatalogo = document.getElementById("catalogo-form");
   const btnCancelar = document.getElementById("cancelar-catalogo");
 
@@ -55,7 +56,6 @@ document.addEventListener("DOMContentLoaded", async () => {
           Number(vezes),        
           adicaoOriginal 
         );
-        //titulo.Score = Number(pontuacao);
           
     await vm.salvarTitulo(titulo);
     catalogoView.listarCatalogo("linhas");

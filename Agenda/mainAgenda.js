@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const vm = new AgendaViewModel();
   const agendaView = new AgendaView(vm);
 
-//CRUD
+  //CRUD
   await agendaView.listarAgenda("linhas");
 
   formAgenda.addEventListener("submit", async (e) => {
