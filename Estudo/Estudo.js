@@ -1,29 +1,29 @@
 export default class Estudo {
     id
-    Caoa
+    Capa
     Escola
     Aulas
     Assistido
     Horas
-    Curso
-    Instrutor
-    Area
-    DataCompra
+    Name
+    Professor
+    Assunto
+    Comprado
     Valor
     Status
     Certificado
 
-    constructor(id, capa, escola,aulas, assistido, horas,curso,instrutor,area,dataCompra,valor,status, certificado = false){
+    constructor(id, capa, escola,aulas, assistido, horas,name,professor,assunto,comprado,valor,status, certificado = false){
         this.id = id
         this.Capa = capa
         this.Escola = escola
         this.Aulas = aulas
         this.Assistido = assistido
         this.Horas = horas
-        this.Curso = curso
-        this.Instrutor = instrutor
-        this.Area = area
-        this.DataCompra = dataCompra
+        this.Name = name
+        this.Professor = professor
+        this.Assunto = assunto
+        this.Comprado = comprado
         this.Valor = valor
         this.Status = status
         this.Certificado = certificado

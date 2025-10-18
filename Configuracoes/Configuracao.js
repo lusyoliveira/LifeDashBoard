@@ -1,30 +1,31 @@
 export default class Configuracao {
-    ID
-    AtivaMAL = false
-    AtivaOutlook = false
+    Id
+    AtivaMAL 
+    AtivaOutlook
     ChaveOutlook
-    AtivaGoogle = false
+    AtivaGoogle 
     ChaveGoogle
-    AtivaClima = false
     Cidade
-    Latitude = o
-    Longitude = 0
-    AtualizaClima = 10800
+    Latitude
+    Longitude 
+    AtivaClima
+    AtualizaClima
     DataContagem
     DescricaoContagem
 
-    constructor(id, ativMAL, ativaOutlook, chaveOutlook, ativaGoogle, chaveGoogle, ativaClima, cidade, latitude, longitude, dataContagem, descricaoContagem) {
+    constructor(id, ativMAL, ativaOutlook, chaveOutlook, ativaGoogle, chaveGoogle, cidade, latitude = 0, longitude = 0,ativaClima, atualizaClima, dataContagem = new Date(), descricaoContagem) {
         this.Id = id
         this.AtivaMAL = ativMAL
         this.AtivaOutlook = ativaOutlook
-        this.chaveOutlook = chaveOutlook
+        this.ChaveOutlook = chaveOutlook
         this.AtivaGoogle = ativaGoogle
-        this.chaveGoogle = chaveGoogle
-        this.AtivaClima = ativaClima
+        this.ChaveGoogle = chaveGoogle
         this.Cidade = cidade
-        this.Latitude = latitude
-        this.Longitude = longitude
-        this.DataContagem = dataContagem
+        this.Latitude = latitude ?? 0
+        this.Longitude = longitude ?? 0
+        this.AtivaClima = ativaClima
+        this.AtualizaClima = atualizaClima ?? 0
+        this.DataContagem = dataContagem ? new Date(dataContagem) : new Date()
         this.DescricaoContagem = descricaoContagem
     }
 }

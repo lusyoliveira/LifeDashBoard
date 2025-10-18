@@ -8,12 +8,12 @@ export class AgendaView {
     const agendamento = await this.vm.obterAgendaPorID(agendamentoId)
 
     if (agendamento) {
-        document.getElementById('id-adicionar').value = agendamento.id
-        document.getElementById('titulo-adicionar').value = agendamento.Titulo
-        document.getElementById('data-adicionar').value = agendamento.Data
-        document.getElementById('categoria-adicionar').value = agendamento.Categoria
-        document.getElementById('tipo-adicionar').value = agendamento.Tipo
-        document.getElementById('status-adicionar').value = agendamento.Status
+        document.getElementById('id-adicionar').value = agendamento.Id;
+        document.getElementById('titulo-adicionar').value = agendamento.Titulo;
+        document.getElementById('data-adicionar').value = new Date(agendamento.Data).toISOString().slice(0,16);
+        document.getElementById('categoria-adicionar').value = agendamento.Categoria;
+        document.getElementById('tipo-adicionar').value = agendamento.Tipo;
+        document.getElementById('status-adicionar').value = agendamento.Status;
     } else {
         alert('Agendamento não encontrado!');
     }
@@ -67,7 +67,7 @@ export class AgendaView {
 
       const btnEditar = document.createElement("button");
       btnEditar.classList.add("btn", "btn-primary");
-      btnEditar.onclick = () => this.editarAgenda(compromisso.id);
+      btnEditar.onclick = () => this.editarAgenda(compromisso.Id);
 
       const iconeEditar = document.createElement("i");
       iconeEditar.classList.add("bi", "bi-pencil-fill");
@@ -77,7 +77,7 @@ export class AgendaView {
       btnExcluir.classList.add("btn", "btn-danger");
       btnExcluir.onclick = async () => {
         try {
-          await this.vm.excluirAgenda(compromisso.id);
+          await this.vm.excluirAgenda(compromisso.Id);
         } catch (error) {
           alert("Erro ao excluir agendamento!");
         }
@@ -135,7 +135,7 @@ export class AgendaView {
     if (divAntigo) {
       divAntigo.remove();
     }
-
+   
     // Cria os dias do mês
     const primeiroDia = new Date(ano, mes).getDay();
     const totalDias = new Date(ano, mes + 1, 0).getDate();

@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     
         const idInput = document.getElementById('id-adicionar').value;
         const descricao = document.getElementById('titulo-adicionar').value;
-        const capa = document.getElementById('capa-adicionar').value
+        const capa = document.getElementById('capa-adicionar').value;
         const dataInicio = document.getElementById('data-inicio').value;
         const dataFim = document.getElementById('data-fim').value;
         const tipo = document.getElementById('tipo-adicionar').value;

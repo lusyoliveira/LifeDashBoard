@@ -1,10 +1,31 @@
-import { calculaTempoData, converteDataUTC } from "../js/metodoData.js";
+import { calculaTempoData } from "../js/metodoData.js";
 
 export class EstudoView {
     constructor(vm) {
         this.vm = vm;
     }
 
+    async editarCurso(cursoId) {
+        const curso = await this.vm.obterCursoPorID(cursoId)
+        
+        if (curso) {
+            document.getElementById('id-adicionar').value = curso.id;
+            document.getElementById('capa-adicionar').value = curso.Capa;
+            document.getElementById('escola-adicionar').value = curso.Escola;
+            document.getElementById('aulas-adicionar').value = curso.Aulas;
+            document.getElementById('assistidos-adicionar').value = curso.Assistido;
+            document.getElementById('horas-adicionar').value = curso.Horas;
+            document.getElementById('curso-adicionar').value = curso.Name;
+            document.getElementById('instrutor-adicionar').value = curso.Professor;
+            document.getElementById('area-adicionar').value = curso.Assunto;
+            document.getElementById('compra-adicionar').value = new Date(curso.Comprado).toISOString().slice(0, 16);
+            document.getElementById('valor-adicionar').value = curso.Valor;
+            document.getElementById('status-adicionar').value = curso.Status;
+            document.getElementById('certificado-adicionar').value = curso.Certificado;
+        } else {
+            alert('Curso não encontrado!');
+        }
+    }
     async listarCursos(elementoId) {
         const tabela = document.getElementById(elementoId);
         tabela.innerHTML = '';
@@ -26,6 +47,10 @@ export class EstudoView {
     
                 const tdProfessor = document.createElement('td');
                 tdProfessor.textContent = curso.Professor;
+
+                const tdEscola = document.createElement('td');
+                tdEscola.classList.add('text-center');
+                tdEscola.textContent = curso.Escola; 
     
                 const tdAssunto = document.createElement('td');
                 tdAssunto.classList.add('text-center');
@@ -37,7 +62,7 @@ export class EstudoView {
     
                 const tdValor = document.createElement('td');
                 tdValor.classList.add('text-center');
-                tdValor.textContent = curso.Valor;
+                tdValor.textContent = curso.Valor.toFixed(2);
     
                 const tdStatus = document.createElement('td');
                 tdStatus.classList.add('text-center');
@@ -45,21 +70,48 @@ export class EstudoView {
     
                 const tdCertificado = document.createElement('td');
                 tdCertificado.classList.add('text-center');
-                tdCertificado.textContent = curso.Certificado;
-    
-                const tdProgresso = document.createElement('td');
-                tdProgresso.classList.add('text-center');
-                tdProgresso.textContent = curso.Progresso; 
-                
+                tdCertificado.textContent = curso.Certificado; 
+
+                const tdBtnEditar = document.createElement("td");
+                const tdBtnExcluir = document.createElement("td");
+
+                const btnEditar = document.createElement("button");
+                btnEditar.classList.add("btn", "btn-primary");
+                btnEditar.onclick = () => this.editarCurso(curso.id);
+
+                const iconeEditar = document.createElement("i");
+                iconeEditar.classList.add("bi", "bi-pencil-fill");
+                iconeEditar.setAttribute("id", "editar-curso");
+
+                const btnExcluir = document.createElement("button");
+                btnExcluir.classList.add("btn", "btn-danger");
+                btnExcluir.onclick = async () => {
+                    try {
+                    await this.vm.excluirCurso(curso.id);
+                    } catch (error) {
+                    alert("Erro ao excluir agendamento!");
+                    }
+                };
+
+                const iconeExcluir = document.createElement("i");
+                iconeExcluir.classList.add("bi", "bi-trash");
+                iconeExcluir.setAttribute("id", "excluir-curso");
+                  
+                btnEditar.appendChild(iconeEditar);
+                btnExcluir.appendChild(iconeExcluir);
+                tdBtnEditar.appendChild(btnEditar);
+                tdBtnExcluir.appendChild(btnExcluir);
                 tr.appendChild(thId);
                 tr.appendChild(tdNomeCurso);
                 tr.appendChild(tdProfessor);
+                tr.appendChild(tdEscola);
                 tr.appendChild(tdAssunto);
                 tr.appendChild(tdComprado);
                 tr.appendChild(tdValor);
                 tr.appendChild(tdStatus);
                 tr.appendChild(tdCertificado);
-                tr.appendChild(tdProgresso);
+                tr.appendChild(tdBtnEditar);
+                tr.appendChild(tdBtnExcluir);
                 tabela.appendChild(tr);
         });
         // Dispara DataTable

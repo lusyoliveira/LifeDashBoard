@@ -1,46 +1,46 @@
 import api from "../js/metodoApi.js";
+import Agenda from "../Agenda/Agenda.js";
 
 export class AgendaViewModel {
   constructor(endpoint = "agenda") {
     this.endpoint = endpoint;
-    this.compromissos = [];
+    this.agenda = [];
   }
 
   async obterAgenda() {
-    let agenda = [];
+    const agendaData = await api.buscarDados(this.endpoint);
 
-    agenda = await api.buscarDados(this.endpoint);
-    this.compromissos = agenda.map(compromisso => {
-        const data = new Date(compromisso.Data);
-        const dia = String(data.getUTCDate()).padStart(2, '0');
-        const mes = String(data.getUTCMonth() + 1).padStart(2, '0');
-        const ano = data.getUTCFullYear();
-        return {
-        ...compromisso,
-        Data: `${dia}/${mes}/${ano}`
-        };
-    })
-    return this.compromissos;
+    this.agenda = agendaData.map((compromisso) => {
+        const compromissos = new Agenda(
+          compromisso.id,
+          compromisso.Titulo,
+          compromisso.Status,
+          compromisso.Categoria,
+          compromisso.Tipo,
+          new Date(compromisso.Data).toLocaleDateString('pt-BR'),
+        );
+       
+        return compromissos;
+    })  
+   
+    return this.agenda;
   }
 
-    async obterAgendaPorID(tarefaId) {
-      let compromisso = {};
+    async obterAgendaPorID(agendaID) {
+       const compromisso = await api.buscarDadosPorId(agendaID,this.endpoint);
+      if (!compromisso) return null;
 
-      // A chamada à API já retorna um único objeto
-      compromisso = await api.buscarDadosPorId(tarefaId,this.endpoint);
-
-    // Verifique se a tarefa existe antes de tentar formatar a data
-      if (compromisso) {
-        const data = new Date(compromisso.Data);
-
-        this.compromisso = {
-          ...compromisso,
-          Data:  data.toISOString().slice(0, 16),
-        };
-        return this.compromisso;
-      } else {
-        return null;
-      }
+      const agenda = new Agenda(
+          compromisso.id,
+          compromisso.Titulo,
+          compromisso.Status,
+          compromisso.Categoria,
+          compromisso.Tipo,
+          new Date(compromisso.Data).toLocaleDateString('pt-BR'),
+        );
+        console.log(agenda);
+       
+        return agenda
     }
 
   async salvarAgenda(compromisso) {
@@ -59,13 +59,13 @@ export class AgendaViewModel {
   }
 
   gerarID() {
-    if (this.compromissos.length === 0) return 1;
-    const maior = Math.max(...this.compromissos.map((t) => t.id || 0));
+    if (this.agenda.length === 0) return 1;
+    const maior = Math.max(...this.agenda.map((t) => t.id || 0));
     return maior + 1;
   }
 
   filtrarAgenda (){
-    return [...this.compromissos]
+    return [...this.agenda]
               .filter(compromisso => {
                 const [diaComp, mesComp, anoComp] = compromisso.Data.split('/');
                 return (
@@ -77,7 +77,7 @@ export class AgendaViewModel {
   } 
 
   filtrarProximosCompromissos(qtd = 13) {
-    return [...this.compromissos]
+    return [...this.agenda]
             .filter(compromisso => {
                 const [dia, mes, ano] = compromisso.Data.split('/');
                 const dataCompromisso = new Date(`${ano}-${mes}-${dia}T00:00:00`);

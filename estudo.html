@@ -137,57 +137,81 @@
 
             <div class="container-fliud">                
                 <h2 class="pb-1 border-bottom">Cursos</h2>
-                <form class="row gy-2 gx-3 align-items-center" id="curso-form" title="Adicionar Agendamento">
-                    <div class="col-auto">
+                <form class="row gy-2 gx-3 align-items-center" id="curso-form" title="Adicionar curso">
+                    <div class="col-3">
                         <input type="hidden" id="id-adicionar" />
                         <label for="curso-adicionar" class="col-form-label">Curso:</label>
                         <input type="text" class="form-control" id="curso-adicionar" title="Curso" placeholder="Informe o curso" required>
                     </div>
-                    <div class="col-auto">
+                    <div class="col">
+                        <label for="capa-adicionar" class="col-form-label">Capa:</label>
+                        <input type="text" class="form-control" id="capa-adicionar" title="Capa" placeholder="Informa a url da capa" required>
+                    </div>
+                    <div class="col-2">
+                        <label for="escola-adicionar" class="col-form-label">Escola:</label>
+                        <input type="text" class="form-control" id="escola-adicionar" title="Escola" placeholder="Informe a escola" required>
+                    </div>
+                    <div class="col-2">
                         <label for="instrutor-adicionar" class="col-form-label">Instrutor:</label>
                         <input type="text" class="form-control" id="instrutor-adicionar" title="Instrutor" placeholder="Informe o instrutor" required>
                     </div>
-                    <div class="col-auto">
-                        <label for="area-adicionar" class="col-form-label">Área:</label>
-                        <select type="text" class="form-select" id="area-adicionar" title="Área" required>
-                            <option value="Loja">Loja</option>
-                            <option value="Casa">Casa</option>
-                            <option value="Pessoal">Pessoal</option>
-                            <option value="Educação">Educação</option>
-                            <option value="Financeiro">Financeiro</option>
-                            <option value="Data Importante">Data Importante</option>
-                        </select>
+                    <div class="row">
+                    <div class="col-1">
+                        <label for="aulas-adicionar" class="col-form-label">Aulas:</label>
+                        <input type="text" class="form-control" id="aulas-adicionar" title="Aulas" placeholder="0" required>
                     </div>
-                    <div class="col-auto">
-                        <label for="compra-adicionar" class="col-form-label">Compra:</label>
-                        <input type="date" class="form-control" id="compra-adicionar" title="Compra" required>
+                    <div class="col-1">
+                        <label for="assistidos-adicionar" class="col-form-label">Assistidos:</label>
+                        <input type="text" class="form-control" id="assistidos-adicionar" title="Assistidos" placeholder="0" required>
                     </div>
-                    <div class="col-auto">
-                        <label for="valor-adicionar" class="col-form-label">Valor:</label>
-                        <input type="text" class="form-control" id="valor-adicionar" title="Valor" placeholder="Informe o valor" required>
+                    <div class="col-1">
+                        <label for="horas-adicionar" class="col-form-label">Horas:</label>
+                        <input type="text" class="form-control" id="horas-adicionar" title="Horas" placeholder="0" required>
                     </div>
-                    <div class="col-auto">
-                        <label for="status-adicionar" class="col-form-label">Status:</label>
-                        <select type="text" class="form-select" id="status-adicionar" title="Status" required>
-                            <option value="Em Espera">Em Espera</option>
-                            <option value="Fazendo">Fazendo</option>
-                            <option value="Feito">Feito</option>
-                            <option value="Pausado">Pausado</option>
-                            <option value="Cancelado">Cancelado</option>
-                            <option value="Indeterminado">Indeterminado</option>
-                        </select>
-                    </div>
-                    <div class="col-auto">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="certificado-adicionar">
-                            <label class="form-check-label" for="certificado-adicionar">
-                                Certificado
-                            </label>
+                        <div class="col-2">
+                            <label for="area-adicionar" class="col-form-label">Área:</label>
+                            <select type="text" class="form-select" id="area-adicionar" title="Área" required>
+                                <option value="Tecnologia">Tecnologia</option>
+                                <option value="Desgin Gráfico">Desgin Gráfico</option>
+                                <option value="Encadernação">Encadernação</option>
+                                <option value="Desenho">Desenho</option>
+                                <option value="Lettering">Lettering</option>
+                                <option value="Aquarela">Aquarela</option>
+                            </select>
+                        </div>
+                        <div class="col-2">
+                            <label for="compra-adicionar" class="col-form-label">Compra:</label>
+                            <input type="datetime-local" class="form-control" id="compra-adicionar" title="Compra" required>
+                        </div>
+                        <div class="col-2">
+                            <label for="valor-adicionar" class="col-form-label">Valor:</label>
+                            <input type="text" class="form-control" id="valor-adicionar" title="Valor" placeholder="Informe o valor" required>
+                        </div>
+                        <div class="col-2">
+                            <label for="status-adicionar" class="col-form-label">Status:</label>
+                            <select type="text" class="form-select" id="status-adicionar" title="Status" required>
+                                <option value="Em Espera">Em Espera</option>
+                                <option value="Fazendo">Fazendo</option>
+                                <option value="Feito">Feito</option>
+                                <option value="Pausado">Pausado</option>
+                                <option value="Cancelado">Cancelado</option>
+                                <option value="Indeterminado">Indeterminado</option>
+                            </select>
+                        </div>
+                        <div class="col-1">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="certificado-adicionar">
+                                <label class="form-check-label" for="certificado-adicionar">
+                                    Certificado
+                                </label>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-auto">
-                        <button type="submit" class="btn btn-primary" id="adicionar-curso" title="Salvar Agendamento">Salvar</button>
-                        <button type="button" class="btn btn-secondary" id="cancelar-curso" title="Cancelar Agendamento" >Cancelar</button>
+                    <div class="row mt-2">  
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary" id="adicionar-curso" title="Salvar Agendamento">Salvar</button>
+                            <button type="button" class="btn btn-secondary" id="cancelar-curso" title="Cancelar Agendamento" >Cancelar</button>
+                        </div>
                     </div>
                 </form>   
                 <div class="table-responsive">
@@ -197,12 +221,14 @@
                             <th>#</th>
                             <th>Curso</th>
                             <th>Instrutor</th>
+                            <th class="text-center">Escola</th>
                             <th class="text-center">Área</th>
                             <th class="text-center">Compra</th>
                             <th class="text-center">Valor</th>
                             <th class="text-center">Status</th>
                             <th class="text-center">Certificado</th>
-                            <th class="text-center">Progresso</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider" id="linhas">

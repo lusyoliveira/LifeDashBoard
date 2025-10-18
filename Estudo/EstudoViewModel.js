@@ -18,28 +18,16 @@ export class EstudoViewModel {
         curso.Aulas,
         curso.Assistido,
         curso.Horas,
-        curso.Curso,
-        curso.Instrutor,
-        curso.Area,
+        curso.Name,
+        curso.Professor,
+        curso.Assunto,
         new Date(curso.Comprado).toLocaleDateString('pt-BR'),
         curso.Valor,
         curso.Status,
         curso.Certificado
       );
-
-      // if (cursos.Comprado) {
-      //   const dataCompra = new Date(titulos.Comprado)
-      //   if (!isNaN(dataCompra)) {
-      //     cursos.InicioFormatado = cursos.Comprado.toLocaleDateString("pt-BR")
-      //   }
-      // }
-
-        // return {
-        //     ...curso,
-        //     Comprado: new Date(curso.Comprado).toLocaleDateString('pt-BR')
-        // };
         return cursos;
-    });
+    });   
     return this.cursos;
   }
 
@@ -54,26 +42,14 @@ export class EstudoViewModel {
         curso.Aulas,
         curso.Assistido,
         curso.Horas,
-        curso.Curso,
-        curso.Instrutor,
-        curso.Area,
+        curso.Name,
+        curso.Professor,
+        curso.Assunto,
         new Date(curso.Comprado).toLocaleDateString('pt-BR'),
         curso.Valor,
         curso.Status,
         curso.Certificado
       );
-
-      // if (cursos.Comprado) {
-      //   const dataCompra = new Date(titulos.Comprado)
-      //   if (!isNaN(dataCompra)) {
-      //     cursos.InicioFormatado = cursos.Comprado.toLocaleDateString("pt-BR")
-      //   }
-      // }
-
-        // return {
-        //     ...curso,
-        //     Comprado: new Date(curso.Comprado).toLocaleDateString('pt-BR')
-        // };
 
     return cursos;
   }
