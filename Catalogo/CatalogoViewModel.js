@@ -128,9 +128,9 @@ export class CatalogoViewModel {
   };
 
   gerarID() {
-    if (this.catalogo.length === 0) return 1;
+    if (this.catalogo.length === 0) return "1";
     const maior = Math.max(...this.catalogo.map((t) => t.id || 0));
-    return maior + 1;
+    return String(maior + 1);
   };
 
   filtrarPorStatus(status) {

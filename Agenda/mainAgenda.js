@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         formatarParaISO(data)
     );
   
+    debugger
     await vm.salvarAgenda(agendamento);
     agendaView.listarAgenda("linhas");
     e.target.reset();

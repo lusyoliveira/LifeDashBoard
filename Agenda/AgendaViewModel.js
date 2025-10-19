@@ -17,12 +17,10 @@ export class AgendaViewModel {
           compromisso.Status,
           compromisso.Categoria,
           compromisso.Tipo,
-          new Date(compromisso.Data).toLocaleDateString('pt-BR'),
-        );
-       
+          compromisso.Data,
+        );       
         return compromissos;
-    })  
-   
+    })     
     return this.agenda;
   }
 
@@ -36,7 +34,7 @@ export class AgendaViewModel {
           compromisso.Status,
           compromisso.Categoria,
           compromisso.Tipo,
-          new Date(compromisso.Data).toLocaleDateString('pt-BR'),
+          compromisso.Data,
         );
         console.log(agenda);
        
@@ -44,11 +42,15 @@ export class AgendaViewModel {
     }
 
   async salvarAgenda(compromisso) {
+    const payload = {
+      ...compromisso
+    };
+
     if (compromisso.id) {
-      await api.atualizarDados(compromisso, this.endpoint);
+      await api.atualizarDados(payload, this.endpoint);
     } else {
-      compromisso.id = this.gerarID()
-      await api.salvarDados(compromisso, this.endpoint);
+      payload.id = this.gerarID()
+      await api.salvarDados(payload, this.endpoint);
     }
     return this.obterAgenda();
   }
@@ -59,37 +61,26 @@ export class AgendaViewModel {
   }
 
   gerarID() {
-    if (this.agenda.length === 0) return 1;
-    const maior = Math.max(...this.agenda.map((t) => t.id || 0));
-    return maior + 1;
+    if (this.agenda.length === 0) return "1";
+    const maior = Math.max(...this.agenda.map((t) => Number(t.id) || 0));
+    return String(maior + 1);
   }
 
   filtrarAgenda (){
     return [...this.agenda]
               .filter(compromisso => {
-                const [diaComp, mesComp, anoComp] = compromisso.Data.split('/');
-                return (
-                    parseInt(diaComp) === i &&
-                    parseInt(mesComp) === mes + 1 &&
-                    parseInt(anoComp) === ano
-                );
-            });    
+              const dataCompromisso = new Date(compromisso.Data);
+              return dataCompromisso > new Date(); 
+            })   
   } 
 
   filtrarProximosCompromissos(qtd = 13) {
     return [...this.agenda]
-            .filter(compromisso => {
-                const [dia, mes, ano] = compromisso.Data.split('/');
-                const dataCompromisso = new Date(`${ano}-${mes}-${dia}T00:00:00`);
-                return dataCompromisso > new Date(); 
-            })
-            .sort((a, b) => {
-                const [diaA, mesA, anoA] = a.Data.split('/');
-                const [diaB, mesB, anoB] = b.Data.split('/');
-                const dataA = new Date(`${anoA}-${mesA}-${diaA}T00:00:00`);
-                const dataB = new Date(`${anoB}-${mesB}-${diaB}T00:00:00`);
-                return dataA - dataB; // crescente
-            })
-            .slice(0, qtd);
+      .filter(compromisso => {
+        const dataCompromisso = new Date(compromisso.Data);
+        return dataCompromisso > new Date(); 
+      })
+      .sort((a, b) => new Date(a.Data) - new Date(b.Data))
+      .slice(0, qtd);
   }
 }

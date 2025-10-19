@@ -1,5 +1,5 @@
 export default class Agenda {
-    Id
+    id
     Titulo
     Status
     Categoria
@@ -7,7 +7,7 @@ export default class Agenda {
     Data
 
     constructor (id, titulo,status,categoria,tipo,data) {
-        this.Id = id
+        this.id = id
         this.Titulo = titulo           
         this.Status = status
         this.Categoria = categoria

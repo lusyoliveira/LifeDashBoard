@@ -70,9 +70,9 @@ export class EstudoViewModel {
   }
 
   gerarID() {
-    if (this.cursos.length === 0) return 1;
+    if (this.cursos.length === 0) return "1";
     const maior = Math.max(...this.cursos.map((t) => t.id || 0));
-    return maior + 1;
+    return String(maior + 1);
   };
 
   cursando(qtd = 3) {

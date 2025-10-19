@@ -8,7 +8,7 @@ export class AgendaView {
     const agendamento = await this.vm.obterAgendaPorID(agendamentoId)
 
     if (agendamento) {
-        document.getElementById('id-adicionar').value = agendamento.Id;
+        document.getElementById('id-adicionar').value = agendamento.id;
         document.getElementById('titulo-adicionar').value = agendamento.Titulo;
         document.getElementById('data-adicionar').value = new Date(agendamento.Data).toISOString().slice(0,16);
         document.getElementById('categoria-adicionar').value = agendamento.Categoria;
@@ -30,13 +30,7 @@ export class AgendaView {
       $(".datatable").DataTable().clear().destroy();
     }
 
-    const listaOrdenada = agenda.sort((a, b) => {
-      const [diaA, mesA, anoA] = a.Data.split("/");
-      const [diaB, mesB, anoB] = b.Data.split("/");
-      const dataA = new Date(`${anoA}-${mesA}-${diaA}T00:00:00`);
-      const dataB = new Date(`${anoB}-${mesB}-${diaB}T00:00:00`);
-      return dataA - dataB;
-    });
+    const listaOrdenada = agenda.sort((a, b) => new Date(a.Data) - new Date(b.Data));
 
     listaOrdenada.forEach((compromisso) => {
       const tr = document.createElement("tr");
@@ -60,14 +54,22 @@ export class AgendaView {
       tdTipo.classList.add("text-center");
 
       const tdData = document.createElement("td");
-      tdData.textContent = compromisso.Data;
+      const dataUTC = new Date(compromisso.Data);
+      const dataLocal = new Date(dataUTC.getTime() + dataUTC.getTimezoneOffset() * 60000);
+      tdData.textContent = dataLocal.toLocaleString('pt-BR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
 
       const tdBtnEditar = document.createElement("td");
       const tdBtnExcluir = document.createElement("td");
 
       const btnEditar = document.createElement("button");
       btnEditar.classList.add("btn", "btn-primary");
-      btnEditar.onclick = () => this.editarAgenda(compromisso.Id);
+      btnEditar.onclick = () => this.editarAgenda(compromisso.id);
 
       const iconeEditar = document.createElement("i");
       iconeEditar.classList.add("bi", "bi-pencil-fill");
@@ -77,7 +79,7 @@ export class AgendaView {
       btnExcluir.classList.add("btn", "btn-danger");
       btnExcluir.onclick = async () => {
         try {
-          await this.vm.excluirAgenda(compromisso.Id);
+          await this.vm.excluirAgenda(compromisso.id);
         } catch (error) {
           alert("Erro ao excluir agendamento!");
         }
@@ -159,11 +161,18 @@ export class AgendaView {
         ano === new Date().getFullYear();
 
       const agendaFiltrada = agendaConvertida.filter((compromisso) => {
-        const [diaComp, mesComp, anoComp] = compromisso.Data.split("/");
+        const dataUTC = new Date(compromisso.Data);
+        // converte UTC para horário local
+        const dataLocal = new Date(dataUTC.getTime() + dataUTC.getTimezoneOffset() * 60000);
+
+        const diaComp = dataLocal.getDate();
+        const mesComp = dataLocal.getMonth() + 1;
+        const anoComp = dataLocal.getFullYear();
+
         return (
-          parseInt(diaComp) === i &&
-          parseInt(mesComp) === mes + 1 &&
-          parseInt(anoComp) === ano
+          diaComp === i &&
+          mesComp === mes + 1 &&
+          anoComp === ano
         );
       });
 

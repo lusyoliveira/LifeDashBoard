@@ -40,48 +40,61 @@ export function converteDataUTC(dataString) {
     return new Date(Date.UTC(ano, mes - 1, dia, horaStr, minutoStr)).toISOString();
 };
 
-export function calculaTempoData(dataTexto) {  
-    let dataAlvo;
+export function calculaTempoData(dataTexto) {
+  let dataAlvo;
 
-    if (dataTexto instanceof Date) {
-        // já é Date
-        dataAlvo = new Date(dataTexto);
-    } else if (typeof dataTexto === "string") {
-        // string no formato dd/MM/yyyy
-        const partes = dataTexto.split('/');
-        dataAlvo = new Date(partes[2], partes[1] - 1, partes[0]);
-    } else {
-        return ""; // caso inválido
+  if (!dataTexto) return "";
+
+  if (dataTexto instanceof Date) {
+    dataAlvo = dataTexto;
+  } else if (typeof dataTexto === "string") {
+    // Detecta se é formato ISO (YYYY-MM-DDTHH:mm:ssZ)
+    if (dataTexto.includes("T")) {
+      dataAlvo = new Date(dataTexto);
+    } 
+    // Detecta formato brasileiro (dd/MM/yyyy)
+    else if (dataTexto.includes("/")) {
+      const [dia, mes, ano] = dataTexto.split("/");
+      dataAlvo = new Date(ano, mes - 1, dia);
+    } 
+    else {
+      // Caso venha um formato inesperado
+      return "";
     }
+  } else {
+    return "";
+  }
 
-    const agora = new Date();
+  if (isNaN(dataAlvo.getTime())) return "";
 
-    // Zera as horas para comparar apenas datas
-    dataAlvo.setHours(0, 0, 0, 0);
-    agora.setHours(0, 0, 0, 0);
+  const agora = new Date();
+  // Zera as horas para comparar apenas as datas
+  dataAlvo.setHours(0, 0, 0, 0);
+  agora.setHours(0, 0, 0, 0);
 
-    const diffMs = dataAlvo - agora;
-    const diffDias = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  const diffMs = dataAlvo - agora;
+  const diffDias = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
-    const passado = diffDias < 0;
-    const dias = Math.abs(diffDias);
+  const passado = diffDias < 0;
+  const dias = Math.abs(diffDias);
 
-    const anos = Math.floor(dias / 365);
-    const meses = Math.floor((dias % 365) / 30);
+  const anos = Math.floor(dias / 365);
+  const meses = Math.floor((dias % 365) / 30);
 
-    let frase = '';
+  let frase = "";
 
-    if (dias === 0) {
-        frase = 'Hoje';
-    } else if (dias === 1) {
-        frase = passado ? 'Ontem' : 'Amanhã';
-    } else if (anos >= 1) {
-        frase = `${passado ? 'Há' : 'Em'} ${anos} ${anos === 1 ? 'ano' : 'anos'}`;
-    } else if (meses >= 1) {
-        frase = `${passado ? 'Há' : 'Em'} ${meses} ${meses === 1 ? 'mês' : 'meses'}`;
-    } else {
-        frase = `${passado ? 'Há' : 'Em'} ${dias} dias`;
-    }
+  if (dias === 0) {
+    frase = "Hoje";
+  } else if (dias === 1) {
+    frase = passado ? "Ontem" : "Amanhã";
+  } else if (anos >= 1) {
+    frase = `${passado ? "Há" : "Em"} ${anos} ${anos === 1 ? "ano" : "anos"}`;
+  } else if (meses >= 1) {
+    frase = `${passado ? "Há" : "Em"} ${meses} ${meses === 1 ? "mês" : "meses"}`;
+  } else {
+    frase = `${passado ? "Há" : "Em"} ${dias} dias`;
+  }
 
-    return frase;
+  return frase;
 }
+
