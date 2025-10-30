@@ -23,10 +23,9 @@ export class ConfiguracaoViewModel {
                 configuracoes.Longitude,
                 configuracoes.AtivaClima,
                 configuracoes.AtualizaClima,
-                new Date(configuracoes.DataContagem).toISOString().slice(0, 16),
+                configuracoes.DataContagem,
                 configuracoes.DescricaoContagem
             );
-            console.log(configuracao);
             
             return configuracao;
         });
@@ -34,10 +33,11 @@ export class ConfiguracaoViewModel {
     };
 
     async salvarConfiguracao(configuracao) {
+        debugger
         if (configuracao.id) {
             await api.atualizarDados(configuracao, this.endpoint);
         } else {
-            await api.salvarDados(configuracao, this.endpoint);
+            alert('Não foi possível atualizar as configurações!')
         }
         return this.obterConfiguracoes();
     }

@@ -35,9 +35,7 @@ export class AgendaViewModel {
           compromisso.Categoria,
           compromisso.Tipo,
           compromisso.Data,
-        );
-        console.log(agenda);
-       
+        );       
         return agenda
     }
 

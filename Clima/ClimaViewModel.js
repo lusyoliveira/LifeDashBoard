@@ -1,4 +1,5 @@
 import api from "../js/metodoApi.js";
+import Clima from "../Clima/Clima.js"
 
 const urlBaseClima = 'https://api.open-meteo.com/v1/forecast';
 const urlBaseCidade = 'https://geocoding-api.open-meteo.com/v1/search'
@@ -43,7 +44,7 @@ export class ClimaViewModel {
 
     async obterCidade(configuracoesClima) {
         const parametroCidade = {
-            name: configuracoesClima.name,
+            name: configuracoesClima,
             count: 1,
             language: "pt",
             format: "json",
@@ -61,4 +62,56 @@ export class ClimaViewModel {
             throw error
         }
     }
+
+    async atualizarClima(configuracoesClima) {
+        try {
+            const dadosCidade = await this.obterCidade(configuracoesClima);
+            if (!dadosCidade.results || dadosCidade.results.length === 0) {
+                alert('Cidade não encontrada!');
+                return;
+            }
+
+            const cidade = dadosCidade.results[0];
+            const dadosClima = await this.obterClima({
+                latitude: cidade.latitude,
+                longitude: cidade.longitude
+            });
+
+            // cria uma instância da classe Clima
+            const clima = new Clima(
+                3459505,
+                cidade.name,
+                cidade.latitude,
+                cidade.longitude,
+                cidade.elevation,
+                cidade.feature_code,
+                cidade.country_code,
+                cidade.admin1_id,
+                cidade.admin2_id,
+                cidade.timezone,
+                cidade.population,
+                cidade.country_id,
+                cidade.country,
+                cidade.admin1,
+                cidade.admin2,
+                dadosClima.current_units,
+                dadosClima.current,
+                dadosClima.daily_units,
+                dadosClima.daily
+            );
+
+            console.log(clima);
+            
+            // salva o clima completo
+            //await api.atualizarDados(clima, this.endpoint);
+
+            alert('Clima salvo com sucesso!');
+            return clima;
+        } catch (error) {
+            console.error(error);
+            alert('Erro ao salvar os dados do clima!');
+            throw error;
+        }
+    }
+
 }

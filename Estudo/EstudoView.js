@@ -30,7 +30,7 @@ export class EstudoView {
         const tabela = document.getElementById(elementoId);
         tabela.innerHTML = '';
         const cursos = await this.vm.obterCursos();
-
+        
         if (!tabela) return;     
     
         if ($.fn.DataTable.isDataTable('.datatable')) {
@@ -58,9 +58,9 @@ export class EstudoView {
     
                 const tdComprado = document.createElement('td');
                 tdComprado.classList.add('text-center');    
-                const dataUTC = new Date(curso.Comprado);
+                const dataUTC = new Date(curso.Comprado);                
                 const dataLocal = new Date(dataUTC.getTime() + dataUTC.getTimezoneOffset() * 60000);
-                tdComprado.textContent = dataLocal.toLocaleString('pt-BR');
+                tdComprado.textContent = dataLocal.toLocaleDateString("pt-BR");
     
                 const tdValor = document.createElement('td');
                 tdValor.classList.add('text-center');

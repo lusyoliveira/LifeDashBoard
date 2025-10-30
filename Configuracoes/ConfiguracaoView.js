@@ -22,7 +22,7 @@ export class ConfiguracaoView {
             inputDataContagem.setAttribute('id', 'data-contagem')
             inputDataContagem.setAttribute('placeholder', 'Informe a data')
             inputDataContagem.setAttribute('aria-label', 'Informe a data')  
-            inputDataContagem.value = configuracoes.DataContagem;
+            inputDataContagem.value = new Date(configuracoes.DataContagem).toISOString().slice(0,16);
 
             const divDescricaoContagem = document.createElement('div');
             divDescricaoContagem.classList.add('col')
@@ -325,6 +325,7 @@ export class ConfiguracaoView {
             const inputAtualizacao = document.createElement('input');
             inputAtualizacao.classList.add('form-control')
             inputAtualizacao.setAttribute('type', 'number') 
+            inputAtualizacao.setAttribute('id', 'atualiza-clima')
             inputAtualizacao.value = configuracoes.AtualizaClima
 
             divLocalizacao.appendChild(labelAtualizacao)

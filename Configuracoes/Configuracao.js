@@ -1,5 +1,5 @@
 export default class Configuracao {
-    Id
+    id
     AtivaMAL 
     AtivaOutlook
     ChaveOutlook
@@ -14,7 +14,7 @@ export default class Configuracao {
     DescricaoContagem
 
     constructor(id, ativMAL, ativaOutlook, chaveOutlook, ativaGoogle, chaveGoogle, cidade, latitude = 0, longitude = 0,ativaClima, atualizaClima, dataContagem = new Date(), descricaoContagem) {
-        this.Id = id
+        this.id = id
         this.AtivaMAL = ativMAL
         this.AtivaOutlook = ativaOutlook
         this.ChaveOutlook = chaveOutlook

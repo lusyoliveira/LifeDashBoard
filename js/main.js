@@ -14,8 +14,7 @@
     import { ContadorView } from "../Contador/ContadorView.js";
     import { RelogioViewModel } from "../Relogio/RelogioViewModel.js";
     import { RelogioView } from "../Relogio/RelogioView.js";
-    import { formatarParaISO } from "../js/metodoData.js";
-
+    
     const containerModal = document.getElementById('container-modal');
     const botaoTarefa = document.getElementById('adiciona-tarefa');    
 
@@ -41,6 +40,7 @@
         await tvm.obterTarefas();   
         await cvm.obterCatalogo(); 
         await avm.obterAgenda();
+        await clvm.atualizarClima('Juiz de Fora')
 
         estudoView.renderCursando("Cursando");
         tarefaView.listarTarefas('lista-tarefa')
@@ -52,9 +52,6 @@
         contadorView.exibirContador('contador')
         relogioView.exibirRelogio('relogio')
         
-        const botaoAdicionaContagem = document.getElementById('adiciona-contagem');
-        const botaoDiminuiContagem = document.getElementById('diminui-contagem');
-
         //Adiciona tarefa
         botaoTarefa.addEventListener("click", async (evento) => { 
             evento.preventDefault();   

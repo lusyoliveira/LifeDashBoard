@@ -61,10 +61,14 @@ export class CatalogoView {
             tdOnde.textContent = titulo.Onde;
 
             const tdInicio = document.createElement('td');
-            tdInicio.textContent = titulo.InicioFormatado;
+            const dataIniUTC = new Date(titulo.Inicio);                
+            const dataIniLocal = new Date(dataIniUTC.getTime() + dataIniUTC.getTimezoneOffset() * 60000);
+            tdInicio.textContent = dataIniLocal.toLocaleDateString("pt-BR");
 
             const tdFim = document.createElement('td');
-            tdFim.textContent = titulo.FimFormatado;
+            const dataFimUTC = new Date(titulo.Inicio);                
+            const dataFimLocal = new Date(dataFimUTC.getTime() + dataFimUTC.getTimezoneOffset() * 60000);
+            tdFim.textContent = dataFimLocal.toLocaleDateString("pt-BR");
 
             const tdEpisodios = document.createElement('td');
             tdEpisodios.classList.add('text-center');
@@ -311,7 +315,10 @@ export class CatalogoView {
                     iIcon.classList.add('bi', 'bi-calendar3');
 
                     const smallDataAdicao = document.createElement('small');
-                    smallDataAdicao.textContent = titulo.AdicaoFormatado;
+                    const dataUTC = new Date(titulo.Adicao);                
+                    const dataLocal = new Date(dataUTC.getTime() + dataUTC.getTimezoneOffset() * 60000);
+
+                    smallDataAdicao.textContent = dataLocal.toLocaleDateString("pt-BR");
                     liDataAdicao.appendChild(iIcon);
                     liDataAdicao.appendChild(smallDataAdicao);
                     ulInfo.appendChild(liProgresso);
@@ -364,8 +371,10 @@ export class CatalogoView {
                     divBarraProgresso.textContent =  `${titulo.Status === 'Planejado' ? 0 : (titulo.Assistidos/titulo.Episodios).toFixed(1)*100}%`;
         
                     const smallDataAdicao = document.createElement('small');
-                    smallDataAdicao.classList.add('opacity-50', 'text-nowrap');     
-                    smallDataAdicao.textContent = calculaTempoData(titulo.Adicao);
+                    smallDataAdicao.classList.add('opacity-50', 'text-nowrap');  
+                    const dataUTC = new Date(titulo.Adicao);                
+                    const dataLocal = new Date(dataUTC.getTime() + dataUTC.getTimezoneOffset() * 60000);
+                    smallDataAdicao.textContent = calculaTempoData(dataLocal);
         
                     divTitulo.appendChild(h6Titulo);
                     divProgresso.appendChild(divBarraProgresso);

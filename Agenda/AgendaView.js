@@ -115,11 +115,14 @@ export class AgendaView {
     if (elementoDestino) {
       elementoDestino.innerHTML = "";
       agendaFiltrada.forEach((compromisso) => {
+   
+        const dataUTC = new Date(compromisso.Data);
+        const dataLocal = new Date(dataUTC.getTime() + dataUTC.getTimezoneOffset() * 60000);
         elementoDestino.innerHTML += `            
                     <a href="#" class="list-group-item list-group-item-action">
                         <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">${compromisso.Titulo}</h5>
-                        <small>${calculaTempoData(compromisso.Data)}</small>
+                        <small>${calculaTempoData(dataLocal)}</small>
                         </div>
                         <small class="badge text-bg-info">${
                           compromisso.Categoria

@@ -27,27 +27,7 @@ export class CatalogoViewModel {
         titulo.Vezes,
         titulo.Adicao
       );
-
-      if (titulos.Inicio) {
-        const dataInicio = new Date(titulos.Inicio)
-        if (!isNaN(dataInicio)) {
-          titulos.InicioFormatado = titulos.Inicio.toLocaleDateString("pt-BR")
-        }
-      }
-
-      if (titulos.Fim) {
-        const dataFim = new Date(titulos.Fim)
-        if (!isNaN(dataFim)) {
-          titulos.FimFormatado = titulos.Fim.toLocaleDateString("pt-BR")
-        }
-      }
-
-      if (titulos.Adicao) {
-        const dataAdicao = new Date(titulos.Adicao)
-        if (!isNaN(dataAdicao)) {
-          titulos.AdicaoFormatado = titulos.Adicao.toLocaleDateString("pt-BR")
-        }
-      }     
+ 
     return titulos;
   });  
   return this.catalogo;
@@ -74,26 +54,6 @@ export class CatalogoViewModel {
       titulo.Adicao
     );
 
-    if (catalogo.Inicio) {
-        const dataInicio = new Date(catalogo.Inicio)
-        if (!isNaN(dataInicio)) {
-          catalogo.InicioFormatado = catalogo.Inicio.toLocaleDateString("pt-BR")
-        }
-      }
-
-    if (catalogo.Fim) {
-      const dataFim = new Date(catalogo.Fim)
-      if (!isNaN(dataFim)) {
-        catalogo.FimFormatado = catalogo.Fim.toLocaleDateString("pt-BR")
-      }
-    } 
-
-    if (catalogo.Adicao) {
-      const dataAdicao = new Date(catalogo.Adicao)
-      if (!isNaN(dataAdicao)) {
-        catalogo.AdicaoFormatado = catalogo.Adicao.toLocaleDateString("pt-BR")
-      }
-    }    
     return catalogo;
   }
 

@@ -26,7 +26,6 @@ export class EstudoViewModel {
         curso.Status,
         curso.Certificado
       );
-      //console.log(cursos);
       
         return cursos;
     });   
