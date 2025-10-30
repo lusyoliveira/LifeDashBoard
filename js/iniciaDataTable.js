@@ -4,7 +4,7 @@ document.addEventListener('Renderizado', () => {
     
     // Se DataTable já foi aplicado, destrói e recria
      if ($.fn.DataTable.isDataTable(tabela)) {
-        tabela.DataTable().clear().destroy(); // 🧹 destrói totalmente
+        tabela.DataTable().clear().destroy(); // destrói totalmente
         tabela.find('thead').remove(); // remove o cabeçalho duplicado renderizado
     }
 
@@ -17,7 +17,7 @@ document.addEventListener('Renderizado', () => {
         lengthMenu: [10, 25, 50],
         pageLength: 10,
         language: {
-            url: './json/pt-BR.json'
+            url: '/json/PT-BR.json'
         }
     });
 });

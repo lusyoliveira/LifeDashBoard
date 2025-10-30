@@ -21,11 +21,13 @@ export class EstudoViewModel {
         curso.Name,
         curso.Professor,
         curso.Assunto,
-        new Date(curso.Comprado).toLocaleDateString('pt-BR'),
+        curso.Comprado,
         curso.Valor,
         curso.Status,
         curso.Certificado
       );
+      //console.log(cursos);
+      
         return cursos;
     });   
     return this.cursos;
@@ -45,7 +47,7 @@ export class EstudoViewModel {
         curso.Name,
         curso.Professor,
         curso.Assunto,
-        new Date(curso.Comprado).toLocaleDateString('pt-BR'),
+        curso.Comprado,
         curso.Valor,
         curso.Status,
         curso.Certificado

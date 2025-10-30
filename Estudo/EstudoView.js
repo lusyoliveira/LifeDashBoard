@@ -58,7 +58,9 @@ export class EstudoView {
     
                 const tdComprado = document.createElement('td');
                 tdComprado.classList.add('text-center');    
-                tdComprado.textContent = curso.Comprado;
+                const dataUTC = new Date(curso.Comprado);
+                const dataLocal = new Date(dataUTC.getTime() + dataUTC.getTimezoneOffset() * 60000);
+                tdComprado.textContent = dataLocal.toLocaleString('pt-BR');
     
                 const tdValor = document.createElement('td');
                 tdValor.classList.add('text-center');
