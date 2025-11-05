@@ -40,14 +40,14 @@
         await tvm.obterTarefas();   
         await cvm.obterCatalogo(); 
         await avm.obterAgenda();
-        await clvm.atualizarClima('Juiz de Fora')
+        //await clvm.atualizarClima('Juiz de Fora')
 
         estudoView.renderCursando("Cursando");
         tarefaView.listarTarefas('lista-tarefa')
         catalogoView.renderAssistindo(['Assistindo','Reassistindo'],'Assistindo')
         agendaView.renderProximosCompromissos('proximos-compromissos')
         agendaView.renderCalendario('calendario')
-        climaView.exibirClima('clima')
+        //climaView.exibirClima('clima')
         contagemView.exibirContagem('contagemRegressiva')
         contadorView.exibirContador('contador')
         relogioView.exibirRelogio('relogio')
