@@ -2,18 +2,18 @@
   "configuracoes": [
     {
       "id": "1",
-      "AtivaMAL": true,
-      "AtivaOutlook": true,
+      "AtivaMAL": false,
+      "AtivaOutlook": false,
       "ChaveOutlook": "",
-      "AtivaGoogle": true,
+      "AtivaGoogle": false,
       "ChaveGoogle": "",
       "Cidade": "Juiz de Fora",
       "Latitude": "-21.76417",
       "Longitude": "-43.35028",
       "AtivaClima": true,
       "AtualizaClima": "10800",
-      "DataContagem": "2025-09-23T00:29:00.000Z",
-      "DescricaoContagem": "Primavera"
+      "DataContagem": "2026-04-29T04:25:00.000Z",
+      "DescricaoContagem": "Aniversário"
     }
   ],
   "clima": [
@@ -53,23 +53,23 @@
         "surface_pressure": "hPa"
       },
       "current": {
-        "time": "2025-07-25T16:45",
+        "time": "2025-11-15T17:30",
         "interval": 900,
         "weather_code": 3,
-        "temperature_2m": 21.5,
-        "relative_humidity_2m": 66,
-        "apparent_temperature": 22.1,
+        "temperature_2m": 24,
+        "relative_humidity_2m": 68,
+        "apparent_temperature": 25.5,
         "is_day": 1,
-        "wind_speed_10m": 6.5,
-        "wind_direction_10m": 360,
-        "wind_gusts_10m": 27,
+        "wind_speed_10m": 9.2,
+        "wind_direction_10m": 138,
+        "wind_gusts_10m": 24.1,
         "precipitation": 0,
         "rain": 0,
         "showers": 0,
         "snowfall": 0,
-        "cloud_cover": 97,
-        "pressure_msl": 1019.2,
-        "surface_pressure": 939
+        "cloud_cover": 94,
+        "pressure_msl": 1015.6,
+        "surface_pressure": 937
       },
       "daily_units": {
         "time": "iso8601",
@@ -79,40 +79,40 @@
       },
       "daily": {
         "time": [
-          "2025-07-25",
-          "2025-07-26",
-          "2025-07-27",
-          "2025-07-28",
-          "2025-07-29",
-          "2025-07-30",
-          "2025-07-31"
+          "2025-11-15",
+          "2025-11-16",
+          "2025-11-17",
+          "2025-11-18",
+          "2025-11-19",
+          "2025-11-20",
+          "2025-11-21"
         ],
         "weather_code": [
+          80,
           95,
-          45,
-          45,
+          96,
+          96,
+          95,
           3,
-          3,
-          2,
-          45
+          2
         ],
         "temperature_2m_max": [
-          21.6,
-          21.6,
-          23.6,
-          25.6,
-          18.1,
-          17,
-          18.2
+          24.5,
+          24.8,
+          27.9,
+          28.1,
+          23.5,
+          24.1,
+          24
         ],
         "temperature_2m_min": [
-          13.8,
-          11.2,
-          12.4,
-          12.8,
-          11.2,
-          5.5,
-          6.7
+          17,
+          18.3,
+          18.7,
+          20.3,
+          17.9,
+          15.9,
+          13.2
         ]
       }
     }
@@ -163,7 +163,7 @@
       "Status": "Indeterminado",
       "Categoria": "Pessoal",
       "Tipo": "Evento",
-      "Data": "2025-10-26T00:00:00.000Z"
+      "Data": "2025-11-12T00:00:00.000Z"
     },
     {
       "id": "3",
@@ -171,7 +171,7 @@
       "Status": "Indeterminado",
       "Categoria": "Pessoal",
       "Tipo": "Evento",
-      "Data": "2025-10-23T17:00:00.000Z"
+      "Data": "2025-11-15T17:00:00.000Z"
     },
     {
       "id": "4",
@@ -219,7 +219,7 @@
       "Status": "Indeterminado",
       "Categoria": "Pessoal",
       "Tipo": "Evento",
-      "Data": "2025-11-01T00:00:00.000Z"
+      "Data": "2025-12-01T00:00:00.000Z"
     },
     {
       "id": "10",
@@ -227,7 +227,7 @@
       "Status": "Indeterminado",
       "Categoria": "Casa",
       "Tipo": "Evento",
-      "Data": "2025-11-01T00:00:00.000Z"
+      "Data": "2025-11-27T00:00:00.000Z"
     },
     {
       "id": "11",
@@ -235,7 +235,7 @@
       "Status": "Indeterminado",
       "Categoria": "Pessoal",
       "Tipo": "Compromisso",
-      "Data": "2025-11-01T00:00:00.000Z"
+      "Data": "2025-12-01T00:00:00.000Z"
     },
     {
       "id": "12",
@@ -243,7 +243,7 @@
       "Status": "Indeterminado",
       "Categoria": "Casa",
       "Tipo": "Evento",
-      "Data": "2025-11-01T00:00:00.000Z"
+      "Data": "2025-12-01T00:00:00.000Z"
     },
     {
       "id": "13",
@@ -259,7 +259,7 @@
       "Status": "Indeterminado",
       "Categoria": "Casa",
       "Tipo": "Evento",
-      "Data": "2025-11-11T00:00:00.000Z"
+      "Data": "2025-12-11T00:00:00.000Z"
     },
     {
       "id": "15",
@@ -267,7 +267,7 @@
       "Status": "Indeterminado",
       "Categoria": "Casa",
       "Tipo": "Evento",
-      "Data": "2025-11-11T00:00:00.000Z"
+      "Data": "2025-12-11T00:00:00.000Z"
     },
     {
       "id": "16",
@@ -275,7 +275,7 @@
       "Status": "Indeterminado",
       "Categoria": "Pessoal",
       "Tipo": "Evento",
-      "Data": "2025-11-11T13:30:00.000Z"
+      "Data": "2025-12-11T13:30:00.000Z"
     },
     {
       "id": "17",
@@ -319,21 +319,19 @@
     },
     {
       "id": "22",
-      "Capa": "",
       "Titulo": "Halloween",
       "Status": "Indeterminado",
       "Categoria": "Data Importante",
       "Tipo": "Evento",
-      "Data": "2025-10-31T00:00:00.000Z"
+      "Data": "2026-10-31T00:00:00.000Z"
     },
     {
       "id": "23",
-      "Capa": "",
       "Titulo": "Expiração Token Mercado Envio",
       "Status": "Indeterminado",
       "Categoria": "Loja",
       "Tipo": "Evento",
-      "Data": "2025-11-02T00:00:00.000Z"
+      "Data": "2025-11-18T00:00:00.000Z"
     },
     {
       "id": "24",
@@ -5242,7 +5240,7 @@
       "Titulo": "NCIS 14ª Temporada",
       "Capa": "https://images.plex.tv/photo?size=large-1920&scale=1&url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2F7LMI9VVUD4zAgVLQrGGdNUVCAa8.jpg",
       "Tipo": "Serie",
-      "Status": "Reassistindo",
+      "Status": "Completado",
       "Onde": "Netflix",
       "Inicio": "2024-10-01T00:00:00.000Z",
       "Fim": "2024-10-13T00:00:00.000Z",

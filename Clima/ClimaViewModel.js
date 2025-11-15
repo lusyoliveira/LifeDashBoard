@@ -42,9 +42,9 @@ export class ClimaViewModel {
         }
     }
 
-    async obterCidade(configuracoesClima) {
+    async obterCidade(Cidade) {
         const parametroCidade = {
-            name: configuracoesClima,
+            name: Cidade,
             count: 1,
             language: "pt",
             format: "json",
@@ -57,6 +57,7 @@ export class ClimaViewModel {
         try {
             const response = await fetch(urlCidade)
             return await response.json()
+            
         } catch (error) {
             alert('Erro ao buscar cidade na API!')
             throw error
@@ -65,7 +66,7 @@ export class ClimaViewModel {
 
     async atualizarClima(configuracoesClima) {
         try {
-            const dadosCidade = await this.obterCidade(configuracoesClima);
+            const dadosCidade = await this.obterCidade(configuracoesClima.Cidade);
             if (!dadosCidade.results || dadosCidade.results.length === 0) {
                 alert('Cidade não encontrada!');
                 return;
@@ -77,9 +78,10 @@ export class ClimaViewModel {
                 longitude: cidade.longitude
             });
 
+            console.log(cidade);
             // cria uma instância da classe Clima
             const clima = new Clima(
-                3459505,
+                cidade.id,
                 cidade.name,
                 cidade.latitude,
                 cidade.longitude,
@@ -99,19 +101,23 @@ export class ClimaViewModel {
                 dadosClima.daily_units,
                 dadosClima.daily
             );
-
+            
             console.log(clima);
             
+            debugger
+            if (clima.id) {
             // salva o clima completo
-            //await api.atualizarDados(clima, this.endpoint);
+                await api.atualizarDados(clima, this.endpoint);
+            }
 
-            alert('Clima salvo com sucesso!');
-            return clima;
+
+            //alert('Clima salvo com sucesso!');            
+           // return clima;
         } catch (error) {
             console.error(error);
             alert('Erro ao salvar os dados do clima!');
             throw error;
         }
     }
-
+    
 }

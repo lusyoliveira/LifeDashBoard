@@ -14,6 +14,8 @@
     import { ContadorView } from "../Contador/ContadorView.js";
     import { RelogioViewModel } from "../Relogio/RelogioViewModel.js";
     import { RelogioView } from "../Relogio/RelogioView.js";
+    import { ConfiguracaoViewModel } from "../Configuracoes/ConfiguracaoViewModel.js";
+    import { ConfiguracaoView } from "../Configuracoes/ConfiguracaoView.js";
     
     const containerModal = document.getElementById('container-modal');
     const botaoTarefa = document.getElementById('adiciona-tarefa');    
@@ -33,21 +35,39 @@
     const ctdvm = new ContadorViewModel();
     const contadorView = new ContadorView(ctdvm);
     const rvm = new RelogioViewModel();
-    const relogioView = new RelogioView(rvm);
+    const relogioView = new RelogioView(rvm);    
+    const cfvm = new ConfiguracaoViewModel('configuracoes');
+    const configuracaoView = new ConfiguracaoView(cfvm);
+
 
     (async () => {
         await evm.obterCursos(); 
         await tvm.obterTarefas();   
         await cvm.obterCatalogo(); 
         await avm.obterAgenda();
-        //await clvm.atualizarClima('Juiz de Fora')
+       // await ctvm.obterContagem();
+        //await ctdvm.obterContador();
+
+        
+        const configuracoes = (await cfvm.obterConfiguracoes())[0] 
+        //console.log(configuracoes.AtualizaClima);
+
+        
+        await clvm.atualizarClima(configuracoes)
+        // setInterval(async () => {
+        //     if (configuracoes.AtualizaClima) {
+        //         await clvm.atualizarClima(configuracoes)
+        //         climaView.exibirClima('clima')
+        //     }
+        // }, configuracoes.AtualizaClima ? configuracoes.AtualizaClima * 60000 : 0); // Converte minutos para milissegundos
+
 
         estudoView.renderCursando("Cursando");
         tarefaView.listarTarefas('lista-tarefa')
         catalogoView.renderAssistindo(['Assistindo','Reassistindo'],'Assistindo')
         agendaView.renderProximosCompromissos('proximos-compromissos')
         agendaView.renderCalendario('calendario')
-        //climaView.exibirClima('clima')
+        climaView.exibirClima('clima')
         contagemView.exibirContagem('contagemRegressiva')
         contadorView.exibirContador('contador')
         relogioView.exibirRelogio('relogio')
