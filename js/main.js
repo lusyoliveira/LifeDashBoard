@@ -53,13 +53,13 @@
         //console.log(configuracoes.AtualizaClima);
 
         
-        await clvm.atualizarClima(configuracoes)
-        // setInterval(async () => {
-        //     if (configuracoes.AtualizaClima) {
-        //         await clvm.atualizarClima(configuracoes)
-        //         climaView.exibirClima('clima')
-        //     }
-        // }, configuracoes.AtualizaClima ? configuracoes.AtualizaClima * 60000 : 0); // Converte minutos para milissegundos
+        //await clvm.atualizarClima(configuracoes)
+        setInterval(async () => {
+            if (configuracoes.AtualizaClima) {
+                await clvm.atualizarClima(configuracoes)
+                climaView.exibirClima('clima')
+            }
+        }, configuracoes.AtualizaClima ? configuracoes.AtualizaClima * 60000 : 0); // Converte minutos para milissegundos
 
 
         estudoView.renderCursando("Cursando");

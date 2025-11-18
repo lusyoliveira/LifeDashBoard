@@ -11,8 +11,8 @@
       "Latitude": "-21.76417",
       "Longitude": "-43.35028",
       "AtivaClima": true,
-      "AtualizaClima": "10800",
-      "DataContagem": "2026-04-29T04:25:00.000Z",
+      "AtualizaClima": 180,
+      "DataContagem": "2026-04-29T07:25:00.000Z",
       "DescricaoContagem": "Aniversário"
     }
   ],
@@ -53,23 +53,23 @@
         "surface_pressure": "hPa"
       },
       "current": {
-        "time": "2025-11-15T17:30",
+        "time": "2025-11-18T17:30",
         "interval": 900,
         "weather_code": 3,
-        "temperature_2m": 24,
-        "relative_humidity_2m": 68,
-        "apparent_temperature": 25.5,
+        "temperature_2m": 28.4,
+        "relative_humidity_2m": 47,
+        "apparent_temperature": 27.7,
         "is_day": 1,
-        "wind_speed_10m": 9.2,
-        "wind_direction_10m": 138,
-        "wind_gusts_10m": 24.1,
+        "wind_speed_10m": 18.8,
+        "wind_direction_10m": 313,
+        "wind_gusts_10m": 45.7,
         "precipitation": 0,
         "rain": 0,
         "showers": 0,
         "snowfall": 0,
-        "cloud_cover": 94,
-        "pressure_msl": 1015.6,
-        "surface_pressure": 937
+        "cloud_cover": 89,
+        "pressure_msl": 1006.4,
+        "surface_pressure": 929.6
       },
       "daily_units": {
         "time": "iso8601",
@@ -79,40 +79,40 @@
       },
       "daily": {
         "time": [
-          "2025-11-15",
-          "2025-11-16",
-          "2025-11-17",
           "2025-11-18",
           "2025-11-19",
           "2025-11-20",
-          "2025-11-21"
+          "2025-11-21",
+          "2025-11-22",
+          "2025-11-23",
+          "2025-11-24"
         ],
         "weather_code": [
-          80,
-          95,
-          96,
-          96,
-          95,
           3,
-          2
+          3,
+          3,
+          3,
+          3,
+          95,
+          96
         ],
         "temperature_2m_max": [
-          24.5,
-          24.8,
-          27.9,
-          28.1,
-          23.5,
-          24.1,
-          24
+          28.8,
+          26,
+          23,
+          26.8,
+          28.6,
+          26.8,
+          22.3
         ],
         "temperature_2m_min": [
-          17,
-          18.3,
-          18.7,
-          20.3,
-          17.9,
-          15.9,
-          13.2
+          18.5,
+          16.6,
+          13.8,
+          14.6,
+          16,
+          17.3,
+          17.9
         ]
       }
     }
@@ -5563,18 +5563,36 @@
       "Titulo": "NCIS 15ª Temporada",
       "Capa": "https://m.media-amazon.com/images/M/MV5BMTAyOTUzNDktOTE3NS00MjdkLWFhZGItNjE2MjI1M2U5Zjk4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
       "Tipo": "Serie",
-      "Status": "Assistindo",
+      "Status": "Completado",
       "Onde": "Paramonut",
       "Inicio": "2025-11-04T15:17:00.000Z",
+      "Fim": "2025-11-16T00:00:00.000Z",
+      "Episodios": 24,
+      "Assistidos": 24,
+      "Temporadas": 1,
+      "Score": 7,
+      "Vezes": 1,
+      "Adicao": "2025-11-05T18:18:09.004Z",
+      "Dias": 11,
+      "Progresso": 100
+    },
+    {
+      "id": "195",
+      "Titulo": "NCIS 16ª Temporada",
+      "Capa": "https://media.themoviedb.org/t/p/w500/sQz8u7UpRE02SthffFgIywogoKS.jpg",
+      "Tipo": "Serie",
+      "Status": "Assistindo",
+      "Onde": "Paramonut",
+      "Inicio": "2025-11-16T17:21:00.000Z",
       "Fim": null,
       "Episodios": 24,
-      "Assistidos": 2,
+      "Assistidos": 3,
       "Temporadas": 1,
       "Score": 0,
       "Vezes": 0,
-      "Adicao": "2025-11-05T18:18:09.004Z",
+      "Adicao": "2025-11-18T14:21:53.926Z",
       "Dias": 0,
-      "Progresso": 8.333333333333332
+      "Progresso": 12.5
     }
   ]
 }
