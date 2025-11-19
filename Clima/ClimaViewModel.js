@@ -109,10 +109,7 @@ export class ClimaViewModel {
             // salva o clima completo
                 await api.atualizarDados(clima, this.endpoint);
             }
-
-
             //alert('Clima salvo com sucesso!');            
-           // return clima;
         } catch (error) {
             console.error(error);
             alert('Erro ao salvar os dados do clima!');

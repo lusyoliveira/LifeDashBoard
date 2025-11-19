@@ -45,15 +45,8 @@
         await tvm.obterTarefas();   
         await cvm.obterCatalogo(); 
         await avm.obterAgenda();
-       // await ctvm.obterContagem();
-        //await ctdvm.obterContador();
-
         
         const configuracoes = (await cfvm.obterConfiguracoes())[0] 
-        //console.log(configuracoes.AtualizaClima);
-
-        
-        //await clvm.atualizarClima(configuracoes)
         setInterval(async () => {
             if (configuracoes.AtualizaClima) {
                 await clvm.atualizarClima(configuracoes)

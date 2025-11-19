@@ -319,8 +319,8 @@ export class ConfiguracaoView {
 
             const labelAtualizacao = document.createElement('label');
             labelAtualizacao.classList.add('form-label')
-            labelAtualizacao.setAttribute('for','longitude')
-            labelAtualizacao.textContent = 'Tempo de Atualização (segundos)'
+            labelAtualizacao.setAttribute('for','atualiza-clima')
+            labelAtualizacao.textContent = 'Tempo de Atualização (minutos)'
 
             const inputAtualizacao = document.createElement('input');
             inputAtualizacao.classList.add('form-control')
