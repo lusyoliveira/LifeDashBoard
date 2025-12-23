@@ -4,14 +4,6 @@
 ## Deploy
 - Indisponível
 
-## Melhorias
-- [ ] Centralizar relogio na barra lateral
-- [ ] Incluir comportamento de ponteiro nos planetas do relogio
-- [ ] Atualizar clima na primeira vez que entra no sistema e depois no tempo definido no cadastro
-- [ ] implementar banco de dados
-- [ ] Implementar modal de cadastro de compromisso, curso e catalogo da pagina incial
-- [ ] Implementar integração do catalogo de musicas com arquvio do itunes
-
 ## Stack utilizada
 - [Bootstrap CSS](https://getbootstrap.com/)
 - [Plugin dataTables](https://datatables.net/)
